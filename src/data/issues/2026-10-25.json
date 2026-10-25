@@ -1,0 +1,195 @@
+{
+  "date": "2026-10-25",
+  "publishAt": "2026-10-26T11:00:00Z",
+  "en": {
+    "intro": "Cloudflare released an open add-on that has an AI coding assistant check your app for security holes, in several rounds instead of one. Also in today's five: NVIDIA's OpenShell, a private place for AI agents to run, a reported Qwen3.8-27B result against Fable 5 that I'd read with some doubt, and two tools, Impeccable and Hallmark, that try to keep AI-made interfaces from looking generic.",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Cloudflare's free security audit for AI coding agents",
+        "takeaway": "A free add-on makes your AI assistant audit your app for security holes. Run it more than once.",
+        "body": "Cloudflare has released a free add-on that makes an AI coding assistant audit your code for security holes. It's called security-audit, and it's the single-project starting point Cloudflare says its own large bug-hunting system grew from. It's open source under the MIT license.\n\nInstead of one quick pass over your code, it runs six phases. It scouts the project, hunts for problems, checks each suspect, writes the results in a fixed format, has a separate check verify those records, and finishes with a report. The README says separate, isolated AI helpers handle the steps.\n\nEvery finding gets one of three verdicts: confirmed, rejected, or still needs checking. Confirmed means the tool traced the problem through your code and saw a limited, real result. Still needs checking comes with the exact missing fact and no severity score. I like that. A scanner that admits what it doesn't know is easier to live with than one that cries wolf.\n\nTo actually run suspicious code, it wants a sealed-off test environment (a sandbox) with no internet access. Without one, it won't run your code and leaves those leads unresolved. Your assistant also has to use tools and run several helpers at once.\n\nIn Cloudflare's own tests, any single run turned up only about half of the total vulnerabilities that came out of many runs added together. That's Cloudflare's data from its own projects, so treat it as a hint. Still, it suggests running the audit more than once.\n\nIf you're about to ship something with logins or payments, this is worth an afternoon on a copy of your project.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-25/1.png",
+        "sources": [
+          {
+            "title": "cloudflare/security-audit-skill",
+            "url": "https://github.com/cloudflare/security-audit-skill",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "NVIDIA's OpenShell puts AI agents in a locked box",
+        "takeaway": "Free sandbox that limits what AI agents can touch and hides your keys. Early, 0.1.x, worth a test.",
+        "body": "NVIDIA has published OpenShell, a free program (Apache 2.0 license) that locks AI agents inside a sealed-off test environment, a sandbox, and controls what each one can touch. An agent is an AI that takes actions on its own, like opening files or calling web services. NVIDIA's README calls OpenShell a safe, private runtime for fleets of them. A runtime is just the place where programs actually run.\n\nYou write a policy, which is a list of what each agent may reach. OpenShell enforces it down at the operating system's core (the kernel), on every file access and network connection. Each outgoing connection is checked before it leaves the sandbox.\n\nAgents never see your real credentials, meaning your passwords and API keys. OpenShell adds them only to requests headed for approved destinations. An agent that gets confused or tricked has no key to leak.\n\nIf a policy change would grant risky new access, like sending credentials to a new host, OpenShell flags it using formal verification (math-based checking of the rules). A human then has to review it. NVIDIA doesn't say how that checking works or how much it covers, and no independent review of the security claims has surfaced yet.\n\nIf your product lets agents work on customers' files or accounts, fencing them in is a job you'd otherwise build yourself.\n\nIt runs on Linux, Macs with Apple Silicon, and Windows through WSL 2, which is still labeled experimental. You also need Docker, Podman, or similar. The default sandbox is a bare Ubuntu system with no agent inside, so you set up your own by following the tutorial. SDKs (starter kits) exist for Python, TypeScript, Go, and Rust. It's version 0.1.x, so early, and the README disclaims any warranty. I'd try it on a throwaway project before letting customer data near it.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-25/2.png",
+        "sources": [
+          {
+            "title": "NVIDIA/OpenShell",
+            "url": "https://github.com/NVIDIA/OpenShell",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Open Qwen model rivals Fable 5 at coding, on one benchmark",
+        "takeaway": "Cheaper models plus a good setup may cut AI coding costs. One benchmark only, so test on your own work.",
+        "body": "Qwen3.8-27B, an open model you can run on your own machine, jumps from 66.8% to 92.4% on a set of hard coding puzzles when it's wrapped in the right setup. That's the claim in a GitHub project called GVS5H, short for \"Gorilla vs. 5 Humans.\"\n\nFresh copies of the same AI model split a problem into steps and coordinate through a shared folder holding a plan, notes and the current solution. The authors call it ledger-based self-orchestration. It needs no extra training.\n\nThe test is LiveCodeBench, a public collection of coding puzzles used to score AI models. The authors ran eleven models on the 100 latest hard problems. Orchestrated Qwen3.8 Flash Next scored 93.0% against Claude Fable 5's 90.4%, at 9% of the cost. The authors credit the gain to splitting the work and keeping context between steps, based on reading the transcripts. They also say some models didn't improve, or got worse.\n\nIf you pay per request for AI coding help, a cheaper model that matches a premium one would matter. I wouldn't bank on it yet. It's one benchmark, and Hacker News commenters call it old and worry models have been over-tuned to those problems. The README's example run uses an OpenAI model as the manager, so it isn't Qwen working alone. There are no cost figures for the local 27B run. The Opus 5 comparison used an earlier version of the setup. The title says five 27B models, and the README doesn't say which five.\n\nThe code is free to reuse under the MIT license, so you can try it with your own API keys (access codes for paid AI services) or a local model. Run it on a few of your own tasks and watch the clock. One commenter asks whether it takes about ten times as long.",
+        "note": null,
+        "category": "Models",
+        "card": "/cards/2026-10-25/3.png",
+        "sources": [
+          {
+            "title": "Five Qwen3.8-27B models match Fable 5 Using GVS5H Harness",
+            "url": "https://github.com/slee-persis/GVS5H",
+            "site": "GitHub"
+          },
+          {
+            "title": "Five Qwen3.8-27B models match Fable 5 Using GVS5H Harness",
+            "url": "https://news.ycombinator.com/item?id=50228167",
+            "site": "Hacker News"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Impeccable tells AI coding tools to stop making generic UI",
+        "takeaway": "An add-on with 24 commands and 62 design checks. Try its checks on one existing screen before adopting it.",
+        "body": "Gray text on a colored background. Cards nested inside cards. Inter as the font for everything. If you've asked an AI tool to build a screen lately, you know the look. Impeccable is an add-on that tries to break that habit.\n\nIt's a bundle of design instructions (called a skill) that your AI coding assistant reads before it builds an interface. The project's GitHub README says it includes 24 short commands you can give the assistant, such as polish, critique, bolder and quieter. It also has 62 fixed checks that scan for design flaws, a bit like a spell-checker for ugly screens. Those checks run without an AI and without an API key, which is the key that connects a tool to an AI service.\n\nThe README lists what it hunts for: overused fonts like Arial and Inter, gray text on colored backgrounds, pure black and pure gray, cards inside cards, and bouncy animations.\n\nSetup is one install step from your project folder, then one setup step inside your assistant. That setup records what your product is and what it should look like, in two separate notes. It works with Cursor, Claude Code, Gemini CLI, Codex CLI and a few others. GitHub Copilot in VS Code gets a plugin instead, without the automatic checks.\n\nThe README says it grew out of Anthropic's frontend-design skill, the first widely used design skill for Claude.\n\nThe README also links a case study, Neo Mirai, described as a before/after of a real project transformed with Impeccable commands. No measured improvement comes with it, and the licence and upkeep aren't stated. I'd run the checks on a screen you've already built, see what they flag, and only then rebuild your workflow around it.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-25/4.png",
+        "sources": [
+          {
+            "title": "pbakaus/impeccable",
+            "url": "https://github.com/pbakaus/impeccable",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Hallmark tries to stop AI pages looking like AI pages",
+        "takeaway": "A free add-on that audits your AI-built landing page for generic tells. The audit mode changes nothing.",
+        "body": "Hallmark checks the pages it builds for tells like a small label above every heading, or widely spaced all-caps text. Those are the habits that make one AI-made web page look like every other.\n\nTogether AI made it. It's a skill, meaning a free add-on that gives an AI coding assistant a set of rules to follow. It works with Claude Code, Codex, Cursor and OpenCode. The README says it \"refuses to look AI-generated\". It's MIT licensed, so you can use and change it freely.\n\nIt deals three themes from a catalog of forty-eight, builds the page, then opens it in a real browser and runs a checker. Think of a spell-checker, but for design clichés. The rules come in three tiers. Some are never allowed to ship. Some cover defaults an AI falls into, and a build can overrule those if it states a reason. The last tier is polish that never blocks anything.\n\nVersion 2 adds 755 openly licensed photos, picked to fit the subject and credited on the page. They live on Wikimedia Commons, and each one keeps its own licence. So credit lines come with the deal, and you should check them before you publish.\n\nFor pages you already have, there are two modes. Redesign rebuilds a page and keeps its content and wiring. Audit only reports. I'd start with audit on a live landing page, since it changes nothing.\n\nInstalling takes one line in a terminal and needs Node 18 or later, a common JavaScript tool. The browser checks also need Chrome and one extra helper. Without those, the simpler checks still run.\n\nThe README shows no results on how well any of this works, and gives no release date. Until someone posts before-and-after pages, it's a promising idea.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-25/5.png",
+        "sources": [
+          {
+            "title": "Nutlope/hallmark",
+            "url": "https://github.com/Nutlope/hallmark",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "Cloudflare's free security audit for AI coding agents",
+      "body": "## What you actually get\n\nCloudflare's repository for security-audit describes it as a skill, which is a packaged set of instructions an AI coding assistant can load and follow. Think of it as a detailed checklist and playbook that the assistant carries out on its own. It's open source under the MIT license, and the code is public on GitHub.\n\nThe README says the skill runs a six-phase audit. First comes reconnaissance, the scouting step before any hunting starts. Then coverage-led hunting, which means searching for weak spots while keeping track of which parts of the code have been looked at. Next is candidate validation, where each suspected problem gets tested. After that comes structured output, so results land in a consistent format. Then independent record verification, where a separate check confirms the records say what they should. The last phase is target-neutral reporting, a report that doesn't depend on quirks of your particular project.\n\nThe work is split across isolated agents, meaning separate AI helpers kept apart from one another, each handling its own piece.\n\nCloudflare says this is the single-project version of something bigger. The README describes a multi-stage system that grew across the company's many projects and links to a blog post called Build your own vulnerability harness. I can't tell you what that post says about how the larger system works.\n\n## Verdicts, and why they're the best part\n\nMost security scanners hand you a long list and leave you to guess which items are real. This one sorts findings into three groups.\n\nConfirmed means the tool has a complete trace through the source code and a bounded, observed result. In plain terms, it followed the problem from start to finish and saw it happen, within limits. Rejected means a suspect was investigated and disproved. The third group is for leads that need more checking. Those come with the exact fact still unresolved, and they get no severity rating.\n\nThat last rule is a quiet but sensible one. A severity score on a guess is how you end up panicking over nothing, or ignoring something real because the last ten warnings were noise. For a person shipping alone, with no security team to triage, a list that separates seen from suspected is worth a lot.\n\nIt also changes how you'd read a report. A confirmed item is your to-do list. A still-needs-checking item is a question you might answer yourself in ten minutes. A rejected item is a record that someone already looked.\n\n## What it asks of you\n\nThe requirements are real, and they rule some people out. You need a coding assistant that can use tools and run several helpers at the same time. You need Node.js, a common runtime (software that runs code), because the checkers that validate the results run on it. And to run any code from the project being audited, you need a sandbox enforced by the operating system.\n\nThe README spells out what that sandbox must do: no outside networking, a cleaned-up environment, limits on resources, and writing allowed only to scratch space. The reason is simple. Testing a suspected hole can mean running code that might behave badly, and you don't want that near your files or your network. Without the sandbox, the skill doesn't run the code. Those leads stay in the still-needs-checking pile.\n\nIf you've never set up a sandbox, that's the real hurdle, and I'd budget time for it. The skill will still do a lot without one, but the strongest verdicts, the confirmed ones, depend on actually running things.\n\nIn full audit mode, results go to a folder in your home directory, organized by project name and run number, unless you pick another location. The skill only writes inside your project if you explicitly choose a folder your version control (the tool that tracks changes to your files) already ignores. That's a careful default. Your project stays clean.\n\n## How much to trust the numbers\n\nThe most useful claim in the README is also the most limited. Cloudflare says that in its test runs, one pass caught only about half of the total vulnerabilities that turned up once the audit had been run many times. The README describes multiple runs as additive, so each run adds findings.\n\nThe comparison comes from Cloudflare's own tests, on whatever it chose to test, and Cloudflare hasn't said how many runs or what kinds of projects were involved. There's also no release date or version number, so I can't say how mature this is.\n\nStill, the practical reading is easy. One pass probably misses a lot, so run it several times before a release and treat each pass as a fresh look. That costs time and whatever your AI assistant charges for usage, and I'd check that bill before running it ten times on a large project.\n\nFor a solo maker, I'd start with the part of your app that handles money or personal data, run the audit on a copy, and read only the confirmed findings first. Cloudflare asks for feedback at security-ai-research@cloudflare.com, which suggests the company wants to hear how it holds up outside its own walls."
+    }
+  },
+  "zh": {
+    "intro": "Cloudflare 放出一个技能包，让 AI 编程助手分好几轮帮你查 App 的安全漏洞。今天另外四条：NVIDIA 给 AI 助手搭的私有运行环境 OpenShell，据说能追平 Fable 5 的 Qwen3.8-27B，还有 Impeccable 和 Hallmark 两个让 AI 做的界面别那么千篇一律的工具。",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Cloudflare 放出免费的 AI 代码安全体检插件",
+        "takeaway": "免费插件让 AI 助手给你的 App 做安全体检。Cloudflare 自测里单次只查出约一半，多跑几次。",
+        "body": "Cloudflare 放出了一个免费的小插件，能让 AI 编程助手给你的代码做安全体检，名字叫 security-audit,MIT 协议开源。仓库里写着，它是 Cloudflare 内部那套多阶段找漏洞系统的起点，最早只管一个代码仓库。\n\n它不是扫一遍就完事，而是分六步走：先摸清项目，再按覆盖范围找问题，然后逐个验证可疑点，按固定格式记录结果，再由独立的一步复核这些记录，最后出报告。每一步交给互相隔离的 AI 助手去做。\n\n每个发现只有三种结论：确认、排除、存疑。确认的意思是，工具把问题在源码里完整追了一遍，还看到了有限范围内的真实结果。存疑的会写明还差哪一个具体事实，而且不打严重程度的分。我喜欢这个设计，会老实说自己不知道的扫描器，比天天喊狼来了的好相处。\n\n想让它真的运行可疑代码，得有一个隔离的测试环境（也叫沙箱），不能联网。没有沙箱，它就不运行你的代码，相关线索停在存疑。你的 AI 助手还得会用工具，能同时派出多个子助手，另外要装 Node.js。\n\nREADME 说，在 Cloudflare 自己的测试里，单次运行只找到多次累计漏洞的大约一半。这只是自家测试的数据，别当定论，但提示很明确：多跑几次。\n\n如果你的 App 有登录或付款，拿一份项目副本跑一遍，先看标了“确认”的那几条。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-25/1.png",
+        "sources": [
+          {
+            "title": "cloudflare/security-audit-skill",
+            "url": "https://github.com/cloudflare/security-audit-skill",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "NVIDIA 的 OpenShell 把 AI 智能体关进隔离盒子",
+        "takeaway": "免费开源，限制 AI 能碰什么，还替它藏好密钥。版本 0.1.x，先拿不要紧的项目试。",
+        "body": "NVIDIA 在 GitHub 上放出了 OpenShell，一个免费的开源工具（Apache 2.0 协议），专门管那些能自己干活的 AI。这类 AI 叫智能体，会自己打开文件、调用网络服务。README 管 OpenShell 叫“安全、私有的运行环境”，也就是这些 AI 真正跑起来的地方。\n\n用法是先写一份策略，列清楚每个智能体能碰什么，执行交给 OpenShell。它管到操作系统最核心的一层（内核），每次读写文件、每个系统调用、每条网络连接都要过检查。每个智能体待在各自隔离的测试环境（也叫沙箱）里，对外的连接出门前先过一道。\n\n我觉得最聪明的一点：智能体看不到你真实的密码和 API 密钥。只有请求发往你批准的地址时，OpenShell 才会把密钥补上去。AI 被人忽悠了，手里也没有钥匙可泄露。\n\n改策略时，如果会放开危险的新权限，比如带着密钥去连一个新地址，OpenShell 会用形式化验证（用数学方法检查规则）标出来，等人来审。这套检查具体怎么做、覆盖多广，NVIDIA 没说。安全方面的说法目前只有它自己的 README，没有第三方评测。\n\n支持 Linux、苹果芯片的 Mac，以及 Windows 上的 WSL 2（在 Windows 里跑 Linux 的功能，标着实验性）。底层可以用 Docker、Podman，或者直接用宿主机的虚拟化。默认环境是一个干净的 Ubuntu，里面没装任何智能体，得照教程自己装。Python、TypeScript、Go、Rust 都有开发包。版本号 0.1.x，README 还声明不提供担保。\n\n如果你的产品要让 AI 碰客户的文件或账号，这个思路可以看看：先写清楚它能碰什么，再让工具盯着执行。我会先拿个无关紧要的项目试，再考虑让客户数据靠近。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-25/2.png",
+        "sources": [
+          {
+            "title": "NVIDIA/OpenShell",
+            "url": "https://github.com/NVIDIA/OpenShell",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "开源 Qwen 配上分工办法，在一个编程题库上追平 Fable 5",
+        "takeaway": "便宜模型加好办法，可能压低 AI 编程的开销。但只测了一个题库，先拿自己的任务试。",
+        "body": "一个能下载到自己电脑上跑的开源模型 Qwen3.8-27B，在一组高难度编程题上，成绩从 66.8% 涨到了 92.4%。条件是给它套上一层特定的调度办法。这是 GitHub 项目 GVS5H 的说法，项目副标题是 “Gorilla vs. 5 Humans”。\n\n办法是这样：同一个模型的多个全新副本，把题目拆成几步，通过一个共享文件夹配合，里面放着计划、笔记和当前的解法。作者管它叫账本式自我调度，不需要额外训练。\n\n考试用的是 LiveCodeBench，一个公开的编程题库，常拿来给 AI 模型打分。作者让 11 个模型做最新的 100 道难题。调度后的 Qwen3.8 Flash Next 拿了 93.0%，Claude Fable 5 是 90.4%，成本只有它的 9%。作者看了对话记录，认为功劳在拆题，以及步骤之间能记住前面的内容。他们也写了，有的模型没变化，有的反而更差。\n\n如果你按次数给 AI 编程付费，便宜模型追平贵的，这笔账会很不一样。但我先不下结论。只有一个题库，Hacker News 上有人说它太老、分数已经挤在顶上，也有人怀疑模型被这些题练过。项目说明的示例里，管理者用的是 OpenAI 的模型，不是 Qwen 单干。本地跑 27B 的成本没给数。Opus 5 的对比用的是更早版本的调度办法。标题说五个 27B 模型，项目说明里没说是哪五个。\n\n代码用 MIT 协议，能免费用。有 API 密钥（调用付费 AI 服务的凭证）或本地模型，就能自己复现。拿手头几个真实任务跑一遍，顺便记下用时。有人在评论里问是不是要慢 10 倍，我也想知道答案。",
+        "note": null,
+        "category": "模型",
+        "card": "/cards/2026-10-25/3.png",
+        "sources": [
+          {
+            "title": "Five Qwen3.8-27B models match Fable 5 Using GVS5H Harness",
+            "url": "https://github.com/slee-persis/GVS5H",
+            "site": "GitHub"
+          },
+          {
+            "title": "Five Qwen3.8-27B models match Fable 5 Using GVS5H Harness",
+            "url": "https://news.ycombinator.com/item?id=50228167",
+            "site": "Hacker News"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Impeccable 想让 AI 别再做千篇一律的界面",
+        "takeaway": "24 个指令加 62 条设计检查。先拿一个做好的页面试试检查，再决定要不要用。",
+        "body": "彩色背景上放灰字。卡片里套卡片。全站一个 Inter 字体。最近让 AI 帮你写过界面的话，这副长相你肯定眼熟。Impeccable 想治的就是这个毛病。\n\n它是一个技能包，说白了是一份设计说明书，AI 编程助手动手画界面之前先读一遍。GitHub 上的 README 写着，里面有 24 个小指令，可以让助手润色、挑刺、放大胆一点、收敛一点。另外有 62 条固定的检查规则，专门扫设计毛病，有点像给难看的界面做拼写检查。这些检查不用 AI，也不用 API key（连接 AI 服务的钥匙）。\n\nREADME 列了它盯的东西：Arial、Inter 这类用烂的字体，彩色底上的灰字，纯黑和纯灰，卡片套卡片，还有弹来弹去的动画。\n\n装法是在项目文件夹里装一次，再在助手里做一次初始化。初始化会把产品是什么、该长什么样，分成两份笔记记下来。Cursor、Claude Code、Gemini CLI、Codex CLI 等都支持。VS Code 里的 GitHub Copilot 走插件，没有自动检查。\n\nREADME 说它是从 Anthropic 的 frontend-design 技能包长出来的，那是 Claude 上第一个被广泛使用的设计技能包。\n\nREADME 还链了一个叫 Neo Mirai 的案例，说是一个真实项目用它改造前后的对比。但没有给任何量化的效果数据，许可证和维护情况也没写。我会先拿一个已经做好的页面跑一遍检查，看它挑出什么，再决定要不要把工作流绑上去。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-25/4.png",
+        "sources": [
+          {
+            "title": "pbakaus/impeccable",
+            "url": "https://github.com/pbakaus/impeccable",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Hallmark 想让 AI 做的网页不再一眼被认出来",
+        "takeaway": "免费技能包，能审查你用 AI 做的落地页有没有通用套路。审查模式只出报告，不改东西。",
+        "body": "Hallmark 想解决的事很具体：AI 做的网页，一眼就能看出是 AI 做的。比如每个标题上面都挂一行小标签，或者字母间距拉得很开的大写小字。\n\n出品方是 Together AI。它是个免费的技能包，装进 AI 编程助手后，助手会照着一套设计规矩干活。支持 Claude Code、Codex、Cursor 和 OpenCode。README 里写着，它\"拒绝看起来像 AI 做的\"。MIT 协议，随便用，随便改。\n\n流程是这样：先从 48 套主题里发三套给你，做出页面后，在真实浏览器里打开，对着一张\"AI 味清单\"逐条检查。有点像拼写检查，只不过查的是设计套路。规矩分三档。第一档绝不放行。第二档是模型爱走的老路，有理由可以推翻，但要留下记录。第三档是打磨细节，不拦着你上线。\n\n第二版带了 755 张开放授权的照片，按主题挑，页面上会标出处。照片都放在维基共享资源上，每张各有各的授权，署名要求发布前自己核对一遍。\n\n已有的页面有两种用法。重做会把页面重建一遍，内容和功能连接都保留。审查只出报告，什么都不动。要是你已经有个 AI 做的落地页，先跑审查最省事，看完再决定要不要重做。\n\n安装只要一行命令，需要 Node 18 或更新的版本（一个常见的 JavaScript 工具）。浏览器检查还要装 Chrome 和一个辅助工具。没装的话，简单的检查照样能跑。\n\nREADME 里没有效果对比，也没写发布时间。有人放出改前改后的页面之前，它只能算个有意思的思路。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-25/5.png",
+        "sources": [
+          {
+            "title": "Nutlope/hallmark",
+            "url": "https://github.com/Nutlope/hallmark",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "Cloudflare 放出免费的 AI 代码安全体检插件",
+      "body": "## 装上之后，你得到什么\n\nCloudflare 的仓库把 security-audit 叫作 skill。可以把它理解成一个技能包：一套写好的说明，AI 编程助手读进去，就能照着自己一步步干活。有点像给助手塞了一本详细的检查手册。代码在 GitHub 上公开，MIT 协议，想怎么用都行。\n\nREADME 说它走六个阶段的审计。第一步是踩点，正式找问题之前先摸清项目长什么样。第二步是按覆盖范围找问题，边找边记哪些地方已经看过、哪些还没碰。第三步验证候选，每个怀疑对象都要测一测。第四步把结果写成统一格式。第五步由独立的一环复核这些记录，看写下来的东西对不对得上。最后一步出报告，而且报告不依赖你这个项目的特殊之处。\n\n干活的是一批互相隔离的 AI 助手，各管各的那一块。\n\nCloudflare 说，这是一个更大东西的单仓库版本。README 提到，那套系统后来长成了多阶段、覆盖公司所有项目的体系，还链接了一篇博客，标题是 Build your own vulnerability harness。那篇文章讲了什么，我这里没有，就不替它说了。\n\n安装走 Skills CLI，一条命令：npx skills add https://github.com/cloudflare/security-audit-skill --skill security-audit。它的作用是把这个技能包装进你的 AI 助手。后面可以再加一个选项，装成用户级别，这样所有项目都能用。\n\n## 三种结论，存疑那种最值钱\n\n大多数安全扫描工具丢给你一长串清单，哪些是真的，自己猜。这个工具把发现分成三类。\n\n“确认”的意思是，工具有一条完整的源码追踪链，还观察到了一个有边界的实际结果。说人话：它把问题从头到尾追了一遍，而且亲眼看见它发生，只是范围有限。“排除”是查过之后证明这个怀疑不成立。第三类是存疑，会写清楚还差哪一个具体事实没查明，并且不给严重程度。\n\n最后这条规矩不起眼，但我觉得对。给一个猜测打上严重等级，要么让你白白慌一场，要么让你因为前十条都是噪音，把第十一条真问题也忽略了。一个人做产品，身边没有安全团队帮你分拣，一份能分清“亲眼见过”和“只是怀疑”的清单，价值很大。\n\n读报告的方式也跟着变。确认的几条，就是你的待办。存疑的，可能是你自己十分钟就能回答的一个问题。排除的，说明有人已经替你看过了。\n\n## 门槛、成本和怎么用\n\n这个工具有门槛，有些人会被挡在外面。你需要一个会用工具、能同时派出多个子助手的 AI 编程助手。需要 Node.js，因为验证结果的检查程序要靠它跑。想运行被审计项目里的代码，还得有一个由操作系统强制执行的沙箱。\n\nREADME 把沙箱的要求写得很细：不能连外网，环境要清理干净，资源有上限，只允许往临时空间写东西。道理不复杂。验证一个疑似漏洞，可能得运行行为不可预料的代码，你不会想让它碰到自己的文件和网络。没有沙箱，技能包就不运行这些代码，相关线索只能留在存疑里。\n\n要是你从没搭过沙箱，这就是真正的坎，我会专门留出时间。没有沙箱它也能做不少事，但最有分量的“确认”，要靠真的跑起来才有。\n\n完整审计模式下，结果默认放进你用户目录下的一个文件夹，按项目名和第几次运行分好，除非你另外指定位置。只有你明确选了一个版本管理工具已经忽略的文件夹，它才会往项目里写。你的项目不会被弄脏。\n\nREADME 里最有用的一句话，也是限制最多的一句。Cloudflare 说，在它自己的测试里，单次运行只找到了多次运行累计漏洞的大约一半。README 说多次运行的结果是叠加的，每跑一次都会多找出一些。\n\n这个对比只来自 Cloudflare 自己的测试，测了什么项目、跑了多少次，它都没说。发布日期和版本号也没给，所以这东西成熟到什么程度，我判断不了。\n\n不过实际的读法很直接：跑一次大概率漏掉不少，发版前多跑几遍，每遍都当成重新看一次。这会多花时间，如果你的 AI 助手按用量收费，账单也会涨，在大项目上跑十遍之前，先看看价格。\n\n如果是我，会先挑 App 里碰钱或碰个人数据的那一块，拿项目副本跑，先只看“确认”的结果。Cloudflare 留了反馈邮箱 security-ai-research@cloudflare.com，看来它想知道这东西走出自家大门之后表现如何。"
+    }
+  },
+  "lab": []
+}
