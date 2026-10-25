@@ -1,0 +1,10 @@
+---
+import DeepView from '../../../views/DeepView.astro';
+import { issues } from '../../../lib/issues';
+
+export function getStaticPaths() {
+  return issues.filter((i) => i.zh.deep).map((issue) => ({ params: { date: issue.date }, props: { issue } }));
+}
+---
+
+<DeepView lang="zh" issue={Astro.props.issue} />

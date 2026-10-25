@@ -1,0 +1,249 @@
+/* ══════════════════════════════════════════════════════════════
+   Gaiya Daily — a Gaiya Lab briefing
+   继承 Gaiya Lab 的纸色与森林绿,和 teardown 同一套 token。
+   字体全部走系统栈,不加载任何外部字体(与主站一致)。
+   ══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── 继承自 gaiya.cc ── */
+  --ground: #f1eee4;
+  --card: #ffffff;
+  --card-2: #faf8f2;
+  --ink: #26332b;
+  --muted: #5e7064;
+  --faint: #8a9b8e;
+  --accent: #2f6b4e;
+  --accent-on: #ffffff;
+  --line: rgba(47, 107, 78, 0.15);
+  --line-soft: rgba(47, 107, 78, 0.08);
+  --shadow: 0 14px 34px -20px rgba(37, 70, 50, 0.38);
+
+  /* ── teardown 专属:语义状态色,与品牌绿分开 ── */
+  --flag: #9a5a24;                        /* 有变化 / 需要看一眼 */
+  --flag-soft: rgba(154, 90, 36, 0.09);
+  --alert: #a32f2f;                       /* 重大变化 */
+  --alert-soft: rgba(163, 47, 47, 0.09);
+  --still: #8a9b8e;                       /* 无变化 */
+  --grid: rgba(47, 107, 78, 0.055);       /* 记录纸网格 */
+
+  --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', ui-serif, Georgia,
+    'Songti SC', 'STSong', serif;
+  --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+
+  --gutter: clamp(1.15rem, 3.5vw, 3.25rem);
+  --stack: clamp(2.5rem, 4.5vw, 4rem);
+  --measure: 38rem;
+  --wide: 74rem;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --ground: #161c18;
+    --card: #1e2b23;
+    --card-2: #223028;
+    --ink: #e9efe8;
+    --muted: #9db1a3;
+    --faint: #76877c;
+    --accent: #71c79a;
+    --accent-on: #0f1a14;
+    --line: rgba(220, 236, 222, 0.14);
+    --line-soft: rgba(220, 236, 222, 0.07);
+    --shadow: 0 14px 34px -20px rgba(0, 0, 0, 0.6);
+    --flag: #d99a5b;
+    --flag-soft: rgba(217, 154, 91, 0.12);
+    --alert: #e08585;
+    --alert-soft: rgba(224, 133, 133, 0.12);
+    --still: #76877c;
+    --grid: rgba(220, 236, 222, 0.045);
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --ground: #161c18;
+  --card: #1e2b23;
+  --card-2: #223028;
+  --ink: #e9efe8;
+  --muted: #9db1a3;
+  --faint: #76877c;
+  --accent: #71c79a;
+  --accent-on: #0f1a14;
+  --line: rgba(220, 236, 222, 0.14);
+  --line-soft: rgba(220, 236, 222, 0.07);
+  --shadow: 0 14px 34px -20px rgba(0, 0, 0, 0.6);
+  --flag: #d99a5b;
+  --flag-soft: rgba(217, 154, 91, 0.12);
+  --alert: #e08585;
+  --alert-soft: rgba(224, 133, 133, 0.12);
+  --still: #76877c;
+  --grid: rgba(220, 236, 222, 0.045);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* ⚠️ 根元素的背景必须写字面量,不能用 var(--ground)。改前先读这段。
+
+   Chrome(实测 151)在根元素上不会因自定义属性变化重新求值:
+   切换主题后 html 上的 --ground 已经是新值,
+   `background-color: var(--ground)` 却仍解析为旧色。
+   body 上同样的写法完全正常 —— 问题只出在自引用的根元素。
+
+   症状:内容区已经变暗,往上橡皮筋拉出来的那块画布背景还是亮的;
+   滚动和 resize 都打不破,切到别的标签页再切回来会好(强制重算)。
+
+   靠选择器切换字面量则完全可靠。
+   改色时记得同步下面 :root / [data-theme] 里的 --ground。 */
+html {
+  -webkit-text-size-adjust: 100%;
+  background-color: #f1eee4;
+
+  /* Chrome 只在文档加载时取一次「画布背景色」用于绘制橡皮筋区域,
+     运行时改根元素背景不会更新它 —— 字面量和 var() 都一样。
+     表现:切成暗色后往上拉,顶部露出一条旧的亮色;
+     滚动和 resize 打不破,切标签页或刷新才好。
+     索性禁掉垂直过度滚动,那块区域就不会出现。
+     JS 侧还会同步一份 inline 背景色兜底,见 Base.astro。 */
+  overscroll-behavior-y: none;
+}
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme='light']) { background-color: #161c18; }
+}
+html[data-theme='dark'] { background-color: #161c18; }
+html[data-theme='light'] { background-color: #f1eee4; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.68;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  /* 页首一道极淡的光晕。刻意画在 body 自己的 background 上,
+     而不是 ::before —— fixed + z-index:-1 的伪元素会把 body 提升成
+     独立合成层,切换主题时变量更新了但那一层不重绘,
+     表现为「只换了一半」。一层搞定就没有这个问题。 */
+  background-color: var(--ground);
+  background-image: radial-gradient(
+    68rem 24rem at 22% -6rem,
+    color-mix(in srgb, var(--accent) 7%, transparent),
+    transparent 70%
+  );
+  background-repeat: no-repeat;
+}
+
+.wrap { width: min(var(--wide), 100%); margin-inline: auto; padding-inline: var(--gutter); }
+.narrow { width: min(var(--measure), 100%); }
+
+a { color: inherit; text-decoration-color: var(--line); text-underline-offset: .18em; }
+a:hover { text-decoration-color: currentColor; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2rem, 4.4vw, 3.1rem); line-height: 1.08; letter-spacing: -0.015em; }
+h2 { font-size: clamp(1.32rem, 2.4vw, 1.75rem); line-height: 1.2; letter-spacing: -0.01em; }
+h3 { font-size: 1.12rem; line-height: 1.3; }
+p { margin: 0 0 1.05em; }
+
+/* ── eyebrow:全站的小标签语言 ── */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+.eyebrow a { text-decoration: none; }
+.eyebrow .on { color: var(--accent); }
+
+code, kbd, samp, pre { font-family: var(--mono); font-size: 0.87em; }
+:not(pre) > code {
+  background: var(--card-2);
+  border: 1px solid var(--line-soft);
+  border-radius: 3px;
+  padding: 0.1em 0.35em;
+  color: var(--accent);
+}
+pre {
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  line-height: 1.6;
+  font-size: 0.83rem;
+}
+pre code { background: none; border: 0; padding: 0; color: inherit; }
+
+/* ── 表格:数据是主角 ── */
+.tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 4px; background: var(--card); }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { padding: 0.62rem 0.85rem; text-align: left; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+thead th {
+  font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--muted); font-weight: 600;
+  background: var(--card-2); white-space: nowrap;
+}
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+td:first-child, tbody th { font-weight: 600; }
+.num, td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+blockquote {
+  margin: 1.5rem 0; padding: 0.2rem 0 0.2rem 1.15rem;
+  border-left: 2px solid var(--accent); color: var(--muted);
+}
+blockquote p:last-child { margin-bottom: 0; }
+hr { border: 0; border-top: 1px solid var(--line); margin: var(--stack) 0; }
+
+/* ── 状态徽标 ── */
+.pill {
+  display: inline-flex; align-items: center; gap: 0.35em;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em;
+  padding: 0.16em 0.5em; border-radius: 3px; white-space: nowrap;
+  border: 1px solid var(--line); color: var(--muted); background: var(--card-2);
+}
+.pill.flag { color: var(--flag); background: var(--flag-soft); border-color: transparent; }
+.pill.alert { color: var(--alert); background: var(--alert-soft); border-color: transparent; }
+.pill.live { color: var(--accent); border-color: var(--line); }
+.pill.live::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent); flex: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pill.live::before { animation: pulse 2.6s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+}
+
+/* ── 通用节奏 ── */
+.section { padding-block: var(--stack); }
+.section-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+  border-bottom: 1px solid var(--line); padding-bottom: 0.7rem; margin-bottom: 1.6rem;
+}
+.section-head p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+.lede { font-size: 1.08rem; color: var(--muted); line-height: 1.6; }
+
+.skip {
+  position: absolute; left: -9999px;
+  background: var(--accent); color: var(--accent-on); padding: 0.6rem 1rem; border-radius: 4px;
+}
+.skip:focus { left: 1rem; top: 1rem; z-index: 100; }
+
+/* ── 正文排版:日报条目和深读共用 ── */
+.prose { font-size: 1.03rem; line-height: 1.75; }
+.prose > :first-child { margin-top: 0; }
+.prose > :last-child { margin-bottom: 0; }
+.prose h2 { margin: 2.6rem 0 0.9rem; padding-top: 1.1rem; border-top: 1px solid var(--line-soft); }
+.prose ul, .prose ol { padding-left: 1.15rem; margin: 0 0 1.1rem; }
+.prose li { margin-bottom: 0.35rem; }
+.prose li::marker { color: var(--faint); }
+.prose a { color: var(--accent); }
+.prose :is(p, li):lang(zh-Hans) { letter-spacing: 0.01em; }

@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import { t, path, fmtDate, type Locale } from '../i18n';
+import { md, type Issue } from '../lib/issues';
+
+interface Props { lang: Locale; issue: Issue }
+const { lang, issue } = Astro.props;
+const s = t(lang);
+const e = issue[lang];
+const deep = e.deep!;
+const item = e.items.find((i) => i.n === deep.n);
+const image = item && (lang === 'zh' ? item.card.replace(/\.png$/, '-zh.png') : item.card);
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: deep.headline,
+  datePublished: issue.publishAt,
+  inLanguage: lang === 'zh' ? 'zh-Hans' : 'en',
+  author: { '@type': 'Person', name: 'Gaiya Lab', url: 'https://gaiya.cc' },
+};
+---
+
+<Base lang={lang} route={`/${issue.date}/deep/`} title={deep.headline} type="article"
+      description={item?.takeaway} date={issue.publishAt} image={image} jsonld={jsonld}>
+  <article class="wrap deep">
+    <header class="head">
+      <p class="eyebrow crumb">
+        <span>{s.deepRead}</span>
+        <span aria-hidden="true">/</span>
+        <a href={path(lang, `/${issue.date}/`)}><time datetime={issue.date}>{fmtDate(issue.date, lang)}</time></a>
+      </p>
+      <h1>{deep.headline}</h1>
+      {item && <p class="lede">{item.takeaway}</p>}
+    </header>
+    <div class="prose" set:html={md(deep.body)} />
+    {item?.note && (
+      <aside class="note"><p class="eyebrow">{s.makerNote}</p><p>{item.note}</p></aside>
+    )}
+    {item && (
+      <p class="sources">
+        <span class="eyebrow">{s.sources}</span>
+        {item.sources.map((src) => <a href={src.url} rel="noopener">{src.site}</a>)}
+      </p>
+    )}
+    <a class="back" href={path(lang, `/${issue.date}/`)}>← {s.backToIssue}</a>
+  </article>
+</Base>
+
+<style>
+  .deep { max-width: 46rem; padding-top: var(--stack); }
+  .head { padding-bottom: 1.6rem; border-bottom: 1px solid var(--line); margin-bottom: 2rem; }
+  .crumb { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+  .crumb a { color: var(--accent); }
+  .crumb span[aria-hidden] { color: var(--line); }
+  .head .lede { margin: 1rem 0 0; font-size: 1.12rem; }
+  .note {
+    margin: 2rem 0 0; padding: 0.9rem 1.1rem;
+    background: var(--card); border: 1px solid var(--line); border-left: 2px solid var(--accent); border-radius: 3px;
+  }
+  .note .eyebrow { color: var(--accent); margin-bottom: 0.3rem; }
+  .note p:last-child { margin: 0; }
+  .sources { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 0.9rem; margin: 1.6rem 0 0; font-size: 0.86rem; }
+  .sources a { color: var(--muted); }
+  .back { display: inline-block; margin-top: 2.2rem; color: var(--accent); text-decoration: none; }
+</style>

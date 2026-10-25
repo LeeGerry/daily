@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import { t, path, fmtDate, type Locale } from '../i18n';
+import { issues } from '../lib/issues';
+
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const s = t(lang);
+---
+
+<Base lang={lang} route="/archive/" section="archive" title={s.archive.title}>
+  <section class="wrap archive">
+    <h1>{s.archive.title}</h1>
+    <p class="lede">{s.archive.lede}</p>
+    {issues.length === 0 ? <p>{s.empty}</p> : (
+      <ol reversed>
+        {issues.map((i) => (
+          <li>
+            <a href={path(lang, `/${i.date}/`)}>
+              <time datetime={i.date}>{fmtDate(i.date, lang)}</time>
+              <ul>{i[lang].items.map((x) => <li>{x.headline}</li>)}</ul>
+            </a>
+          </li>
+        ))}
+      </ol>
+    )}
+  </section>
+</Base>
+
+<style>
+  .archive { max-width: 46rem; padding-top: var(--stack); }
+  .lede { margin: 0.8rem 0 2rem; }
+  ol { list-style: none; margin: 0; padding: 0; }
+  ol > li > a {
+    display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 1rem;
+    padding: 1rem 0; border-top: 1px solid var(--line-soft); text-decoration: none;
+  }
+  time { font-family: var(--mono); font-size: 0.82rem; color: var(--accent); }
+  ul { margin: 0; padding-left: 1rem; color: var(--muted); font-size: 0.94rem; }
+  a:hover ul { color: var(--ink); }
+  @media (max-width: 36rem) { ol > li > a { grid-template-columns: 1fr; gap: 0.4rem; } }
+</style>

@@ -1,0 +1,32 @@
+# 每天美西早上 4 点后构建上线。构建只收 publishAt 已到的期数(见 src/lib/issues.ts),
+# 所以流水线前一晚推进来的新一期,要等这次定时构建才出现在网站上。
+# 两条 cron 分别对应夏令时(UTC 11 点)和冬令时(UTC 12 点),多跑一次没有副作用。
+name: Publish
+
+on:
+  schedule:
+    - cron: '5 11 * * *'
+    - cron: '5 12 * * *'
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

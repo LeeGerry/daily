@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "daily",
+  "compatibility_date": "2026-08-01",
+
+  // 和 gaiya.cc 一样:纯静态站,Worker 自定义域。部署时 wrangler 自动建 daily.gaiya.cc 的 DNS 记录,
+  // 不要手动去面板加 CNAME。gaiya.cc 已在同一个 Cloudflare 账号下。
+  "workers_dev": false,
+  "routes": [{ "pattern": "daily.gaiya.cc", "custom_domain": true }],
+
+  // 没有 Worker 脚本。静态资源请求免费、不计入每日请求额度。
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}

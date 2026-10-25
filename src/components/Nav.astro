@@ -1,0 +1,89 @@
+---
+import { t, path, LANG_LABEL } from '../i18n';
+
+const { section = '', lang = 'en', alt } = Astro.props;
+const s = t(lang);
+const links = [
+  { key: 'today', href: path(lang, '/') },
+  { key: 'archive', href: path(lang, '/archive/') },
+  { key: 'about', href: path(lang, '/about/') },
+] as const;
+const other = lang === 'en' ? 'zh' : 'en';
+---
+
+<header class="masthead">
+  <div class="wrap bar">
+    <a class="brand" href={path(lang, '/')}>
+      <span class="mark" aria-hidden="true"><i></i><b></b></span>
+      <span class="name">Gaiya Daily</span>
+    </a>
+
+    <nav class="eyebrow nav" aria-label="Sections">
+      {links.map((l) => (
+        <a href={l.href} class={section === l.key ? 'on' : ''} aria-current={section === l.key ? 'page' : undefined}>
+          {s.nav[l.key]}
+        </a>
+      ))}
+    </nav>
+
+    <div class="right">
+      <a class="eyebrow lab" href="https://gaiya.cc" rel="noopener">Gaiya&nbsp;Lab</a>
+      <a class="eyebrow lang" href={alt} hreflang={other === 'zh' ? 'zh-Hans' : 'en'}
+         title={s.switchLang} aria-label={s.switchLang}>{LANG_LABEL[other]}</a>
+      <button id="theme-toggle" type="button" aria-label={s.switchTheme} title={s.switchTheme}>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke-linejoin="round" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .masthead {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--ground) 88%, transparent);
+    backdrop-filter: saturate(1.4) blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar { display: flex; align-items: center; gap: 1.4rem; height: 3.5rem; }
+  .brand { display: inline-flex; align-items: center; gap: 0.55rem; text-decoration: none; flex: none; }
+  .name { font-family: var(--serif); font-size: 1.06rem; font-weight: 600; letter-spacing: -0.01em; }
+
+  /* 地平线上的太阳:一天一期 */
+  .mark { position: relative; display: inline-block; width: 16px; height: 14px; }
+  .mark i { position: absolute; left: 3px; top: 1px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+  .mark b { position: absolute; left: 0; bottom: 0; width: 16px; height: 2px; border-radius: 1px; background: var(--accent); opacity: 0.55; }
+
+  .nav { display: flex; gap: 1.15rem; margin-left: auto; }
+  .nav a { color: var(--muted); }
+  .nav a:hover { color: var(--ink); }
+  .nav a.on { color: var(--accent); }
+
+  .right { display: flex; align-items: center; gap: 0.85rem; flex: none; }
+  .lab { color: var(--faint); text-decoration: none; }
+  .lab:hover { color: var(--accent); }
+
+  .lang {
+    display: grid; place-items: center;
+    min-width: 1.85rem; height: 1.85rem; padding: 0 0.45rem;
+    border: 1px solid var(--line); border-radius: 999px;
+    color: var(--muted); text-decoration: none; line-height: 1;
+  }
+  .lang:hover { color: var(--accent); border-color: var(--accent); }
+
+  button {
+    display: grid; place-items: center;
+    width: 1.85rem; height: 1.85rem; padding: 0;
+    background: none; border: 1px solid var(--line); border-radius: 50%;
+    color: var(--muted); cursor: pointer;
+  }
+  button:hover { color: var(--accent); border-color: var(--accent); }
+
+  @media (max-width: 42rem) {
+    .bar { height: auto; flex-wrap: wrap; padding-block: 0.7rem; gap: 0.55rem 1rem; }
+    .nav { order: 3; width: 100%; margin-left: 0; gap: 1.6rem; }
+    .right { margin-left: auto; }
+    .lab { display: none; }
+  }
+</style>

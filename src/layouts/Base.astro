@@ -1,0 +1,101 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { t, swap, type Locale } from '../i18n';
+
+interface Props {
+  title?: string;
+  lang?: Locale;
+  /** 不带语言前缀的路径,用来生成另一语言的地址和 hreflang */
+  route?: string;
+  description?: string;
+  section?: string;
+  type?: string;
+  date?: string;
+  image?: string;
+  jsonld?: object;
+}
+
+const { title, lang = 'en', route = '/', description, section = '', type = 'website', date, image, jsonld } = Astro.props;
+
+const s = t(lang);
+const desc = description ?? s.siteDescription;
+const site = Astro.site ?? new URL('https://daily.gaiya.cc');
+const canonical = new URL(Astro.url.pathname, site).href;
+const fullTitle = title ? `${title} — Gaiya Daily` : 'Gaiya Daily — AI news for people who make things';
+const alt = swap(lang, route);
+const enHref = new URL(lang === 'en' ? Astro.url.pathname : alt, site).href;
+const zhHref = new URL(lang === 'zh' ? Astro.url.pathname : alt, site).href;
+const ogImage = image ? new URL(image, site).href : undefined;
+const feed = lang === 'zh' ? '/zh/rss.xml' : '/rss.xml';
+---
+
+<!doctype html>
+<html lang={lang === 'zh' ? 'zh-Hans' : 'en'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={enHref} />
+    <link rel="alternate" hreflang="zh-Hans" href={zhHref} />
+    <link rel="alternate" hreflang="x-default" href={enHref} />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Gaiya Daily" />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:site" content="@gaiya_l" />
+    {date && <meta property="article:published_time" content={date} />}
+
+    <link rel="alternate" type="application/rss+xml" title="Gaiya Daily" href={feed} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    {/* 主题在首帧前定好,避免闪白 */}
+    <script is:inline>
+      (() => {
+        try {
+          const t = localStorage.getItem('gd-theme');
+          if (t === 'dark' || t === 'light') {
+            var r = document.documentElement;
+            r.dataset.theme = t;
+            r.style.colorScheme = t;
+            r.style.backgroundColor = t === 'dark' ? '#161c18' : '#f1eee4';
+          }
+        } catch {}
+      })();
+    </script>
+
+    {jsonld && <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />}
+  </head>
+
+  <body>
+    <a class="skip" href="#main">{s.skip}</a>
+    <Nav section={section} lang={lang} alt={alt} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+
+    <script is:inline>
+      const btn = document.getElementById('theme-toggle');
+      btn?.addEventListener('click', () => {
+        const root = document.documentElement;
+        const dark = root.dataset.theme
+          ? root.dataset.theme === 'dark'
+          : matchMedia('(prefers-color-scheme: dark)').matches;
+        const next = dark ? 'light' : 'dark';
+        root.dataset.theme = next;
+        root.style.colorScheme = next;
+        // 根元素背景同步成 inline,原因见 global.css 里 html 规则的注释
+        root.style.backgroundColor = getComputedStyle(root).getPropertyValue('--ground').trim();
+        try { localStorage.setItem('gd-theme', next); } catch {}
+      });
+    </script>
+  </body>
+</html>
