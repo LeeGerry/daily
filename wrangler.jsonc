@@ -8,9 +8,22 @@
   "workers_dev": false,
   "routes": [{ "pattern": "daily.gaiya.cc", "custom_domain": true }],
 
-  // 没有 Worker 脚本。静态资源请求免费、不计入每日请求额度。
+  // Worker 脚本只负责定时发 X(见 worker/index.ts)。网页请求先命中静态资源,
+  // 不经过脚本,所以仍然免费、不计入每日请求额度。
+  "main": "worker/index.ts",
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
     "not_found_handling": "404-page"
-  }
+  },
+
+  // 发帖队列。media_self 定稿时写入,Worker 发完删掉
+  "kv_namespaces": [{ "binding": "SOCIAL", "id": "0461fb69105f414d9ed9364ac12f09c9" }],
+
+  // 每 15 分钟看一次有没有到点的帖子。时间都按 UTC 存,夏令时不用管
+  "triggers": { "crons": ["*/15 * * * *"] },
+
+  // 密钥用 wrangler secret put 设置,不写在这里:
+  // X_API_KEY X_API_SECRET X_ACCESS_TOKEN X_ACCESS_SECRET TG_TOKEN TG_CHAT
+  "observability": { "enabled": true }
 }

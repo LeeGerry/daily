@@ -37,3 +37,14 @@ src/
 
 和 gaiya.cc 一样是 Worker 静态资源 + 自定义域(`wrangler.jsonc`),部署时 wrangler 自动建好
 daily.gaiya.cc 的 DNS。GitHub Actions 需要两个 secret:`CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_ACCOUNT_ID`。
+
+## 自动发 X
+
+`worker/index.ts` 是这个站的 Worker 脚本,网页请求直接走静态资源,脚本只跑定时任务:每 15 分钟
+读 KV 里的发帖队列(`queue:YYYY-MM-DD`,由 media_self 定稿时写入),把到点的帖子连同卡片图发到
+@gaiya_l,发完在 Telegram 通知。超过 6 小时没发出去的不补发,只通知。
+
+密钥都在 Worker secrets 里:`X_API_KEY` `X_API_SECRET` `X_ACCESS_TOKEN` `X_ACCESS_SECRET`
+`TG_TOKEN` `TG_CHAT`。看日志:`npx wrangler tail`。
+
+取消某天还没发的帖子:`npx wrangler kv key delete queue:YYYY-MM-DD --binding SOCIAL --remote`
