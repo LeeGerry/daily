@@ -27,7 +27,8 @@ const fullTitle = title ? `${title} — Gaiya Daily` : 'Gaiya Daily — AI news 
 const alt = swap(lang, route);
 const enHref = new URL(lang === 'en' ? Astro.url.pathname : alt, site).href;
 const zhHref = new URL(lang === 'zh' ? Astro.url.pathname : alt, site).href;
-const ogImage = image ? new URL(image, site).href : undefined;
+// 分享预览图 1200×630:每期和深读有自己的,其他页面用品牌图
+const ogImage = new URL(image ?? (lang === 'zh' ? '/og-zh.png' : '/og.png'), site).href;
 const feed = lang === 'zh' ? '/zh/rss.xml' : '/rss.xml';
 ---
 
@@ -48,8 +49,10 @@ const feed = lang === 'zh' ? '/zh/rss.xml' : '/rss.xml';
     <meta property="og:description" content={desc} />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="Gaiya Daily" />
-    {ogImage && <meta property="og:image" content={ogImage} />}
-    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@gaiya_l" />
     {date && <meta property="article:published_time" content={date} />}
 

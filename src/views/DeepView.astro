@@ -9,7 +9,7 @@ const s = t(lang);
 const e = issue[lang];
 const deep = e.deep!;
 const item = e.items.find((i) => i.n === deep.n);
-const image = item && (lang === 'zh' ? item.card.replace(/\.png$/, '-zh.png') : item.card);
+const image = `/cards/${issue.date}/deep-og${lang === 'zh' ? '-zh' : ''}.png`;
 const jsonld = {
   '@context': 'https://schema.org',
   '@type': 'Article',

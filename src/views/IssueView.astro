@@ -22,12 +22,11 @@ const jsonld = issue && {
   author: { '@type': 'Person', name: 'Gaiya Lab', url: 'https://gaiya.cc' },
   publisher: { '@type': 'Organization', name: 'Gaiya Lab', url: 'https://gaiya.cc' },
 };
-const card = (c: string) => (zh ? c.replace(/\.png$/, '-zh.png') : c);
 ---
 
 <Base lang={lang} route={route} section={home ? 'today' : ''} type={issue ? 'article' : 'website'}
       title={issue && !home ? fmtDate(issue.date, lang) : undefined}
-      description={e?.intro} date={issue?.publishAt} image={e && card(e.items[0]?.card ?? '')} jsonld={jsonld}>
+      description={e?.intro} date={issue?.publishAt} image={issue && `/cards/${issue.date}/og${zh ? '-zh' : ''}.png`} jsonld={jsonld}>
   {!issue || !e ? (
     <section class="wrap empty"><h1>Gaiya Daily</h1><p class="lede">{s.empty}</p></section>
   ) : (
