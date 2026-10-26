@@ -3,7 +3,7 @@
  * 邮件订阅框。提交给本站 Worker 的 /api/subscribe,由它写进 Resend 对应语言的名单。
  * name="website" 是给机器人填的陷阱字段,真人看不到。
  */
-import { t, type Locale } from '../i18n';
+import { t, path, EMAIL, type Locale } from '../i18n';
 
 // Resend 配好(RESEND_API_KEY 和名单 id 都设了)之前保持 false,网站上不显示订阅框
 const ENABLED = false;
@@ -24,6 +24,7 @@ const s = t(lang).sub;
     <button type="submit">{s.button}</button>
   </form>
   <p class="status" role="status" aria-live="polite"></p>
+  <p class="fine">{s.fine} <a href={`mailto:${EMAIL}?subject=Gaiya%20Daily`}>{EMAIL}</a>. <a href={path(lang, '/about/#privacy')}>{s.privacy}</a></p>
 </section>}
 
 <script>
@@ -38,7 +39,7 @@ const s = t(lang).sub;
         const r = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
         if (!r.ok) throw new Error(String(r.status));
         status.textContent = form.dataset.done!;
-        form.reset();
+        form.hidden = true;
       } catch {
         status.textContent = form.dataset.failed!;
       } finally {
@@ -67,6 +68,9 @@ const s = t(lang).sub;
   }
   button:disabled { opacity: 0.6; cursor: wait; }
   .status { margin: 0.7rem 0 0; min-height: 1.4em; font-size: 0.9rem; color: var(--accent); }
+  .fine { margin: 0.5rem 0 0; font-size: 0.82rem; color: var(--muted); }
+  .fine a { color: var(--muted); }
+  form[hidden] { display: none; }
   .trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 </style>

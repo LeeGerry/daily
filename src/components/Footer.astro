@@ -1,5 +1,5 @@
 ---
-import { t, path } from '../i18n';
+import { t, path, EMAIL } from '../i18n';
 const { lang = 'en' } = Astro.props;
 const s = t(lang);
 const year = new Date().getFullYear();
@@ -35,6 +35,7 @@ const zh = lang === 'zh';
       <a href={zh ? '/zh/rss.xml' : '/rss.xml'}>RSS</a>
       <a href="https://x.com/gaiya_l" rel="noopener">X @gaiya_l</a>
       <a href="https://teardown.gaiya.cc" rel="noopener">Teardown</a>
+      <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
     </div>
   </div>
 

@@ -51,6 +51,8 @@ export const STRINGS = {
       sending: 'Subscribing…',
       done: "You're in. Check your inbox for a welcome note.",
       failed: "That didn't work. Check the address and try again.",
+      fine: 'The address is used for one thing: sending you the daily email. Nothing else is sent. Every email has a one-click unsubscribe, or write to',
+      privacy: 'Privacy',
     },
   },
   zh: {
@@ -79,8 +81,13 @@ export const STRINGS = {
       sending: '正在订阅…',
       done: '订好了。邮箱里有一封欢迎信。',
       failed: '没订上。检查一下邮箱地址再试一次。',
+      fine: '邮箱只用于这一件事:每天给你发这份日报。不发别的。每封邮件都能一键退订,也可以来信',
+      privacy: '隐私说明',
     },
   },
 } as const;
+
+/** 和 gaiya.cc 其他产品一样,对外只用 <product>.support@gaiya.cc */
+export const EMAIL = 'daily.support@gaiya.cc';
 
 export const t = (lang: Locale) => STRINGS[lang];

@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { t, type Locale } from '../i18n';
+import { t, EMAIL, type Locale } from '../i18n';
 
 interface Props { lang: Locale }
 const { lang } = Astro.props;
@@ -28,8 +28,10 @@ const s = t(lang);
         <ul>
           <li>写稿用了 AI。事实以原文为准,每条都附来源链接,欢迎点进去核对。</li>
           <li>"据称""某公司说"的地方,是我们没法独立验证的说法。</li>
-          <li>发现错误请在 X 上找 <a href="https://x.com/gaiya_l">@gaiya_l</a>,改正后会在原文注明。</li>
+          <li>发现错误请写信到 <a href={`mailto:${EMAIL}`}>{EMAIL}</a> 或在 X 上找 <a href="https://x.com/gaiya_l">@gaiya_l</a>,改正后会在原文注明。</li>
         </ul>
+        <h2 id="privacy">隐私</h2>
+        <p>网站没有统计分析,不设 Cookie。用邮件订阅时,你填的邮箱存在 Resend(邮件发送服务)里,只用于一件事:每天给你发这份日报。不会分享或用于别的用途。每封邮件底部都能一键退订,退订后不再发送;想把邮箱彻底删除,写信到 <a href={`mailto:${EMAIL}`}>{EMAIL}</a>。</p>
       </Fragment>
     ) : (
       <Fragment>
@@ -50,8 +52,10 @@ const s = t(lang);
         <ul>
           <li>AI helps write this. The sources are the authority, and every item links to them so you can check.</li>
           <li>When we write "says" or "claims", it's something we couldn't verify ourselves.</li>
-          <li>Spotted a mistake? Tell <a href="https://x.com/gaiya_l">@gaiya_l</a> on X. Corrections are noted on the page.</li>
+          <li>Spotted a mistake? Write to <a href={`mailto:${EMAIL}`}>{EMAIL}</a> or tell <a href="https://x.com/gaiya_l">@gaiya_l</a> on X. Corrections are noted on the page.</li>
         </ul>
+        <h2 id="privacy">Privacy</h2>
+        <p>This site has no analytics and sets no cookies. If you subscribe by email, the address you enter is stored with Resend (an email delivery service) and used for one purpose: sending you the daily email. It is not shared or used for anything else. Every email has a one-click unsubscribe link, after which nothing more is sent. To have the address deleted entirely, write to <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
       </Fragment>
     )}
   </article>

@@ -27,7 +27,7 @@
 
   // 邮件订阅。名单 id 不是密钥,由 media_self 的 newsletter setup 建好后填在这里
   "vars": {
-    "RESEND_FROM": "Gaiya Daily <daily@mail.gaiya.cc>",
+    "RESEND_FROM": "Gaiya Daily <daily.support@gaiya.cc>",
     "RESEND_SEGMENT_EN": "",
     "RESEND_SEGMENT_ZH": ""
   },
