@@ -28,8 +28,8 @@
   // 邮件订阅。名单 id 不是密钥,由 media_self 的 newsletter setup 建好后填在这里
   "vars": {
     "RESEND_FROM": "Gaiya Daily <daily.support@gaiya.cc>",
-    "RESEND_SEGMENT_EN": "",
-    "RESEND_SEGMENT_ZH": ""
+    "RESEND_SEGMENT_EN": "c5e63f9f-c1f5-46cc-ae4d-529a1d5b5e5f",
+    "RESEND_SEGMENT_ZH": "5278102c-cf24-4c4e-a7b7-1a18451dfa7f"
   },
 
   // 密钥用 wrangler secret put 设置,不写在这里:

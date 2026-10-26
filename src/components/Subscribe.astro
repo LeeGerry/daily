@@ -5,8 +5,8 @@
  */
 import { t, path, EMAIL, type Locale } from '../i18n';
 
-// Resend 配好(RESEND_API_KEY 和名单 id 都设了)之前保持 false,网站上不显示订阅框
-const ENABLED = false;
+// 关掉就不显示订阅框(比如 Resend 出问题时)
+const ENABLED = true;
 
 interface Props { lang: Locale }
 const { lang } = Astro.props;
