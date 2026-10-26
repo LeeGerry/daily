@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Subscribe from '../components/Subscribe.astro';
 import { t, path, fmtDate, type Locale } from '../i18n';
 import { md, type Issue } from '../lib/issues';
 
@@ -42,6 +43,7 @@ const jsonld = {
         {item.sources.map((src) => <a href={src.url} rel="noopener">{src.site}</a>)}
       </p>
     )}
+    <Subscribe lang={lang} />
     <a class="back" href={path(lang, `/${issue.date}/`)}>← {s.backToIssue}</a>
   </article>
 </Base>

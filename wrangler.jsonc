@@ -8,13 +8,15 @@
   "workers_dev": false,
   "routes": [{ "pattern": "daily.gaiya.cc", "custom_domain": true }],
 
-  // Worker 脚本只负责定时发 X(见 worker/index.ts)。网页请求先命中静态资源,
+  // Worker 脚本负责定时发 X 和 /api/subscribe(见 worker/index.ts)。其余网页请求直接命中静态资源,
   // 不经过脚本,所以仍然免费、不计入每日请求额度。
   "main": "worker/index.ts",
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    // 不写这行的话,没有对应文件的 /api 请求会直接得到 404 页,到不了脚本
+    "run_worker_first": ["/api/*"]
   },
 
   // 发帖队列。media_self 定稿时写入,Worker 发完删掉
@@ -23,7 +25,14 @@
   // 每 15 分钟看一次有没有到点的帖子。时间都按 UTC 存,夏令时不用管
   "triggers": { "crons": ["*/15 * * * *"] },
 
+  // 邮件订阅。名单 id 不是密钥,由 media_self 的 newsletter setup 建好后填在这里
+  "vars": {
+    "RESEND_FROM": "Gaiya Daily <daily@mail.gaiya.cc>",
+    "RESEND_SEGMENT_EN": "",
+    "RESEND_SEGMENT_ZH": ""
+  },
+
   // 密钥用 wrangler secret put 设置,不写在这里:
-  // X_API_KEY X_API_SECRET X_ACCESS_TOKEN X_ACCESS_SECRET TG_TOKEN TG_CHAT
+  // X_API_KEY X_API_SECRET X_ACCESS_TOKEN X_ACCESS_SECRET TG_TOKEN TG_CHAT RESEND_API_KEY INTERNAL_TOKEN
   "observability": { "enabled": true }
 }

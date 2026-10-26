@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Subscribe from '../components/Subscribe.astro';
 import { t, path, fmtDate, type Locale } from '../i18n';
 import { issues, md, type Issue } from '../lib/issues';
 
@@ -28,7 +29,7 @@ const jsonld = issue && {
       title={issue && !home ? fmtDate(issue.date, lang) : undefined}
       description={e?.intro} date={issue?.publishAt} image={issue && `/cards/${issue.date}/og${zh ? '-zh' : ''}.png`} jsonld={jsonld}>
   {!issue || !e ? (
-    <section class="wrap empty"><h1>Gaiya Daily</h1><p class="lede">{s.empty}</p></section>
+    <section class="wrap empty"><h1>Gaiya Daily</h1><p class="lede">{s.empty}</p><Subscribe lang={lang} /></section>
   ) : (
     <article class="wrap issue">
       <header class="head">
@@ -67,6 +68,8 @@ const jsonld = issue && {
           </p>
         </section>
       ))}
+
+      <Subscribe lang={lang} />
 
       {issue.lab.length > 0 && (
         <section class="lab">
