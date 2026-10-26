@@ -151,19 +151,20 @@ export async function oauth(env: Env, method: string, url: string, query: Record
   return 'OAuth ' + Object.keys(p).map((k) => `${q(k)}="${q(p[k])}"`).join(', ');
 }
 
+// 欢迎信走单封发送,Resend 只在群发里替换 {{{RESEND_UNSUBSCRIBE_URL}}},所以这里不放退订链接
 const WELCOME = {
   en: {
     subject: "You're subscribed to Gaiya Daily",
     html: `<p>Thanks for subscribing.</p>
 <p>Every morning around 7am Eastern you'll get five AI stories for people who make their own products: what changed, in plain words, and what you can do with it.</p>
-<p>Today's issue is always at <a href="https://daily.gaiya.cc">daily.gaiya.cc</a>. If this wasn't you, ignore this email or <a href="{{{RESEND_UNSUBSCRIBE_URL}}}">unsubscribe</a>. Questions or corrections: just reply.</p>
+<p>Today's issue is always at <a href="https://daily.gaiya.cc">daily.gaiya.cc</a>. If this wasn't you, reply and we'll remove the address. Every daily email also has a one-click unsubscribe. Questions or corrections: just reply.</p>
 <p>Gaiya Lab</p>`,
   },
   zh: {
     subject: '订阅 Gaiya Daily 成功',
     html: `<p>谢谢订阅。</p>
 <p>每天早上(北京时间晚上 7 点左右)会收到 5 条写给自己做产品的人的 AI 新闻:变了什么,用大白话讲清楚,再说今天能做点什么。</p>
-<p>当天这期随时可以在 <a href="https://daily.gaiya.cc/zh/">daily.gaiya.cc/zh</a> 看。如果不是你本人订的,忽略这封信或者<a href="{{{RESEND_UNSUBSCRIBE_URL}}}">退订</a>。有问题或发现错误,直接回信就行。</p>
+<p>当天这期随时可以在 <a href="https://daily.gaiya.cc/zh/">daily.gaiya.cc/zh</a> 看。如果不是你本人订的,回信告诉我们,会把邮箱删掉。每天的日报邮件底部也都能一键退订。有问题或发现错误,直接回信就行。</p>
 <p>Gaiya Lab</p>`,
   },
 };
