@@ -1,0 +1,93 @@
+# 每天的选题流水线和 Telegram 审稿机器人。代码和草稿在私有的 LeeGerry/media_self 里,这里只负责借用
+# 公开仓库免费的 Actions 跑它。都由本站的 Worker 启动(见 worker/index.ts):
+#   pipeline:每天 18:00(美西)选题、起草、出图、推审核包,然后在线等你审 10 分钟
+#   review:  你在 Telegram 点按钮或回复时启动,5 分钟没有新消息就下线
+#   check:   手动跑的自检,出一张卡片图发到 Telegram,不改状态
+# 公开仓库的运行日志谁都能看,所以程序的输出不打在这里,写进 media_self 的 out/DATE/ci.log(见 core/ci.py)。
+# 三个仓库并排放,和本机的目录布局一样,media_self 的 config.yaml 里的 ../ 路径不用改。
+name: Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      task:
+        type: choice
+        options: [review, pipeline, check]
+        default: review
+      from:
+        description: 流水线从哪一步开始,只对 pipeline 有效
+        type: choice
+        options: [radar, writer, render, review]
+        default: radar
+      ref:
+        description: media_self 用哪个分支,试新改动时用
+        default: master
+
+concurrency:
+  group: pipeline-${{ inputs.task }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: media_self
+    steps:
+      # 推送新一期要触发上面的 Publish,用 GITHUB_TOKEN 推送不会触发,所以用部署密钥
+      - uses: actions/checkout@v4
+        with:
+          path: daily
+          ssh-key: ${{ secrets.DAILY_DEPLOY_KEY }}
+      # 代码和状态。部署密钥只能读写这一个仓库,跑完把状态推回去
+      - uses: actions/checkout@v4
+        with:
+          repository: LeeGerry/media_self
+          path: media_self
+          ref: ${{ inputs.ref }}
+          ssh-key: ${{ secrets.MEDIA_SELF_DEPLOY_KEY }}
+      # 只取产品列表和 logo。部署密钥只读
+      - uses: actions/checkout@v4
+        with:
+          repository: LeeGerry/workstudio
+          path: workstudio
+          ssh-key: ${{ secrets.WORKSTUDIO_DEPLOY_KEY }}
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            gaiya-cc/src/data/
+            gaiya-cc/src/static/assets/apple-touch-icon.png
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          cache-dependency-glob: media_self/uv.lock
+      # 卡片和预览图用 Chrome 截图,Ubuntu 镜像自带 Chrome,只缺字体
+      - name: Fonts
+        run: sudo apt-get update -qq && sudo apt-get install -yqq fonts-noto-core fonts-noto-cjk > /dev/null
+      # 判断两条新闻是不是同一件事的小模型,约 64M,不用每次下载
+      - uses: actions/cache@v4
+        with:
+          path: media_self/data/models
+          key: models-bge-small-en-v1.5
+      - name: Setup
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          uv sync -q --frozen
+      - name: Run
+        env:
+          TASK: ${{ inputs.task }}
+          FROM: ${{ inputs.from }}
+          PYTHONUNBUFFERED: "1"
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_KEY_EXPIRES: ${{ secrets.ANTHROPIC_KEY_EXPIRES }}
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DAILY_INTERNAL_TOKEN: ${{ secrets.DAILY_INTERNAL_TOKEN }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: uv run -q python -m core.ci "$TASK" --from "$FROM"

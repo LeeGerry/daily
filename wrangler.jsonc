@@ -34,9 +34,9 @@
     "RESEND_FROM": "Gaiya Daily <daily.support@gaiya.cc>",
     "RESEND_SEGMENT_EN": "c5e63f9f-c1f5-46cc-ae4d-529a1d5b5e5f",
     "RESEND_SEGMENT_ZH": "5278102c-cf24-4c4e-a7b7-1a18451dfa7f",
-    // 流水线所在的仓库和分支。每天 PIPELINE_HOUR 点(PIPELINE_TZ)启动一次,留空则不启动
-    "GH_REPO": "LeeGerry/media_self",
-    "GH_REF": "master",
+    // 流水线的工作流(本仓库 .github/workflows/pipeline.yml)。每天 PIPELINE_HOUR 点(PIPELINE_TZ)启动一次,留空则不启动
+    "GH_REPO": "LeeGerry/daily",
+    "GH_REF": "main",
     "PIPELINE_HOUR": "",
     "PIPELINE_TZ": "America/Los_Angeles"
   },

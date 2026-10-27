@@ -14,7 +14,7 @@
  * X 的密钥只存在这里,不用再复制一份到本机。
  * POST /api/x-queue:media_self 定稿时把当天的 X 帖子写进上面的队列(带 INTERNAL_TOKEN)。
  *
- * 流水线跑在 GitHub Actions 上(LeeGerry/media_self 的 daily.yml),这里负责叫醒它:
+ * 流水线跑在 GitHub Actions 上(本仓库的 .github/workflows/pipeline.yml),这里负责叫醒它:
  * - 每天 PIPELINE_HOUR 点(PIPELINE_TZ 时区)启动一次流水线。PIPELINE_HOUR 留空就不启动。
  * - POST /api/telegram 是审稿机器人的 webhook。消息先存进 Inbox,机器人不在线就启动一个,
  *   它用 /api/review/pull 和 /api/review/ack 来取消息(带 INTERNAL_TOKEN)。
@@ -126,9 +126,9 @@ async function pipeline(env: Env) {
   }
 }
 
-/** 启动 GitHub Actions 上的一次运行。GH_TOKEN 只需要 media_self 这一个仓库的 Actions 写权限 */
+/** 启动 GitHub Actions 上的一次运行。GH_TOKEN 只需要本仓库的 Actions 写权限 */
 async function dispatch(env: Env, task: 'pipeline' | 'review') {
-  const r = await fetch(`https://api.github.com/repos/${env.GH_REPO}/actions/workflows/daily.yml/dispatches`, {
+  const r = await fetch(`https://api.github.com/repos/${env.GH_REPO}/actions/workflows/pipeline.yml/dispatches`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${env.GH_TOKEN}`,
