@@ -107,7 +107,10 @@ export class Inbox extends DurableObject {
 const key = (id: number) => `u:${String(id).padStart(12, '0')}`;
 const inbox = (env: Env) => env.INBOX.get(env.INBOX.idFromName('review'));
 
-/** 到点启动当天的流水线。Cron 每 15 分钟来一次,过了点还没启动的(比如上次失败了)会接着试 */
+/**
+ * 到点启动当天的流水线。Cron 每 15 分钟来一次,只在 PIPELINE_HOUR 这一个小时里启动,启动失败的会在这一小时内接着试。
+ * 不在之后补跑:晚上改了配置重新部署时,不会再多跑一期。
+ */
 async function pipeline(env: Env) {
   if (!env.PIPELINE_HOUR) return;
   const now: Record<string, string> = Object.fromEntries(
@@ -115,7 +118,7 @@ async function pipeline(env: Env) {
       timeZone: env.PIPELINE_TZ, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', hourCycle: 'h23',
     }).formatToParts(new Date()).map((p) => [p.type, p.value]),
   );
-  if (Number(now.hour) < Number(env.PIPELINE_HOUR)) return;
+  if (Number(now.hour) !== Number(env.PIPELINE_HOUR)) return;
   const name = `pipeline:${now.year}-${now.month}-${now.day}`;
   if (!(await inbox(env).claim(name))) return;
   try {

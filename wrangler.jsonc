@@ -37,7 +37,7 @@
     // 流水线的工作流(本仓库 .github/workflows/pipeline.yml)。每天 PIPELINE_HOUR 点(PIPELINE_TZ)启动一次,留空则不启动
     "GH_REPO": "LeeGerry/daily",
     "GH_REF": "main",
-    "PIPELINE_HOUR": "",
+    "PIPELINE_HOUR": "18",
     "PIPELINE_TZ": "America/Los_Angeles"
   },
 
