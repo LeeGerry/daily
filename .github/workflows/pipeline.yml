@@ -64,9 +64,25 @@ jobs:
         with:
           enable-cache: true
           cache-dependency-glob: media_self/uv.lock
-      # 卡片和预览图用 Chrome 截图,Ubuntu 镜像自带 Chrome,只缺字体
+      # 卡片和预览图用 Chrome 截图,Ubuntu 镜像自带 Chrome,只缺中文字体。
+      # apt 装 fonts-noto-cjk 要十几分钟(会触发 man-db 重建索引),直接下载思源黑体和宋体,缓存起来
+      - uses: actions/cache@v4
+        id: fonts
+        with:
+          path: ~/.local/share/fonts
+          key: fonts-noto-cjk-sc-2.004
       - name: Fonts
-        run: sudo apt-get update -qq && sudo apt-get install -yqq fonts-noto-core fonts-noto-cjk > /dev/null
+        if: steps.fonts.outputs.cache-hit != 'true'
+        working-directory: .
+        run: |
+          mkdir -p ~/.local/share/fonts && cd ~/.local/share/fonts
+          base=https://github.com/notofonts/noto-cjk/raw/main
+          curl -fsSLO $base/Sans/SubsetOTF/SC/NotoSansSC-Regular.otf
+          curl -fsSLO $base/Sans/SubsetOTF/SC/NotoSansSC-Bold.otf
+          curl -fsSLO $base/Serif/SubsetOTF/SC/NotoSerifSC-Regular.otf
+          curl -fsSLO $base/Serif/SubsetOTF/SC/NotoSerifSC-SemiBold.otf
+      - name: Font cache
+        run: fc-cache -f > /dev/null
       # 判断两条新闻是不是同一件事的小模型,约 64M,不用每次下载
       - uses: actions/cache@v4
         with:
