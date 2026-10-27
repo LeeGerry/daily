@@ -22,17 +22,27 @@
   // 发帖队列。media_self 定稿时写入,Worker 发完删掉
   "kv_namespaces": [{ "binding": "SOCIAL", "id": "0461fb69105f414d9ed9364ac12f09c9" }],
 
-  // 每 15 分钟看一次有没有到点的帖子。时间都按 UTC 存,夏令时不用管
+  // 审稿收件箱(见 worker/index.ts 的 Inbox):存 Telegram 发来的消息,等 GitHub Actions 上的机器人来取
+  "durable_objects": { "bindings": [{ "name": "INBOX", "class_name": "Inbox" }] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Inbox"] }],
+
+  // 每 15 分钟看一次有没有到点的帖子,顺便看要不要启动当天的流水线。帖子时间都按 UTC 存,夏令时不用管
   "triggers": { "crons": ["*/15 * * * *"] },
 
   // 邮件订阅。名单 id 不是密钥,由 media_self 的 newsletter setup 建好后填在这里
   "vars": {
     "RESEND_FROM": "Gaiya Daily <daily.support@gaiya.cc>",
     "RESEND_SEGMENT_EN": "c5e63f9f-c1f5-46cc-ae4d-529a1d5b5e5f",
-    "RESEND_SEGMENT_ZH": "5278102c-cf24-4c4e-a7b7-1a18451dfa7f"
+    "RESEND_SEGMENT_ZH": "5278102c-cf24-4c4e-a7b7-1a18451dfa7f",
+    // 流水线所在的仓库和分支。每天 PIPELINE_HOUR 点(PIPELINE_TZ)启动一次,留空则不启动
+    "GH_REPO": "LeeGerry/media_self",
+    "GH_REF": "master",
+    "PIPELINE_HOUR": "",
+    "PIPELINE_TZ": "America/Los_Angeles"
   },
 
   // 密钥用 wrangler secret put 设置,不写在这里:
   // X_API_KEY X_API_SECRET X_ACCESS_TOKEN X_ACCESS_SECRET TG_TOKEN TG_CHAT RESEND_API_KEY INTERNAL_TOKEN
+  // TG_WEBHOOK_SECRET GH_TOKEN
   "observability": { "enabled": true }
 }

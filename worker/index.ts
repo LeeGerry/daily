@@ -12,7 +12,15 @@
  *
  * POST /api/x-search:只给 media_self 用(带 INTERNAL_TOKEN),代它搜 X 上值得去回复的帖子。
  * X 的密钥只存在这里,不用再复制一份到本机。
+ * POST /api/x-queue:media_self 定稿时把当天的 X 帖子写进上面的队列(带 INTERNAL_TOKEN)。
+ *
+ * 流水线跑在 GitHub Actions 上(LeeGerry/media_self 的 daily.yml),这里负责叫醒它:
+ * - 每天 PIPELINE_HOUR 点(PIPELINE_TZ 时区)启动一次流水线。PIPELINE_HOUR 留空就不启动。
+ * - POST /api/telegram 是审稿机器人的 webhook。消息先存进 Inbox,机器人不在线就启动一个,
+ *   它用 /api/review/pull 和 /api/review/ack 来取消息(带 INTERNAL_TOKEN)。
  */
+
+import { DurableObject } from 'cloudflare:workers';
 
 interface Env {
   ASSETS: Fetcher;
@@ -28,21 +36,158 @@ interface Env {
   RESEND_SEGMENT_EN: string;
   RESEND_SEGMENT_ZH: string;
   INTERNAL_TOKEN: string;
+  INBOX: DurableObjectNamespace<Inbox>;
+  TG_WEBHOOK_SECRET: string;
+  GH_TOKEN: string;
+  GH_REPO: string;
+  GH_REF: string;
+  PIPELINE_HOUR: string;
+  PIPELINE_TZ: string;
 }
 
 type Post = { id: string; due: string; text: string; image?: string };
 
 const LATE_MS = 6 * 3600 * 1000;
+// 机器人每 2 秒来取一次消息,超过这么久没来就算下线了
+const ONLINE_MS = 15 * 1000;
+// 启动一个机器人要半分钟到一分钟,这段时间里再来消息不重复启动
+const STARTING_MS = 3 * 60 * 1000;
 
 export default {
   fetch: (req: Request, env: Env, ctx: ExecutionContext) => {
     const url = new URL(req.url);
     if (url.pathname === '/api/subscribe') return subscribe(req, env, ctx);
     if (url.pathname === '/api/x-search') return xSearch(req, env);
+    if (url.pathname === '/api/x-queue') return xQueue(req, env);
+    if (url.pathname === '/api/telegram') return telegram(req, env, ctx);
+    if (url.pathname === '/api/review/pull' || url.pathname === '/api/review/ack') return review(req, env, url.pathname);
     return env.ASSETS.fetch(req);
   },
-  scheduled: (_e: ScheduledController, env: Env, ctx: ExecutionContext) => ctx.waitUntil(run(env)),
+  scheduled: (_e: ScheduledController, env: Env, ctx: ExecutionContext) => ctx.waitUntil(Promise.all([run(env), pipeline(env)])),
 };
+
+/**
+ * 审稿收件箱。Telegram 的消息先存在这里,等审稿机器人来取。
+ * Durable Object 单线程、强一致,存进去马上取得到;KV 在不同机房之间要等上一分钟才同步。
+ */
+export class Inbox extends DurableObject {
+  /** 存一条消息,返回机器人现在在不在线、要不要启动一个 */
+  async push(update: { update_id: number }): Promise<{ online: boolean; start: boolean }> {
+    const s = this.ctx.storage;
+    await s.put(key(update.update_id), update);
+    const now = Date.now();
+    const online = now - ((await s.get<number>('polled')) ?? 0) < ONLINE_MS;
+    const start = !online && now - ((await s.get<number>('started')) ?? 0) > STARTING_MS;
+    if (start) await s.put('started', now);
+    return { online, start };
+  }
+
+  /** 机器人来取消息。closing 表示它准备下线,这之后来的消息会再启动一个新的 */
+  async pull(closing: boolean): Promise<unknown[]> {
+    await this.ctx.storage.put('polled', closing ? 0 : Date.now());
+    return [...(await this.ctx.storage.list({ prefix: 'u:' })).values()];
+  }
+
+  async ack(ids: number[]): Promise<void> {
+    if (ids.length) await this.ctx.storage.delete(ids.map(key));
+  }
+
+  /** 同一个 name 只有第一次返回 true,用来保证每天只启动一次流水线 */
+  async claim(name: string): Promise<boolean> {
+    if (await this.ctx.storage.get(name)) return false;
+    await this.ctx.storage.put(name, Date.now());
+    return true;
+  }
+
+  async release(name: string): Promise<void> {
+    await this.ctx.storage.delete(name);
+  }
+}
+
+const key = (id: number) => `u:${String(id).padStart(12, '0')}`;
+const inbox = (env: Env) => env.INBOX.get(env.INBOX.idFromName('review'));
+
+/** 到点启动当天的流水线。Cron 每 15 分钟来一次,过了点还没启动的(比如上次失败了)会接着试 */
+async function pipeline(env: Env) {
+  if (!env.PIPELINE_HOUR) return;
+  const now: Record<string, string> = Object.fromEntries(
+    new Intl.DateTimeFormat('en-CA', {
+      timeZone: env.PIPELINE_TZ, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', hourCycle: 'h23',
+    }).formatToParts(new Date()).map((p) => [p.type, p.value]),
+  );
+  if (Number(now.hour) < Number(env.PIPELINE_HOUR)) return;
+  const name = `pipeline:${now.year}-${now.month}-${now.day}`;
+  if (!(await inbox(env).claim(name))) return;
+  try {
+    await dispatch(env, 'pipeline');
+  } catch (err) {
+    await inbox(env).release(name);
+    await notify(env, `❌ 今天的流水线没启动起来,15 分钟后再试:${String(err).slice(0, 300)}`);
+  }
+}
+
+/** 启动 GitHub Actions 上的一次运行。GH_TOKEN 只需要 media_self 这一个仓库的 Actions 写权限 */
+async function dispatch(env: Env, task: 'pipeline' | 'review') {
+  const r = await fetch(`https://api.github.com/repos/${env.GH_REPO}/actions/workflows/daily.yml/dispatches`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${env.GH_TOKEN}`,
+      Accept: 'application/vnd.github+json',
+      'User-Agent': 'daily.gaiya.cc',
+    },
+    body: JSON.stringify({ ref: env.GH_REF, inputs: { task } }),
+  });
+  if (!r.ok) throw new Error(`GitHub ${r.status}: ${(await r.text()).slice(0, 200)}`);
+}
+
+/** Telegram 的 webhook。只收你自己的消息,陌生人发来的直接丢掉,也不会为它启动机器人 */
+async function telegram(req: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+  const secret = req.headers.get('X-Telegram-Bot-Api-Secret-Token') ?? '';
+  if (req.method !== 'POST' || !env.TG_WEBHOOK_SECRET || !(await same(secret, env.TG_WEBHOOK_SECRET))) {
+    return new Response('Unauthorized', { status: 401 });
+  }
+  const u: any = await req.json();
+  const chat = u.callback_query?.message?.chat?.id ?? u.message?.chat?.id;
+  if (String(chat) !== String(env.TG_CHAT)) return new Response('ok');
+  const { online, start } = await inbox(env).push(u);
+  if (!online) {
+    // 按钮要在十几秒内应答,机器人还没起来,先替它说一声
+    if (u.callback_query) {
+      ctx.waitUntil(tg(env, 'answerCallbackQuery', {
+        callback_query_id: u.callback_query.id, text: '收到。审稿机器人正在启动,大约 1 分钟后生效',
+      }));
+    }
+    if (start) {
+      ctx.waitUntil(dispatch(env, 'review').catch((err) =>
+        notify(env, `❌ 审稿机器人没启动起来,过 3 分钟再点一次试试:${String(err).slice(0, 300)}`)));
+    }
+  }
+  return new Response('ok');
+}
+
+async function review(req: Request, env: Env, path: string): Promise<Response> {
+  if (!(await internal(req, env))) return new Response('Unauthorized', { status: 401 });
+  const body = await req.json<{ closing?: boolean; ids?: number[] }>();
+  if (path.endsWith('/pull')) return Response.json({ updates: await inbox(env).pull(Boolean(body.closing)) });
+  await inbox(env).ack(body.ids ?? []);
+  return Response.json({ ok: true });
+}
+
+async function xQueue(req: Request, env: Env): Promise<Response> {
+  if (!(await internal(req, env))) return new Response('Unauthorized', { status: 401 });
+  const q = await req.json<{ date: string; posts: Post[] }>();
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(q.date ?? '') || !Array.isArray(q.posts)) {
+    return new Response('Bad queue', { status: 400 });
+  }
+  await env.SOCIAL.put(`queue:${q.date}`, JSON.stringify(q));
+  return Response.json({ ok: true, posts: q.posts.length });
+}
+
+/** media_self 调用的接口都带 Bearer INTERNAL_TOKEN */
+async function internal(req: Request, env: Env): Promise<boolean> {
+  if (req.method !== 'POST' || !env.INTERNAL_TOKEN) return false;
+  return same(req.headers.get('Authorization') ?? '', `Bearer ${env.INTERNAL_TOKEN}`);
+}
 
 async function run(env: Env) {
   const now = Date.now();
@@ -104,11 +249,7 @@ export async function postToX(env: Env, p: Post): Promise<string> {
 
 /** 按 X 的 recent search 搜帖子。每返回一条按读取计费(约 $0.005),所以条数由调用方控制 */
 async function xSearch(req: Request, env: Env): Promise<Response> {
-  if (req.method !== 'POST') return new Response('Method not allowed', { status: 405 });
-  const auth = req.headers.get('Authorization') ?? '';
-  if (!env.INTERNAL_TOKEN || !(await same(auth, `Bearer ${env.INTERNAL_TOKEN}`))) {
-    return new Response('Unauthorized', { status: 401 });
-  }
+  if (!(await internal(req, env))) return new Response('Unauthorized', { status: 401 });
   const { query, max_results = 10 } = await req.json<{ query: string; max_results?: number }>();
   const params: Record<string, string> = {
     query,
@@ -215,10 +356,15 @@ function resend(env: Env, method: string, path: string, body?: unknown): Promise
 }
 
 async function notify(env: Env, text: string) {
-  if (!env.TG_TOKEN || !env.TG_CHAT) return;
-  await fetch(`https://api.telegram.org/bot${env.TG_TOKEN}/sendMessage`, {
+  if (!env.TG_CHAT) return;
+  await tg(env, 'sendMessage', { chat_id: env.TG_CHAT, text, disable_web_page_preview: false });
+}
+
+async function tg(env: Env, method: string, body: unknown) {
+  if (!env.TG_TOKEN) return;
+  await fetch(`https://api.telegram.org/bot${env.TG_TOKEN}/${method}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ chat_id: env.TG_CHAT, text, disable_web_page_preview: false }),
+    body: JSON.stringify(body),
   }).catch(() => {});
 }
