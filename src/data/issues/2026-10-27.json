@@ -1,0 +1,196 @@
+{
+  "date": "2026-10-27",
+  "publishAt": "2026-10-28T11:00:00Z",
+  "en": {
+    "intro": "Two of today's five tools go after the same annoyance: apps built with AI that all look alike. Hallmark and Impeccable both try to make AI coding assistants stop producing that generic design, and the other three are Postiz (AI-driven social post scheduling), Superpowers (a working method for coding assistants) and Cindy (an open-source assistant that aims to work out of the box).",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Hallmark: a free add-on to make AI-built pages look less AI-built",
+        "takeaway": "Free add-on for Claude Code, Cursor, Codex. Try its audit on a live page first. No measured results yet.",
+        "body": "A contact form that says thanks without sending anything. That's one of the tells Hallmark looks for, using a real browser, when it checks a page for that machine-made look. Others on the list: a small label above every heading, one coloured word in a headline, and an email sign-up box at the bottom of every page.\n\nHallmark is a free add-on (a \"skill\") that gives an AI coding assistant a set of design rules. It works with Claude Code, Codex, Cursor and OpenCode. Together AI's Nutlope published it, and the README says its goal is to refuse to look AI-generated.\n\nIt has a catalog of fifty themes and deals three per build, so the assistant picks a direction instead of falling back on its usual look. The rules come in three tiers. The strictest never ships: unreadable contrast, invented facts, a broken phone layout. The middle tier covers habits models fall into, and you can overrule them if you record a reason. The last is polish that never blocks anything. A second AI reviewer with no memory of the build gives the page a final look.\n\nVersion 2 adds redesign and audit commands for pages you already have. Redesign keeps your content, links and form fields while changing styling and layout. It records them first and fails the job if one goes missing. That's the part I'd care about as a solo maker.\n\nIt's MIT licensed, so free to use. The README shows no measured results and doesn't claim the output looks better. The browser checks need Chrome and an extra tool. Without them only simpler checks run. You may have to name the skill yourself to get it to start. The 755 photos come from Wikimedia Commons, each with its own licence and credit.\n\nI'd start with the audit on a page you've already shipped and see what it says.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-27/1.png",
+        "sources": [
+          {
+            "title": "Nutlope/hallmark",
+            "url": "https://github.com/Nutlope/hallmark",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Impeccable gives AI coding tools a design checklist",
+        "takeaway": "A design add-on for AI coding tools that flags generic looks. Price and license aren't stated.",
+        "body": "Gray text on a colored background, pure black, cards nested inside cards, bouncy animations. Impeccable keeps a list of habits like these that it wants your AI to drop, and it checks for them with 62 fixed rules.\n\nImpeccable is a bundle of design guidance for AI coding assistants, the tools like Claude Code, Cursor and Codex where you describe what you want and the AI writes the code. The project's README calls the bundle a skill, which just means a set of instructions the assistant reads. It adds 24 commands for things like critiquing a screen, polishing it, toning it down or making it bolder. It also lets you try out changes to a design live in the browser. It grew out of Anthropic's frontend-design skill, which the README calls the first widely used design skill for Claude.\n\nThe 62 rules are what I'd look at first. They run without an AI model or an API key (a password for an AI service), so they work like a spell-checker for design: same input, same result. The list also flags overused fonts, and Inter and Arial are both on it.\n\nSetup is one install command from your project folder, then a first step where the assistant records who the app is for, what it's for, and how it should sound. Install works with Claude, Cursor, Gemini CLI, Codex CLI, Replit Agent and Grok Build, and there's a plugin for Copilot in VS Code.\n\nNobody has independently tested whether the results look better than plain AI output, and pricing and license terms aren't known. Codex users also have to approve a project hook (a small automatic step) before some features run.\n\nIf you already build with one of these assistants, point it at an existing screen and see what it flags. It's a cheap test, and you'll know whether the list matches your taste.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-27/2.png",
+        "sources": [
+          {
+            "title": "pbakaus/impeccable",
+            "url": "https://github.com/pbakaus/impeccable",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Postiz: a free, self-hostable social scheduler with AI",
+        "takeaway": "Could replace a paid scheduler. Try the hosted version first; AI features and pricing aren't detailed.",
+        "body": "Postiz lists 14 places it can schedule posts to: Instagram, YouTube, Dribbble, LinkedIn, Reddit, TikTok, Facebook, Pinterest, Threads, X, Slack, Discord, Mastodon and Bluesky. It's a social media scheduler, a tool where you write posts once and queue them up to go out later. It also tracks how posts perform and lets teammates comment on drafts.\n\nThe GitHub page says you can use it two ways. Postiz Cloud is the hosted version, where they run everything. The open-source edition is free software you install on your own server. It's under the AGPL 3.0 license, which comes with conditions if you modify it and offer it to others, so read it before building on it.\n\nThe README also lists a long run of AI assistant integrations: ChatGPT, Claude, Claude Code, Codex, Cursor and several lesser-known ones. There's a public API (a way for other software to talk to Postiz), plus an n8n node and a Make.com integration. The README names Zapier too. These tools chain apps together without much code.\n\nThe README mentions \"many AI features\" but doesn't explain what they do or how much the AI does on its own. It doesn't say whether every platform supports full posting or only scheduling. Cloud pricing isn't listed either, only a sign-up link.\n\nIf you pay monthly for a scheduler to promote your apps, this is worth an afternoon. Start with the hosted version to see whether the workflow fits. Only then decide if running your own server, with its database and updates, is worth saving the subscription.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-27/3.png",
+        "sources": [
+          {
+            "title": "gitroomhq/postiz-app",
+            "url": "https://github.com/gitroomhq/postiz-app",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Superpowers gives AI coding agents a step-by-step routine",
+        "takeaway": "Spec first, then plan, then tests: a ready-made routine for building features with an AI assistant.",
+        "body": "A couple of hours. That's how long Superpowers' README says an AI coding assistant can work on its own without wandering off the plan. No independent test of that comes with it, so treat it as a claim.\n\nSuperpowers is a bundle of instructions for AI coding assistants, the tools that write code for you, like Claude Code, Codex and Cursor. The README calls it a complete software development methodology. In plain terms, it's a routine the assistant follows every time.\n\nThe routine goes like this. You say you're building something, and the assistant asks what you're really trying to do before it writes anything. It shows you the spec in chunks short enough to read. Once you approve the design, it writes a plan built around three habits: write a test that fails first, then make it pass; don't build what you don't need; don't repeat yourself. Then you say go, and a team of helper agents works through each task, checking each other's work. The README says the skills switch on automatically.\n\nA solo maker has no coworker asking \"wait, what's this feature for?\" This puts that question into the process. You still have to read the spec and the plan, and that's the part worth keeping.\n\nInstalling is a separate job for each tool. The README has steps for Claude Code, Codex, Cursor, Gemini CLI and a long list of others. If you use two, you do it twice.\n\nI'd try it on one small feature first. I'd also check the license before building anything you sell around it. The README gives no version, release date or license terms.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-27/4.png",
+        "sources": [
+          {
+            "title": "obra/superpowers",
+            "url": "https://github.com/obra/superpowers",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Cindy: a free, open-source AI agent for all your devices",
+        "takeaway": "Free app, but model costs stay yours. The backend is a separate repo, so check what syncs before using it.",
+        "body": "Cindy's app is free, and the README is upfront that free doesn't mean unlimited. Provider limits and billing still apply to whatever AI model you plug in.\n\nCindy is an open-source AI agent, meaning a program that takes a goal and works through the steps using an AI model. Its GitHub page calls it ready out of the box. It runs on macOS, Windows, Linux, iOS and Android. It works with three existing agent engines: Claude Code, Codex and Pi. You can authorize a Claude Code or Codex plan you already pay for, bring your own API keys (the password-like codes that let an app use an AI service), run a local model on your own machine, or use Cindy's managed model service.\n\nThe cross-device part is the draw. You can open a session from another device, share model setups between computers, and control a computer from your phone. The README says your computer acts as the server, so there's nothing to rent or host. Project files stay on that computer. Conversations, memory, skills and shared attachments sync through Cindy's cloud, and remote access needs the same account, permissions switched on, and the machines left online.\n\nThe app code uses the Apache-2.0 license, a permissive one that lets you inspect, copy and change it. But this repository holds only the desktop and phone apps. The backend, the part that runs on Cindy's servers, sits in a separate repository, and the README doesn't say whether it's open. The app also talks to Cindy's cloud by default. A skip-sign-in option runs local agents without an account, minus anything server-backed.\n\nCindy's performance and security claims come from Cindy itself. No independent check came with them. If you already pay for one of those subscriptions, it's a cheap thing to try. I'd check what syncs to the cloud before putting client work through it.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-27/5.png",
+        "sources": [
+          {
+            "title": "makecindy/cindy",
+            "url": "https://github.com/makecindy/cindy",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 4,
+      "headline": "Superpowers gives AI coding agents a step-by-step routine",
+      "body": "## What the README describes\n\nSuperpowers lives on GitHub, and its README describes it as a complete software development methodology for coding agents. That's a grand phrase for something fairly concrete. It's a set of skills, meaning written-down routines the assistant can follow, plus starting instructions that make sure the assistant actually uses them.\n\nThe routine starts before any code. When the assistant sees you're building something, it asks what you're really trying to do. Then it shows the spec in readable chunks. After you sign off on the design, it produces an implementation plan. The README says that plan leans on true red/green TDD, YAGNI and DRY. Translated: write a test that fails, then write code until it passes. Don't build things you don't need yet. Don't copy the same logic into five places.\n\nThen you say go. A process the README calls subagent-driven development takes over. Subagents are helper agents, each handed one engineering task, and they inspect and review their own work as they go. The README says it's not uncommon for the agent to work autonomously for a couple of hours at a time without deviating from the plan.\n\nSkills trigger automatically, so you don't need to do anything special. That matters for anyone who doesn't want to memorize a list of commands.\n\n## Where a solo maker could use it\n\nThe appeal is the questions at the start. Working alone, nobody makes you explain a feature before you build it. Plenty of AI-assisted projects go sideways at exactly that point: a loose request, a confident assistant, a pile of code that solves a slightly different problem. A process that forces a short spec and an approved plan is a cheap way to catch that early.\n\nYou don't have to write code to benefit, in theory. The spec comes in chunks meant to be read, and approving a design is something a designer or shop owner can do. But the review step is on you. If you approve a plan you don't understand, the process just hands you a more organized mistake.\n\nThe install side is wide. Besides Claude Code, the README lists steps for Antigravity, Codex App, Codex CLI, Cursor, Devin CLI, Factory Droid, Gemini CLI, GitHub Copilot CLI, Grok Build CLI, Kimi Code, OpenCode, Pi, Qwen Code, Hermes Agent and Muse. For Claude Code there are two routes: Anthropic's official plugin marketplace, or the Superpowers project's own marketplace. Installation differs by tool, and if you use more than one you install it for each.\n\nFor companies, the README points to an address at primeradiant.com for commercial support, extra tooling or managed spending. That tells you someone is building a business around it, which is useful to know before you depend on it.\n\nMy suggestion is a trial on one self-contained feature, something you could throw away. See whether the questions it asks are better than the ones you'd ask yourself. See whether the plan is something you'd have written. Then decide.\n\n## What's missing from the picture\n\nThe biggest gap is evidence. The two-hour claim comes from the project's own README, and no benchmark or independent evaluation of it is provided. It's also unclear what \"without deviating\" means in practice, or how often the plan itself turns out to be wrong. An agent that follows a bad plan faithfully for two hours isn't a win.\n\nThere's a known weak spot. Long sessions get compacted, which means the assistant squeezes older parts of the conversation to make room. If the starting instructions get squeezed out, the assistant forgets the routine. The README says Hermes has no hook that runs after compaction, so in a very long session the bootstrap can be lost and you may need to start a fresh session. By contrast, the Pi package injects the starting instructions at startup and again after compaction. So behavior varies by tool, and your experience on one won't necessarily carry over to another.\n\nThe README gives no release date or version number, and license terms appear only as section headings. The Muse install section stops partway through. And there are no community reactions to lean on yet. Check the license yourself if you plan to build a product around this.\n\nThe actual instruction text in the skills is the part that decides whether this is a good routine or just a well-described one. I can't judge that from the README. Reading the skills before you commit is the obvious next step."
+    }
+  },
+  "zh": {
+    "intro": "今天五个工具里，有两个在对付同一件烦心事：AI 做的界面，看着都一个样。Hallmark 和 Impeccable 想让 AI 编程助手别再出这种设计；另外三个，Postiz 用 AI 排社交媒体发帖，Superpowers 教 AI 编程助手按套路写软件，Cindy 是个想装好就能用的开源 AI 助手。",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Hallmark：让 AI 做的网页少点 AI 味",
+        "takeaway": "免费插件，支持 Claude Code 等四种工具。先拿它审计一个已上线的页面，暂无实测数据。",
+        "body": "一个联系表单，点了提交，页面弹出“谢谢”，实际什么都没发出去。Hallmark 专门查这种毛病，而且是开一个真浏览器去查。清单上还有：每个标题上面都挂一行小字，标题里只有一个词换了颜色，每个页面末尾都塞一个邮箱订阅框。都是 AI 做网页的老习惯。\n\nHallmark 是一个免费的小插件（也叫技能包），给 AI 编程助手塞一套设计规矩。Claude Code、Codex、Cursor、OpenCode 都能用。作者是 Together AI 的 Nutlope，README 里写着，它的目标是拒绝一股 AI 味。\n\n做法有几招。内置 50 套主题，每次做页面只发 3 套给助手挑。规矩分三档：最严的一档绝不放行，比如文字看不清、编造事实、手机上排版坏掉；中间一档管模型爱犯的习惯，留下理由可以不听；最后一档是打磨细节，从不拦着不让发。最后还有一个不知道前情的 AI 审稿人，从头把页面看一遍。\n\n第二版加了改版和审计两个功能，专门对付已经上线的页面。改版会保留内容、链接和表单，只动样式和布局。它先把这些记下来，少了一个就算失败。独立开发者最该在意的是这一点。\n\n协议是 MIT，免费用。README 没给任何实测对比，也没说效果一定更好。完整的浏览器检查要另外装 Chrome 和一个小工具，不装只能跑简单检查。技能包有时不会自己启动，得手动点名。附带的 755 张照片来自 Wikimedia Commons，各有各的授权，要按要求署名。\n\n我会先拿它给一个已经上线的页面做审计，看它能挑出什么。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-27/1.png",
+        "sources": [
+          {
+            "title": "Nutlope/hallmark",
+            "url": "https://github.com/Nutlope/hallmark",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Impeccable 给 AI 编程助手配了份设计检查清单",
+        "takeaway": "专抓 AI 做页面的千篇一律。价格和授权没写，先拿现成页面试试。",
+        "body": "灰字压在彩色底上，纯黑，卡片里套卡片，动画弹来弹去。Impeccable 有一张这样的坏习惯清单，想让你的 AI 别再这么干，还用 62 条固定规则去检查。\n\nImpeccable 是一套给 AI 编程助手用的设计指南。AI 编程助手就是 Claude Code、Cursor、Codex 这类，你说想要什么，它来写代码。README 管这套东西叫技能包，意思是一份助手会先读的说明书。它另外加了 24 个命令，能让助手评审一个页面、打磨细节、收敛一点或者放开一点，还能在浏览器里实时试改设计。它是从 Anthropic 的 frontend-design 技能包长出来的，README 说那是 Claude 上第一个被广泛使用的设计技能包。\n\n那 62 条规则我会先看。它们不用 AI 模型，也不要 API key（调用 AI 服务的密码），有点像设计版的拼写检查：同样的输入，永远同样的结果。清单里还点名了用烂的字体，Inter 和 Arial 都在。\n\n上手是在项目文件夹里装一次，然后让助手先记下这个 App 给谁用、做什么、说话什么语气。安装支持 Claude、Cursor、Gemini CLI、Codex CLI、Replit Agent、Grok Build 等，Copilot 在 VS Code 里有单独的插件。\n\n没人独立测过它做出来的页面是不是比 AI 原味更好看，价格和授权也没写。Codex 用户还得先批准项目里的一个钩子（一小段自动执行的步骤），部分功能才会跑。\n\n已经在用这类助手的话，拿一个现成页面让它查一遍，看它挑的毛病合不合你口味。成本很低。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-27/2.png",
+        "sources": [
+          {
+            "title": "pbakaus/impeccable",
+            "url": "https://github.com/pbakaus/impeccable",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Postiz：能自己架的开源社交媒体排期工具，带 AI",
+        "takeaway": "可能替代你付费的排期工具。先试托管版，AI 功能和价格目前都没写清。",
+        "body": "Postiz 是个社交媒体排期工具：帖子写一次，排好时间，到点自动发出去。README 列了 14 个能发的地方：Instagram、YouTube、Dribbble、LinkedIn、Reddit、TikTok、Facebook、Pinterest、Threads、X、Slack、Discord、Mastodon、Bluesky。它还有数据分析，团队成员可以在帖子上评论，一起排期。\n\n用法有两种。Postiz Cloud 是官方托管版，服务器他们管。开源版可以装在自己的服务器上。协议是 AGPL 3.0，改了代码再拿给别人用是有条件的，基于它做东西之前先读一遍。\n\nAI 这块，README 列了一长串能接的 AI 助手：ChatGPT、Claude、Claude Code、Codex、Cursor，后面还有一些名字更陌生的。另外有公开接口（让别的软件能指挥 Postiz），有 n8n 和 Make.com 的接入，Zapier 也提到了。README 把这几个都归在“API 自动化”这一项下面。\n\nREADME 只写了 “many AI features”，没讲具体能干什么，也没说 AI 能自己做主到什么程度。14 个平台是都能完整发帖，还是只能排期，也没说。Cloud 版多少钱没有写，只放了个注册链接。\n\n如果你正在为推广自己的 App 付排期工具的钱，值得花一个下午看看。先用托管版，看流程顺不顺手。然后再想要不要自己养一台服务器：要自己管设置和更新，省不省钱，得等价格出来才算得清。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-27/3.png",
+        "sources": [
+          {
+            "title": "gitroomhq/postiz-app",
+            "url": "https://github.com/gitroomhq/postiz-app",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Superpowers 给 AI 编程助手一套固定的做事流程",
+        "takeaway": "先问清需求，再定计划，再写测试：给 AI 助手做功能配一套现成流程。",
+        "body": "两个小时左右。Superpowers 的 README 说，AI 编程助手照它的流程干活，能自己连续干这么久，不偏离计划。没有第三方测试，只能当成项目自己的说法。\n\nSuperpowers 是一套给 AI 编程助手（帮你写代码的工具，比如 Claude Code、Codex、Cursor）用的做事流程。README 管它叫完整的软件开发方法。说人话就是：助手每次都按同一套规矩来。\n\n规矩是这样。你说要做个东西，助手先不写代码，问你到底想解决什么问题，再把需求拆成几小段给你看。你点头定了设计，它写出一份实施计划，里面有三个习惯：先写一个会失败的测试，再写代码让它通过；用不到的功能不做；同样的逻辑不重复写。你说一声“开始”，几个帮手 AI 就一项项做任务，互相检查。README 说这些技能会自动触发，你不用特地做什么。\n\n一个人做产品，身边没有同事问你“这功能到底干嘛的”。这套流程把这一问塞进了步骤里。但需求和计划还得你自己读，真正值得留的就是这一步。\n\n装起来每个工具要各装一遍。README 列了 Claude Code、Codex、Cursor、Gemini CLI 等一长串，用两个就装两次。\n\n我会先拿一个小功能试。要是打算围着它做要卖的东西，先去查许可证。README 里没有版本号和发布日期，许可条款也只有个小标题。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-27/4.png",
+        "sources": [
+          {
+            "title": "obra/superpowers",
+            "url": "https://github.com/obra/superpowers",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Cindy：免费开源的 AI 智能体，手机电脑通用",
+        "takeaway": "App 免费，模型费用还是你的。后端在另一个仓库，上手前先确认哪些内容会同步到云上。",
+        "body": "Cindy 的 App 免费，但 README 自己先把话说在前头：免费不等于模型用量无限，你接的那家 AI 服务，额度和账单照旧。\n\nCindy 是一个开源的 AI 智能体，也就是你给个目标，它调用 AI 模型一步步帮你做完的程序。GitHub 页面写它“开箱即用”。支持 macOS、Windows、Linux、iOS、Android 五个平台，底下能接 Claude Code、Codex、Pi 三个现成的 AI 助手。模型这头有四条路：授权你已经在付费的 Claude Code 或 Codex 套餐，填自己的 API 密钥（一串像密码的字符，让 App 能调用 AI 服务），跑本机的本地模型，或者用 Cindy 自己的托管模型服务。\n\n最有意思的是跨设备。你能在另一台设备上打开会话，共用别的电脑上配好的模型，手机上还内置了远程桌面。README 说你的电脑自己就是服务器，不用租，也不用自己搭。项目文件留在电脑上，不会整盘同步。对话、记忆、技能和共享附件则走 Cindy 的云。远程访问要用同一个账号，开好权限，电脑还得一直开着。\n\nApp 代码用 Apache-2.0 协议，这是一种宽松的开源许可，能看、能拷、能改。但这个仓库只有桌面端和手机端。后端在另一个仓库，README 没说那部分开不开源。App 默认连 Cindy 的官方云服务。有个跳过登录的选项，不注册账号也能跑本地智能体，依赖服务器的功能就用不了。\n\n性能和安全这些说法都是 Cindy 自己讲的，没有第三方验证。如果你本来就在付 Claude Code 或 Codex 的订阅，试一下成本很低。我会先弄清楚哪些东西会同步到云上，再拿客户的活儿去跑。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-27/5.png",
+        "sources": [
+          {
+            "title": "makecindy/cindy",
+            "url": "https://github.com/makecindy/cindy",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 4,
+      "headline": "Superpowers 给 AI 编程助手一套固定的做事流程",
+      "body": "## README 里写了什么\n\nSuperpowers 放在 GitHub 上，README 开头管它叫“给 AI 编程助手用的完整软件开发方法”。口气不小，内容倒很具体：一组技能，也就是写好的做事规矩，助手照着做就行；外加一段开场指令，保证助手真的会去用这些规矩。\n\n流程从写代码之前就开始了。助手发现你在做东西，会先问你到底想解决什么问题，然后把需求拆成能读完的几小段给你看。你确认了设计，它再出一份实施计划。README 说这份计划强调三件事：真正的“先红后绿”测试，也就是先写一个会失败的检查，再写代码让它通过；YAGNI，意思是现在用不到的东西先别做；DRY，意思是同样的逻辑别重复写。\n\n你说“开始”之后，一套 README 里叫“子代理驱动开发”的流程接手。说白了，就是把每项工程任务分给帮手 AI，它们做完会自己检查、互相复查。README 还说，助手一次自己干上两个小时左右、不偏离计划，并不少见。\n\n技能是自动触发的，你不用特地做什么。对不想背一堆指令的人，这点很实在。\n\n## 一个人做产品，能拿它干什么\n\n我觉得最有用的是开头那几个问题。一个人干活，没人逼你在动手前把功能讲清楚。要是需求说得松，做出来的东西可能和你想要的差一点。强制先出一份短需求、再批一份计划，是个成本很低的拦截办法。\n\n理论上，不会写代码也能受益。需求是切成小段给你读的，确认设计这件事，设计师或店主都能做。但检查这一关还是得你来。你批了一份自己看不懂的计划，这套流程只会还你一个更整齐的错误。\n\n支持的工具很多。除了 Claude Code，README 还列了 Antigravity、Codex App、Codex CLI、Cursor、Devin CLI、Factory Droid、Gemini CLI、GitHub Copilot CLI、Grok Build CLI、Kimi Code、OpenCode、Pi、Qwen Code、Hermes Agent 和 Muse 的安装步骤。Claude Code 有两条路：Anthropic 官方的插件市场，或者 Superpowers 项目自己的市场。每个工具的装法不一样，用不止一个的话，要各装一遍。\n\n面向公司，README 留了 primeradiant.com 的一个邮箱，用来谈商业支持、额外工具或者费用管理。这说明有人在围着它做生意，依赖它之前最好知道这一点。\n\n我的建议是拿一个能随时扔掉的小功能试。看它问的问题，是不是比你自己会问的更好。看它出的计划，是不是你本来也会写的。然后再决定要不要用。\n\n## 目前看不到的部分\n\n最大的缺口是证据。“两小时”这个说法出自项目自己的 README，没有任何测试或第三方评估。“不偏离”在实际中指什么，计划本身出错的概率有多大，也都没说。助手忠实地照着一份错误的计划干两小时，不算赢。\n\n还有一个已知的弱点。对话太长时，工具会把前面的内容压缩一下腾地方。要是开场指令被压掉了，助手就忘了这套规矩。README 说 Hermes 没有压缩之后重新补上指令的机制，所以特别长的会话里，开场指令可能丢失，这时可能得开一个新会话。相比之下，Pi 的安装包会在会话开始时放进开场指令，压缩之后再放一次。可见不同工具上表现不一样，你在一个工具上的体验，不一定能搬到另一个上。\n\nREADME 没写发布日期和版本号，许可条款只露出了小标题。Muse 的安装部分也是写到一半就断了。社区的反应暂时也找不到。打算围着它做产品的话，许可证得自己去查。\n\n技能里具体写了什么，才决定这是一套好流程，还是一套描述得好听的流程。这部分 README 没有展示。装之前自己翻一遍技能的内容，是最直接的下一步。"
+    }
+  },
+  "lab": [
+    {
+      "title": "iRead — iRead is on the Mac",
+      "url": "https://gaiya.cc/changelog#2026-10-23-iread",
+      "feed": "gaiya_changelog"
+    },
+    {
+      "title": "Wishlumi — Wishlumi is on the App Store and Google Play",
+      "url": "https://gaiya.cc/changelog#2026-10-22-wishlumi",
+      "feed": "gaiya_changelog"
+    }
+  ]
+}
