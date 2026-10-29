@@ -1,0 +1,256 @@
+{
+  "date": "2026-10-28",
+  "publishAt": "2026-10-29T11:00:00Z",
+  "en": {
+    "intro": "NVIDIA open-sourced Nemotron 3.5 Transcribe, a speech-to-text model that covers 40 languages and takes instructions. Google says Gemini 4 Carbon is a big step up at cybersecurity, and two new add-ons, Hallmark and Impeccable, try to keep AI coding assistants from turning out sloppy design.",
+    "items": [
+      {
+        "n": 1,
+        "headline": "NVIDIA releases an open-weight 40-language transcription model",
+        "takeaway": "Self-host it on NVIDIA GPUs for recorded audio. The license isn't stated, so check it first.",
+        "body": "NVIDIA has released a speech-to-text model that can also tell speakers apart, translate, and answer questions about a recording. It's called Nemotron 3.5 Transcribe. The weights (the trained model files) are open on Hugging Face and ModelScope, two sites where people share AI models.\n\nNVIDIA's blog post says it can turn speech into text in 40 languages. For 31 of those it can also translate to or from English, and it can tell speakers apart in 13. It handles recordings up to an hour long with up to eight speakers.\n\nThe accuracy claims are strong. On the Hugging Face Open ASR Leaderboard it ranks first among open models for English, at 5.33% average word error rate. That's the share of words it gets wrong. All of these numbers come from NVIDIA's own post, so treat them as claims until outsiders test it.\n\nIf your app has a voice feature, like meeting notes, interview transcripts or voice memos, paying per minute for transcription adds up. Open weights should let you host the model yourself or retrain it on your own audio, license permitting. In NVIDIA's medical example, fine-tuning cut errors on new speakers by 45.8% compared with the best prompt.\n\nIt works on recorded audio only, so live captions are out. The listed hardware is NVIDIA graphics cards (GPUs), and the smaller versions for running locally are marked \"coming soon.\" NVIDIA's post doesn't state the license.\n\nToday, read the license on the model page before you plan anything around it. Then run a few of your own recordings through it, especially in your language and with your users' names. NVIDIA itself says to spot-check names and speaker changes against the audio.",
+        "note": null,
+        "category": "Models",
+        "card": "/cards/2026-10-28/1.png",
+        "sources": [
+          {
+            "title": "[r/LocalLLaMA] nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B · Hugging Face",
+            "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xhqy12/nvidianvidianemotron35transcribe30ba4b_hugging/",
+            "site": "reddit.com"
+          },
+          {
+            "title": "Nvidia Nemotron 3.5 Transcribe: open ASR for 40 languages",
+            "url": "https://huggingface.co/blog/nvidia/nemotron-transcribe-granary",
+            "site": "Hugging Face"
+          },
+          {
+            "title": "Nvidia Nemotron 3.5 Transcribe: open ASR for 40 languages",
+            "url": "https://news.ycombinator.com/item?id=50275128",
+            "site": "Hacker News"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Google's Gemini 4 Carbon targets security, but few can use it",
+        "takeaway": "Claims are Google's own and access is limited. Test your risky parts with your current AI to get a baseline.",
+        "body": "Google says its new model, Gemini 4 Carbon, scored 88.2% on a test of finding security holes in software. It scored 54.8% on a test of actually breaking in, and 71.0% on one of fixing the holes. Those scores come from Google's announcement, and Google says they were measured with the model's safety limits off.\n\nCarbon arrives two weeks after Gemini 4 Argon. For now only a small group of cyber defenders can use it. Access widens slowly through what Google calls the Fairwind Program, and developers, businesses and consumers come later. Google gives no date, just \"as soon as possible.\" The Verge reports it's limited to a select group of security companies today.\n\nIf your app handles logins, payments or customer data, an AI that spots and patches holes is worth watching. Google says Carbon is more than twice as good as Argon at writing secure code. It also says the Chrome team saw it produce better fixes than another lab's model, by more than 10 times. Google ran those tests itself, and the Chrome comparison doesn't name the other model.\n\nThe launch price matches Argon: $2 per million input tokens and $10 per million output tokens. Tokens are the small chunks of text AI services bill by. Google calls the price introductory and doesn't say when it ends.\n\nThere's nothing to sign up for today. You can pick the one risky part of your app, like the login or the payment step, and ask whatever AI model you already use to review it. Save what it finds. When Carbon opens up, you'll have something to compare against. I'd wait for outside testers before changing any tools.",
+        "note": null,
+        "category": "Models",
+        "card": "/cards/2026-10-28/2.png",
+        "sources": [
+          {
+            "title": "Gemini 4 Carbon",
+            "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+            "site": "blog.google"
+          },
+          {
+            "title": "Gemini 4 Carbon",
+            "url": "https://news.ycombinator.com/item?id=50276792",
+            "site": "Hacker News"
+          },
+          {
+            "title": "Gemini 4 Carbon: Our next frontier model",
+            "url": "https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model/",
+            "site": "deepmind.google"
+          },
+          {
+            "title": "Google launches Gemini 4 Carbon with a ‘significant leap’ in cybersecurity",
+            "url": "https://www.theverge.com/tech/1021339/google-gemini-4-carbon-cybersecurity-frontier",
+            "site": "theverge.com"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Hallmark tries to stop AI tools making generic-looking pages",
+        "takeaway": "Open-source add-on that checks AI-built pages for generic looks. Run its audit before you launch.",
+        "body": "One thing Hallmark checks for: a contact form that says \"thanks\" without sending anything anywhere.\n\nHallmark is an open-source add-on (the README calls it a skill) for AI coding assistants: Claude Code, Codex, Cursor and OpenCode. Together AI made it. The pitch is a design skill that refuses to look AI-generated.\n\nIt works in layers. The first is a set of rules a page can't break: readable contrast, visible keyboard focus, respect for people who switch off animation, no invented facts, and a layout that holds up on a phone. The second covers habits AI models fall into. A build can overrule one of those, but it has to say so on record. The third is polish that never blocks a launch.\n\nStyle comes from fifty themes, each a small file with a picture beside it. A build reads just one. The README calls a theme a material and says it doesn't plan the whole page. The assistant builds the top section first and reviews it. Then an automatic checker (a lint, like a spell-checker for design habits) runs in a real browser at eight screen widths, and a second AI reviews the result with fresh eyes. It hunts for a small label above every heading, one coloured word in a headline, an email sign-up at the bottom of every page.\n\nVersion 2 adds 755 openly licensed photos, credited on the page, plus commands to redesign or audit a page that already exists.\n\nIf you already use one of those four assistants, the audit on your current page is the obvious place to start.\n\nThe browser checks need Chrome and an extra tool installed. Without them, only the basic checks run. Pages come out as plain, self-contained web files. The README offers no independent measure of how well any of this works, and there's no community reaction to point to yet.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-28/3.png",
+        "sources": [
+          {
+            "title": "Nutlope/hallmark",
+            "url": "https://github.com/Nutlope/hallmark",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Impeccable gives AI-built screens a design review",
+        "takeaway": "Open-source review commands for AI-built screens: a ranked critique and audit. Try it on one shipped screen.",
+        "body": "Impeccable's design checker runs on 62 fixed rules, and none of them involve an AI. The README says it needs no model and no API key, so it gives the same answer every time. It looks for the patterns that make AI-built screens all look alike.\n\nThat checker is one piece of an open-source toolkit for AI coding assistants, the tools that write app code for you. You type its named commands into the assistant. There are 24, with names like polish, bolder, critique and audit. Critique gives a scored review of your interface and ranks what to fix first. Audit checks accessibility (whether people with poor vision or other needs can use the screen), speed, colour themes and how the layout behaves on different screen sizes. Problems are ranked from P0, which blocks you, down to P3, which is polish.\n\nIf you're a one-person shop with no designer, nobody tells you \"this looks off.\" These commands are a second opinion on what the assistant built. The list of supported assistants is long and includes Claude Code, Cursor, Codex CLI and GitHub Copilot. Setup is one install in your project, then a short step where it writes down what your product is and how it should look.\n\nThe README says it's strongest on interfaces that already exist. Building new pages works, but it calls that a harder mode. Checks like low contrast and tiny text only run when you point it at a live page, not at your code files. Its live mode edits your local copy and can run a script from your project with your permissions, so read what it's about to do. The README's before-and-after comparison is one example from the project's own materials, with no independent evaluation attached.\n\nI'd start with one screen you've already shipped. Run the critique and see whether the top three items are ones you'd agree with.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-28/4.png",
+        "sources": [
+          {
+            "title": "pbakaus/impeccable",
+            "url": "https://github.com/pbakaus/impeccable",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Cursor opens its Agent SDK to everyone",
+        "takeaway": "Check price, license and lock-in before building on it. The post gives no pricing.",
+        "body": "A Cursor team says it built a code-review bot in about a day. It now runs on every proposed change in their main codebase. It flags anything that contradicts lessons the team wrote down, and it points to the note it's citing.\n\nThat bot came from the Agent SDK, a toolkit Cursor just made generally available (open to everyone, not a beta). Cursor's blog post says it's the same framework behind its own helpers Bugbot, Security Reviewer and Rollouts. An \"agent\" here is a program that takes on a job by itself. One example is checking a pull request, which is a code change waiting for someone to approve it.\n\nYou write the agent's instructions in Markdown, which is plain text. Its tools are written in TypeScript, a popular web programming language. One command puts the agent on Cursor's servers and gives it a web address. You can also run it on your own server, packaged in a container (a sealed box that runs the same anywhere). Agents can pass work to other agents, and the SDK has built-in ways to test them and replay what they did.\n\nCursor also says the PGA Tour uses it. Everything above is Cursor describing its own product.\n\nThe post leaves out price, usage limits, supported AI models and how your data is handled. Hacker News commenters went straight to lock-in, meaning how hard it is to leave later, and to whether a simple instructions file plus a runner would do the same job.\n\nIf you don't code, skip this one for now. If you ship code solo and want a second pair of eyes on your changes, find the pricing and license terms before you build anything. Then check that TypeScript fits your setup. I'd avoid building anything you couldn't move to another tool later.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-28/5.png",
+        "sources": [
+          {
+            "title": "The Agent SDK",
+            "url": "https://cursor.com/blog/agent-sdk",
+            "site": "cursor.com"
+          },
+          {
+            "title": "The Agent SDK",
+            "url": "https://news.ycombinator.com/item?id=50273731",
+            "site": "Hacker News"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "NVIDIA releases an open-weight 40-language transcription model",
+      "body": "## What's actually in the release\n\nNVIDIA's Nemotron 3.5 Transcribe is one model that does four jobs: transcription, labeling who spoke, translation, and answering questions about audio. You steer it with a text prompt. That's what \"promptable\" means here. The weights are open on Hugging Face and ModelScope, which means you can download them and run them yourself.\n\nAlongside the model, NVIDIA put out multilingual training data called Granary v2, a pipeline for cleaning up data, and fine-tuning tools called NeMo Speech. Fine-tuning means giving the model extra examples so it gets better at your kind of audio. NVIDIA's post is the only source for any of this, and its Granary v2 section is cut off, so the dataset's details and license are missing.\n\nThe coverage is broad but uneven. It transcribes 40 languages. Translation to or from English works for 31 of them. Speaker labeling covers 13. Questions about audio were trained in English only. NVIDIA refers to a table of which task works in which language, but that table wasn't included. So if you need, say, Japanese, nobody can tell you from this release how well it does. One commenter asked about Japanese specifically, and per-language accuracy isn't given.\n\nRecordings can run up to an hour, with up to eight speakers. It works on recorded audio only. Live streaming is out. One commenter who uses a different NVIDIA model for live dictation made the same contrast.\n\n## How to read the numbers\n\nThe benchmark list is long, and all of it is reported by NVIDIA. On the Hugging Face Open ASR Leaderboard, it ranks first among open models for English at 5.33% average word error rate (WER, the share of words wrong). It reports 4.62% across seven multilingual languages and 10.98% on long recordings, both the lowest in the model card's comparison of open models. On the Artificial Analysis leaderboard it ties for first among open models at 2.8%. It does that with about 4 billion active parameters, against 24 billion for the model it ties.\n\nThe model has 30 billion parameters in total, but only about 4 billion are used for each piece of text. Think of a big team where only a few people work on any given word. In general, that makes a model cheaper to run than its total size suggests.\n\nSpeaker labeling gets its own scores. On David AI's test across 21 languages, it has the lowest diarization error rate (a score for getting \"who spoke when\" wrong) of 14 systems: 18.26%, against 18.38% for NVIDIA's earlier Nemotron 3 Diarization. That's a tiny gap. On VoiceArena's English test it has the lowest score of 14 systems at 32.4%. That score punishes both wrong words and words credited to the wrong person. A Hacker News commenter said the model card describes speaker transcription as experimental and suited to near-field audio, meaning people close to the microphone. NVIDIA's post doesn't confirm that, so I'd test it on your own recordings before trusting it for a noisy room.\n\nThe speed claim comes with fine print. NVIDIA says it processed 100 hours of audio in under three minutes on a single RTX PRO 6000 Blackwell Server Edition GPU. That used a compressed version that is still forthcoming, on 30-second clips at high concurrency, meaning many at once. The version you can download now isn't that one. And it's a server card, not a gaming PC.\n\nThe medical fine-tuning result is the one I'd pay attention to. Fine-tuning cut errors on new speakers by 45.8% compared with the best prompt. If your product has specialized vocabulary, such as legal terms, product names or a particular accent, that's the lever. One commenter with thousands of hour-long interview MP3s full of specialized vocabulary asked whether OpenAI's model is still the best choice. Nothing reported here settles that.\n\n## What I'd check before building on it\n\nStart with the license. NVIDIA's post doesn't state the terms for the weights, and \"open\" can still come with limits on commercial use. For anyone selling a product, that's the first question, ahead of accuracy.\n\nNext is hardware. Today the model is served with vLLM, a common program for running AI models on a server. Local options and compressed versions are listed as coming soon, with no dates. NVIDIA names its own devices as targets: RTX Spark, DGX Spark, Jetson AGX Thor and Blackwell data-center GPUs. One commenter asked whether it runs usably on a CPU alone. NVIDIA's post doesn't address that, so assume it needs an NVIDIA GPU until someone shows otherwise. For a one-person studio, that probably means renting a GPU by the hour, and whether that beats a per-minute API depends on how much audio you process.\n\nThen test with your own files. One commenter who tried Nemotron 3 said it made an error every few sentences on ordinary vocabulary. That's a different model, and a single anecdote. Still, it's a reminder that leaderboard averages hide a lot. Pick ten recordings that look like your real users' audio, including accents, background noise and names. NVIDIA's own advice is to spot-check names, speaker changes and answers against the recording, and I'd take that literally.\n\nThe word-level timestamps are a nice touch for product ideas. Agora used them in a classroom demo to show a transcript next to a recorded class replay. If you've ever wanted clickable transcripts in an app, that's the building block.\n\nI think this is worth an afternoon of testing if you handle recorded audio in several languages. I'd hold off on committing until the license is clear and someone outside NVIDIA has posted results."
+    }
+  },
+  "zh": {
+    "intro": "NVIDIA 开源了 Nemotron 3.5 Transcribe，一个支持 40 种语言、还能按你的指令调整的语音转文字模型。Google 说 Gemini 4 Carbon 的网络安全能力大幅提升，另外 Hallmark 和 Impeccable 两个新工具，想让 AI 编程助手少做点粗糙的设计。",
+    "items": [
+      {
+        "n": 1,
+        "headline": "NVIDIA 开放 40 语言转写模型，能分说话人",
+        "takeaway": "录好的音频可以自己部署，但要 NVIDIA 显卡。许可证没写，先查再用。",
+        "body": "NVIDIA 放出了一个语音转文字模型，叫 Nemotron 3.5 Transcribe。除了转文字，它还能分辨谁在说话、做翻译、回答关于录音的问题。模型文件（也叫权重）公开在 Hugging Face 和 ModelScope 上，这两个都是大家分享 AI 模型的网站。\n\nNVIDIA 的博客说，它能转写 40 种语言，其中 31 种能和英语互译，13 种能区分说话人。录音最长一小时，最多分出 8 个人。\n\n准确率数字很好看。在 Hugging Face 的 Open ASR 排行榜上，它是开放模型里英语第一，平均词错误率 5.33%，也就是每 100 个词错 5 个出头。这些数字全来自 NVIDIA 自己的博客，外人还没验证，先当厂商说法听。\n\n如果你的 App 有语音功能，比如会议纪要、采访整理、语音备忘录，按分钟付转写费会越积越多。权重公开，意味着你有机会自己部署，或者拿自己的录音再训练一遍，前提是许可证允许。NVIDIA 举了个医疗的例子：微调之后，遇到没见过的说话人，错误率比最好的提示词方案相对降低 45.8%。\n\n限制也很直白。它只处理录好的音频，做不了实时字幕。列出的硬件全是 NVIDIA 显卡，方便本地跑的小版本都写着“即将推出”。许可证，博客里没写。\n\n今天先去模型页看许可证，再拿几段自己的录音跑一遍，尤其是你用户说的语言和人名。NVIDIA 自己也建议，人名和说话人切换要对着录音抽查。",
+        "note": null,
+        "category": "模型",
+        "card": "/cards/2026-10-28/1.png",
+        "sources": [
+          {
+            "title": "[r/LocalLLaMA] nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B · Hugging Face",
+            "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xhqy12/nvidianvidianemotron35transcribe30ba4b_hugging/",
+            "site": "reddit.com"
+          },
+          {
+            "title": "Nvidia Nemotron 3.5 Transcribe: open ASR for 40 languages",
+            "url": "https://huggingface.co/blog/nvidia/nemotron-transcribe-granary",
+            "site": "Hugging Face"
+          },
+          {
+            "title": "Nvidia Nemotron 3.5 Transcribe: open ASR for 40 languages",
+            "url": "https://news.ycombinator.com/item?id=50275128",
+            "site": "Hacker News"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Gemini 4 Carbon 主打安全，多数人暂时用不上",
+        "takeaway": "成绩是 Google 自己报的，也还没开放。先让现有 AI 查一遍你最怕出事的环节，留个对照。",
+        "body": "Google 发了 Gemini 4 Carbon，说是它目前最强的模型，主打网络安全。Google 公布的成绩：找软件漏洞的测试 88.2%，真去攻破的测试 54.8%，修漏洞的测试 71.0%。分数是 Google 自己报的，还特别说明是在关掉安全限制的情况下测的。\n\n它比 Gemini 4 Argon 晚了两周。现在只有一小批网络安全防御人员能用，之后通过 Fairwind 计划慢慢放给更多可信的合作方，再往后才轮到开发者、企业和普通用户。日期没给，只说“尽快”。The Verge 的说法是，目前只有少数安全公司能用。\n\n你的 App 如果有登录、支付、用户数据，这种会找漏洞也会补漏洞的 AI 值得盯着。Google 说，Carbon 写出安全代码的成功率是 Argon 的 2 倍多。它还说 Chrome 团队反馈，Carbon 写出的高质量补丁比另一家实验室的大模型好 10 倍以上。这些都是 Google 自己测的，Chrome 那条也没说对手是谁。\n\n价格和 Argon 首发时一样：每百万个输入 token 2 美元，每百万个输出 token 10 美元。token 就是 AI 服务计费用的文字小块。Google 管这叫首发价，没说什么时候结束。\n\n今天没处申请。你可以挑 App 里最怕出事的那一块，比如登录或支付，让手头现成的 AI 查一遍，把结果存下来。等 Carbon 开放了，就有东西可以对比。我会先等外部测评出来，再考虑换不换工具。",
+        "note": null,
+        "category": "模型",
+        "card": "/cards/2026-10-28/2.png",
+        "sources": [
+          {
+            "title": "Gemini 4 Carbon",
+            "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+            "site": "blog.google"
+          },
+          {
+            "title": "Gemini 4 Carbon",
+            "url": "https://news.ycombinator.com/item?id=50276792",
+            "site": "Hacker News"
+          },
+          {
+            "title": "Gemini 4 Carbon: Our next frontier model",
+            "url": "https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model/",
+            "site": "deepmind.google"
+          },
+          {
+            "title": "Google launches Gemini 4 Carbon with a ‘significant leap’ in cybersecurity",
+            "url": "https://www.theverge.com/tech/1021339/google-gemini-4-carbon-cybersecurity-frontier",
+            "site": "theverge.com"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Hallmark 想让 AI 做的网页别再千篇一律",
+        "takeaway": "开源小插件，专查 AI 做的页面有没有“AI 味”。上线前拿现有页面跑一遍体检。",
+        "body": "有个检查项我挺喜欢：联系表单点了提交，页面弹出一句“谢谢”，实际什么都没发出去。Hallmark 专门抓这种表单。\n\nHallmark 是 Together AI 开源的一个小插件（README 里叫技能包），给 Claude Code、Codex、Cursor、OpenCode 这几个 AI 编程助手用。目标很直接：让 AI 做出来的网页，别一眼就看得出是 AI 做的。\n\n它分三层管。第一层是红线，过不了就不能交付：文字对比度、键盘操作时看得见焦点、尊重关掉动画的用户、不许编造事实、手机上不能乱版。第二层是 AI 爱犯的老毛病，可以破例，但得留下记录。第三层是细节打磨，只提醒，不拦着发布。\n\n风格从 50 套主题里挑。每套主题是一个小文件，旁边配一张图，每次生成页面只读一套。README 说主题只是一种“材质”，不负责整页怎么安排。流程上，助手先做页面最上面那一屏，看过再往下。之后一个自动检查器（有点像给设计习惯做拼写检查）在真实浏览器里，用 8 种屏幕宽度各跑一遍，最后换一个全新的 AI 再审一次。它盯的东西你肯定见过：每个标题上面一行小标签，标题里单独上色的一个词，每页末尾都有的邮箱订阅框。\n\n第二版加了 755 张开放授权的照片，用了会在页面上署名。还多了两个命令，一个改版，一个给已有页面做体检。\n\n如果你已经在用这四个助手之一，先拿现有页面跑一遍体检，最省事。\n\n限制也有。浏览器里的检查要装 Chrome 和一个额外工具，没装就只跑基础检查。做出来的是自成一体的网页文件。README 没给独立数据说明检查和审稿到底管不管用，社区也还没人出来评价。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-28/3.png",
+        "sources": [
+          {
+            "title": "Nutlope/hallmark",
+            "url": "https://github.com/Nutlope/hallmark",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Impeccable 给 AI 做的界面加了一道设计评审",
+        "takeaway": "开源工具包，能给界面打分、排出先改哪里。先拿一个已上线的页面试试。",
+        "body": "Impeccable 里有个设计检查器，靠 62 条固定规则判断，全程不用 AI。README 写着不需要模型，也不需要 API key，所以同一个页面每次查，结果都一样。它专找那些让 AI 做的界面千篇一律的套路。\n\n检查器只是这套开源工具里的一块。整套是给 AI 编程助手（替你写 App 代码的那类工具）用的，装好以后，在助手里敲指令就行。一共 24 个，名字有 polish、bolder、critique、audit 这些。critique 给界面打分，告诉你先改哪里。audit 查无障碍（视力不好等情况的人能不能正常用）、速度、主题配色，还有换了屏幕尺寸排版会不会乱。问题从 P0（卡住不能上线）排到 P3（锦上添花）。\n\n一个人做产品，身边没有设计师，没人会跟你说“这块看着不对劲”。这些指令就是替助手做出来的东西找第二双眼睛。支持的助手很多，Claude Code、Cursor、Codex CLI、GitHub Copilot 都在列。装法是在项目里装一次，再走一步初始化，让它记下你的产品是什么、该长什么样。\n\nREADME 说它最擅长改已有的界面，从零做新页面也行，但算更难的玩法。对比度太低、字太小这类检查，得给它一个能打开的网页地址才会跑，光看代码文件查不出来。它的实时模式会改你本地的代码，还可能用你的权限跑项目里的脚本，动手前先看清它要做什么。README 里的前后对比只是项目自己挑的一个例子，没有第三方评测。\n\n我会先拿一个已经上线的页面试，跑一遍 critique，看前三条你认不认。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-28/4.png",
+        "sources": [
+          {
+            "title": "pbakaus/impeccable",
+            "url": "https://github.com/pbakaus/impeccable",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Cursor 把内部用的 Agent SDK 正式开放",
+        "takeaway": "动手前先查价格、许可和能不能搬走，Cursor 没提价格。",
+        "body": "Cursor 内部有个小组说，他们用大约一天，做出了一个代码审查机器人。现在团队主代码库里的每一次改动，它都要过一遍。改动要是跟团队以前记下的教训相冲突，它就标出来，还会指明引用的是哪条笔记。\n\n机器人是用 Agent SDK 做的。这是 Cursor 刚宣布正式开放（不再是测试版）的一套工具包。Cursor 博客说，自家的 Bugbot、Security Reviewer、Rollouts 几个帮手，用的也是它。这里的 agent 指能自己接活的程序，比如审一个 PR，也就是提交上来、等人批准的代码改动。\n\n写法是这样：agent 的指令用 Markdown 写，就是纯文本；工具用 TypeScript 写，一种常见的网页编程语言。一条命令，就能把 agent 放到 Cursor 的服务器上，还送你一个网址。也可以放在自己的服务器上，打成容器包（一个到哪都能照样运行的密封盒子）。agent 之间能转手分活，SDK 还自带测试和回放功能。\n\n博客里还引了一句话，说 PGA Tour 也在用。以上全是 Cursor 讲自家的产品。\n\nCursor 一个字没提价格、用量上限、支持哪些模型、数据怎么处理。Hacker News 上的评论先聊绑定，也就是以后想搬走有多难。另一拨人问，一份写好的指令文件加个运行程序，是不是就够了。\n\n不写代码的朋友先略过。自己写代码、一个人发版，想找个帮手看改动的，先查价格和许可条款，再看 TypeScript 合不合你的项目。我不会在上面建一个以后搬不走的东西。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-28/5.png",
+        "sources": [
+          {
+            "title": "The Agent SDK",
+            "url": "https://cursor.com/blog/agent-sdk",
+            "site": "cursor.com"
+          },
+          {
+            "title": "The Agent SDK",
+            "url": "https://news.ycombinator.com/item?id=50273731",
+            "site": "Hacker News"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "NVIDIA 开放 40 语言转写模型，能分说话人",
+      "body": "## 这次放出了什么\n\nNVIDIA 的 Nemotron 3.5 Transcribe 是一个模型干四件事：转写、标出谁在说话、翻译、回答关于音频的问题。你用一段文字提示来指挥它，这就是“可提示”的意思。模型文件（权重）公开在 Hugging Face 和 ModelScope 上，下载下来就能自己跑。\n\n同时放出的还有一批多语言训练数据 Granary v2、一套整理数据的流程，以及叫 NeMo Speech 的微调工具。微调就是再喂它一些例子，让它更熟悉你那类音频。这些信息都只来自 NVIDIA 的博客，Granary v2 的数据集细节和许可证目前都不清楚。\n\n覆盖面广，但各项不一样。转写 40 种语言，和英语互译的有 31 种，区分说话人的有 13 种。回答音频问题只用英语训练过。NVIDIA 提到有一张“哪个任务支持哪些语言”的对照表，但这张表没有放出来。所以你要是需要日语，从这次发布里没法知道它表现如何。有网友专门问了日语，各语言的准确率也没有给。\n\n录音最长一小时，最多 8 个说话人。它只处理录好的音频，不做实时转写。有位网友在 Handy 里用 Nemotron Streaming，说它处理夹着英文术语和品牌名的德语很好，也拿这一点和 Transcribe 只处理录音的设计做了对比。\n\n## 数字怎么看\n\n成绩单很长，全是 NVIDIA 自己报的。在 Hugging Face 的 Open ASR 排行榜上，它是开放模型里英语第一，平均词错误率（说错的词占多少）5.33%。多语言 7 种语言平均 4.62%，长录音平均 10.98%，这两项在模型卡对比的开放模型里都最低。在 Artificial Analysis 的排行榜上，开放模型里并列第一，2.8%。它只用了约 40 亿个活跃参数，而和它并列的那个模型用了 240 亿。\n\n这个模型总共 300 亿参数，但处理每一小段内容时只调用约 40 亿。有点像一个大团队，每个词只叫几个人来干活。\n\n区分说话人另有一套分数。在 David AI 覆盖 21 种语言的测试里，它的说话人区分错误率（把“谁在什么时候说话”弄错的比例）是 14 个系统里最低的，18.26%，NVIDIA 自家上一代 Nemotron 3 Diarization 是 18.38%，差距很小。在 VoiceArena 的英语测试里，它也是 14 个系统里最低，32.4%，这个分数既罚说错的词，也罚记到错人头上的词。Hacker News 上有人说，模型卡写着说话人转写只适合近场音频，也就是人离麦克风很近，而且还是实验性质。NVIDIA 的博客没有确认这一点，所以要是你的录音是嘈杂的会议室，我会先自己测。\n\n速度那条有附加条件。NVIDIA 说，一张 RTX PRO 6000 Blackwell 服务器版显卡，不到 3 分钟处理了 100 小时音频。用的是还没发布的压缩版，切成 30 秒的片段，同时跑很多路。你现在能下载的不是那个版本。而且那是一张服务器卡，不是游戏电脑上的显卡。\n\n医疗微调的结果我觉得最该看。遇到没见过的说话人，微调后错误率比最好的提示词方案相对降低 45.8%。如果你的产品有专业词汇，比如法律术语、产品名、某种口音，杠杆就在这里。有位网友手上有几千个一小时长的采访 MP3，满是专业词汇，问 OpenAI 的模型是不是还是最佳选择。这次公布的内容回答不了这个问题。\n\n## 动手前先查这几件事\n\n先看许可证。博客没写权重的使用条款，而“开放”也可能限制商用。对要卖产品的人，这比准确率更靠前。\n\n再看硬件。现在它用 vLLM 提供服务，这是一个在服务器上跑 AI 模型的常用程序。本地部署和压缩版都写着“即将推出”，没有日期。NVIDIA 点名的目标设备有 RTX Spark、DGX Spark、Jetson AGX Thor 和 Blackwell 数据中心显卡。有网友问只用 CPU 能不能顺畅运行，博客没谈这个，所以在有人拿出结果之前，先当它需要 NVIDIA 显卡。自己部署划不划算，要看你每月处理多少音频，还要看你手上有没有这类显卡。\n\n然后拿自己的文件测。有位试过 Nemotron 3 的网友说，普通词汇也是每隔几句就错一次。那是另一个模型，也只是一个人的体验，但提醒了一件事：排行榜的平均分会藏掉很多东西。挑十段像你真实用户的录音，带口音、带背景噪音、带人名。NVIDIA 自己的建议是，人名、说话人切换和回答都要对着录音抽查，我会照字面去做。\n\n博客里还有个产品思路可以看看。Agora 在一个课堂演示里用了逐词时间戳，也就是每个词对应录音里的哪个时间点，把文字稿和录好的课堂回放放在一起。想做点哪句就跳到哪里的文字稿，可以照这个方向想。至于你自己跑起来能不能拿到这种时间戳，NVIDIA 没说。\n\n如果你要处理多语言的录音，我觉得值得花一个下午测一测。许可证没搞清楚、也没有 NVIDIA 以外的人发出测试结果之前，我不会急着押宝。"
+    }
+  },
+  "lab": [
+    {
+      "title": "iRead — iRead is on the Mac",
+      "url": "https://gaiya.cc/changelog#2026-10-23-iread",
+      "feed": "gaiya_changelog"
+    },
+    {
+      "title": "Wishlumi — Wishlumi is on the App Store and Google Play",
+      "url": "https://gaiya.cc/changelog#2026-10-22-wishlumi",
+      "feed": "gaiya_changelog"
+    }
+  ]
+}
