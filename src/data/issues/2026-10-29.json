@@ -1,0 +1,201 @@
+{
+  "date": "2026-10-29",
+  "publishAt": "2026-10-30T11:00:00Z",
+  "en": {
+    "intro": "Mistral has put out the weights for Large 4, the files that make up the model itself, and OpenAI is now matching Anthropic by offering API credits (usage for putting a model inside your own product) to eligible ChatGPT subscribers. The rest of today is for people building with AI help: Impeccable and Superpowers, two toolkits for AI coding assistants, and ThinkRail, a JetBrains editor that reshapes itself around how you work.",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Impeccable: a free checker for AI-looking app design",
+        "takeaway": "Free add-on that flags generic AI design and ranks what to fix. Try it on one screen.",
+        "body": "Sixty-two rules, and no AI involved in checking them. That's the core of Impeccable, a free open-source add-on that teaches AI coding assistants (the tools that write code for you) to build and judge interface design. The README says the rule checker needs no AI model and no API key (a login code for an AI service). It scans for the habits that make AI-made pages look alike and flags them. Think of a spell-checker, but for samey design.\n\nAround that sits a set of 24 shortcuts. Some steer the design: make it bolder, make it quieter, fix the type, adjust the layout. Some finish the job, like polishing and hardening. The review side gives you a scored critique that ranks what to fix first. It also gives you an audit of accessibility, speed and mobile behavior, with problems ranked from blocking to cosmetic.\n\nThe README lists 19 supported tools, including Claude Code, Cursor, Codex, GitHub Copilot, Gemini CLI and Replit Agent. In six of them, the checker runs automatically whenever the assistant edits interface files. There's also a Chrome extension that overlays the findings on any live page. If you don't code, that's the piece to look at, since it works on a site you've already shipped.\n\nThe before and after demo in the README is the project's own: a fourteen-room guesthouse on the Ligurian coast, same model, same brief. The README includes no independent evaluation, so weigh it accordingly. It also says the tool is strongest on screens that already exist, and that narrow requests beat whole-page ones. Checking code files catches only pattern problems. Low contrast and tiny text need a scan of a live page. Its live editing mode changes your local copy only, so keep it away from your live site.\n\nIf you've built something with an AI assistant, pick one screen and run the review. Read the top three items it ranks.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-29/1.png",
+        "sources": [
+          {
+            "title": "pbakaus/impeccable",
+            "url": "https://github.com/pbakaus/impeccable",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Mistral opens Large 4, a 1-trillion-parameter model",
+        "takeaway": "Test it on your own prompts against your API bill; check the license before selling anything built on it.",
+        "body": "Mistral is calling it Le Chonk. It's Mistral Large 4, a 1-trillion-parameter model, and the company has now released the weights, meaning the trained model files. Parameters are the internal dials a model adjusts while it learns. More dials usually means a bigger, pricier model. This one also handles images as well as text.\n\nMistral says it spent three weeks after an earlier public preview on extra training by trial and reward. That, it says, improved coding and security work. There are also three reasoning modes now, from quick answers to slow, careful ones.\n\nOn a coding index run by Artificial Analysis, Mistral says Large 4 scores 48%, effectively tied with the best open-weight model, GLM-5.3, while using 47% fewer tokens per task. Tokens are the chunks of text you're billed for. Fewer tokens per job means a smaller bill, if the price per token holds.\n\nA Hacker News commenter says the price is about half the preview's: $0.7 per million input tokens and $2.1 per million output. That figure isn't in Mistral's announcement, so check the pricing page yourself.\n\nThe license is also unsettled. Mistral calls the model fully open-weight. Another commenter says it's a modified MIT license that requires a license if you serve businesses with it. If you sell something built on this, read the actual terms first.\n\nMost benchmark results are Mistral's own. Today, take three real prompts from your product, run them through a hosted copy, and compare cost and quality against what you pay now.",
+        "note": null,
+        "category": "Models",
+        "card": "/cards/2026-10-29/2.png",
+        "sources": [
+          {
+            "title": "We're releasing the weights of Mistral Large 4",
+            "url": "https://mistral.ai/news/mistral-large-4-oss/",
+            "site": "mistral.ai"
+          },
+          {
+            "title": "We're releasing the weights of Mistral Large 4",
+            "url": "https://news.ycombinator.com/item?id=50289418",
+            "site": "Hacker News"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Superpowers gives AI coders a spec-first routine",
+        "takeaway": "A ready-made process that makes your coding agent plan and test first. Install once per tool.",
+        "body": "The README says it's not uncommon for the agent to work on its own for a couple of hours without straying from the plan. That's the project's own claim, and nobody has checked it. It does show what Superpowers is going for.\n\nSuperpowers is a ready-made set of working rules for AI coding assistants. It calls itself a complete software development methodology. When you say you want to build something, the agent first asks what you're really trying to do. Then it shows you a spec (a written description of what's about to be built) in readable chunks, before any code exists.\n\nThe plan that follows leans on writing a test (an automatic check) that fails first, then writing code that makes it pass. It also pushes the agent to skip features you don't need and avoid repeating itself. Once you say go, the agents work through each task one at a time, inspecting and reviewing their own work. The rules kick in automatically, so you don't have to call them up.\n\nMost of this is about making the AI slow down before it builds. It asks questions first, shows a spec first, and checks its own work as it goes. The spec-first step is the part I'd want even if I ignored the rest.\n\nIt works with Claude Code, Codex, Cursor, Gemini CLI, Copilot CLI and others. You install it separately for each tool you use. Claude Code users can get it through Anthropic's official plugin marketplace. One tool, Hermes Agent, loses the instructions in a very long session, so you'd start a fresh one.\n\nNo license terms or version number showed up, and the full list of skills isn't confirmed. Check the project's page before you build a business on it. If you already use one of these tools, install it in one and give it a small feature. See whether the questions it asks are useful.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-29/3.png",
+        "sources": [
+          {
+            "title": "obra/superpowers",
+            "url": "https://github.com/obra/superpowers",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "OpenAI matches Anthropic with API credits for subscribers",
+        "takeaway": "On a $100, $200 or $500 plan? Check for free API credits before you pay for prototyping. Expiry terms unclear.",
+        "body": "OpenAI now gives API credits to people on its $100, $200 and $500 ChatGPT plans. Anthropic announced the same kind of deal for its Max and Team subscriptions earlier this month, and the price tiers match exactly.\n\nThe API is the pay-as-you-go connection that lets your own app talk to an AI model, separate from chatting in the app. Under these deals, a subscriber gets credits equal to their plan price and applies them to one API organization, which is the account that holds your API billing. Simon Willison, who wrote about the news, says OpenAI launched \"pretty much exactly the same deal\" as Anthropic.\n\nIf you build small products, that's prototyping money you may already be paying for. Willison subscribes to both companies and calls it great news. He says he may now ship public-facing demos, since the credits are covered by subscriptions he already has. Public demos can run up usage quickly, so credits seem a sensible fit.\n\nAnthropic's credits expire. It's unclear whether OpenAI's do, when the program started, or whether other plans and regions qualify. I'd read the terms before building a public demo that depends on them.\n\nIf you're on one of the three plans, check your account for the credits before you pay for API use separately.",
+        "note": null,
+        "category": "Platforms",
+        "card": "/cards/2026-10-29/4.png",
+        "sources": [
+          {
+            "title": "API credits benefit for eligible ChatGPT subscriptions",
+            "url": "https://simonwillison.net/2026/Oct/29/api-credits/",
+            "site": "simonwillison.net"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "JetBrains ThinkRail: an early AI editor for solo builders",
+        "takeaway": "Try it on a throwaway project; the self-building tools part isn't shipped yet.",
+        "body": "ThinkRail has a shelf. When a pull request (a proposed code change waiting for review) merges or closes, or a workspace sits quiet for a week, the app tucks it away on its own. It brings it back when you work in it again.\n\nThinkRail is a new code editor (an IDE, the app where you write and manage code) that JetBrains has put on GitHub. The README labels it an incubator project, so read that as an experiment. It's built around an AI coding assistant called pi.\n\nEvery task gets its own workspace. Under the hood that's a separate working copy of your project, using worktrees, a feature of git (the tool most developers use to track changes to code). An assistant can try one idea in one copy without trampling another.\n\nThe assistant also keeps plain-text notes next to your code, describing what the project is meant to do. It reads them and updates them as it goes. Think of a README the assistant maintains for itself.\n\nYou can sign in with JetBrains AI or bring your own AI provider. The README says ThinkRail has no accounts of its own. It runs as a desktop app, or opens the same app in your browser. If your code lives on GitHub, the top bar shows your pull request, its automated checks and its review status, and you can merge from there. That part needs GitHub's own command-line tool installed.\n\nThe headline promise is an editor that builds its own tools around how you work. That part isn't here yet. The README says extension support is still coming, and JetBrains hasn't said how far it goes. When it ships, and under what licence, is still unclear.\n\nI'd try it on a throwaway project and leave the real one alone for now.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-29/5.png",
+        "sources": [
+          {
+            "title": "JetBrains/thinkrail",
+            "url": "https://github.com/JetBrains/thinkrail",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 2,
+      "headline": "Mistral opens Large 4, a 1-trillion-parameter model",
+      "body": "## What Mistral says it built\n\nMistral Large 4 is a 1-trillion-parameter model that Mistral describes as natively multimodal, meaning it works with both text and images. Mistral released the weights on the day of the announcement, after a public preview earlier in the same month. The company says it then ran three more weeks of reinforcement learning, a training method where the model gets rewarded for good results, and that this pushed it to the front of open-weight coding benchmarks.\n\nOn Terminal-Bench 4.0, one of the coding benchmarks Mistral points to, the model scores 41%. That's 13 percentage points above the preview, with 30% fewer output tokens. On Cognition's FrontierCode 2.0 it scores 19.7%, which Mistral reports as the lead. On the Artificial Analysis Coding Agent Index it scores 48%, effectively tied with GLM-5.3, using 47% fewer tokens per task on average.\n\nThere's also a human-preference result. In Surge Code's blind pairwise tests, where reviewers pick the better of two anonymous answers, Mistral says Large 4 beat GLM-5.3, Kimi K3 and DeepSeek V4.1 Flash. Only Claude Opus 5.5 ranked above it among the models tested.\n\nThe model now has three reasoning modes. The simplest replaces the old no-reasoning setting. The highest is meant for hard problems that need precision and thorough thinking. The middle one isn't described anywhere I could see, so I can't tell you where it sits.\n\nOn security, Mistral reports a 51% score on the Artificial Analysis Cyber Index, which covers finding vulnerabilities, reproducing them, validating them and patching without breaking anything. It also reports a 96.6% average refusal rate on malicious cyber requests, which it says is the highest it measures among open models. Booz Allen, Cisco, Cloudflare, CrowdStrike and Elastic all gave supportive quotes. Elastic says Mistral's open models are supported on Elastic Security today. Those quotes are endorsements.\n\n## What's still unclear\n\nMost of the evidence is vendor-reported. FrontierCode 2.0 is Cognition's private benchmark, so nobody outside can check that 19.7%. The comparisons are against a chosen set of open-weight models, and Mistral's own numbers put Claude Opus 5.5 ahead in the blind tests. That's a fair result to publish, and it also tells you the model isn't the best option out there.\n\nThe 96.6% refusal figure comes with no matching number for how often the model wrongly refuses harmless requests. A Hacker News commenter raised exactly that. Mistral does say the model handles legitimate defensive security work without unnecessary refusals, but I haven't seen a measurement behind it.\n\nThen there's the license. Mistral's summary calls the model fully open-weight. A commenter says it's under a modified MIT license that isn't approved by the Open Source Initiative and requires a license for serving it to businesses. Mistral's article, as far as I can see, doesn't state the terms. Both can't be fully right, and if you're a maker, this is the part to settle before anything else. Open-weight means you can get the files. It doesn't automatically mean you can sell a service built on them.\n\nPricing has the same problem. A commenter says input costs $0.7 per million tokens and output $2.1, versus $1.36 and $4.18 in the preview, and links Mistral's pricing docs. That's attractive if it holds, but the figures aren't in the announcement. Another commenter says it was hard to find a way to pay for the model at all. I'd wait until I'd seen the pricing page and a working checkout before planning around either.\n\nThe announcement doesn't say where the weights can be downloaded, or which hosting companies beyond Elastic Security offer the model. It also doesn't say how much of the trillion parameters is active at once, which is what mostly drives running costs. Even so, I'd assume a model this size is something most small studios will use through a host rather than run themselves.\n\nThere's a naming wrinkle too. Mistral's article says Kimi K3 and DeepSeek V4.1 Flash, while a commenter writes Kimi 3.1 and DeepSeek 4.1 Flash. I can't tell which is right, so I've used Mistral's names.\n\n## How a small maker could test it\n\nThe most useful claim for a small studio is the token efficiency. If you pay per token for a coding helper, a support bot or any AI feature inside an app, your bill depends on two things: the price per token and how many tokens a task burns. Mistral is claiming improvements on both, though the price part comes only from a forum comment.\n\nSo make the test small and real. Pick three to five tasks you already run through a paid model, ideally a mix of easy and annoying ones. Run the same inputs through a hosted copy of Large 4, and try the different reasoning modes. Write down the cost per task and whether the output is good enough that you'd ship it. Don't average it into one score. Look at the annoying tasks separately, since that's where benchmark leads tend to fall apart.\n\nIf your product handles customer data, there's a second angle. One commenter thinks people will choose Mistral mainly for its European origin rather than for beating Chinese open-weight models on benchmarks. Mistral says the model was trained from scratch on European infrastructure, with clear lineage from start to release. If you have users who ask where their data goes, that's a talking point. It still needs a license you've actually read and a host whose data handling you've checked.\n\nI think it's worth an afternoon of testing, and not worth rewriting your stack over until the license and the price are confirmed."
+    }
+  },
+  "zh": {
+    "intro": "Mistral 放出了 Large 4 的权重（也就是模型本体的文件），OpenAI 也跟进 Anthropic，给符合条件的 ChatGPT 订阅用户提供 API 额度（在自己的产品里调用模型时用）。后面还有 Impeccable 和 Superpowers 两套给 AI 编程助手用的工具，以及 JetBrains 的 ThinkRail，一个会照你的工作方式改自己的编辑器。",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Impeccable：查 AI 味设计的检查器",
+        "takeaway": "开源插件，专抓 AI 味设计，还会排好先改哪项。先拿一个界面试试。",
+        "body": "62 条规则，检查的时候一个 AI 都不用。这是 Impeccable 的核心。它是个开源的小插件，装进 AI 编程助手（替你写代码的工具）里，教它怎么做界面，也教它怎么挑毛病。README 里写着，这套检查器不需要 AI 模型，也不需要 API 密钥（调用 AI 服务的凭证）。它专抓那些让 AI 做的页面长得都一样的老毛病。有点像拼写检查，只不过查的是千篇一律的设计。\n\n围着它还有 24 个指令。有的管方向：更大胆一点、更克制一点、改字体、调布局。有的管收尾：打磨、加固。评审有两个：一个给界面打分，告诉你先改哪儿；一个查无障碍、速度和手机上的表现，问题从“会卡住”到“可以更好”分级。\n\n支持 19 个工具，Claude Code、Cursor、Codex、GitHub Copilot、Gemini CLI、Replit Agent 都在列。其中 6 个能在助手改界面文件时自动跑一遍检查。另外有个 Chrome 扩展，能把问题标在任何线上页面上。已经上线的网站也能查。\n\nREADME 里的前后对比是项目自己做的：意大利利古里亚海岸一家 14 间房的家庭旅馆，同一个模型，同一份需求。没有第三方评测，看看就好。它自己也说，对已有的界面效果最好，新建页面更难；要求越具体越好，别一上来就整页重做。只扫代码文件，查得出的只有套路问题。对比度太低、字太小这类，得扫真正打开的页面才查得到。实时编辑模式只改你本地那份，别往线上站点里放。\n\n挑一个你最不满意的界面，跑一遍评审，看它排在前三的问题。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-29/1.png",
+        "sources": [
+          {
+            "title": "pbakaus/impeccable",
+            "url": "https://github.com/pbakaus/impeccable",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Mistral 放出 Large 4 权重，1 万亿参数",
+        "takeaway": "先拿自己的真实请求跑一遍，对比现在的 API 账单；想拿它做产品，先读许可证。",
+        "body": "Mistral 给 Large 4 起了个外号叫 Le Chonk。1 万亿参数，图片和文字都能处理，权重（也就是训练好的模型文件）今天放出来了。参数可以理解成模型学习时调的旋钮，旋钮越多，一般越大越贵。\n\n这次是在本月早些时候的公开预览之后，又多训练了三周，用的是做对了就给奖励的那种训练方式。Mistral 说编程和防御性安全的成绩因此上去了。另外多了三档推理模式，从快答到慢慢想。\n\n最该让做产品的人上心的是这条：在 Artificial Analysis 的编程榜上，Large 4 得 48%，和最强的开源模型 GLM-5.3 基本打平，但每个任务平均少用 47% 的 token。token 是 AI 服务按量收费的文字单位，少用就是账单变薄，前提是单价没涨。\n\nHacker News 上有人说价格砍了一半，输入每百万 token 0.7 美元，输出 2.1 美元，预览期是 1.36 和 4.18。这组数字 Mistral 的文章里没有，得自己去翻价格页。\n\n许可证也对不上。Mistral 自称完全开放权重，另一位评论者说是改过的 MIT 许可证，拿来给企业客户提供服务要另外申请授权。打算拿它卖东西的，先把条款读完。\n\n榜单成绩大多是 Mistral 自己报的，其中一个还是 Cognition 的私有测试，外人查不了。真人盲测里，它也排在 Claude Opus 5.5 后面。\n\n今天能做的：从你的产品里挑三个真实请求，放到托管版本上跑一遍，把成本和效果跟现在付的钱比一比。",
+        "note": null,
+        "category": "模型",
+        "card": "/cards/2026-10-29/2.png",
+        "sources": [
+          {
+            "title": "We're releasing the weights of Mistral Large 4",
+            "url": "https://mistral.ai/news/mistral-large-4-oss/",
+            "site": "mistral.ai"
+          },
+          {
+            "title": "We're releasing the weights of Mistral Large 4",
+            "url": "https://news.ycombinator.com/item?id=50289418",
+            "site": "Hacker News"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Superpowers 让 AI 编程助手先问清楚再动手",
+        "takeaway": "一套现成流程，让 AI 先计划、先测试再写代码。每个工具要单独装一遍。",
+        "body": "README 里写着，AI 编程助手照着计划自己干两个小时不跑偏，这种情况不少见。这是项目自己的说法，没人验证过。不过它能看出 Superpowers 想做成什么样。\n\nSuperpowers 是一套现成的工作规矩，给 AI 编程助手用。它管自己叫完整的软件开发方法。你说想做个东西，AI 先问你到底想解决什么问题，再把规格（一份写清楚要做什么的说明）分成好读的小段摆给你看。这时候还没有一行代码。\n\n接下来的计划，强调先写一个会失败的测试（自动检查），再写能让它通过的代码。还要求别做用不上的功能，别重复写同样的东西。你说一声“开始”，几个 AI 分头把任务一件件做完，每件做完自己检查、互相复查。这些规矩会自动生效，你不用专门去叫。\n\n说到底就是让 AI 动手前慢一点：先问，先摆规格，边做边查。就算别的都不要，先摆规格这一步我也想留着。\n\n它支持 Claude Code、Codex、Cursor、Gemini CLI、Copilot CLI 等一堆工具，每个工具要单独装一遍。Claude Code 用户可以走 Anthropic 官方的插件市场。有一个叫 Hermes Agent 的工具，聊得太长、前面内容被压缩后，开头那些规矩会丢，可能要重开一个新会话。\n\n完整的技能清单、许可证、版本号，目前都没法确认。真想拿它撑生意，先去项目页面看清楚。已经在用这些工具的话，挑一个装上，拿一个小功能试试，看它问的问题有没有用。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-29/3.png",
+        "sources": [
+          {
+            "title": "obra/superpowers",
+            "url": "https://github.com/obra/superpowers",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "OpenAI 跟进 Anthropic，订阅送 API 额度",
+        "takeaway": "订 100、200、500 美元档？先查有没有 API 额度，再自己掏钱做原型。会不会过期还没说。",
+        "body": "OpenAI 给月费 100、200、500 美元三档的 ChatGPT 订阅用户送 API 额度了。Anthropic 本月早些时候刚给 Max 和 Team 订阅送过一轮，档位一模一样。Simon Willison 的说法是，OpenAI 推出了“几乎完全一样的方案”。\n\nAPI 是让你自己做的 App 直接调用 AI 模型的接口，跟在聊天窗口里聊天是两回事。按这个方案，你订阅付多少钱，就拿到等额的 API 额度，可以挂到你的一个 API 组织上，一个订阅只能挂一个。\n\n做小产品的人，等于多了一笔本来就在付的试做经费。Willison 两家都订了，他说这是好消息，还说额度既然包含在已有的订阅里，他可能会把公开的演示版放出去。公开演示的用量涨得快，有额度垫着，心里踏实一点。\n\n不清楚的地方不少。Anthropic 的额度会过期，OpenAI 的过不过期、从哪天开始、其他档位和地区算不算，目前都没说。我会先把条款看完，再决定要不要让一个公开演示靠它跑。\n\n如果你正好订着这三档之一，先去账号里看看额度到账没有，再考虑单独给 API 充钱。",
+        "note": null,
+        "category": "平台",
+        "card": "/cards/2026-10-29/4.png",
+        "sources": [
+          {
+            "title": "API credits benefit for eligible ChatGPT subscriptions",
+            "url": "https://simonwillison.net/2026/Oct/29/api-credits/",
+            "site": "simonwillison.net"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "ThinkRail：JetBrains 的早期 AI 编辑器",
+        "takeaway": "先拿练手项目试。会自己造工具那部分还没发布，别当成现成功能。",
+        "body": "ThinkRail 有个“架子”。一个任务的 PR（把代码改动提交给别人审核的申请）合并或关闭了，或者放着一周没动，它就自己把这个工作区收到架子上。你再回去干活，它又给你拿下来。\n\nThinkRail 是 JetBrains 放在 GitHub 上的一个代码编辑器，就是写代码、管代码的那类软件。README 里把它标成孵化项目，当实验品看就好。它围着一个叫 pi 的 AI 编程助手来做。\n\n每个任务一个独立工作区。底层用的是 git 的 worktree 功能，等于把项目多复印几份，各有各的分支。助手在这份里试一个想法，弄不乱另一份。\n\n助手还会在代码旁边留一份纯文本说明，写这个项目到底要做什么，边干边读、边改。有点像助手自己维护的 README。\n\n登录可以用 JetBrains AI，也可以接自己的 AI 服务商。README 说 ThinkRail 没有自己的账号体系。有桌面版，也能在浏览器里打开同一个应用。代码放在 GitHub 的话，顶栏能看到 PR、自动检查结果和审核状态，还能直接合并。不过这得先装 GitHub 官方的命令行工具。\n\n它最大的卖点，是编辑器会照你的工作习惯给自己造工具。这部分还没有。README 说扩展支持是下一步，做到什么程度 JetBrains 没讲。发布时间和许可证也没给。\n\n我会先拿个练手项目试，正式项目先别动。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-29/5.png",
+        "sources": [
+          {
+            "title": "JetBrains/thinkrail",
+            "url": "https://github.com/JetBrains/thinkrail",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 2,
+      "headline": "Mistral 放出 Large 4 权重，1 万亿参数",
+      "body": "## Mistral 说它做了什么\n\nMistral Large 4 有 1 万亿参数，Mistral 说它是原生多模态，也就是文字和图片都能直接处理。权重在发布当天放出，此前本月早些时候有过一次公开预览。Mistral 说预览之后又做了三周强化学习，这是一种让模型做对了就拿奖励的训练方式，结果是它冲到了开源模型编程榜单的前面。\n\n具体数字有这些。Terminal-Bench 4.0 上得 41%，比预览版高 13 个百分点，输出的 token（AI 服务按量收费的文字单位）少了 30%。Cognition 的 FrontierCode 2.0 上得 19.7%，Mistral 说这是第一。Artificial Analysis 的编程助手指数上得 48%，和目前最强的开源模型 GLM-5.3 基本打平，每个任务平均少用 47% 的 token。\n\n还有一条是真人偏好。Surge Code 做的盲测，是让评审在两份匿名答案里挑更好的。Mistral 说 Large 4 赢了 GLM-5.3、Kimi K3 和 DeepSeek V4.1 Flash，参与测试的模型里只有 Claude Opus 5.5 排在它前面。\n\n推理模式现在有三档。最简单的一档取代了原来的“无推理”，最高的一档留给要求高精度、需要仔细推敲的难题。中间那档是什么脾气，Mistral 的介绍里没写，我没法告诉你它夹在哪儿。\n\n安全方面，Mistral 报了两个数。Artificial Analysis 的网络安全指数 51%，考的是找漏洞、复现、验证，以及修补时不弄坏原有功能。对恶意网络攻击请求的平均拒绝率 96.6%，Mistral 说这是它测过的开源模型里最高的。Booz Allen、Cisco、Cloudflare、CrowdStrike 和 Elastic 都给了捧场的话，Elastic 还说 Mistral 的开源模型现在已经能在 Elastic Security 里用。这些是合作方的表态，不是独立测试。\n\nMistral 还强调，模型是在欧洲的基础设施上从零训练的，从开始到发布来路清楚。\n\n## 还没搞清楚的\n\n大部分证据是厂商自己给的。FrontierCode 2.0 是 Cognition 的私有测试，外人没法复核那个 19.7%。对比的也是挑出来的一批开源模型，而且盲测里 Claude Opus 5.5 排在前面。Mistral 肯把这个写出来，算诚实，同时也说明它不是眼下最好的选择。\n\n96.6% 的拒绝率没有配套的另一个数，也就是正常请求被错拒的比例。Hacker News 上有人专门问了这个。Mistral 说模型处理正当的防御性安全任务时不会无谓拒绝，但没给出测量数字。\n\n许可证更要紧。Mistral 的总结说这是完全开放权重。有评论者说它用的是改过的 MIT 许可证，不在开源协会（OSI）认可的名单里，而且给企业提供服务要另外申请授权。Mistral 的文章没写条款。两种说法不会都对。做产品的人先把这件事弄清楚。开放权重只表示文件拿得到，不表示你能拿它卖服务。\n\n价格也是同一个问题。有评论者说输入每百万 token 0.7 美元，输出 2.1 美元，预览期是 1.36 和 4.18，还贴了 Mistral 价格文档的链接。如果属实很有吸引力，但这些数字不在发布文章里。另一位评论者说，很难找到付费使用这个模型的入口。我会等看到价格页和能走通的付款流程，再谈要不要换。\n\n权重具体去哪儿下载，Elastic Security 之外还有哪些托管平台（替你运行模型的服务）提供这个模型，文章都没说。1 万亿参数里每次实际动用多少，文章也没给，而这个数基本决定运行成本。不管怎样，这个体量的模型，小团队多半是通过托管服务来用，自己跑不太现实。\n\n名字也有出入。Mistral 的文章写的是 Kimi K3 和 DeepSeek V4.1 Flash，评论里有人写成 Kimi 3.1 和 DeepSeek 4.1 Flash。我分不出哪个对，这里用的是 Mistral 的写法。\n\n## 小团队怎么试\n\n对小团队最有用的是省 token 这一条。不管你是用 AI 编程助手、客服机器人，还是 App 里的某个 AI 功能，只要按量付费，账单取决于两件事：每个 token 多少钱，一个任务烧掉多少 token。Mistral 只在后一件事上说有改善，每个任务少用 token，输出也更短。单价那头，它的文章里没提，降价的说法目前只有论坛评论。\n\n所以测试要小，而且要真。挑三到五个你现在已经交给付费模型的任务，最好简单的和让人头疼的都有。用同样的输入，在托管版 Large 4 上跑一遍，三档推理模式都试试。记下每个任务的成本，以及结果好到能不能直接上线。别把结果平均成一个分数，头疼的那几个单独看，榜单上的领先往往就是在那儿露馅。\n\n如果你的产品碰用户数据，还有另一个角度。有评论者认为，大家选 Mistral 主要是看中它的欧洲出身，而不是因为它在榜单上赢了中国的开源模型。Mistral 说模型在欧洲的基础设施上从零训练，来路清楚。你要是有用户会问数据去了哪儿，这是个能讲的点。前提是你读过许可证，也查过托管方怎么处理数据。\n\n我觉得值得花一个下午测一测。在许可证和价格都确认之前，先别为它改整套架构。"
+    }
+  },
+  "lab": [
+    {
+      "title": "iRead — iRead is on the Mac",
+      "url": "https://gaiya.cc/changelog#2026-10-23-iread",
+      "feed": "gaiya_changelog"
+    }
+  ]
+}
