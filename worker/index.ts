@@ -2,10 +2,11 @@
  * daily.gaiya.cc 的 Worker:平时只把请求交给静态资源;定时任务负责按时发 X。
  *
  * 发帖队列由 media_self 在审核定稿时写进 KV:
- *   queue:YYYY-MM-DD  →  { posts: [{ id, due, text, image }] }   due 是 UTC 时间
+ *   queue:YYYY-MM-DD  →  { posts: [{ id, due, text, image, xhs? }] }   due 是 UTC 时间
  *   done:YYYY-MM-DD:<id> → 已发出的推文 id(防止重复发)
  * 每 15 分钟跑一次,把到点、还没发、没超过 6 小时的帖子发出去。错过太久的不补发,只通知。
  * 卡片图直接从本站的静态资源里读。
+ * 带 xhs 的帖子,X 发出(或错过不发)后把小红书的文字图和文案推到 Telegram,你自己去小红书发。
  *
  * POST /api/subscribe:网站上的订阅框。把邮箱写进 Resend 对应语言的名单(segment),发一封欢迎信。
  * 每天的邮件由 media_self 定稿时在 Resend 上排好,到 publishAt 自动发出,这里不管。
@@ -45,7 +46,7 @@ interface Env {
   PIPELINE_TZ: string;
 }
 
-type Post = { id: string; due: string; text: string; image?: string };
+type Post = { id: string; due: string; text: string; image?: string; xhs?: { image: string; caption: string } };
 
 const LATE_MS = 6 * 3600 * 1000;
 // 机器人每 2 秒来取一次消息,超过这么久没来就算下线了
@@ -208,12 +209,14 @@ async function run(env: Env) {
       if (now - due > LATE_MS) {
         await env.SOCIAL.put(doneKey, 'skipped');
         await notify(env, `⚠️ ${date} 的 ${p.id} 错过发帖时间超过 6 小时,没有补发。`);
+        await sendXhs(env, p);
         continue;
       }
       try {
         const tweet = await postToX(env, p);
         await env.SOCIAL.put(doneKey, tweet);
         await notify(env, `✅ 已发 X(${p.id}):https://x.com/gaiya_l/status/${tweet}`);
+        await sendXhs(env, p);
       } catch (err) {
         // 不标记为已发,15 分钟后自动重试,直到超过 6 小时
         await notify(env, `❌ ${date} 的 ${p.id} 发 X 失败,15 分钟后重试:${String(err).slice(0, 300)}`);
@@ -222,6 +225,22 @@ async function run(env: Env) {
     // 整个队列处理完就删掉,list 保持很短
     if (pending === 0) await env.SOCIAL.delete(name);
   }
+}
+
+/** 小红书那条:文字图加可复制的标题和正文(说明由 media_self 排好,HTML 格式)。图读不到就只发文字 */
+async function sendXhs(env: Env, p: Post) {
+  if (!p.xhs || !env.TG_TOKEN || !env.TG_CHAT) return;
+  const img = await env.ASSETS.fetch(new Request(`https://daily.gaiya.cc${p.xhs.image}`));
+  if (img.ok) {
+    const form = new FormData();
+    form.append('chat_id', env.TG_CHAT);
+    form.append('parse_mode', 'HTML');
+    form.append('caption', p.xhs.caption);
+    form.append('photo', new Blob([await img.arrayBuffer()], { type: 'image/png' }), 'xhs.png');
+    const r = await fetch(`https://api.telegram.org/bot${env.TG_TOKEN}/sendPhoto`, { method: 'POST', body: form }).catch(() => null);
+    if (r?.ok) return;
+  }
+  await tg(env, 'sendMessage', { chat_id: env.TG_CHAT, parse_mode: 'HTML', text: `${p.xhs.caption}\n\n⚠️ 文字图没发出来:${p.xhs.image}` });
 }
 
 export async function postToX(env: Env, p: Post): Promise<string> {
