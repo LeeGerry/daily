@@ -6,7 +6,7 @@
  *   done:YYYY-MM-DD:<id> → 已发出的推文 id(防止重复发)
  * 每 15 分钟跑一次,把到点、还没发、没超过 6 小时的帖子发出去。错过太久的不补发,只通知。
  * 卡片图直接从本站的静态资源里读。
- * 带 xhs 的帖子,X 发出(或错过不发)后把小红书的文字图和文案推到 Telegram,你自己去小红书发。
+ * 带 xhs 的帖子,X 发出(或错过不发)后把小红书的一组图和文案推到 Telegram,你自己去小红书发。
  *
  * POST /api/subscribe:网站上的订阅框。把邮箱写进 Resend 对应语言的名单(segment),发一封欢迎信。
  * 每天的邮件由 media_self 定稿时在 Resend 上排好,到 publishAt 自动发出,这里不管。
@@ -47,7 +47,11 @@ interface Env {
   PIPELINE_TZ: string;
 }
 
-type Post = { id: string; due: string; text: string; image?: string; xhs?: { image: string; caption: string } };
+type Post = {
+  id: string; due: string; text: string; image?: string;
+  // image 是只有一张图时的旧格式
+  xhs?: { images?: string[]; image?: string; caption: string };
+};
 
 const LATE_MS = 6 * 3600 * 1000;
 // 机器人每 2 秒来取一次消息,超过这么久没来就算下线了
@@ -229,28 +233,33 @@ async function run(env: Env) {
   }
 }
 
-/** 小红书那条:文字图加可复制的标题和正文(说明由 media_self 排好,HTML 格式)。图发不出去就只发文字,并写明原因 */
+/**
+ * 小红书那条:一组图(封面加正文分页)做成相册,说明写在第一张上,里面是可复制的标题和正文(media_self 排好的 HTML)。
+ * 图只给网址,让 Telegram 自己来本站取,Worker 不用读图、不用上传。发不出去就只发文字,并写明原因
+ */
 async function sendXhs(env: Env, p: Post): Promise<string> {
   if (!p.xhs || !env.TG_TOKEN || !env.TG_CHAT) return 'skipped';
+  const images = (p.xhs.images ?? (p.xhs.image ? [p.xhs.image] : [])).slice(0, 10);
+  const media = images.map((path, i) => ({
+    type: 'photo', media: `https://daily.gaiya.cc${path}`, ...(i === 0 ? { caption: p.xhs!.caption, parse_mode: 'HTML' } : {}),
+  }));
   let why: string;
   try {
-    const img = await env.ASSETS.fetch(new Request(`https://daily.gaiya.cc${p.xhs.image}`));
-    if (!img.ok) throw new Error(`读图 ${img.status}`);
-    const form = new FormData();
-    form.append('chat_id', env.TG_CHAT);
-    form.append('parse_mode', 'HTML');
-    form.append('caption', p.xhs.caption);
-    form.append('photo', new Blob([await img.arrayBuffer()], { type: 'image/png' }), 'xhs.png');
-    const r = await fetch(`https://api.telegram.org/bot${env.TG_TOKEN}/sendPhoto`, { method: 'POST', body: form });
-    if (r.ok) return 'photo';
+    if (!media.length) throw new Error('没有图');
+    const r = await fetch(`https://api.telegram.org/bot${env.TG_TOKEN}/sendMediaGroup`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: env.TG_CHAT, media }),
+    });
+    if (r.ok) return `album ${media.length}`;
     why = `Telegram ${r.status}: ${(await r.text()).slice(0, 200)}`;
   } catch (err) {
     why = String(err).slice(0, 200);
   }
-  console.log('xhs photo failed', p.id, why);
+  console.log('xhs album failed', p.id, why);
   await tg(env, 'sendMessage', {
     chat_id: env.TG_CHAT, parse_mode: 'HTML',
-    text: `${p.xhs.caption}\n\n⚠️ 文字图没发出来(${esc(why)}):https://daily.gaiya.cc${p.xhs.image}`,
+    text: `${p.xhs.caption}\n\n⚠️ 图没发出来(${esc(why)}),在网站上:${media.map((m) => m.media).join(' ')}`,
   });
   return `text: ${why}`;
 }
