@@ -14,6 +14,7 @@
  * POST /api/x-search:只给 media_self 用(带 INTERNAL_TOKEN),代它搜 X 上值得去回复的帖子。
  * X 的密钥只存在这里,不用再复制一份到本机。
  * POST /api/x-queue:media_self 定稿时把当天的 X 帖子写进上面的队列(带 INTERNAL_TOKEN)。
+ * POST /api/xhs:单独重推某一条小红书到 Telegram(带 INTERNAL_TOKEN),补发或排查用。
  *
  * 流水线跑在 GitHub Actions 上(本仓库的 .github/workflows/pipeline.yml),这里负责叫醒它:
  * - 每天 PIPELINE_HOUR 点(PIPELINE_TZ 时区)启动一次流水线。PIPELINE_HOUR 留空就不启动。
@@ -60,6 +61,7 @@ export default {
     if (url.pathname === '/api/subscribe') return subscribe(req, env, ctx);
     if (url.pathname === '/api/x-search') return xSearch(req, env);
     if (url.pathname === '/api/x-queue') return xQueue(req, env);
+    if (url.pathname === '/api/xhs') return xhsResend(req, env);
     if (url.pathname === '/api/telegram') return telegram(req, env, ctx);
     if (url.pathname === '/api/review/pull' || url.pathname === '/api/review/ack') return review(req, env, url.pathname);
     return env.ASSETS.fetch(req);
@@ -227,20 +229,42 @@ async function run(env: Env) {
   }
 }
 
-/** 小红书那条:文字图加可复制的标题和正文(说明由 media_self 排好,HTML 格式)。图读不到就只发文字 */
-async function sendXhs(env: Env, p: Post) {
-  if (!p.xhs || !env.TG_TOKEN || !env.TG_CHAT) return;
-  const img = await env.ASSETS.fetch(new Request(`https://daily.gaiya.cc${p.xhs.image}`));
-  if (img.ok) {
+/** 小红书那条:文字图加可复制的标题和正文(说明由 media_self 排好,HTML 格式)。图发不出去就只发文字,并写明原因 */
+async function sendXhs(env: Env, p: Post): Promise<string> {
+  if (!p.xhs || !env.TG_TOKEN || !env.TG_CHAT) return 'skipped';
+  let why: string;
+  try {
+    const img = await env.ASSETS.fetch(new Request(`https://daily.gaiya.cc${p.xhs.image}`));
+    if (!img.ok) throw new Error(`读图 ${img.status}`);
     const form = new FormData();
     form.append('chat_id', env.TG_CHAT);
     form.append('parse_mode', 'HTML');
     form.append('caption', p.xhs.caption);
     form.append('photo', new Blob([await img.arrayBuffer()], { type: 'image/png' }), 'xhs.png');
-    const r = await fetch(`https://api.telegram.org/bot${env.TG_TOKEN}/sendPhoto`, { method: 'POST', body: form }).catch(() => null);
-    if (r?.ok) return;
+    const r = await fetch(`https://api.telegram.org/bot${env.TG_TOKEN}/sendPhoto`, { method: 'POST', body: form });
+    if (r.ok) return 'photo';
+    why = `Telegram ${r.status}: ${(await r.text()).slice(0, 200)}`;
+  } catch (err) {
+    why = String(err).slice(0, 200);
   }
-  await tg(env, 'sendMessage', { chat_id: env.TG_CHAT, parse_mode: 'HTML', text: `${p.xhs.caption}\n\n⚠️ 文字图没发出来:${p.xhs.image}` });
+  console.log('xhs photo failed', p.id, why);
+  await tg(env, 'sendMessage', {
+    chat_id: env.TG_CHAT, parse_mode: 'HTML',
+    text: `${p.xhs.caption}\n\n⚠️ 文字图没发出来(${esc(why)}):https://daily.gaiya.cc${p.xhs.image}`,
+  });
+  return `text: ${why}`;
+}
+
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+/** POST /api/xhs {date, id}:单独重推某一条小红书(不发 X),带 INTERNAL_TOKEN */
+async function xhsResend(req: Request, env: Env): Promise<Response> {
+  if (!(await internal(req, env))) return new Response('Unauthorized', { status: 401 });
+  const { date, id } = await req.json<{ date: string; id: string }>();
+  const queue = await env.SOCIAL.get<{ posts: Post[] }>(`queue:${date}`, 'json');
+  const p = queue?.posts.find((x) => x.id === id);
+  if (!p) return new Response('Not found', { status: 404 });
+  return Response.json({ result: await sendXhs(env, p) });
 }
 
 export async function postToX(env: Env, p: Post): Promise<string> {
