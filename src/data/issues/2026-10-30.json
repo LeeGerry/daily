@@ -1,0 +1,255 @@
+{
+  "date": "2026-10-30",
+  "publishAt": "2026-10-31T11:00:00Z",
+  "en": {
+    "intro": "A Claude Code add-on with a hidden back door ended up on Cursor's marketplace, so it's worth checking what your AI coding tools have installed. Also today, OpenAI says it will honor a shared signal websites can use to opt out of AI training, and Impeccable, claude-mem and Superpowers each try to make coding assistants less forgetful and less sloppy.",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Impeccable gives coding agents a design vocabulary",
+        "takeaway": "Run its audit on an app you've already built and see which generic-design habits it flags.",
+        "body": "Impeccable checks your interface against 62 fixed rules for the habits that make AI-built designs look alike. No AI model runs the check and no API key (an access password for AI services) is needed, the README says. It's plain pattern-matching, like a spell-checker for generic design.\n\nThe project is an add-on for coding agents, the AI assistants that write app code for you. It gives them a shared design vocabulary. Words like polish and bolder steer the look, while critique and audit review it. The README counts 24 of these commands. It lists Claude Code, Cursor, Codex CLI, GitHub Copilot, Replit Agent, Gemini CLI and a dozen others as supported. It also has a Chrome extension and a version you run from a terminal for automatic checks. The README doesn't state a license.\n\nThe audit step looks at accessibility, speed, theming and how the layout behaves on different screen sizes. It ranks problems from P0 (blocking) to P3 (polish).\n\nIf you're a solo maker with no designer, whatever your agent produces by default is your design. This gives you a checklist and a way to ask for changes in specific words. The README shows a before and after for a fourteen-room family guesthouse on the Ligurian coast, same model and same brief. That's the project's own example, so it isn't an independent test.\n\nChecks for low contrast and tiny text only run when you scan a live page by its address. Code files get pattern checks only. The README says it's strongest on existing interfaces, and building new pages is a harder mode. Its live mode, which lets you try design variants on your running site, belongs on your own computer only. Don't put it on a deployed site. Nothing says how often the rules flag things wrongly.\n\nToday, I'd run the audit on an app you've already built and read only the P0 items.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-30/1.png",
+        "sources": [
+          {
+            "title": "pbakaus/impeccable",
+            "url": "https://github.com/pbakaus/impeccable",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Four AI labs say they'll adopt one shared training opt-out",
+        "takeaway": "One site-wide setting could tell major AI labs to skip your pages for training. Rollout runs into next year.",
+        "body": "Anthropic has already switched it on. Google and Microsoft say they'll follow next year, and OpenAI says \"coming months.\" The Verge reports that all four companies say they'll honor one shared marker that tells their AI crawlers (bots that visit web pages and copy them) to stay off a site for training.\n\nThe marker goes in the plain text file where sites have long listed which bots are welcome and which aren't. Until now, you had to tell each AI company separately. Kevin Kelley, a standards lead at Anthropic, proposed the shared version through the IETF, the group that sets technical rules for the internet. It's still a proposal, and The Verge doesn't say it's finalized.\n\nIf you sell anything built on words, images, tutorials or a big catalog of pages, this saves you a chore. One setting instead of a list that grows every time a new AI company shows up. Opt out, and the four companies say they'll hold their crawlers back when they see the marker.\n\nThere are gaps. Meta's communications head Andy Stone called a common signal \"an important step\" but didn't say Meta will honor it. The Verge hasn't spelled out the exact wording of the marker, so there's nothing to paste in yet. Microsoft says it will split its controls into AI training and grounding (an AI pulling in your pages to answer questions), and that your site still shows up in Bing either way.\n\nFor today, find out who controls that file on your site. On a website builder or a host, it may be a setting you've never touched. Then decide whether you want your pages used for training. I'd hold off on changing anything until OpenAI gives a real date.",
+        "note": null,
+        "category": "Platforms",
+        "card": "/cards/2026-10-30/2.png",
+        "sources": [
+          {
+            "title": "OpenAI, Google, Microsoft, and Anthropic say they will adopt a new standard that publishers can use to opt out of being scraped by AI across multiple crawlers (Emma Roth/The Verge)",
+            "url": "https://www.theverge.com/tech/1023763/openai-google-microsoft-ai-scraping-standard-opt-out",
+            "site": "theverge.com"
+          },
+          {
+            "title": "OpenAI, Google, Microsoft, and Anthropic say they will adopt a new standard that publishers can use to opt out of being scraped by AI across multiple crawlers (Emma Roth/The Verge)",
+            "url": "https://www.techmeme.com/261030/p26#a261030p26",
+            "site": "techmeme.com"
+          },
+          {
+            "title": "Making it easier for websites to express AI training preferences",
+            "url": "https://openai.com/index/helping-websites-express-ai-training-preferences",
+            "site": "openai.com"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "claude-mem gives coding agents a memory between sessions",
+        "takeaway": "Open-source add-on that saves session notes. Check the sign-in and trial terms before installing.",
+        "body": "claude-mem gives your AI coding assistant a memory that survives between sessions. It's open source under the Apache 2.0 license, and the GitHub README shows version 15.7.0.\n\nWhile the assistant does its job, claude-mem records what it did, turns those records into short summaries, and hands them to the next session. You stop re-explaining your project every morning. It was built for Claude Code. The README also lists installs for OpenCode, T3 Code, Antigravity CLI, OMP and Grok Bot, and the list is cut off before the end.\n\nOn a long solo project, that's a real saving. Re-explaining last week's decisions is a tax you pay every session, and a tool that writes them down for you is an easy sell.\n\nRead the sign-in step before you install. The default setup asks you to sign in with an email link in your browser, which sets you up with what the README calls a claude-mem observer, with a 30-day free trial. When the trial ends, memory falls back to your Anthropic plan unless you subscribe. The README gives no price. It also doesn't say where that data is stored or processed beyond a choice between hosted and local. Session notes can hold business decisions and bug details, so I'd want that answer first.\n\nYou can skip sign-in by choosing a provider yourself, switching the online option off, or running somewhere with no interactive prompt, like automated builds.\n\nGrok Bot works differently. It gives the tool no way to listen in on its activity, so the plugin reads the bot's chat logs instead.\n\nIf you run long projects in Claude Code, I'd try it on a throwaway project first, with sign-in skipped. There's no community feedback yet to go on.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-30/3.png",
+        "sources": [
+          {
+            "title": "thedotmack/claude-mem",
+            "url": "https://github.com/thedotmack/claude-mem",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Claude Code extension on Cursor's store had a backdoor",
+        "takeaway": "Check your editor's add-ons. Versions 2.1.312 and 2.1.313 are the bad ones. Audit the rest too.",
+        "body": "Two versions of the Claude Code extension on Cursor's marketplace came with a hidden way into your computer. Phorion reports that versions 2.1.312 and 2.1.313 contain a backdoor, meaning code that lets someone else get into your machine without asking. Cursor has pulled both versions.\n\nThe extension is an add-on that puts the Claude Code assistant inside your editor. Phorion says the bad code runs the moment the editor loads the extension. You don't have to click anything. It adds the attacker's key to the list of keys your computer accepts for remote login, then opens a connection out to the attacker's server so they can reach back in. Phorion also says it sends details about your machine to the operator and sets itself up to survive restarts.\n\nOn a standard Mac or Windows install, Phorion thinks the remote-login part probably breaks, unless remote login is already switched on. Nobody has independently confirmed that. I wouldn't lean on it.\n\nTaking the versions off the store doesn't clean up anyone who already installed one. It's also unclear whether the main VS Code marketplace was affected, or whether Anthropic's own systems were. A DoublePulsar headline says Anthropic was hacked. Phorion's write-up describes a tampered extension.\n\nIf you use Cursor, open your extension list today and check the Claude Code version. If it's 2.1.312 or 2.1.313, treat that computer as compromised. Phorion advises bringing in incident response, which for a solo maker means getting a security professional to look at the machine. While you're there, look at every other AI extension and ask where it came from.",
+        "note": null,
+        "category": "Platforms",
+        "card": "/cards/2026-10-30/4.png",
+        "sources": [
+          {
+            "title": "Backdoor in Claude Code for VS Code extension on the Cursor Marketplace",
+            "url": "https://phorion.io/blog/offical-claude-code-vsx-compromise/",
+            "site": "phorion.io"
+          },
+          {
+            "title": "Backdoor in Claude Code for VS Code extension on the Cursor Marketplace",
+            "url": "https://news.ycombinator.com/item?id=50300683",
+            "site": "Hacker News"
+          },
+          {
+            "title": "Backdoors in official Claude Code extensions",
+            "url": "https://cyberplace.social/@GossiTheDog/117528831681803563",
+            "site": "cyberplace.social"
+          },
+          {
+            "title": "Backdoors in official Claude Code extensions",
+            "url": "https://news.ycombinator.com/item?id=50302334",
+            "site": "Hacker News"
+          },
+          {
+            "title": "Claude Code VS Code extension with backdoor released on Cursor marketplace",
+            "url": "https://doublepulsar.com/anthropic-hacked-to-deliver-remote-access-trojan-to-claude-developer-laptops-worldwide-1148a92baae2",
+            "site": "doublepulsar.com"
+          },
+          {
+            "title": "Claude Code VS Code extension with backdoor released on Cursor marketplace",
+            "url": "https://news.ycombinator.com/item?id=50301983",
+            "site": "Hacker News"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Superpowers makes AI coding agents ask before they build",
+        "takeaway": "A set of habits for AI coding tools: ask first, plan, test, then build. Worth a trial on a side project.",
+        "body": "Superpowers tells your AI coding assistant to stop and ask what you're really trying to build before it writes a single line. That's step one of a whole working method, packaged for coding agents (the assistants that read and edit your code on their own).\n\nThe project's GitHub README says it's built from skills, which are small reusable sets of instructions, plus a starting prompt that makes the agent use them. The skills trigger automatically, so you don't have to call them up.\n\nAfter the conversation, the agent shows you the plan in small chunks you can actually read. The README says the plan leans on three developer habits: write a test that fails first, then make it pass (people call that red/green TDD); don't build what you don't need (YAGNI); don't repeat yourself (DRY). Then you say \"go.\" Helper agents work through each task and review each other's work. The README claims the agent can run a couple of hours without drifting from the plan. That's the authors' own description. There are no independent tests behind it.\n\nIf you build your own apps with AI help, the classic failure is the agent charging ahead on a wrong guess. This is like a contractor who makes you sign off on the drawings before pouring concrete. Annoying for five minutes, cheaper than a redo.\n\nThe install list is long: Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot CLI and about a dozen more. The setup differs for each, and you repeat it for every tool you use. On Hermes Agent, a very long session can lose the setup, and you may need to start fresh. The README also lists a sales email for companies that want commercial support, extra tooling or managed spending.\n\nI'd try it on a small side project first. No benchmarks yet, and no community reaction to go on.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-30/5.png",
+        "sources": [
+          {
+            "title": "obra/superpowers",
+            "url": "https://github.com/obra/superpowers",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 4,
+      "headline": "Claude Code extension on Cursor's store had a backdoor",
+      "body": "## What Phorion found\n\nPhorion says the official Claude Code extension for VS Code, as distributed on the Cursor Marketplace, carried a backdoor in versions 2.1.312 and 2.1.313. A backdoor is a hidden way for someone else to get into your machine. Cursor has removed both versions. Phorion's advisory first named only 2.1.313. It was later updated after Cursor's own security notice listed both, for macOS and Windows.\n\nThe mechanism is simple. Extensions are programs that run inside your editor. Phorion says the injected code runs as soon as the file is loaded, before the extension's normal startup steps. You never have to click or approve anything.\n\nThen it does two things. First, it adds the attacker's public key to the list of keys your computer accepts for remote login over SSH, a standard way to log into another computer from afar. Think of it as cutting a spare house key and leaving it in the lock. Second, it opens a connection from your machine out to the attacker's server and keeps it open. That connection can be used in reverse: the attacker's server sends traffic back down it to your computer's login service.\n\nPhorion also says the malware sends details about your machine back to the operator and sets itself up to come back after a restart.\n\n## What isn't settled\n\nThe write-up focuses mainly on macOS, and Phorion points to a likely bug there. On a Mac, remote login is a setting that's usually off. The script checks the setting and only switches it on if the answer is \"Off.\" Run as a normal user, the check prints an administrator-access error instead of an answer. The script reads that as \"not Off\" and skips the step. Phorion says this likely breaks the inbound path on a standard install, though the path works if remote login was already on or gets turned on later. For Windows, Phorion describes setup as likely failing on a standard install.\n\nNobody has independently verified this on real systems. I'd treat it as a reason the damage may be smaller than feared on some machines, and no reason to skip the check. The key is still planted, and the claims about collecting details and surviving restarts don't depend on the login step working.\n\nA lot else is open. Everything published so far concerns the Cursor Marketplace. Commenters noticed the affected version also seems to be missing from the official VS Code marketplace, but nobody has said whether it was compromised there. Nobody has published how many machines were infected. One commenter says the extension has over 27 million installs. That's unsourced, and it's the total for the extension, not necessarily for these two versions.\n\nThe DoublePulsar headline says Anthropic was hacked to deliver a remote access trojan to developer laptops. A remote access trojan is software that gives an outsider control of your machine. Phorion describes a tampered extension bundle and doesn't claim Anthropic's systems were breached. One commenter noted that the Claude Code tool itself doesn't appear compromised. I'd hold off on the stronger claim until Anthropic or Cursor says something specific. We also don't know who runs the attacker's server, what they wanted beyond access and your machine's details, or whether the server is still live.\n\nOne commenter pointed out that taking versions off a store doesn't clean machines that already installed them. That's worth remembering, because the removal notice is the part most people will see.\n\n## What to do about it\n\nStart with the obvious check. Open the extension list in Cursor, find Claude Code, and read the version number. If you see 2.1.312 or 2.1.313, Phorion's advice for organisations applies to you as well: treat it as an incident and bring in someone who does incident response. If you're working alone, that means a security professional, not a forum thread.\n\nIf you want to look yourself, check the list of approved remote-login keys, which lives in a hidden SSH folder in your home directory. Phorion says the attacker's key carries the label svc-telemetry. A key you don't recognize there is a bad sign. A clean list isn't proof you're fine, since the extension also claims to set itself up to survive restarts.\n\nThe broader habit is cheaper. List every AI coding extension you've installed. Remove the ones you don't use. For the rest, check the publisher and which store they came from, and don't assume a name that says \"official\" is the real one. An extension gets to act with your permissions.\n\nA commenter compared this to a supply chain attack like SolarWinds, where trusted software is the delivery route. That might be a stretch on scale for now. The shape is the same, though: you did nothing unusual, and you installed a tool from the store you normally use."
+    }
+  },
+  "zh": {
+    "intro": "Cursor 的插件市场上混进了一个带后门的 Claude Code 扩展，后门就是留给别人偷偷进来的暗门，装了 AI 编程助手的人最好去查一下自己装过什么。另外，OpenAI 会认可网站通用的“不许拿来训练 AI”信号，Impeccable、claude-mem 和 Superpowers 三个工具则想让 AI 编程助手少忘事、少出烂设计。",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Impeccable 给 AI 编程助手一套设计词汇",
+        "takeaway": "拿一个已做好的 App 跑一遍它的审查，看看它能揪出哪些千篇一律的 AI 设计习惯。",
+        "body": "Impeccable 是给 AI 编程助手装的一个设计插件。它用 62 条固定规则查界面，专抓那些一看就是 AI 做的通病。README 里写着，检查不用 AI 模型，也不用 API key（调用 AI 服务的访问密码）。就是纯粹的模式匹配，有点像给千篇一律的设计做拼写检查。\n\n它给助手一套共同的设计词汇。让它打磨、让它更大胆，是在调方向；让它点评、让它审查，是在检查。README 一共列了 24 个命令，分成调方向、审查、收尾、实时迭代、规划设置几组，其中一个是已弃用的别名。支持 Claude Code、Cursor、Codex CLI、GitHub Copilot、Replit Agent、Gemini CLI 等十几个工具。另外有 Chrome 扩展，也能在终端和自动化流程里跑。许可证 README 没写。\n\n审查这一步会看无障碍、性能、主题，还有不同屏幕下排版会不会乱。问题从 P0（必须马上修）排到 P3（锦上添花）。\n\n一个人做产品、没有设计师，AI 默认吐出什么，你的设计就是什么。这个工具给你一份检查清单，还有一套能把要求说具体的词。README 放了前后对比：意大利利古里亚海岸一家 14 间房的家庭旅馆，同一个模型，同一份需求。这是项目自己的例子，不是第三方评测。\n\n有几个限制。对比度太低、字太小这类问题，得扫一个在线页面的网址才查得出来，代码文件只做模式检查。README 说它更擅长改已有的界面，从零做新页面算更难的模式。实时模式能在你本地跑着的网站上试各种设计变体，只能在自己电脑上用，别放到已上线的网站里。规则误报有多频繁，没人说。\n\n今天可以拿一个已经做好的 App 跑一遍审查，只看 P0 那几条。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-30/1.png",
+        "sources": [
+          {
+            "title": "pbakaus/impeccable",
+            "url": "https://github.com/pbakaus/impeccable",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "四家 AI 公司说，会认同同一个拒绝训练的标记",
+        "takeaway": "一个设置就可能让大 AI 公司别抓你的页面做训练。Anthropic 已经支持，Google 和 Microsoft 说明年，OpenAI 说未来几个月。具体写法报道没提。",
+        "body": "Anthropic 已经开始支持了。Google 和 Microsoft 说明年跟上，OpenAI 说“未来几个月”。The Verge 报道，这四家公司都说会认同同一个标记：网站挂上它，他们的 AI 爬虫（自动访问网页、把内容抓走的程序）就不会来抓你的内容做训练。\n\n这个标记写在网站里一个纯文本文件上。多年来，这个文件一直用来告诉爬虫哪些能进、哪些不能进。以前想拒绝 AI 训练，得对每家公司单独说一遍，现在说一次就行。提议人是 Anthropic 的标准负责人 Kevin Kelley，走的是 IETF（制定互联网技术规则的组织）的流程。它还是提案，没有说已经定稿。\n\n如果你卖的东西靠文字、图片、教程，或者手里有一大堆页面，这能省一件杂活。以前每冒出一家新的 AI 公司，清单就得多一行。\n\n缺口也有。Meta 的 Andy Stone 说统一信号是“重要的一步”，但没说 Meta 会照做。标记具体怎么写，The Verge 没提，现在还没法照着抄。Microsoft 说会提供更细的控制，除了拒绝“AI 训练”，还有一档叫 AI grounding 的选项，The Verge 没解释它具体指什么。不管怎么选，网站照样出现在 Bing 搜索里。\n\n今天能做的：查一查你网站那个文件是谁在管。如果你用建站平台或托管服务，它可能是个你从没碰过的设置。再想想你愿不愿意让页面被拿去训练。我会等 OpenAI 给出确切日期再动手。",
+        "note": null,
+        "category": "平台",
+        "card": "/cards/2026-10-30/2.png",
+        "sources": [
+          {
+            "title": "OpenAI, Google, Microsoft, and Anthropic say they will adopt a new standard that publishers can use to opt out of being scraped by AI across multiple crawlers (Emma Roth/The Verge)",
+            "url": "https://www.theverge.com/tech/1023763/openai-google-microsoft-ai-scraping-standard-opt-out",
+            "site": "theverge.com"
+          },
+          {
+            "title": "OpenAI, Google, Microsoft, and Anthropic say they will adopt a new standard that publishers can use to opt out of being scraped by AI across multiple crawlers (Emma Roth/The Verge)",
+            "url": "https://www.techmeme.com/261030/p26#a261030p26",
+            "site": "techmeme.com"
+          },
+          {
+            "title": "Making it easier for websites to express AI training preferences",
+            "url": "https://openai.com/index/helping-websites-express-ai-training-preferences",
+            "site": "openai.com"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "claude-mem 让 AI 编程助手跨对话记事",
+        "takeaway": "开源插件，替你存对话摘要。装之前先看登录方式和试用期过后的条件。",
+        "body": "claude-mem 是个开源小插件，给 AI 编程助手加一份跨对话的记忆。GitHub 上的 README 写着版本 15.7.0，开源协议是 Apache 2.0。\n\n它的做法是：助手干活时，它在旁边记下用了哪些工具、做了什么，整理成简短的摘要，下次开新对话时交给助手。你不用每天早上把项目重讲一遍。它最初是给 Claude Code 做的。README 里还列了 OpenCode、T3 Code、Antigravity CLI、OMP、Grok Bot 的安装命令，列表没列完，这几个之外可能还有。\n\n一个人做长期项目，这挺实在。上周为什么那样改，每次开对话都得重讲一遍，有工具替你记，省下的是实打实的时间。\n\n装之前先看登录这一步。默认安装会让你在浏览器里用邮箱链接登录，登录后拿到一把记忆钥匙，开通 30 天免费试用的观察服务（README 里叫 observer，就是替你记笔记的那个角色）。试用结束，记忆自动退回用你自己的 Anthropic 套餐，除非你订阅。订阅多少钱，README 没写。数据存在哪、怎么处理，除了托管和本地两个选项，也没细说。对话记录里可能有生意上的决定和 bug 细节，我会先想弄清这个。\n\n不想登录也行：自己指定一个提供方，或者把在线选项关掉，或者在自动化构建这类没人操作的环境里跑。\n\nGrok Bot 比较特别。它没有可以挂接的入口，插件只能去读机器人的聊天日志文件。默认用托管记忆 CMEM Pro，想用本地的得自己选。\n\n我会先拿一个随手建的小项目试，并且跳过登录。社区的反馈暂时还没有。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-30/3.png",
+        "sources": [
+          {
+            "title": "thedotmack/claude-mem",
+            "url": "https://github.com/thedotmack/claude-mem",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Cursor 商店的 Claude Code 插件被塞了后门",
+        "takeaway": "看看编辑器插件版本，2.1.312 和 2.1.313 中招。其他 AI 插件也顺手查来源。",
+        "body": "Cursor 插件商店里的 Claude Code 插件，有两个版本被塞了后门。后门是留给别人的暗门，能让陌生人不经你同意进到你的电脑。Phorion 报告，中招的是 2.1.312 和 2.1.313，Cursor 已把这两版撤下。\n\n这个插件把 Claude Code 这个 AI 编程助手装进编辑器。Phorion 说，编辑器一加载插件，恶意代码就跑，不用你点任何东西。它先把攻击者的钥匙加进你电脑的远程登录许可名单，再从你的电脑往外连到攻击者的服务器，好让对方顺线摸回来。Phorion 还说，它会把机器的情况回传给操控者，并留下长期驻守的办法。\n\n在普通权限的 Mac 上，Phorion 判断远程登录这一环多半会失败，除非远程登录本来就开着。Windows 上标准安装多半也装不成。这一点没人独立验证过，我不会拿它当护身符。\n\n下架清理不了已经装过的电脑，有评论的人专门提了这点。官方的 VS Code 商店有没有中招，Anthropic 的系统有没有被攻破，目前都没有定论。DoublePulsar 的标题写 Anthropic 被黑，Phorion 的文章讲的是一个被动过手脚的插件包。\n\n今天就能做：打开 Cursor 的插件列表，看 Claude Code 是哪个版本。如果是 2.1.312 或 2.1.313，这台电脑按已经被入侵来处理。Phorion 建议找应急响应团队，一个人做产品，就请懂安全的人来看这台机器。顺手把别的 AI 插件也过一遍，看看各自从哪来。",
+        "note": null,
+        "category": "平台",
+        "card": "/cards/2026-10-30/4.png",
+        "sources": [
+          {
+            "title": "Backdoor in Claude Code for VS Code extension on the Cursor Marketplace",
+            "url": "https://phorion.io/blog/offical-claude-code-vsx-compromise/",
+            "site": "phorion.io"
+          },
+          {
+            "title": "Backdoor in Claude Code for VS Code extension on the Cursor Marketplace",
+            "url": "https://news.ycombinator.com/item?id=50300683",
+            "site": "Hacker News"
+          },
+          {
+            "title": "Backdoors in official Claude Code extensions",
+            "url": "https://cyberplace.social/@GossiTheDog/117528831681803563",
+            "site": "cyberplace.social"
+          },
+          {
+            "title": "Backdoors in official Claude Code extensions",
+            "url": "https://news.ycombinator.com/item?id=50302334",
+            "site": "Hacker News"
+          },
+          {
+            "title": "Claude Code VS Code extension with backdoor released on Cursor marketplace",
+            "url": "https://doublepulsar.com/anthropic-hacked-to-deliver-remote-access-trojan-to-claude-developer-laptops-worldwide-1148a92baae2",
+            "site": "doublepulsar.com"
+          },
+          {
+            "title": "Claude Code VS Code extension with backdoor released on Cursor marketplace",
+            "url": "https://news.ycombinator.com/item?id=50301983",
+            "site": "Hacker News"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Superpowers 让 AI 编程助手先问清楚再动手",
+        "takeaway": "给 AI 编程工具定规矩：先问、再做计划、先写测试、最后开工。作者的说法还没人测过，拿小项目试最稳。",
+        "body": "Superpowers 想让你的 AI 编程助手（能自己读代码、改代码的那种）在动手之前，先问你到底想做什么。README 管它叫一整套软件开发方法。\n\n具体说，它由一堆“技能包”组成，也就是可以反复使用的小说明书，再加一段开场指令，让助手记得去用。技能会自动触发，你不用专门喊它。\n\n聊清楚之后，助手把方案切成小段给你看，方便你真的读完。README 说方案里强调三个写代码的老习惯：先写一个会失败的测试，再写代码让它通过（行话叫 TDD）；用不着的功能别做；别重复写同样的东西。你说一声“go”，几个帮手 AI 就逐项干活，边做边检查。README 称助手能一次自己干两个小时左右，不会跑偏。这是作者自己的说法，没有第三方测过。\n\n这套做法有点像装修队先给你看图纸，再浇水泥。前面烦一点，换的是少返工。\n\n安装清单很长：Claude Code、Codex、Cursor、Gemini CLI、GitHub Copilot CLI 都在，一共 16 个。每个工具装法不一样，用几个就得装几遍。在 Hermes Agent 上，长到被自动压缩的对话，可能把开场指令弄丢，得重开一个。README 还留了销售邮箱，给想要商业支持、额外工具或代管开销的公司。\n\n我会先拿一个小项目试。评测数据没有，社区反应也还看不到。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-30/5.png",
+        "sources": [
+          {
+            "title": "obra/superpowers",
+            "url": "https://github.com/obra/superpowers",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 4,
+      "headline": "Cursor 商店的 Claude Code 插件被塞了后门",
+      "body": "## Phorion 发现了什么\n\nPhorion 报告说，Cursor 插件商店里的官方 Claude Code for VS Code 插件包，2.1.312 和 2.1.313 两个版本带后门。后门就是留给别人的暗门，能让陌生人不经你同意进到你的电脑。Phorion 说 macOS、Linux、Windows 三个系统上都有对应的代码，文章主要讲 macOS。Cursor 已经把这两个版本从商店撤掉。\n\nPhorion 最早只点名了 2.1.313。后来它更新了说法，因为 Cursor 自己的安全通告把两个版本都列了出来，涉及 macOS 和 Windows。\n\n触发方式很省事。插件是跑在编辑器里的程序，Phorion 说，被注入的那段代码在 Node 加载文件的瞬间就执行了，比插件正常的启动步骤还早。Node 是运行这类插件的程序。整个过程不需要你点任何东西。\n\n接下来它做两件事。第一件，把攻击者的公钥加进你电脑的远程登录许可名单。这里的远程登录指 SSH，是从远处登录另一台电脑的标准办法。公钥可以理解成一把备用钥匙，等于有人偷偷配了一把，插在你家门锁上。Phorion 说这把钥匙的备注是 svc-telemetry。\n\n第二件，脚本从你的电脑往外连到攻击者的服务器，并且一直连着。有点像你从屋里往外拉了一根线，对方再顺着线摸回来：攻击者的服务器可以通过这条线，把流量转回你电脑的登录服务。\n\nPhorion 还说，这个恶意程序会把你电脑的基本情况回传给操控者，并在机器上留下长期驻守的办法。\n\n## 还没搞清楚的\n\nPhorion 指出 macOS 上有个多半会出问题的地方。脚本想先查远程登录开关的状态，只有查到“Off”才去打开。普通用户权限下运行这个查询，得到的是一条需要管理员权限的报错，而不是答案。脚本把它当成“不是 Off”，就跳过了打开开关这一步。所以 Phorion 判断，如果 Mac 上的远程登录原本没开，攻击者从外面连进来的路多半是断的。但如果远程登录本来就开着，或者后来你自己打开了，这条路就通。Windows 方面，Phorion 说标准安装下配置多半会失败。\n\n这些判断没有人在真实系统上独立验证过。我会把它当成“有些机器可能没那么糟”的理由，但不会拿它当不查的理由。钥匙已经写进去了，回传机器信息这类说法，也不依赖登录那一步成不成功。\n\n其他空白还不少。目前公开的材料，讲的都是 Cursor 的商店。有评论的人注意到，出事的版本在官方 VS Code 商店里好像也不见了，但没有人说那边是否中招。有多少台电脑真的被感染，没人公布。有评论的人说这个插件装机量超过 2700 万，这个数没有来源，而且那是整个插件的总量，不一定是这两个版本。\n\nDoublePulsar 那篇文章的标题说，Anthropic 被黑，远程控制木马被送到全世界开发者的电脑上。远程控制木马，就是让外人遥控你电脑的软件。Phorion 描述的是一个被动过手脚的插件包，没有说 Anthropic 的系统被攻破。有评论的人也提到，Claude Code 这个工具本身看起来没有被动过。更强的那个说法，我会等 Anthropic 或 Cursor 给出具体说明再信。攻击者的服务器是谁在管、除了进门和收集机器信息还想干什么、服务器现在还开不开，也都没人知道。\n\n还有一点，有评论的人说，把版本从商店撤掉，清理不了已经装过的电脑。这一点值得记住，因为大多数人看到的只是“已下架”的消息。\n\n## 今天能做的\n\n先做最直接的检查。打开 Cursor 的插件列表，找到 Claude Code，看版本号。如果是 2.1.312 或 2.1.313，Phorion 对企业的建议同样适用：按安全事件处理，找做应急响应的人来看。一个人做产品的话，就是找懂安全的专业人士，别指望论坛帖子。\n\n想自己先看一眼的话，可以去查电脑上那份远程登录许可名单，它放在用户主目录下一个隐藏的 SSH 文件夹里。Phorion 说攻击者的钥匙备注是 svc-telemetry，名单里出现你不认识的钥匙是个坏信号。但名单干净也不能证明没事，因为 Phorion 还说这个程序会留下长期驻守的办法。\n\n更便宜的是改习惯。把你装过的 AI 编程插件列一遍，用不上的删掉。留下的，看一下发布者是谁、从哪个商店装的。名字写着“官方”，也别直接当真，这次的插件就是以官方身份出现的。插件能用你的权限做事，权限给出去之前，多看一眼不亏。\n\n有评论的人拿这件事和 SolarWinds 那种供应链攻击比，也就是通过大家信任的软件来送货。就规模说，现在这么比可能夸张了。但形状是一样的：你什么特别的事都没做，只是在平时用的商店里装了一个工具。"
+    }
+  },
+  "lab": []
+}
