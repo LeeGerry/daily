@@ -1,0 +1,225 @@
+{
+  "date": "2026-10-31",
+  "publishAt": "2026-11-01T12:00:00Z",
+  "en": {
+    "intro": "OpenAI paid a $5,000 reward to someone who found that a ChatGPT share link could be rigged to run code in the session of whoever opened it. The other four stories are about tools for AI agents, the assistants that work through tasks on their own: one gives them a memory, one teaches them design taste, one is a browser built for them, and one runs a whole team of them on your own computer.",
+    "items": [
+      {
+        "n": 1,
+        "headline": "claude-mem gives coding assistants a memory between sessions",
+        "takeaway": "Free to try for 30 days. Check the cost and privacy of the hosted option before using it on client work.",
+        "body": "claude-mem is at version 15.7.0, released under the Apache 2.0 license (a permissive open-source license), and it goes after one irritation: your coding assistant forgets everything when you close the session.\n\nThe GitHub README describes it as a memory system for Claude Code, an AI coding assistant. It watches what the assistant does, writes summaries of it, and feeds them into your next session. Tomorrow's session starts already knowing what happened to your project today. Think of meeting notes handed to the next person on shift.\n\nThe README also lists installers for OpenCode, T3 Code, Antigravity CLI, OMP and Grok Bot. The Grok Bot version plugs in less deeply. It reads the bot's chat log files instead.\n\nThe standard setup asks you to sign in with an email link, then gives you a 30-day free trial of a hosted \"observer\", the piece that writes the summaries. When the trial ends, summarising falls back to your Anthropic plan unless you subscribe. You can also use your own OpenRouter or Gemini account key instead, or skip the sign-in.\n\nThe README gives no price for the hosted option after the trial. It also doesn't say what happens to your project notes on the hosted side. If you work on client code, I'd find that out first.\n\nIf you already use one of these assistants on a long-running project, a side project is an easy place to try it.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-31/1.png",
+        "sources": [
+          {
+            "title": "thedotmack/claude-mem",
+            "url": "https://github.com/thedotmack/claude-mem",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "A shared ChatGPT link could run code in your session",
+        "takeaway": "Fixed Oct 26. If your app embeds shared or user HTML, check what that frame can say to your page.",
+        "body": "A shared ChatGPT link could have run an attacker's code inside your ChatGPT session. You only had to open it.\n\nParameter Labs reported the chain of flaws. OpenAI fixed it on October 26 and paid a $5,000 bounty, which is a reward for reporting a bug. Parameter Labs says the attacker's code ran with chatgpt.com's own identity. That meant it could list your conversations, pull the text of a private one, and send it to an outside server. Simon Willison points out the victim had to be signed in.\n\nThe pieces were ordinary. ChatGPT's graph feature loaded a math library called MathLive. That library listened for messages from other parts of the page and didn't check who sent them. An HTML preview box, a page shown inside a page, could send it anything. Another embedded box had no sandbox, a setting that seals off what code inside it can touch. Parameter Labs says it got script running by stringing those together with a YouTube feature the page's security rules allowed.\n\nThe most reliable version needed one click on a Preview button. Parameter Labs also describes an automatic version that fired about 4.5 seconds after opening, and says it reproduced that three times. Nobody has said whether real attackers used it before the fix.\n\nWillison calls the $5,000 payout a bit cheap for something this serious. I'd agree.\n\nIf your app shows chat output, shared pages or user-written HTML inside a frame, two checks are worth an hour today. Does anything in your app accept messages from other frames without confirming the sender? And is every embedded box sealed off with a sandbox?",
+        "note": null,
+        "category": "Platforms",
+        "card": "/cards/2026-10-31/2.png",
+        "sources": [
+          {
+            "title": "Do the math: How we took over ChatGPT accounts",
+            "url": "https://www.parameter.ai/labs/we-found-a-gap-at-openai",
+            "site": "parameter.ai"
+          },
+          {
+            "title": "Do the math: How we took over ChatGPT accounts",
+            "url": "https://news.ycombinator.com/item?id=50314699",
+            "site": "Hacker News"
+          },
+          {
+            "title": "Researchers are paid $5K for reporting a bug to OpenAI that would let attackers run code in logged-in sessions of all who opened the hacker's ChatGPT share link (Swati Khandelwal/The Hacker News)",
+            "url": "https://thehackernews.com/2026/10/a-shared-chatgpt-link-could-run.html",
+            "site": "thehackernews.com"
+          },
+          {
+            "title": "Researchers are paid $5K for reporting a bug to OpenAI that would let attackers run code in logged-in sessions of all who opened the hacker's ChatGPT share link (Swati Khandelwal/The Hacker News)",
+            "url": "https://www.techmeme.com/261031/p11#a261031p11",
+            "site": "techmeme.com"
+          },
+          {
+            "title": "How We Took Over ChatGPT Accounts",
+            "url": "https://simonwillison.net/2026/Oct/31/how-we-took-over-chatgpt-accounts/",
+            "site": "simonwillison.net"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Impeccable gives coding agents a design vocabulary",
+        "takeaway": "Open-source add-on that critiques AI-built screens and flags stock AI looks. Test it on one screen first.",
+        "body": "Impeccable's checker has 62 fixed rules for spotting the look of AI-generated interfaces, and none involve an AI. The README says it uses no AI model and no key for an AI service. Same page in, same findings out. Like a spell-checker, but for design habits.\n\nThat checker is one half of an open-source add-on for AI coding assistants, the tools that write code inside your project. The code is public. The other half is vocabulary: 24 commands with names like polish, bolder, critique and audit, so \"make this bolder\" points at something defined. Critique scores a screen against usability rules and ranks the fixes. Audit covers accessibility, speed, theming and how the page behaves on different screen sizes, and ranks problems from blocking down to polish.\n\nIt works with Claude Code, Cursor, Codex CLI, GitHub Copilot and more than a dozen other tools. It can record your product goals and existing visual style, so the assistant stops guessing.\n\nThe README's showpiece is a before and after: same model, same brief (a fourteen-room family guesthouse on the Ligurian coast), with and without Impeccable. That's the project's own demo, and nobody independent has checked it. The model name, \"Fable 5.1\", isn't described anywhere else. Treat it as a pitch.\n\nLive mode opens your running site with an overlay and writes the variants you accept back into the code. Its text edits can run an optional script with your permissions, and the README says to read it first in any project you didn't write. Keep live mode on your own machine, never on a deployed site.\n\nTo try it, pick one screen and ask for a critique. The README says narrow requests beat whole-page ones. Scanning code files only catches pattern problems. Low contrast and tiny text need the checker pointed at a real page address. The license, price and upkeep status aren't stated, so look before relying on it.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-31/3.png",
+        "sources": [
+          {
+            "title": "pbakaus/impeccable",
+            "url": "https://github.com/pbakaus/impeccable",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Lightpanda: a headless browser claiming 16x less memory",
+        "takeaway": "Self-reported, but a lighter browser for scraping or agents could shrink your server bill. Test one job.",
+        "body": "Lightpanda's GitHub README has two numbers worth a look. Loading 100 web pages peaked at 123MB of memory in Lightpanda and 2GB in headless Chrome. Time for the same run: 5 seconds against 46.\n\nA headless browser is a web browser with no window, which programs use to load pages. Scrapers, test scripts and AI agents all lean on headless Chrome. It works, and it eats memory. Lightpanda is a new one written from scratch in Zig, a newer programming language, with no Chromium fork or WebKit patch underneath. The README sums it up as 16x lighter and 9x faster.\n\nThose figures are the project's own. The test loaded 933 real pages on one AWS m5.large (a mid-size rented cloud server), and it only compared against Chrome.\n\nIf your product browses the web for customers, memory is a big part of what you rent servers for. A browser using a sixteenth of it could mean a smaller machine, or more jobs on the one you have.\n\nThe README shows Puppeteer, a popular automation library, connecting to it, so moving an existing script may be a small change. There's also an agent mode. You describe a task in plain English, an AI model you pick (Anthropic, OpenAI, Gemini and others) writes a script, and you can replay that script later with no model involved.\n\nIt runs on Linux and macOS. Windows needs WSL2, a Linux layer inside Windows. Docker setups built on Alpine, a stripped-down version of Linux, won't run it. The install options shown are nightly builds (automatic builds made every night), with no stable release mentioned. I'd try it on one low-stakes job and hold off on anything customer facing.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-31/4.png",
+        "sources": [
+          {
+            "title": "lightpanda-io/browser",
+            "url": "https://github.com/lightpanda-io/browser",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Orkas: a free desktop AI team for recurring work",
+        "takeaway": "Free, MIT-licensed, runs on your machine. Try one weekly chore with the 500 starter credits.",
+        "body": "If your laptop was asleep when a scheduled task came due, Orkas runs only the most recent missed one when the machine wakes up, as long as it's within 12 hours. That detail, from the project's README, tells you what this app is for: dull, recurring work on your own computer.\n\nOrkas is a free desktop app for macOS and Windows, published on GitHub under the MIT license, which lets anyone use and change it. You give it a goal and a \"Commander\" breaks the job into steps and hands them to helpers. The README lists 16 built-in specialists, including ones for research, SEO, slide decks, video and voice, plus five for e-commerce. The Commander can also call in outside AI coding assistants such as Claude Code and Codex.\n\nA project stores its goal, rules, memory and files, so the next conversation picks up where the last one stopped. Work gets split into a to-do list shared between you and the agents. Turn on Auto-advance and the team takes the next item on its own, then brings finished work back for you to review. Automations can repeat hourly, daily, weekly or monthly.\n\nFor a one-person shop, that covers weekly chores like competitor research, product descriptions and newsletter drafts. By default Orkas asks before it sends, posts or deletes anything through Gmail, Slack or Shopify. The README says all data stays on your computer.\n\nThe download comes with 500 credits for Orkas's own AI model, so you don't need an AI company's account key to start, though you can plug in your own from Claude, OpenAI, Gemini or DeepSeek.\n\nIt's unclear what credits cost after the first 500 or what paid plans run. I also haven't seen anything showing how well the built-in agents do real work, and automations only run while your computer is on. I'd start with one weekly chore and watch how fast the 500 credits go.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-10-31/5.png",
+        "sources": [
+          {
+            "title": "Orkas-AI/Orkas",
+            "url": "https://github.com/Orkas-AI/Orkas",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 2,
+      "headline": "A shared ChatGPT link could run code in your session",
+      "body": "## How the chain fit together\n\nParameter Labs' write-up is a good example of a serious bug made from unremarkable parts. No single piece looks like a disaster. The trouble comes from how they connect.\n\nStart with ChatGPT's graph feature. When a conversation includes a graph, the page loads a math library called MathLive. Parameter Labs says that library sets up a listener in the main ChatGPT page. Web pages use these listeners so that boxes embedded inside them can send notes to the page. A well-behaved listener checks who sent each note. Parameter Labs says this one didn't. It accepted layout-update messages from any origin, which is the web's term for any sender. The layout in those messages could contain HTML, and the library put that HTML straight into the page.\n\nNow add the second piece. ChatGPT has an HTML Preview feature that shows assistant-written HTML in an embedded frame. That frame could send messages to the listener. Simon Willison notes that nothing stopped other sandboxed frames from calling it either. A sandbox is meant to limit what a frame can do, but a sandboxed frame that can message the main page still has a door open.\n\nThe last step was getting actual script running. Parameter Labs says one embedded box was inserted without a sandbox setting, which gave code inside it chatgpt.com's identity. It then used a YouTube feature that ChatGPT's script rules allowed to run JavaScript. Those rules, called a content security policy, are supposed to be the safety net. Here one of the allowed sources got bent into a way through.\n\nThe attack sat in a single public conversation: a real graph, plus a later assistant-authored HTML Preview. Share that conversation, send the link, and the viewer's browser does the rest. Parameter Labs says the code could list the victim's conversations, fetch content from a private one, and send it to an external server. Willison adds that the data could leave through an image reference, meaning a picture request that quietly carries information to the attacker.\n\n## What's confirmed and what isn't\n\nOpenAI fixed it on October 26, per Parameter Labs, and classified the report as P1. Hacker News and Willison both put the payout at $5,000. A Hacker News comment quotes OpenAI as saying both frontends now reject the reported messages. That's a comment quoting OpenAI, so treat it as probably right but secondhand.\n\nParameter Labs describes two versions of the attack. The most stable reproduction needed one click on the Preview button. The automatic version needed the HTML block marked as previewable, and opened on its own with an alert after roughly 4.5 seconds. They reproduced that three times. Three runs shows it can work. It doesn't tell you how often it would work in the wild.\n\nNobody has said what else the attack could reach beyond conversation content and the conversation list, or whether anyone attacked real users before the fix. Willison says the account takeover only applied if the victim was signed in to ChatGPT.\n\nWillison and a Hacker News commenter both think $5,000 is low, and the commenter worries it discourages reporting. That's an opinion, but a reasonable one for a bug that could read private chats. Another commenter linked a separate report about remote file access from the ChatGPT desktop app and said the combination looks bad. One called it a classic OAuth failure (OAuth is a common sign-in system), but nothing here describes an OAuth flaw, so I'd ignore that.\n\n## What to check in your own app\n\nMost indie products won't have OpenAI's codebase. Many still have the same ingredients: a place where user content gets shown to other people, an embedded frame or two, and a third-party library that does something handy.\n\nThree questions are worth asking.\n\nFirst, does any part of your app listen for messages from embedded frames? If so, does it confirm who sent each one before acting? Parameter Labs' chain depended on a listener that trusted everyone.\n\nSecond, is user-written or AI-written HTML ever placed into a page without being sealed off? If you show it, show it in a frame with a sandbox, and think about what that frame is still allowed to message.\n\nThird, which third-party libraries add listeners you didn't write? In this chain, a library loaded for the graph feature is what installed the listener in the main page. Skim your dependencies for anything that talks to the page from outside.\n\nIf your app builds on ChatGPT shares or displays its content, the fix on OpenAI's side doesn't change any of this."
+    }
+  },
+  "zh": {
+    "intro": "OpenAI 给报漏洞的人发了 5000 美元奖金：ChatGPT 的分享链接能被做手脚，别人一点开，代码就在他自己的对话里跑起来了。另外四条都跟 AI 助手有关，就是能自己干活的那种：一个帮它记事，一个教它审美，一个是专门给它用的浏览器，一个在你电脑上带一队 AI。",
+    "items": [
+      {
+        "n": 1,
+        "headline": "claude-mem 让 AI 编程助手跨会话记住你的项目",
+        "takeaway": "可免费试用 30 天。用在客户项目前，先查清托管版的收费和隐私。",
+        "body": "AI 编程助手有个老毛病：窗口一关，它就把你的项目忘光了。claude-mem 是一个开源小工具，专治这个。当前版本 15.7.0，用 Apache 2.0 协议（一种宽松的开源许可）。\n\n它是给 Claude Code 做的，也就是 Anthropic 的 AI 编程助手。claude-mem 在旁边看着助手干了什么，写成摘要，下次开新会话时再塞回去。有点像交接班的会议记录，明天的助手一上来就知道你今天折腾到哪了。\n\nREADME 里还列了 OpenCode、T3 Code、Antigravity CLI、OMP 和 Grok Bot 的安装方式。Grok Bot 这一版接得浅一些，主要是盯着聊天记录文件看，另外有个要自己手动打开的“提醒推送”试点。\n\n默认装法会让你用邮箱链接登录，然后送 30 天免费试用。试用的是它托管的“观察员”，就是负责写摘要的那一块。试用结束后，写摘要的活自动落到你自己的 Anthropic 套餐上，除非你订阅。你也可以换成自己的 OpenRouter 或 Gemini 密钥，或者干脆跳过登录。\n\n有两件事 README 没交代：试用之后托管版多少钱；你的项目笔记在托管那头怎么处理。摘要具体怎么压出来的，也只有“语义摘要”四个字。要是你做的是客户的项目，我会先问清楚这两件事再装。\n\n已经在长期项目里用这些助手的话，拿个自己的小项目先试，最稳。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-31/1.png",
+        "sources": [
+          {
+            "title": "thedotmack/claude-mem",
+            "url": "https://github.com/thedotmack/claude-mem",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "一个 ChatGPT 分享链接，能在你的账号里跑代码",
+        "takeaway": "10 月 26 日已修。你的 App 若嵌了用户或外部 HTML，查查那个窗口能对主页面说什么。",
+        "body": "别人发你一个 ChatGPT 分享链接，你点开，对方写的代码就能在你登录的 ChatGPT 里跑起来。这是 Parameter Labs 报给 OpenAI 的一串漏洞。OpenAI 10 月 26 日修好了，付了 5000 美元赏金（奖励发现漏洞的人）。\n\nParameter Labs 说，这段代码是以 chatgpt.com 自己的身份在跑，能列出你的对话列表，读出一段从没分享给攻击者的私人对话，再发到外面的服务器。Simon Willison 补了一句：受害者得是登录状态。\n\n用到的零件都很普通。ChatGPT 的图表功能会加载一个数学库 MathLive，它会听页面里其他窗口发来的消息，而且不看是谁发的。HTML 预览是页面里套的小窗口，正好能给它发消息。另一个嵌入框没设沙箱（一种把里面的代码关起来的设置）。再借一个页面安全规则本来放行的 YouTube 功能，脚本就跑起来了。\n\n最稳的复现要点一下预览按钮。Parameter Labs 也说有自动版，打开后约 4.5 秒触发，他们复现了 3 次。修复之前有没有人真被攻击过，没人说。\n\nWillison 觉得这种级别的漏洞只给 5000 美元，有点便宜。我同意。\n\n如果你的 App 会在窗口里显示聊天内容、分享页或用户写的 HTML，今天花一小时查两件事：有没有哪里在收别的窗口发来的消息，却不核对来源；每个嵌入框是不是都加了沙箱。",
+        "note": null,
+        "category": "平台",
+        "card": "/cards/2026-10-31/2.png",
+        "sources": [
+          {
+            "title": "Do the math: How we took over ChatGPT accounts",
+            "url": "https://www.parameter.ai/labs/we-found-a-gap-at-openai",
+            "site": "parameter.ai"
+          },
+          {
+            "title": "Do the math: How we took over ChatGPT accounts",
+            "url": "https://news.ycombinator.com/item?id=50314699",
+            "site": "Hacker News"
+          },
+          {
+            "title": "Researchers are paid $5K for reporting a bug to OpenAI that would let attackers run code in logged-in sessions of all who opened the hacker's ChatGPT share link (Swati Khandelwal/The Hacker News)",
+            "url": "https://thehackernews.com/2026/10/a-shared-chatgpt-link-could-run.html",
+            "site": "thehackernews.com"
+          },
+          {
+            "title": "Researchers are paid $5K for reporting a bug to OpenAI that would let attackers run code in logged-in sessions of all who opened the hacker's ChatGPT share link (Swati Khandelwal/The Hacker News)",
+            "url": "https://www.techmeme.com/261031/p11#a261031p11",
+            "site": "techmeme.com"
+          },
+          {
+            "title": "How We Took Over ChatGPT Accounts",
+            "url": "https://simonwillison.net/2026/Oct/31/how-we-took-over-chatgpt-accounts/",
+            "site": "simonwillison.net"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Impeccable 给 AI 编程助手一套设计词汇",
+        "takeaway": "开源插件，能点评 AI 做的界面，揪出千篇一律的 AI 味。先拿一个页面试。",
+        "body": "Impeccable 的检查器有 62 条固定规则，专门揪 AI 生成界面的那股味儿，整个过程不用 AI。README 里写着不调用大模型，也不要 API key（调用 AI 服务用的密钥）。同一个页面扫几次，结果都一样。有点像给设计习惯做拼写检查。\n\n这个检查器是一个开源小插件的一半，装在 AI 编程助手（在你项目里替你写代码的工具）上。另一半是一套设计词汇：24 个命令，名字叫 polish、bolder、critique、audit 之类。你说“再大胆点”，助手知道具体指什么。critique 按易用性原则给界面打分，再把该改的排个序。audit 查无障碍、速度、主题，还有不同屏幕尺寸下的表现，问题从 P0（会卡住用户）排到 P3（打磨细节）。\n\n它支持 Claude Code、Cursor、Codex CLI、GitHub Copilot 等十几个工具。还能把你的产品目标和现有视觉风格记下来，助手就不用瞎猜了。\n\nREADME 的招牌是一组前后对比：同一个模型，同一份需求（意大利利古里亚海岸一家 14 间房的家庭民宿），一边用 Impeccable，一边不用。这是项目自己做的展示，没人独立验证过。模型名叫 Fable 5.1，资料里也没有它的介绍。当宣传页看就好。\n\n实时模式会在你本地正在跑的网站上盖一层操作界面，你接受的方案直接写回源码。改文案时可能运行一个可选脚本，权限跟你自己一样，README 建议在不熟的项目里先看一眼脚本。只在自己电脑上用，别放到已上线的网站上。\n\n想试的话，挑一个页面，让它做一次 critique。README 说范围越小效果越好。直接扫代码文件只能查出套路类的问题，对比度太低、字太小这类，得把检查器对准真实网页地址才查得到。许可证、价格、有没有人维护，README 里都没写，用之前自己去看一眼。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-31/3.png",
+        "sources": [
+          {
+            "title": "pbakaus/impeccable",
+            "url": "https://github.com/pbakaus/impeccable",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Lightpanda：自称内存少用 16 倍的无头浏览器",
+        "takeaway": "数字是自测的，但爬虫或智能体要是吃服务器内存，可以拿一个小任务试试。",
+        "body": "加载 100 个网页，Lightpanda 峰值内存 123MB，无头 Chrome 要 2GB。耗时 5 秒对 46 秒。这是 Lightpanda 自己 GitHub 说明文档里的数字。\n\n无头浏览器，就是没有窗口的浏览器，专门给程序打开网页用。爬虫、测试脚本、AI 智能体都靠它。Lightpanda 用 Zig（一门比较新的编程语言）从零写成，不是 Chromium 的分支，也没在 WebKit 上打补丁。文档把成绩总结成：轻 16 倍，快 9 倍。\n\n数字是项目自己测的。933 个真实网页，一台 AWS 的 m5.large（中等配置的租用云服务器），对手是无头 Chrome。跟别的浏览器比得怎么样，文档没说。\n\n如果你的产品要替客户上网抓东西，服务器账单里内存占很大一块。用量降到十六分之一，可能换台小点的机器，或者同一台多跑几份活。\n\n文档里给了 Puppeteer（一个流行的浏览器自动化工具库）连接它的例子，现成的脚本可能改一点就能换。还有个代理模式：你用大白话描述任务，你选的 AI 模型（Anthropic、OpenAI、Gemini 等）生成一段脚本，以后重放这段脚本，不用再调模型。\n\n它支持 Linux 和 macOS。Windows 得用 WSL2（Windows 里的一层 Linux）。Linux 版的程序文件在 Alpine（一种精简版 Linux）这类系统上跑不了。给出的安装方式多是每晚自动打的测试版（nightly），没有提到正式版本。我会先拿一个出错也没事的小任务试试，面向客户的先不动。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-31/4.png",
+        "sources": [
+          {
+            "title": "lightpanda-io/browser",
+            "url": "https://github.com/lightpanda-io/browser",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Orkas：免费的本地 AI 团队，专管重复的活",
+        "takeaway": "免费、MIT 开源、数据留本机。拿 500 点额度试一件每周的小事。",
+        "body": "笔记本合盖睡着了，错过了一个定时任务，怎么办？Orkas 的答案是：电脑醒来时，补跑最近错过的那一次，超过 12 小时就算了。README 里写着这条规则，也基本说明了这个应用想干什么：在你自己的电脑上，做那些无聊的、反复的活。\n\nOrkas 是个免费的桌面应用，有 macOS 和 Windows 版，代码放在 GitHub 上，用 MIT 协议，意思是谁都能用、能改。你给一个目标，里面一个叫 Commander（指挥官）的角色会把活拆成步骤，分给手下的 AI 帮手。README 列了 16 个内置的专业帮手，有做调研的、做 SEO 的、做 PPT 的、做视频和配音的，还有 5 个管电商的。指挥官也能叫外面的 AI 编程助手来帮忙，比如 Claude Code 和 Codex。\n\n一个项目会存下目标、规则、记忆和文件，下次聊天接着上次往下做。活儿列成待办清单，人和 AI 各领各的。打开“自动推进”，团队会自己拿下一条待办，做完交回来等你检查。定时任务可以每小时、每天、每周、每月重复。\n\n对一个人开店的人来说，每周都要做的竞品调研、商品描述、通讯稿草稿，都算这类活。接上 Gmail、Slack、Shopify 之后，默认在发送、发布、删除之前先问你。README 说数据都留在你电脑上。\n\n下载自带 500 点额度，用 Orkas 自己的模型，不用先去注册 AI 公司的密钥。想用自己的也行，支持 Claude、OpenAI、Gemini、DeepSeek。\n\n500 点用完怎么收费、付费版多少钱，没写。内置帮手干活到底行不行，我也没见到有人验证过。定时任务还得电脑开着才会跑。我会先挑一件每周都要做的小事交给它，看 500 点能撑多久。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-10-31/5.png",
+        "sources": [
+          {
+            "title": "Orkas-AI/Orkas",
+            "url": "https://github.com/Orkas-AI/Orkas",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 2,
+      "headline": "一个 ChatGPT 分享链接，能在你的账号里跑代码",
+      "body": "## 几个小零件怎么连成一条链\n\nParameter Labs 这篇报告有意思的地方在于，没有哪一块单看像灾难，出问题的是它们连起来的样子。\n\n先说 ChatGPT 的图表功能。对话里有图表时，页面会加载一个数学库 MathLive。Parameter Labs 说，这个库会在 ChatGPT 主页面里装一个监听器。网页用这种东西接收嵌在里面的小窗口发来的消息。规矩的做法是先看发件人是谁。Parameter Labs 说这个库没看，任何来源发来的版面更新消息它都收。消息里的版面可以带 HTML，库又直接把它塞进了页面。\n\n再看第二块。ChatGPT 有个 HTML 预览功能，把助手写的 HTML 放在一个嵌入的小窗口里显示。这个小窗口可以给上面那个监听器发消息。Simon Willison 指出，也没有任何机制拦着别的沙箱窗口去调它。沙箱本来是限制窗口能干什么的，但一个能给主页面发消息的沙箱窗口，门还是开着的。\n\n最后一步是让脚本真的跑起来。Parameter Labs 说，有一个嵌入框插入时没有设沙箱，里面的代码因此拿到了 chatgpt.com 的身份。接着他们用了 YouTube 的一个功能去执行 JavaScript，这个功能恰好在 ChatGPT 的安全规则（内容安全策略）允许的名单里。这套规则本该是最后一道防线，这里名单上的一个来源被拿来当了通道。\n\n整个攻击藏在一段公开对话里：一张真的图表，加上后面一段助手写的 HTML 预览。分享出去，把链接发给别人，剩下的交给对方的浏览器。Parameter Labs 说，代码能列出受害者的对话，取出一段私人对话的内容，发到外部服务器。Willison 补充，数据可以通过一次图片请求带出去，也就是一张图的加载请求里悄悄夹着信息。\n\n## 哪些是确定的，哪些没说清\n\n按 Parameter Labs 的说法，OpenAI 10 月 26 日修好了，并把这份报告定为 P1。The Hacker News 和 Willison 都说赏金是 5000 美元。Hacker News 上有条评论引用 OpenAI 的话，说两个前端现在都会拒绝那些消息。这是评论转述，不是 OpenAI 自己的公开声明，我会当作大概率对、但属于二手信息。\n\nParameter Labs 描述了两个版本。最稳的复现要点一下预览按钮。自动版需要把那段 HTML 标成可预览，打开后自己就会触发，大约 4.5 秒后弹出一个提示框。他们复现了 3 次。3 次说明确实能成，说不了真实环境里成功率多高。\n\n还有几件事没人说：除了对话内容和对话列表，攻击还能碰到什么；修复前有没有人拿它攻击过真实用户。Willison 提到，要夺走账号，受害者得是登录状态。\n\nWillison 和一位 Hacker News 评论者都觉得 5000 美元偏低，后者担心这会让人不想再报漏洞。这是观点，但对一个能读私人对话的漏洞来说，说得过去。另一位评论者贴了一份别的报告，讲 ChatGPT 桌面端能被远程访问文件，说两件事放一起很糟。还有人说这是典型的 OAuth（一种常见的登录授权方式）实现失误，可报告里没有任何 OAuth 的问题，这条我会忽略。\n\n## 回头查自己的 App\n\n多数独立开发者没有 OpenAI 那么大的代码量，但常有同样的材料：一个把用户内容展示给别人看的地方，一两个嵌入窗口，几个好用的第三方库。\n\n有三个问题可以今天就问问自己。\n\n第一，你的 App 里有没有地方在听嵌入窗口发来的消息？有的话，处理前核对发件人了吗？这条链靠的就是一个谁都信的监听器。\n\n第二，用户写的或者 AI 写的 HTML，有没有不加隔离就放进页面？要显示，就放进带沙箱的窗口里，并且想清楚这个窗口还能给主页面发什么消息。\n\n第三，哪些第三方库替你装了你没写过的监听器？这次就是为图表功能加载的库，在主页面里装了那个监听器。把依赖翻一遍，找找哪些会从外面跟页面说话。\n\n如果你的产品依赖 ChatGPT 的分享内容，或者会展示它，OpenAI 那边修好了，上面这三条还是得自己过一遍。"
+    }
+  },
+  "lab": []
+}
