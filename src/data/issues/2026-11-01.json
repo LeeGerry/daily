@@ -1,0 +1,185 @@
+{
+  "date": "2026-11-01",
+  "publishAt": "2026-11-02T12:00:00Z",
+  "en": {
+    "intro": "Two of today's five tools type what you say, Hex and Handy, and both run on your own computer. The rest: claude-mem, which lets an AI coding assistant remember things between sessions; Lightpanda, a browser with no window, built for AI agents to drive; and a Claude Code setup that plays a 49-agent game studio.",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Claude-Mem gives coding assistants a memory between sessions",
+        "takeaway": "A free add-on that stops you re-explaining your project each session. Check the privacy terms first.",
+        "body": "Every new session with a coding assistant starts cold. You explain the project again, and the assistant asks about decisions you already made. Claude-Mem is a free, open-source add-on (Apache 2.0 license) that tries to fix that.\n\nThe README says it watches what the assistant does, writes short summaries, and hands them to the next session. It's built for Claude Code. The installer also covers OpenCode, T3 Code (an app that runs Codex and Claude Code) and Grok Bot. It needs Node 20 or newer, a common behind-the-scenes tool for developer software.\n\nThe money part is worth reading before you install. Setup asks you to sign in with an email link, which gives you a 30-day free trial of the project's hosted summarizer, called the observer. When the trial ends, memory falls back to your Anthropic plan unless you subscribe. You can also pick your own OpenRouter or Gemini key from the start, or skip the sign-in entirely.\n\nIf you build alone, you're the only one who remembers why things are the way they are. A tool that keeps those notes could save real time. It could also keep them badly. The README offers no tests of how good the summaries are, and it doesn't say what the hosted service does with your data. I'd try it on a side project first and keep it away from anything a client owns.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-01/1.png",
+        "sources": [
+          {
+            "title": "thedotmack/claude-mem",
+            "url": "https://github.com/thedotmack/claude-mem",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Lightpanda: a lighter browser for scrapers and AI agents",
+        "takeaway": "Claims 16x less memory than Chrome. Self-reported, so test on your own pages first.",
+        "body": "Lightpanda says loading 100 pages took 123MB of memory. Headless Chrome, in the same test, used 2GB.\n\nA headless browser is a web browser with no window. Programs use it to open pages, click around and read what's there, which is how plenty of scraping tools and AI agents work. Lightpanda's README says its version is written from scratch in a language called Zig. It also lists 5 seconds for those 100 pages versus 46 for Headless Chrome. That's where the \"16x lighter, 9x faster\" headline comes from.\n\nThe numbers are the project's own, from one Amazon cloud server. The README mentions 933 real pages, but the table covers 100, and it doesn't explain the gap. It points to no independent check.\n\nIf your product loads web pages on a server, the memory figure is the one to look at. A lighter browser could mean a smaller hosting bill, if the numbers hold on your pages.\n\nTrying it is cheap. It installs through Homebrew on a Mac, or as a ready-made Docker package (a bundled, ready-to-run app) for Intel and Arm chips. The README shows a Puppeteer script, a popular tool that remote-controls Chrome, connecting to it. So the test is to point an existing script at Lightpanda and compare.\n\nIt also has an agent mode where you type plain English and an AI model of your choice does the browsing. Sessions can be saved as replayable scripts. The README doesn't say if that part is stable.\n\nNo native Windows version, so you'd need WSL2 (Windows' built-in Linux layer). No Android build either. Pricing isn't mentioned, and the license shows only as a badge, so check it before building on this.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-01/2.png",
+        "sources": [
+          {
+            "title": "lightpanda-io/browser",
+            "url": "https://github.com/lightpanda-io/browser",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Hex: on-device voice dictation for Mac, Windows, Linux",
+        "takeaway": "Hold a key, talk, text pastes into any app. MIT licensed. Test accuracy in your language first.",
+        "body": "Hold a key, talk, and the words land in whatever app you're using. That's Hex, a free dictation tool that runs on your own computer, on Mac, Windows and Linux. Its GitHub page describes it in about that many words.\n\nThe speech is turned into text on your device. The first run downloads a speech model, which is the file that does the listening. After that, the page says nothing leaves your machine. That's the project's own statement, and the page offers no outside verification. It also doesn't name the model, give its size, or say how accurate it is. Supported languages aren't listed either.\n\nIf you spend your days writing support replies, release notes or store descriptions, talking instead of typing could save real time. Because the transcribing happens on your device, you aren't sending your voice to someone's server, assuming the claim holds.\n\nHex uses the MIT license, a permissive one that is common for open-source code. If you build a desktop product and want voice input in it, that makes Hex worth a look. Read the license text before you ship anything.\n\nThe Mac build is listed only for Apple silicon, the M-series chips. Intel Macs aren't mentioned. Windows and Linux each get versions for both standard and ARM processors. There are two release tracks: Stable, which is the current release, and Dev, the newest build from the project's development line, which updates itself. Experimental features sit in a section called Labs at the bottom of the sidebar.\n\nThe project doesn't take code contributions. If you find a bug or have an idea, you post it on the project's GitHub page as an issue.\n\nI'd start with Stable. Dictate a full day of replies and see whether it copes with your language and the apps you actually use.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-01/3.png",
+        "sources": [
+          {
+            "title": "anomalyco/hex",
+            "url": "https://github.com/anomalyco/hex",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "A 49-agent AI game studio whose own test ranked paperwork last",
+        "takeaway": "Open-source setup for solo game makers on Claude Code. In its own test, 30 documents didn't beat one page.",
+        "body": "Thirty documents in 58 minutes, all before a single line of game code. That's what the \"standard\" setting of Claude Code Game Studios produced in its own test. The minimal setting wrote one page and took no time.\n\nThe project is open source on GitHub. It takes Claude Code, an AI coding assistant, and turns one session into a pretend game studio. The README lists 49 agents (separate AI roles, each with its own instructions) and 74 skills (shortcut commands for steps like designing a system, planning stories, or closing out a task). It also ships 15 hooks, 14 rules and 62 templates. The agents sit in three tiers: three directors (creative, technical, producer), department leads, and specialists. There are ready-made sets for Godot 4, Unity and Unreal Engine 5, three engines (the software games get built in).\n\nThe README says four games were built from one brief at different rigor levels. Every build ended up as a running game that had been tested. Two blind reviewers and a human playtest ranked the standard build last. The extra 29 documents gave you a paper trail of decisions, the README says, and no better game.\n\nTake that with salt. It's four games from one brief, measured by the project itself. The visible table shows only two of the four levels, and nobody says who the reviewers were.\n\nFor a solo maker, the paperwork is the real cost, so I'd start at minimal. One rule applies at every level, even the lightest. If a change affects what the player sees, it isn't done until you've launched the game, watched it, and saved a screenshot. You can steal that habit without installing anything.\n\nIf you make games with Claude Code, read the README, pick your engine's agent set, and try the light setting on a small project first.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-01/4.png",
+        "sources": [
+          {
+            "title": "Donchitos/Claude-Code-Game-Studios",
+            "url": "https://github.com/Donchitos/Claude-Code-Game-Studios",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Handy: free speech-to-text that never leaves your computer",
+        "takeaway": "Free, offline dictation for Windows, macOS and Linux. Check the license before you fork it.",
+        "body": "Hold a key, talk, let go, and your words show up in whatever text box you're in. That's Handy, a free, open source dictation app for Windows, macOS and Linux. The README says it works completely offline, so your voice stays on your computer and the audio isn't sent to the cloud.\n\nYou pick the shortcut. You can hold to record, tap to start and stop, or lock it to one of those modes. It filters out silence, and it offers two families of speech models. Whisper comes in Small, Medium, Turbo and Large sizes and uses your graphics chip when there is one. Parakeet V3 is tuned for ordinary processors and detects the language on its own.\n\nFor anyone selling their own product, the pull is simple. There's no transcription service to pay for, and the code is open, so you can read it, copy it and build your own version (called forking). There's already a Raycast add-on, listed in the README as third-party, that starts recordings and switches models.\n\nThe README publishes no accuracy numbers for either model, and the excerpt names no license, so check the license terms before you fork anything. Scripting controls are mostly beta. Linux needs an extra helper tool to type text for you, and the README says one of those fails on Ubuntu 26.04. The fn (Globe) key only works on Apple keyboards.\n\nI'd start by dictating your own notes or support replies for a week. If the quality holds up, then think about forking it.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-01/5.png",
+        "sources": [
+          {
+            "title": "cjpais/Handy",
+            "url": "https://github.com/cjpais/Handy",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "Claude-Mem gives coding assistants a memory between sessions",
+      "body": "## What it actually does\n\nClaude-Mem describes itself as a persistent memory compression system for Claude Code. Strip that down and it does three things. It records what the assistant does while it works. It boils those records into short summaries that capture meaning rather than raw logs. And it makes those summaries available when you start the next session.\n\nThe point is that coding assistants forget. Close the window and the conversation is gone, along with the reasons behind the choices you made. If you work alone, nobody else holds that history, so you end up as the memory. A tool that takes that job over is an easy pitch to understand.\n\nThe project is on version 15.8.1, uses the Apache 2.0 license (you can use and change it freely, including commercially) and needs Node 20 or newer. Node is a free runtime that a lot of developer tools rely on, and you probably have it if you've installed any command-line tools before. Installation is one command, npx claude-mem install, which downloads the installer and runs it in one go.\n\nIt works with more than Claude Code. The README gives install routes for OpenCode (version 1.3.4 or later, including OpenCode 2) and for T3 Code, where the installer finds the providers you've enabled and supports both Codex and Claude Code. I'd check the project page for the full T3 Code steps.\n\nGrok Bot is the odd one. It has no hooks, which are points where an add-on can listen in on what's happening. So Claude-Mem watches its chat log files instead. That's a workaround, and workarounds tend to be where the rough edges live.\n\nThere's also an awareness feature in pilot for Grok Bot. It adds short dated notes to the bot's monthly log for four kinds of moments: decisions, bug fixes, security alerts and anything marked sensitive. You can switch it off with a setting. Decisions and bug fixes make sense to record. The sensitive category made me want to know what gets written down and where, and the README doesn't go into it.\n\n## The money and the sign-in\n\nSomething has to write the summaries, and that something is another AI model. Every summary is work done by that model, and somebody pays for it.\n\nDuring install you sign in with an email link. That creates a memory key and starts a 30-day free trial of the claude-mem observer, the project's hosted summarizer. When the trial ends, memory falls back to your Anthropic plan unless you subscribe. So after 30 days the worst case is that your summaries run on a plan you already pay for, and nothing stops.\n\nYou also get a choice of who does the work: the hosted observer, your own OpenRouter or Gemini key, or your Anthropic plan. If you'd rather not sign in at all, you can name a provider at install time, set an opt-out setting, or run the installer in an automated setup where it skips the sign-in on its own. For Grok Bot, the default is the hosted memory, and running the summarizer on your own machine is opt-in.\n\nIf you pay for Claude already, the interesting question is how much of your plan's allowance the summarizing uses. The README makes a claim about getting up to 100% more usage out of your plan. That's unverified, and I'd treat it as marketing until someone measures it on a real project.\n\n## What nobody has checked yet\n\nThere are no independent tests of memory quality, and no community discussion to lean on, so the README is all there is. That matters because a memory tool can fail quietly. A bad summary doesn't throw an error. It just nudges your assistant toward a wrong assumption about your project, and you may not notice for a while.\n\nThe bigger gap for anyone selling software is privacy. The README doesn't state the data handling terms for the hosted observer. Summaries of your work are summaries of your code, your decisions and possibly your customers' details. If you build for clients, or your app handles anyone's personal data, I'd hold off on the hosted option until that's written down somewhere. Using your own key or your own Anthropic plan at least means dealing with a provider you already know.\n\nI think it's worth an afternoon on a personal side project, a low-risk place to find out whether the summaries are useful or just noise. Check after a week whether you've stopped re-explaining things. If you have, that's your benchmark, and it's more relevant than anything in a README."
+    }
+  },
+  "zh": {
+    "intro": "今天五个工具里，Hex 和 Handy 都能在你自己的电脑上把说话转成文字。另外三个是：claude-mem 让 AI 编程助手记住上次做过的事，Lightpanda 是给 AI 用的没有窗口的浏览器，还有一套 Claude Code 配置，模拟 49 个 AI 组成的游戏工作室。",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Claude-Mem 让 AI 编程助手跨会话记住项目",
+        "takeaway": "免费开源，省得每次重讲项目。托管服务的隐私条款没写，先别拿客户项目试。",
+        "body": "每次跟 AI 编程助手开新会话，都像第一天上班。项目得重讲，上周定好的事它又来问。Claude-Mem 是个免费开源的小插件（Apache 2.0 协议），想解决这件事。\n\nREADME 里写着，它会记下助手干过什么，整理成简短摘要，下次开会话时交给助手。主要给 Claude Code 用，安装程序也支持 OpenCode、T3 Code 和 Grok Bot。要先装 Node 20 以上，那是很多开发工具都靠它运行的免费环境。\n\n先看钱再装。安装时要用邮箱链接登录，换来 30 天免费用它自家托管的摘要服务，名字叫 observer。试用结束，记忆回到你自己的 Anthropic 套餐上跑，除非你订阅。也可以一开始就填自己的 OpenRouter 或 Gemini 密钥（调用 AI 的账号凭证），或者干脆跳过登录。\n\n一个人做产品，项目为什么长这样，只有你记得。有工具替你记，能省不少口水。记歪了也有可能。README 没给任何摘要质量的测试，托管服务怎么处理你的数据也没写。我会先拿个人小项目试，客户的活先别碰。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-01/1.png",
+        "sources": [
+          {
+            "title": "thedotmack/claude-mem",
+            "url": "https://github.com/thedotmack/claude-mem",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Lightpanda：给爬虫和 AI 助手用的轻量浏览器",
+        "takeaway": "号称比 Chrome 省 16 倍内存，但数据是自家测的，先拿自己的页面试。",
+        "body": "Lightpanda 说，加载 100 个网页，它只占 123MB 内存。同样的测试，Headless Chrome 占 2GB。\n\n先说 Headless Chrome 是什么：没有窗口的浏览器。程序拿它打开网页、点按钮、读内容，很多爬虫和 AI 助手都这么干。Lightpanda 的 README 里写着，它用一门叫 Zig 的语言从头写成，不是 Chrome 的改版。README 还列了跑完这 100 个页面的时间，5 秒对 46 秒。号称的“轻 16 倍、快 9 倍”就是这么来的。\n\n数字是项目自己测的，用的是亚马逊云上的一台服务器。文字里说测了 933 个真实网页，表格里却只有 100 个页面的结果，中间怎么对应的没解释。也没有第三方验证。\n\n如果你的产品要在服务器上开网页，比如抓价格、查链接、给 AI 喂内容，最该看的是内存那一行。浏览器轻了，服务器账单可能跟着轻，前提是你的页面上也能跑出这个结果。\n\nMac 上能用 Homebrew 装，也有打包好的现成程序（Docker 镜像），Intel 和 Arm 芯片都有。README 里有一段 Puppeteer（一个常用的遥控 Chrome 的工具）脚本连上它的例子。所以最省事的试法：把你现成的脚本指向 Lightpanda，跑一遍，比一比。\n\n它还带一个代理模式：你用大白话下指令，你选的 AI 模型替你操作网页，操作过程能存成脚本反复跑。这部分稳不稳定，README 没写。\n\nWindows 没有原生版本，得先装 WSL2（Windows 自带的 Linux 环境）。Android 也跑不了。价格没提，许可证在页面上只是一个徽章，真要在它上面做产品，先去查清楚。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-01/2.png",
+        "sources": [
+          {
+            "title": "lightpanda-io/browser",
+            "url": "https://github.com/lightpanda-io/browser",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Hex：Mac、Windows、Linux 上的本地语音输入",
+        "takeaway": "按住快捷键说话，文字贴进你正在用的软件。MIT 许可。先用你的语言试试准不准。",
+        "body": "按住一个快捷键，说话，文字就贴进你正在用的软件里。这就是 Hex，一个免费开源的语音输入工具，Mac、Windows、Linux 都有版本。\n\n转文字在你自己的电脑上完成。第一次打开要下载一个语音模型，也就是负责“听”的那个文件。之后项目页面说，数据不出你的机器。这是项目自己的说法，没有第三方验证。模型叫什么、多大、准不准，页面都没写。支持哪些语言、哪些软件，也没列。\n\n如果你每天要写客服回复、更新说明、应用商店介绍，改成开口说，可能省不少时间。声音不用传到别人的服务器，前提是上面那句话属实。\n\nHex 用 MIT 许可证，这是一种很宽松的开源许可。你要是在做桌面软件，想加语音输入，可以翻一翻它。上线之前，自己把许可证原文读一遍。\n\n下载方面，Mac 版只列了 M 系列芯片，Intel 的 Mac 没提。Windows 和 Linux 都有普通处理器和 ARM 两种版本。更新路线有两条：稳定版是当前正式版本，开发版是开发分支上最新的版本，会自己更新。实验性功能放在侧边栏最底下，叫 Labs。\n\n项目不收别人提交的代码。发现问题或者有想法，去 GitHub 页面提一个问题单（issue）说明。\n\n我会先装稳定版，拿一整天的回复试试，看它听不听得懂你的口音，和你常用的那几个软件配不配。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-01/3.png",
+        "sources": [
+          {
+            "title": "anomalyco/hex",
+            "url": "https://github.com/anomalyco/hex",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "49 个 AI 角色的游戏工作室，自测却把标准档排了最后",
+        "takeaway": "给用 Claude Code 做游戏的人。自测里写了 30 份文档的标准档排了最后，可以先试最轻档位。",
+        "body": "30 份文档，58 分钟，游戏代码一行还没写。这是 Claude Code Game Studios 的「标准」档，在项目自己的测试里干的事。最简档只写了一页纸，用时 0 分钟。\n\n这是 GitHub 上的开源项目，能把一次 Claude Code（一个 AI 编程助手）的对话，变成一间假想的游戏工作室。README 列了 49 个分工不同的 AI 角色和 74 个技能（一条快捷命令对应一个步骤，比如设计系统、拆任务、收尾）。另外还带 62 个模板。角色分三层：创意、技术、制作三位总监，下面是各部门负责人，再下面是专才。Godot 4、Unity、Unreal Engine 5 这三个做游戏的引擎，各有一套现成的角色。\n\nREADME 说，他们用同一份需求，按不同严格程度做了 4 个游戏，数的是写第一行游戏代码之前出了多少文档。每一版最后都是能跑、测过的游戏。两位盲评的评审加一次真人试玩，把标准档排了最后。多出来的 29 份文档，README 的说法是换来了可追溯，没换来更好的游戏。\n\n这个结论先打个折。才 4 个游戏，一份需求，还是项目自己测的。表里只露了两档，评审是谁也没写。\n\n一个人做产品，写文档的时间才是真成本，我会从最简档开始。\n\n有条规矩所有档位都一样，最轻的也不例外：只要改动玩家看得见，就得真的启动游戏看一遍，留一张截图，这件事才算完。这个习惯不用装任何东西，现在就能偷。\n\n如果你正用 Claude Code 做游戏，先看 README，挑好自己引擎那一套，拿个小项目试最简档。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-01/4.png",
+        "sources": [
+          {
+            "title": "Donchitos/Claude-Code-Game-Studios",
+            "url": "https://github.com/Donchitos/Claude-Code-Game-Studios",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Handy：免费离线的语音转文字，声音不出你的电脑",
+        "takeaway": "开源听写软件，Windows、macOS、Linux 可用。许可证还不清楚，fork 之前先查。",
+        "body": "按住一个键说话，松手，字就出现在你当前的输入框里。这是 Handy，一个免费开源的听写软件，Windows、macOS、Linux 都能用。README 说它完全离线运行，声音只留在你电脑上，不会传到云端。\n\n快捷键自己定。可以按住录音、松手停止，也可以点一下开始、再点一下结束，还能锁定只用其中一种。静音的部分会自动过滤。语音模型有两类：Whisper 分小、中、Turbo、大几个尺寸，有显卡会用显卡加速；Parakeet V3 针对普通处理器优化，能自动识别语言。\n\n对自己做产品的人，好处很直接：免费，代码开源，能读，也能复制一份改成自己的版本（也叫 fork）。已经有人做了个第三方的 Raycast 插件，能开始或停止录音、翻历史记录、切换模型和语言。\n\n短板也摆在那儿。两类模型的准确率，README 没给数字。许可证写的什么还不清楚，想改了拿去卖，先查清楚。命令行控制大多还在测试阶段。Linux 上要另装一个帮你打字的小工具，README 还说其中一个在 Ubuntu 26.04 上不能用。fn（地球仪）键的快捷键，只在苹果自家键盘上有效。Mac 上用蓝牙耳机的麦克风录音时，播放音质或音量可能暂时变差。\n\n我会先拿它听写一周自己的笔记或客服回复。质量够用，再考虑要不要 fork。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-01/5.png",
+        "sources": [
+          {
+            "title": "cjpais/Handy",
+            "url": "https://github.com/cjpais/Handy",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "Claude-Mem 让 AI 编程助手跨会话记住项目",
+      "body": "## 它到底做什么\n\nClaude-Mem 给自己的定位是 Claude Code 的“持久记忆压缩系统”。拆开说就三件事。助手干活时，它记录助手做了什么。然后把这些记录压成简短的摘要，留下意思，不留流水账。下次你开新会话，摘要会交到助手手里。\n\n要解决的毛病大家都熟：AI 编程助手会忘。窗口一关，对话没了，当初为什么这么选也跟着没了。一个人做产品，没有同事替你记着这段历史，你自己就成了那块记忆。有工具肯接这个活，谁都听得懂。\n\n项目现在是 15.8.1 版，用 Apache 2.0 协议（可以免费用、免费改，商用也行），要求 Node 20 以上。Node 是一个免费的运行环境，很多开发工具都靠它，装过命令行工具的话多半已经有了。安装只要一条命令：npx claude-mem install。它的作用是先下载安装程序，再当场运行。\n\n它不只服务 Claude Code。README 给了 OpenCode 的安装方式（1.3.4 或更新版本，包括 OpenCode 2），也给了 T3 Code 的。T3 Code 那边，安装程序会自己找出你启用的服务，Codex 和 Claude Code 都支持。T3 Code 的完整步骤我没法确认，README 那一段在句子中间就断了，去项目页看全文比较稳。\n\nGrok Bot 比较特别。它没有挂钩，也就是插件用来偷听软件动静的接口。Claude-Mem 只好改成盯着它的聊天记录文件。这算变通办法，变通办法往往是毛边多的地方。\n\nGrok Bot 还有个试运行中的“提醒”功能。遇到四类时刻，它会往机器人的月度日志里追加带日期的短记录：决定、修好的 bug、安全警报、标为敏感的内容。可以用一个设置关掉。记决定和 bug 很合理。“敏感”那一类到底记什么、记在哪，README 没细说。\n\n## 谁来付摘要的钱\n\n写摘要的是另一个 AI 模型，每一条摘要都是它干的活，总得有人付钱。\n\n安装时要用邮箱链接登录。登录后会生成一把记忆密钥，同时开通 30 天免费试用，用的是项目自家托管的摘要服务 claude-mem observer。试用结束后，记忆会自动回到你自己的 Anthropic 套餐上跑，除非你订阅。所以 30 天后最坏的情况，是摘要改用你本来就在付费的套餐，服务不会直接停。\n\n谁来干活你也可以选：托管的 observer、你自己的 OpenRouter 或 Gemini 密钥，或者你的 Anthropic 套餐。不想登录的话，安装时直接指定一个服务商就行，也可以设一个选项拒绝联网，在自动化环境里跑安装程序也会自动跳过登录。Grok Bot 的默认值是托管记忆，想在自己电脑上跑摘要，得手动选。\n\n如果你本来就订了 Claude，真正该问的是：摘要会吃掉套餐多少额度。README 里有一句话，说能多用最多 100% 的额度。这个说法没人验证过，在有人拿真项目量过之前，我只当广告词看。\n\n## 还没人验证的部分\n\n目前没有任何独立测试评估记忆质量，社区口碑怎么样也还不清楚。这点要紧，因为记忆工具坏起来是悄悄的。一条差的摘要不会报错，只会把助手往一个错误的假设上推一点，你很可能过一阵才发现。\n\n对做产品卖软件的人，更大的缺口是隐私。README 没写托管 observer 怎么处理数据。你的工作摘要，就是你的代码、你的决定，还可能夹着客户的信息。给客户做项目，或者 App 里碰到别人的个人数据，在这条写清楚之前，我会先不用托管那个选项。用自己的密钥或自己的 Anthropic 套餐，至少对面是你已经打过交道的服务商。\n\n我觉得值得花一个下午，拿个人的小项目试。风险低，正好看看摘要是有用还是添乱。用一周，看自己是不是不再重复解释了。如果是，这就是你自己的测试结果，比 README 里任何一句话都管用。"
+    }
+  },
+  "lab": []
+}
