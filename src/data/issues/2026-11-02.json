@@ -1,0 +1,195 @@
+{
+  "date": "2026-11-02",
+  "publishAt": "2026-11-03T12:00:00Z",
+  "en": {
+    "intro": "Someone packed 49 AI helpers and 72 add-on skills into a pretend game studio for Claude Code, and that's only one of today's five stories. We also look at a memory add-on for AI coding assistants, Anthropic's new block on cloning games, a tool that lets AI take over your computer, and a small llm update that adds gpt-6.1 models.",
+    "items": [
+      {
+        "n": 1,
+        "headline": "claude-mem gives AI coding helpers a memory",
+        "takeaway": "Trial it on one side project. The savings claim is the README's own, and sign-in is optional.",
+        "body": "Start a new session with an AI coding assistant and it remembers nothing about yesterday. A session is just one working conversation, and when it ends, the context goes with it. claude-mem is a GitHub project that tries to fix that.\n\nThe README describes a memory system for Claude Code. It records what the assistant does as it works, boils that down into short summaries, and hands them to the next session. It's at version 15.9.0.\n\nIt isn't limited to Claude Code. The README also lists installers for OpenCode (version 1.3.4 or later), T3 Code and Grok Bot. Grok Bot gives add-ons no official way to listen in, so claude-mem reads its chat logs instead.\n\nThe money part is worth a slow read. Installing opens a browser sign-in, where you get an emailed link instead of a password. That starts a 30 day free trial. When it ends, memory falls back to your Anthropic plan unless you subscribe. You can skip the sign-in. For Grok Bot, the default is a hosted memory service called CMEM Pro, and you have to ask for a local one.\n\nThe README promises up to 100% more usage from your plan. That's the README's own marketing copy, and no benchmarks back it up.\n\nIf you already pay for one of these assistants and spend the first ten minutes of each session re-explaining your project, try it on one side project during the trial. Check which sign-in route you're on before you let it near client work.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-02/1.png",
+        "sources": [
+          {
+            "title": "thedotmack/claude-mem",
+            "url": "https://github.com/thedotmack/claude-mem",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "LLM 0.37 switches its default to a model half the old one's price",
+        "takeaway": "If you never picked a model, your default changed to a cheaper one. Check what your scripts call.",
+        "body": "Simon Willison's LLM tool just changed its default model to gpt-6-luna, which he says costs half what the old default, gpt-5.6-luna, did. It only applies if you never picked a model yourself. If that's you, your costs could shift, so check what your scripts are actually calling.\n\nLLM is a tool you run by typing into the terminal (the plain text window where you give your computer commands). It's also a Python library, a bundle of ready-made code that programmers can drop into their own projects. Version 0.37 rolls up about two months of features and fixes.\n\nTwo new models are in: gpt-6.1-sol and gpt-6.1-terra. Willison's blog post doesn't give prices for either one, so I'd hold off on switching anything until you've seen a price.\n\nThe addition I'd care about more is a new command for adding models that use an OpenAI-compatible endpoint. That's a web address that accepts requests in the same format as OpenAI's service, so tools built for OpenAI can talk to it too. Setting these up is now easier. If you test several services or run your own, that's less fiddling.\n\nEmbeddings also got an update. Those turn text, images or audio into lists of numbers so software can search by meaning. LLM now accepts that different files can have different content types. Willison says that's needed for models like Gemini Embedding 2, which handles text, audio, images and video.\n\nThe release includes fixes from 12 authors, almost all AI-assisted. Willison says reviewing them wasn't nearly the burden he expected. He treats each one as a bug report with an example attached, and he uses Opus 5.5 or GPT-6 Astra to help sort them.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-02/2.png",
+        "sources": [
+          {
+            "title": "llm 0.37",
+            "url": "https://simonwillison.net/2026/Nov/2/llm/",
+            "site": "simonwillison.net"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Claude Code now steers away from cloning existing games",
+        "takeaway": "Original and genre games should still work. Cloning a specific existing game is what it avoids.",
+        "body": "Two sentences. That's how much Anthropic says it added to the standing instructions behind Claude Code, its AI coding assistant, to keep it from rebuilding someone else's video game.\n\nThose instructions are called a system prompt: text the AI reads before every conversation, which you normally never see. A user on X posted a screenshot of what they said was the new wording. Anthropic's Addy Osmani didn't confirm that exact text. He did confirm the update, made on Opus 5.5, and said the aim is to steer Claude away from recreating a specific game, because using Claude to infringe on someone's IP (their creative work) is against Anthropic's usage policy.\n\nAccording to the screenshot, Claude should build original games, genre games and games from the user's own designs and assets. It shouldn't recreate a specific existing game, even if the user names it or calls it original. The Verge reports this lands while retro gaming is being overrun with AI-made decompilations, recompilations and ports, meaning rebuilt versions of old games.\n\nIf you make original games, Osmani says that work is meant to keep going as before. Anthropic calls the change a steer, short of a complete block, and says it will keep adjusting the balance.\n\nWhat nobody has explained is where \"recreation\" ends and \"a game in the same genre\" begins. If you're building in a well-loved style, start from your own designs and art, and know that a refusal is possible. Osmani said people whose original work gets refused can send it to him.",
+        "note": null,
+        "category": "Platforms",
+        "card": "/cards/2026-11-02/3.png",
+        "sources": [
+          {
+            "title": "[r/LocalLLaMA] Yet another reason to self host: Anthropic has (again) cut back on reverse engineering tools",
+            "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xm33gr/yet_another_reason_to_self_host_anthropic_has/",
+            "site": "reddit.com"
+          },
+          {
+            "title": "Anthropic clamps down on Claude’s AI video game clones",
+            "url": "https://www.theverge.com/ai-artificial-intelligence/1024632/anthropic-claude-ai-video-game-clones",
+            "site": "theverge.com"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "agent-desktop lets AI agents operate desktop apps",
+        "takeaway": "Free Vercel tool lets an AI drive Mac, Windows and Linux apps. Try it on a spare machine first.",
+        "body": "Vercel Labs' new agent-desktop lets an AI agent operate apps on a Mac, Windows or Linux machine by reading them the way a screen reader does. The README says it works through the accessibility tree. That's the structured list of buttons, menus and text fields your operating system already keeps for assistive software.\n\nThe loop is simple. The agent asks for a snapshot, a text listing where every clickable thing gets a short reference tag. It acts on one tag. Then it takes a new snapshot to check what happened. No pixel matching anywhere.\n\nBy default it works in the background. It doesn't move your pointer or grab focus from what you're doing. It runs on macOS, Windows and Linux, it's free under the Apache-2.0 license, and it installs through npm, the standard installer for JavaScript tools. It also ships as a library, so your own program can call it directly. The README includes a Python example.\n\nPlenty of small-business chores live in a desktop app with no API: an old accounting package, a vendor portal, a design tool with no export button. This is a ready-made way to let an agent operate those without building the plumbing yourself.\n\nIt has rough edges. Tags go stale when the screen changes, so the agent has to re-snapshot. Several windows of one app confuse it until you name the window. Four commands for holding down keys or mouse buttons refuse to run yet. Linux depends on your session type, and macOS needs you to grant Accessibility permission. Vercel calls it a Labs product and hasn't said how stable it is.\n\nSnapshots and screenshots can capture whatever's on your screen, so keep them out of public logs.\n\nI'd try it on a spare machine or test account, with one boring task where a mistake costs nothing.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-02/4.png",
+        "sources": [
+          {
+            "title": "vercel-labs/agent-desktop",
+            "url": "https://github.com/vercel-labs/agent-desktop",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "An AI game studio whose own test ranked its standard setup last",
+        "takeaway": "Start light. Borrow the rule: launch the game and keep a screenshot before calling a visible change done.",
+        "body": "One game brief, four games, each built at a different level of paperwork. The one with 30 planning documents ranked last.\n\nThat's from the README of Claude Code Game Studios, a public GitHub project that turns a single Claude Code session (an AI coding assistant) into a pretend game studio. The README lists 49 agents, which are separate AI helpers with one job each, like creative director or lead programmer. It also lists 74 skills, which are saved routines you start with a short command. On top of that come 15 hooks, 14 rules and 62 templates. The helpers sit in three tiers: directors, department leads, specialists. There are starter sets for Godot 4, Unity and Unreal Engine 5.\n\nIn the experiment, the lightest setting produced 1 planning document before any game code. The standard setting produced 30 documents and took 58 minutes. Two blind reviewers and a human playtest ranked the standard build last. The README's own verdict is that the extra 29 documents gave a paper trail of why things were decided (traceability, in its words) and no better game. That's the project testing itself. It doesn't name the games or the reviewers, so treat it as one data point.\n\nOne rule applies at every setting. If a change affects what the player sees, it isn't done until you've launched the game, watched it and saved a screenshot. You can borrow that without installing anything.\n\nThe README also says the three directors run on Opus and the lead programmer and fifteen specialists on Sonnet (two different AI models). The other thirty use whatever your session runs. It doesn't say what that costs. I'd start on the minimal setting and check usage before turning on the full crew.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-02/5.png",
+        "sources": [
+          {
+            "title": "Donchitos/Claude-Code-Game-Studios",
+            "url": "https://github.com/Donchitos/Claude-Code-Game-Studios",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "claude-mem gives AI coding helpers a memory",
+      "body": "## What it does\n\nThe idea behind claude-mem is simple. AI coding assistants start every session blank. You open a new conversation and the assistant has no idea what you built last week, which decisions you made, or why that one file looks strange. You either paste the background in again or spend the first stretch of the session letting it rediscover things.\n\nThe README describes a memory compression system built for Claude Code. As the assistant works, claude-mem captures observations about the tools it uses, meaning the actions it takes on your project. It then generates semantic summaries, which are short descriptions of what happened and what it meant, and makes them available to future sessions. Think of a colleague who keeps notes after every meeting and slides the relevant ones across the desk next time. You get the notes without anyone rereading the full transcript.\n\nThe README lists version 15.9.0 and says it needs Node 20 or newer. Node is a common runtime that many developer tools run on. If you've never installed it, that's a hurdle if you don't write code.\n\nIt also reaches beyond Claude Code. There are installers for OpenCode (1.3.4 or later, including OpenCode 2), for T3 Code, and for Grok Bot. The T3 Code instructions come with chores. You restart the app, trust the add-on's hooks when it asks, and begin a new thread. Hooks are points where a tool lets an add-on listen in. Grok Bot has none, so claude-mem watches its chat log files instead. That's a workaround, and it's reasonable to expect it to be less tidy than a real hook. The README doesn't say how much less.\n\n## The sign-in and the bill\n\nThis is the part I'd read twice. Running the installer with no extra choices opens a browser sign-in. You enter an email, get a link, and click it. That creates a memory key and switches on what the README calls the observer, the part that writes the summaries. It also starts a 30 day free trial.\n\nAfter the trial, the README says memory falls back to your Anthropic plan unless you subscribe. The wording is short. It reads as though the summary-writing then draws on your own plan's usage, but I wouldn't bet on the details without watching your usage meter for a few days.\n\nYou can opt out of the sign-in. Naming a provider yourself, switching off the online opt-in setting, or installing in a non-interactive way all skip it. So the trial route is only the default.\n\nGrok Bot is the odd one. Its default is the hosted CMEM Pro memory, and a local observer is something you have to ask for. If you'd rather your project notes stayed on your own machine, that's the setting to find before you start. The README doesn't spell out what the hosted service stores, so I'd assume summaries of your work live somewhere you don't control until shown otherwise.\n\n## What we don't know\n\nEverything here comes from one page, the project's own README. There's no independent reporting, no benchmark, and no community discussion to lean on. The line about getting up to 100% more usage from your plan is a marketing claim. It could be true for some workflows. Nobody has shown how it was measured.\n\nThere are loose ends too. The README mentions an awareness push pilot for Grok Bot that writes to memory logs, and gives no scope or status for it. It also isn't clear whether the observer and free trial terms apply to everyone or only some users.\n\nThe case for trying it is practical. Repeated context is a real cost if you pay by usage, and it's a real annoyance even if you don't. A memory layer is a sensible answer. The case for caution is practical too. Anything that records what an assistant does on your project deserves a look at where those records go.\n\nPick a low-stakes side project, install it during the trial, and compare how long your first ten minutes of a session take with and without it. Watch your plan usage while you do. If the summaries save you real time, you'll know before the trial runs out. If you can't tell the difference, you've lost an afternoon."
+    }
+  },
+  "zh": {
+    "intro": "有人给 Claude Code 搭了个虚拟游戏工作室，塞进 49 个 AI 帮手和 72 个技能包，这是今天五条里的一条。另外四条：让 AI 编程助手跨天记事的插件、Anthropic 不让 Claude Code 拆解复刻游戏、能让 AI 接管电脑操作的工具，还有 llm 更新到 0.37 加了 gpt-6.1 模型。",
+    "items": [
+      {
+        "n": 1,
+        "headline": "claude-mem 想让 AI 编程助手记住昨天的事",
+        "takeaway": "先拿一个小项目试。省额度的说法是它自己写的，登录可以跳过。",
+        "body": "新开一个 AI 编程助手的对话，它对昨天的事一无所知。一次对话结束，上下文就跟着没了。GitHub 上有个项目叫 claude-mem，想解决这件事。\n\nREADME 里写着，它是给 Claude Code 做的记忆系统。助手干活时，它把做过的事记下来，压成几句摘要，交给下一次对话。当前版本 15.9.0。\n\n它也不只服务 Claude Code。README 还列了 OpenCode（1.3.4 或更新版本）、T3 Code 和 Grok Bot 的安装方式。Grok Bot 没给插件留监听的口子，claude-mem 就去读它的聊天记录文件。\n\n安装时会弹出浏览器登录，用邮箱收一条链接，不用设密码。登录后有 30 天免费试用。试用结束，记忆功能退回到你自己的 Anthropic 套餐，除非你订阅。登录可以跳过。Grok Bot 默认用的是托管的 CMEM Pro 记忆服务，想在本地跑得自己开。\n\nREADME 还写了“最多多用 100% 的套餐额度”。这是它自己的宣传语，没有测试数据。\n\n如果你已经在付费用这类助手，又总得给它重讲一遍项目，可以拿一个小项目在试用期里跑跑看。碰客户的活儿之前，先确认自己走的是哪条登录路线。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-02/1.png",
+        "sources": [
+          {
+            "title": "thedotmack/claude-mem",
+            "url": "https://github.com/thedotmack/claude-mem",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "LLM 默认模型换成 gpt-6-luna，作者称价格减半",
+        "takeaway": "没自己选过模型的话，默认已换成作者说便宜一半的那个。去查查脚本到底在调哪个。",
+        "body": "Simon Willison 的 LLM 工具把默认模型换成了 gpt-6-luna。他说价格只有之前默认的 gpt-5.6-luna 的一半。只有从没自己挑过模型的人才会受影响。如果你是，花的钱可能会变，去看看脚本到底在调哪个。\n\nLLM 是个在终端（就是敲命令的那个黑窗口）里用的小工具，也是一个 Python 代码库，程序员可以直接嵌进自己的项目。0.37 版攒了大约两个月的新功能和修复。\n\n新加了两个模型，gpt-6.1-sol 和 gpt-6.1-terra。Willison 的博客没写它们的价格，我会先等价格出来再决定换不换。\n\n我更在意另一个新增：现在有一条专门的命令，用来添加走 OpenAI 兼容接口的模型。所谓兼容接口，是一个收请求的网址，格式跟 OpenAI 的服务一样，所以给 OpenAI 做的工具也能接它。这类模型现在配起来更容易。常换服务试效果的人，或者自己搭了模型服务的人，能少折腾一点。\n\n嵌入（embeddings）也有更新。它能把文字、图片、音频变成一串数字，让软件按意思去搜索。LLM 现在允许不同的文件有不同的内容类型。Willison 说，像 Gemini Embedding 2 这种同时处理文字、音频、图片和视频的模型，必须这样才行。\n\n这一版收了 12 个人提交的修复，几乎都有 AI 帮忙。Willison 说审起来远没有他预想的那么累。他把每个都当成附了例子的 bug 报告来看，分拣时还会请 Opus 5.5 或 GPT-6 Astra 搭把手。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-02/2.png",
+        "sources": [
+          {
+            "title": "llm 0.37",
+            "url": "https://simonwillison.net/2026/Nov/2/llm/",
+            "site": "simonwillison.net"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Claude Code 开始绕开复刻现成游戏的活",
+        "takeaway": "原创和同类型游戏应该照常能做，复刻具体某款游戏会被拦。从自己的设计和素材出发更稳。",
+        "body": "Anthropic 说，他们只往 Claude Code 里加了两句话，就想让它别再帮人复刻别人的游戏。\n\nClaude Code 是一个 AI 编程助手。这两句话加在它的系统提示里，也就是 Anthropic 写给它、用来引导它怎么做事的一段文字。X 上有人发了一张截图，说是新加的内容。Anthropic 的 Addy Osmani 没有确认截图上的原话，但确认了更新，说是在 Opus 5.5 上改的。目的是让 Claude 别去重做某一款具体的游戏，因为用 Claude 侵犯知识产权，本来就违反 Anthropic 的使用政策。\n\n按截图的说法，Claude 该做原创游戏、某个类型的游戏，或者照用户自己的设计和素材做的游戏。不该复刻一款具体的现成游戏，哪怕用户点了名，或者说这是原创的。The Verge 提到，现在复古游戏圈里，AI 做的反编译、重新编译和移植版本到处都是，说白了就是把老游戏拆开，再重新做出来。\n\n自己做原创游戏的人，Osmani 说这些照常能用。Anthropic 把这次改动叫“引导”，没有彻底封死，还会继续调整分寸。\n\n没人讲清楚的是，“复刻”和“同类型游戏”的界线在哪。如果你做的是某种很多人爱的经典玩法，最好从自己的设计和美术出发，也做好被拒绝的准备。Osmani 说，原创作品被拒的话，可以发给他看。",
+        "note": null,
+        "category": "平台",
+        "card": "/cards/2026-11-02/3.png",
+        "sources": [
+          {
+            "title": "[r/LocalLLaMA] Yet another reason to self host: Anthropic has (again) cut back on reverse engineering tools",
+            "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xm33gr/yet_another_reason_to_self_host_anthropic_has/",
+            "site": "reddit.com"
+          },
+          {
+            "title": "Anthropic clamps down on Claude’s AI video game clones",
+            "url": "https://www.theverge.com/ai-artificial-intelligence/1024632/anthropic-claude-ai-video-game-clones",
+            "site": "theverge.com"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "agent-desktop 让 AI 直接操作桌面软件",
+        "takeaway": "Vercel 出的免费工具，能让 AI 操作 Mac、Windows、Linux 软件。先拿闲置电脑试。",
+        "body": "Vercel Labs 放出了一个免费工具 agent-desktop，能让 AI 帮你操作 Mac、Windows 或 Linux 上的桌面软件。它读软件的方式跟读屏软件差不多，走的是系统自带的“无障碍树”，也就是操作系统给每个窗口记的一份按钮、菜单、输入框清单。\n\n流程很朴素。AI 先要一份快照，是一段文字清单，每个能点的东西都有个短编号。它对着编号操作一下，再拍一次快照看结果。全程不认图，也不比对像素。\n\n默认在后台跑，不抢你的鼠标，也不会把你正在用的窗口顶掉。用 npm 安装，就是 JavaScript 工具常用的安装器。它也能当程序库用，你自己的程序可以直接调，README 里给了个 Python 的例子。协议是 Apache-2.0。\n\n对做产品的人，用处可能在那些没有接口的桌面软件上：老的记账软件，没有导出按钮的设计工具，只能点着用的客户端。现在有个现成的办法，让 AI 直接去点。\n\n毛病也有。编号跟着快照走，界面一变就作废，得重拍。同一个软件开了多个窗口，它会搞混，要指明是哪个。60 个命令名里能跑的是 56 个，按住按键和鼠标的 4 个还不能用。Linux 看你用哪种桌面会话，macOS 要先给辅助功能权限。Vercel 只标了 Labs 产品，稳不稳没说。\n\n快照和截图会带上屏幕上的内容，别丢进公开日志。\n\n我会找台闲置电脑或测试账号，挑一件出错也没损失的无聊小事先试。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-02/4.png",
+        "sources": [
+          {
+            "title": "vercel-labs/agent-desktop",
+            "url": "https://github.com/vercel-labs/agent-desktop",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "AI 游戏工作室自己测了一遍，标准档排最后",
+        "takeaway": "先用最轻的一档。可以抄一条规矩：改动要跑起来、留截图，才算做完。",
+        "body": "一份游戏需求，做了四个游戏，每个用不同程度的文档流程。写了 30 份文档的那个，排在最后。\n\n这是 Claude Code Game Studios 的 README 里写的。它是 GitHub 上一个公开项目，能把一个 Claude Code（AI 编程助手）窗口变成一间虚拟游戏工作室。README 列了 49 个 AI 助手，各管一摊，比如创意总监、主程序。还有 74 个技能包，也就是敲一句短命令就能启动的固定流程。另外有 14 条规则、62 份模板。助手分三层：总监、部门负责人、专项人员。Godot 4、Unity、Unreal Engine 5 各有一套现成配置。\n\n实验里，最轻的一档在写游戏代码之前只出 1 份文档。标准档出了 30 份，花了 58 分钟。两位盲评的评审加一次真人试玩，把标准档排到了最后。README 自己的结论是，多出来的 29 份文档买到的是“可追溯”，也就是能查当初为什么这么定，游戏并没有更好。这是项目自己测自己，而且我看到的这段内容里，四个游戏叫什么、评审是谁都没交代，当个参考就好。\n\n不管哪一档，有一条规矩一直管用：凡是玩家看得见的改动，必须真的把游戏跑起来，看过，留一张截图，才算做完。这条不用装任何东西就能抄。\n\nREADME 还写了，三位总监用 Opus，主程序和 15 个专项用 Sonnet（两个不同的 AI 模型），其余 30 个跟着你当前会话的模型走。费用它没提，全班人马都请出来之前，先看看用量。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-02/5.png",
+        "sources": [
+          {
+            "title": "Donchitos/Claude-Code-Game-Studios",
+            "url": "https://github.com/Donchitos/Claude-Code-Game-Studios",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "claude-mem 想让 AI 编程助手记住昨天的事",
+      "body": "## 它在做什么\n\nAI 编程助手每次开新对话，都是一张白纸。你上周做了什么，为什么那个文件写得那么怪，它全不知道。要么你把背景再贴一遍，要么让它重新摸一遍项目。\n\nclaude-mem 是 GitHub 上的一个项目。README 说它是给 Claude Code 做的“记忆压缩系统”。助手干活时，它记下助手用了哪些工具、对你的项目做了什么，再整理成几句语义摘要，也就是对发生过什么的简短描述，下次开新对话时递给助手。有点像开完会有人记笔记，下次开会只把相关的几条推到你面前，没人需要重听录音。\n\nREADME 里的版本号是 15.9.0，要求 Node 20 或更高。Node 是很多开发工具的运行基础。没装过的话，这一步对不写代码的人是个门槛。\n\n安装靠一行命令：npx claude-mem install。意思是下载并运行安装程序。后面再指定工具名，就装到那个工具里。\n\n它不只服务 Claude Code。README 还列了 OpenCode（1.3.4 或更新，包括 OpenCode 2）、T3 Code 和 Grok Bot 的装法。T3 Code 那份说明有几件杂事：重启 T3 Code，弹窗询问时选择信任它的钩子（工具留给插件的“监听点”），再开一个新对话。Grok Bot 没有这种监听点，claude-mem 就去盯它的聊天记录文件。这是个绕路办法，我会预期它没有正经监听点那么稳，不过 README 没说差多少。\n\n## 登录和账单\n\n这段我会读两遍。不加任何选项直接跑安装，会打开浏览器登录。你填邮箱，收一条链接，点开就行，不用设密码。这一步会生成一把记忆用的钥匙，同时打开负责写摘要的那一块（README 里叫 observer）。30 天免费试用就从这里开始算。\n\n试用结束后，README 说记忆功能会退回你自己的 Anthropic 套餐，除非你订阅。原话很短。读起来像是写摘要的开销以后记在你自己套餐的额度上，但细节我不敢打包票，最好用几天，盯着额度表看。\n\n登录可以不走。你自己指定一个服务提供方，或者把联网选项关掉，或者用不需要交互的方式安装，都能跳过。所以试用只是默认路线。\n\nGrok Bot 有点特别。它默认用托管的 CMEM Pro 记忆服务，想用本地写摘要的功能，得自己明确要。如果你希望项目笔记留在自己电脑上，开始之前先把这个设置找出来。README 没写托管服务到底存什么。在看到说明之前，我会当它是把你的工作摘要放在一个你管不到的地方。\n\n## 还不知道的事\n\n这些全是项目自己的说法，没有第三方报道，没有测试数据，也没有社区讨论可以参考。那句“最多多用 100% 的套餐额度”是宣传语。某些用法下可能成立，但没人说过它是怎么测出来的。\n\n还有几处没交代清楚。README 提到 Grok Bot 有个“awareness push pilot”，会往记忆日志里写东西，范围和状态都没讲。免费试用和写摘要功能的条款，是对所有人一样，还是只对一部分人，也没说明白。\n\n想试的理由很实际。如果你按用量付费，重复的背景就是实打实的开销，就算不按用量付费，也烦。加一层记忆是个合理的办法。要小心的理由也很实际。凡是会记录助手在你项目里干了什么的东西，都该看一眼这些记录最后去了哪里。\n\n挑一个不要紧的小项目，在试用期里装上，对比一下每次开局重讲背景，有它和没它各花多久，同时盯着套餐用量。摘要真能省时间，你在试用结束前就会知道。要是感觉不出差别，也就是花了点装它的功夫。"
+    }
+  },
+  "lab": []
+}
