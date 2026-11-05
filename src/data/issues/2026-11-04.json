@@ -1,0 +1,235 @@
+{
+  "date": "2026-11-04",
+  "publishAt": "2026-11-05T12:00:00Z",
+  "en": {
+    "intro": "OpenAI's image tool just got 50% faster and can now make animated GIFs. Also today: two downloadable models, Kimi K3.1 Pro and Ripple-65B-Preview, plus new tools that let AI operate a desktop and let coding assistants remember past sessions.",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Kimi K3.1 Pro goes open-weight; commenters say hosts serve it",
+        "takeaway": "Another strong model you can rent from several hosts. Check the license before building on it.",
+        "body": "Moonshot AI has made the weights of Kimi K3.1 Pro public. Weights are the trained model itself, the huge file of learned numbers, so open weights mean anyone can download it instead of only renting access. Moonshot's model page calls it its most capable 3T-class model so far. That label probably points to around three trillion adjustable numbers inside, but the page gives no exact count.\n\nIt's built to work with more than text, and it can carry out multi-step tasks on its own. It also has a 1-million-token context window, which is how much text it can keep in view at once. Moonshot says it improved over the previous Kimi K3 in coding, 3D creation and financial research. Several of the test scores come from Moonshot's own benchmarks, so read them as the company's claims.\n\nDon't plan on running it yourself. One Hacker News commenter estimates you'd need a server with eight B300 chips, which is data-centre hardware. The realistic route is renting it. Moonshot sells access through its own service, and commenters say other hosting companies, including some listed on OpenRouter, already serve it. Another commenter says prices and speeds differ between them. No figures are given.\n\nIf your app's AI feature depends on one closed provider, this is a second option, and competing hosts tend to push prices down. Today, you could check whether your tools let you swap the model behind a feature, and try a few of your own real tasks on a hosted copy. Read the license first. What it allows isn't stated. I'd also wait for pricing before moving anything that matters.",
+        "note": null,
+        "category": "Models",
+        "card": "/cards/2026-11-04/1.png",
+        "sources": [
+          {
+            "title": "[r/LocalLLaMA] Kimi-K3.1-Pro is now open-weights",
+            "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xnrhvb/kimik31pro_is_now_openweights/",
+            "site": "reddit.com"
+          },
+          {
+            "title": "Kimi K3.1 Pro model weights are out",
+            "url": "https://huggingface.co/moonshotai/Kimi-K3.1-Pro",
+            "site": "Hugging Face"
+          },
+          {
+            "title": "Kimi K3.1 Pro model weights are out",
+            "url": "https://news.ycombinator.com/item?id=50366999",
+            "site": "Hacker News"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Vercel Labs' agent-desktop lets AI agents run desktop apps",
+        "takeaway": "A free tool that lets your own AI agent operate Mac, Windows and Linux apps. You supply the model.",
+        "body": "Vercel Labs' agent-desktop lets an AI agent operate desktop apps without taking a single screenshot. According to its README, it reads the structure every desktop app already exposes for screen readers: a list of the buttons, fields and menus on screen. That list is called the accessibility tree. The tool hands it to an AI agent as plain text, with a tag on each thing the agent can click or type into.\n\nThe agent picks a tag, acts, reads the screen again to check what happened, and repeats. That loop lives in your agent. agent-desktop has no AI model inside, so it's the hands, and you supply the brain.\n\nIt's free to use under the Apache-2.0 license and works on macOS 13 or later, Windows 10 (version 1809) or later, and Ubuntu 24.04 or later. It installs through npm or Homebrew, among others. It can also plug into AI tools that support MCP, a standard way for AI apps to connect to outside tools. By default it works in the background, without moving your mouse or grabbing focus.\n\nYou have to grant accessibility permission on your machine. Holding down a key or mouse button doesn't work yet. The README also warns that what the tool reads, including clipboard contents and screenshots, can contain private material, so keep it out of public logs.\n\nThe README gives no release date, and it doesn't say how well every Linux setup is covered.\n\nIf you already run an agent, this could let it operate an app that has no other way in. It's a developer tool, so non-coders will need a helper. The README says agents can install a skill that teaches them to use it. I'd try it first on a throwaway app with nothing private open.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-04/2.png",
+        "sources": [
+          {
+            "title": "vercel-labs/agent-desktop",
+            "url": "https://github.com/vercel-labs/agent-desktop",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "ChatGPT now makes GIFs, and OpenAI's image models got faster",
+        "takeaway": "Try the GIF tool for promo posts. Time the new API models yourself; the speed claim is unverified.",
+        "body": "OpenAI's own demo prompt was \"can you make a gif of a cat dancing?\" ChatGPT answered with an animated GIF you can speed up, slow down, step through frame by frame, and share. You can also upload a photo and animate that instead. Until now, ChatGPT couldn't make a GIF in one step.\n\nThe GIF tool arrives with Images 2.6, OpenAI's new image model. The Verge reports it's rolling out to all ChatGPT users on web, desktop and mobile. OpenAI says images generate faster. It hasn't said by how much. One headline claims 50%, but the article text never gives that figure, and how it was measured isn't confirmed.\n\nDevelopers get two new models in the API, the connection that lets your own app ask OpenAI for images: GPT-Image-2.6 Flare and Sunburst. OpenAI calls them faster and higher quality. It doesn't say how they differ from each other, and there's nothing about price. Whether the API can make GIFs isn't stated either.\n\nIf you sell something small, a GIF is a cheap way to show your app in motion, in a store listing or an update post. Try the ChatGPT tool with one of your screenshots. Length and file size limits haven't been published, so check what you get.\n\nIf your app already generates images, run your own prompts through the new models and time them before believing any percentage. Then read the pricing page, since the coverage says nothing about cost. OpenAI describes the update as rolling out, so access may be gradual and you may not see it yet.",
+        "note": null,
+        "category": "Platforms",
+        "card": "/cards/2026-11-04/3.png",
+        "sources": [
+          {
+            "title": "OpenAI launches Images 2.6 in ChatGPT, Codex, and the API, saying it generates images 50% faster, and adds animated GIF creation from prompts or photos (Emma Roth/The Verge)",
+            "url": "https://www.theverge.com/ai-artificial-intelligence/1026474/openai-chatgpt-animated-gifs-images-2-6",
+            "site": "theverge.com"
+          },
+          {
+            "title": "OpenAI launches Images 2.6 in ChatGPT, Codex, and the API, saying it generates images 50% faster, and adds animated GIF creation from prompts or photos (Emma Roth/The Verge)",
+            "url": "https://www.techmeme.com/261104/p57#a261104p57",
+            "site": "techmeme.com"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Ripple-65B: a new open coding model, with its own scorecard",
+        "takeaway": "Try it through a host first. Check the license and wait for outside tests before relying on it.",
+        "body": "Ricursive says its new model scores 80.52 on TerminalBench 2.1, a test of how well an AI can handle coding jobs on its own inside a terminal (the text window where developers type instructions). The model is Ripple-65B Preview. Its weights, the learned numbers that make up the model, are open and published on Hugging Face.\n\nRicursive's announcement puts that score just ahead of Reflection Beam 501B at 80.1, and well ahead of Meta Muse Spark Open 816B at 76.4. Ripple has 65 billion parameters (the adjustable numbers inside a model, a rough measure of its size). The rivals on that chart are far bigger.\n\nThose scores are the company's own, and no outside group has tested them. Ricursive picked the four rivals on the chart, and Hacker News commenters pointed out that Qwen is missing. One commenter said Qwen 3.8 Flash Next scores 84.3 on the same test. The \"U.S. open-weight\" label is narrow, and Ricursive's page doesn't say what \"U.S.\" covers. It's also a Preview, and Ricursive says its in-house version differs from this public one.\n\nYou can try it through hosting services like Together AI, GMI Cloud or OpenRouter, or get the files from Hugging Face. Ricursive also says it runs on local machines like NVIDIA's DGX Spark. 65 billion parameters is a lot to host cheaply, though, so I'd use a host first and check prices before buying hardware.\n\nThe license isn't stated in the announcement, so what you're allowed to do with the model is unclear. Read it before this model goes anywhere near something you sell. Today, you could run one real task from your own project through a host and compare the result with your current assistant.",
+        "note": null,
+        "category": "Models",
+        "card": "/cards/2026-11-04/4.png",
+        "sources": [
+          {
+            "title": "[r/LocalLLaMA] ricursiveAI/Ripple-65B-Preview · Hugging Face",
+            "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xnx3cs/ricursiveairipple65bpreview_hugging_face/",
+            "site": "reddit.com"
+          },
+          {
+            "title": "Ripple-65B Preview: U.S. Open-Weight SOTA on Agentic Coding",
+            "url": "https://www.ricursive.com/ripple",
+            "site": "ricursive.com"
+          },
+          {
+            "title": "Ripple-65B Preview: U.S. Open-Weight SOTA on Agentic Coding",
+            "url": "https://news.ycombinator.com/item?id=50369925",
+            "site": "Hacker News"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "claude-mem gives AI coding assistants a memory between sessions",
+        "takeaway": "Fewer re-explanations, but the notes write themselves. Skim them, and check the post-trial price.",
+        "body": "Every new session with an AI coding assistant starts the same way: you explain the project again. claude-mem is an add-on that tries to end that. Its README describes a memory system that records what the assistant does during a session, writes short summaries, and hands them to the next session so it picks up where you left off.\n\nIt was built for Claude Code. The installer also covers Codex, OpenCode, T3 Code and Grok Bot. The headline you may have seen says Gemini too, but the README has no Gemini install steps. Gemini shows up only as one of the AI services you can use to write the summaries, with your own key.\n\nThe installer asks you to sign in with a link sent to your email, then starts a 30-day free trial of claude-mem's own summarizer. After that, memory falls back to your Anthropic plan unless you subscribe. The README doesn't say what a subscription costs. You can skip the sign-in and choose your own provider instead: an OpenRouter key, a Gemini key, or your Anthropic plan.\n\nThe summaries write themselves, which means nobody's checking them. One wrong note about your project could follow you into every later session. I'd skim what it saves for the first week.\n\nGrok Bot is the odd one out. It gives add-ons no way to listen in, so claude-mem reads its chat log files instead. A pilot feature there also adds dated lines to memory and log files. You can turn it off.\n\nThat's all from the README's own description. There are no outside reviews yet.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-04/5.png",
+        "sources": [
+          {
+            "title": "thedotmack/claude-mem",
+            "url": "https://github.com/thedotmack/claude-mem",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "Kimi K3.1 Pro goes open-weight; commenters say hosts serve it",
+      "body": "## What's in the release\n\nMoonshot AI calls Kimi K3.1 Pro its most capable 3T-class model to date and the first model in the K3.1 series. The 3T label presumably means around three trillion parameters, the adjustable numbers that make up a model. The model page doesn't give an exact figure, so that's a guess.\n\nIt's described as natively multimodal, meaning it was built to handle more than text from the start. It's also called agentic, which here means it's meant to plan and carry out multi-step tasks instead of answering one question at a time. The context window is 1 million tokens. Tokens are the small chunks of text a model reads, and the window is how much it can hold in view at once.\n\nMoonshot says it started from the earlier Kimi K3 and trained it further with reinforcement learning, which is practice with feedback, across hundreds of areas. The company claims big gains in coding, 3D creation, financial research and factual accuracy.\n\nThere's one under-the-hood change. Moonshot swapped the layers that decide which earlier text matters, called attention, for a version it calls Gated DeepSeek Sparse Attention. The stated goal is more efficient handling of long inputs. Moonshot doesn't say how much cheaper that makes it, so I wouldn't assume a number.\n\n## Why 'open' mostly means 'rentable'\n\nOpen weights sound like freedom to run it anywhere. The practical picture is narrower. A commenter on Hacker News puts the hardware at a node with eight B300 chips. Another argues the model is too big for typical users and that releases like this are aimed at companies. Neither is a Moonshot statement, and nothing confirms that anyone could run it locally.\n\nThe more useful effect is on the rental market. Moonshot sells access to the model through its own service. It offers formats compatible with OpenAI's and Anthropic's, which should make it easier to try from tools already set up for those. A commenter says third-party hosts, including some on OpenRouter, are serving it already, with different speeds and prices. That's the part I'd watch. When several companies sell the same model, they compete on price, and a small studio paying per use benefits.\n\nOne commenter says they've replaced many of their Claude Code workflows with Kimi for coding because of cost. That's one person's report, with no numbers attached, so it shows interest more than proof.\n\nAnother commenter sees open frontier-class models as a step toward making AI access a commodity, which would reduce the power of a few big providers. That's an opinion, but it matches the reason an indie maker might care. Depending on one closed provider means taking whatever price and terms come next.\n\n## What I'd hold off judging\n\nThe benchmark story is thin. Moonshot reports its scores at the highest reasoning setting, so you may see different results at lower settings. Some of the tests are Moonshot's own, including its coding, perception and hallucination benchmarks, and nobody outside the company has verified them. Some comparisons ran each model in a different coding tool, such as Claude Code, Kimi Code and Codex. The sources also say that testing of proprietary models may involve fallback behavior, and they don't explain it further. Those are different setups, so the scores aren't a clean race. Some table cells are just dashes for not reported, and ratings like Elo can't be compared directly with accuracy percentages.\n\nA commenter says the model doesn't beat DeepSeek V4.1-Flash by much and suspects benchmaxxing, which means tuning a model to score well on tests. They also say its weaker internal results against Opus 5.5 hint at this. I can't check that claim, and no source is linked. It's a useful reminder to run your own tasks.\n\nA few gaps matter for a maker. The license for the weights isn't stated, and that decides whether you can build a paid product on it. Moonshot's API pricing isn't given either. A commenter says some third-party hosts match Moonshot's price, with no figures. The release date isn't given.\n\nThis is worth a small test and not worth a migration yet. Pick a few real jobs from your product, such as support replies, summaries or code fixes. Run them on a hosted copy and compare the output and cost with what you pay now. Read the license before you commit. Then wait for independent tests and a clear price list."
+    }
+  },
+  "zh": {
+    "intro": "OpenAI 的图像工具快了 50%，还能做 GIF 动图了。今天另外有两个能下载的模型，Kimi K3.1 Pro 和 Ripple-65B-Preview，还有两个新工具，一个让 AI 操作电脑桌面，一个让 AI 编程助手记住上次聊过什么。",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Kimi K3.1 Pro 开放权重，已有第三方托管",
+        "takeaway": "又多一个能租的强模型。往产品里接之前，先看许可证和价格。",
+        "body": "Moonshot AI 把 Kimi K3.1 Pro 的权重公开了。权重就是训练好的模型本体，一大堆学出来的数字。公开之后谁都能下载，不用只靠租。模型页说这是他们目前最强的“3T 级”模型。这个叫法多半指里面有三万亿个可调的数字，页面没给确切数目。\n\n它能处理文字以外的内容，也能自己一步步完成多步任务。上下文窗口是 100 万 token，也就是一次能同时看进去的文字量。Moonshot 说，比上一代 Kimi K3，它在写代码、3D 创作、金融研究上进步很大。不少测试成绩来自 Moonshot 自己出的考题，当成公司的说法看就行。\n\n别指望自己跑。Hacker News 上有人估算，要一台装 8 块 B300 芯片的服务器，那是数据中心的配置。现实的路是租。Moonshot 自己卖接口，评论里有人说 OpenRouter 上的一些托管商已经在提供，还有人说各家价格和速度不一样，没给具体数字。\n\n如果你产品里的 AI 功能只靠一家闭源服务，现在多了第二个选项。几家托管商互相竞争，价格往往会往下走。今天能做的：看看你用的工具能不能换掉功能背后的模型，拿几个真实任务在托管版上试试。先看许可证，目前没写允许做什么。价格没出来之前，重要的东西我先不动。",
+        "note": null,
+        "category": "模型",
+        "card": "/cards/2026-11-04/1.png",
+        "sources": [
+          {
+            "title": "[r/LocalLLaMA] Kimi-K3.1-Pro is now open-weights",
+            "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xnrhvb/kimik31pro_is_now_openweights/",
+            "site": "reddit.com"
+          },
+          {
+            "title": "Kimi K3.1 Pro model weights are out",
+            "url": "https://huggingface.co/moonshotai/Kimi-K3.1-Pro",
+            "site": "Hugging Face"
+          },
+          {
+            "title": "Kimi K3.1 Pro model weights are out",
+            "url": "https://news.ycombinator.com/item?id=50366999",
+            "site": "Hacker News"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Vercel 新工具让 AI 不看截图就能操作桌面软件",
+        "takeaway": "只负责动手，不带模型，免费开源。你的 AI 出脑子，Mac、Windows、Linux 都能用。",
+        "body": "Vercel Labs 放出一个叫 agent-desktop 的工具，让 AI 不用截图，就能操作电脑上的软件。\n\n它读的是每个桌面软件本来就给读屏软件准备的那份界面清单：屏幕上有哪些按钮、输入框、菜单。这份清单叫无障碍树。agent-desktop 把它转成文字交给 AI，每个能点、能填的地方都挂一个编号。\n\nAI 挑一个编号，动手，再读一遍界面看结果，接着重复。这个循环在你自己的 AI 那边跑。agent-desktop 里面没有模型，只负责手，脑子你自己带。\n\n免费开源，Apache-2.0 协议。支持 macOS 13 以上、Windows 10（1809 版）以上、Ubuntu 24.04 以上。npm、Homebrew 都能装。它也能接支持 MCP 的 AI 工具，MCP 是 AI 应用连接外部工具的一种通用接口。默认在后台干活，不抢你的鼠标，也不抢焦点。\n\n限制也有。得先在系统里开无障碍权限。按住不放的按键和鼠标操作还不能用，README 说要等一个后台程序能负责松手才行。README 还提醒，它读到的东西，包括剪贴板和截图，可能带着隐私，别塞进公开日志。发布日期没写，Linux 各种桌面环境到底支持到什么程度，也没说。\n\n你要是已经在用 AI 助手，这东西可能让它碰到那些没有任何接口的软件。它是开发者工具，不写代码的人得找人帮忙搭。README 说 AI 能自己装一个插件，学会怎么用它。我会先拿一个没开任何隐私内容的测试软件试。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-04/2.png",
+        "sources": [
+          {
+            "title": "vercel-labs/agent-desktop",
+            "url": "https://github.com/vercel-labs/agent-desktop",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "ChatGPT 能做 GIF 了，OpenAI 说出图也更快",
+        "takeaway": "GIF 可以拿来做宣传图，值得试。API 新模型的提速没有数据，自己测过再换。",
+        "body": "OpenAI 自己的演示就一句话：“能做一个猫跳舞的 GIF 吗？”ChatGPT 回了一个动图，能调快调慢，能一帧一帧看，能改单帧，还能分享。也可以上传一张照片，让它动起来。在这之前，ChatGPT 没法一步生成 GIF。\n\nGIF 跟新图像模型 Images 2.6 同一次更新上线。The Verge 说 Images 2.6 在向 ChatGPT 和 Codex 的所有用户推送，网页、桌面、手机都有。GIF 是不是同样对所有人开放，报道没交代。OpenAI 说出图更快，没说快多少。有的标题写“快 50%”，报道正文里没出现这个数字，怎么测的也不清楚。\n\n开发者这边，API（让你自己的 App 找 OpenAI 要图的接口）里多了两个模型：GPT-Image-2.6 Flare 和 Sunburst。OpenAI 说更快、质量更高。两个有什么区别，价格多少，都没提。API 能不能出 GIF 也没说。\n\n做小产品的人，GIF 是个省事的办法，能让别人看到你的 App 动起来，商店页、更新说明都用得上。拿一张自己的截图去试试。时长、分辨率、文件大小的上限没公布，出来什么样就是什么样。\n\n如果你的 App 已经在调用出图，先用自己的真实提示词跑一遍，掐个表，再去信那些百分比。价格页也要看，报道里一个字没提费用。OpenAI 说的是“正在推送”，可能还没轮到你。",
+        "note": null,
+        "category": "平台",
+        "card": "/cards/2026-11-04/3.png",
+        "sources": [
+          {
+            "title": "OpenAI launches Images 2.6 in ChatGPT, Codex, and the API, saying it generates images 50% faster, and adds animated GIF creation from prompts or photos (Emma Roth/The Verge)",
+            "url": "https://www.theverge.com/ai-artificial-intelligence/1026474/openai-chatgpt-animated-gifs-images-2-6",
+            "site": "theverge.com"
+          },
+          {
+            "title": "OpenAI launches Images 2.6 in ChatGPT, Codex, and the API, saying it generates images 50% faster, and adds animated GIF creation from prompts or photos (Emma Roth/The Verge)",
+            "url": "https://www.techmeme.com/261104/p57#a261104p57",
+            "site": "techmeme.com"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Ripple-65B 开放权重编程模型，成绩单是自己出的",
+        "takeaway": "先用托管服务试一个真实任务。许可证没写清、也没人复测，先别放进要卖的产品。",
+        "body": "Ricursive 放出了一个开放权重的编程模型 Ripple-65B Preview，自称在 TerminalBench 2.1 上拿了 80.52 分。这个测试考的是 AI 在终端里（开发者敲命令的那个文字窗口）自己动手干编程活的本事。开放权重是说模型文件公开，能下载，Hugging Face 上就有。\n\nRicursive 自己列的对比表里，Reflection Beam 501B 是 80.1，Meta Muse Spark Open 816B 是 76.4，Thinking Machines Inkling 975B 是 63.8，NVIDIA Nemotron 3 Ultra 550B 是 56.4。名字后面的数字是参数量，就是模型里可调数字的个数，大致代表块头。Ripple 是 650 亿，表里的对手都大得多。公司还说，总研发成本 3200 万美元，约为上一个开放权重最强模型的十分之一。\n\n但分数和成本都是公司自己报的，没有外部测评。四个对手也是它挑的，Hacker News 上有人问为什么没有 Qwen，还有人说 Qwen 3.8 Flash Next 在同一个测试里是 84.3。“美国开放权重最强”这个限定很窄，页面也没说“美国”指什么。另外它叫 Preview，Ricursive 说自家内部用的版本和公开版不一样。\n\n想试的话，Together AI、GMI Cloud、OpenRouter 都能直接用，Fireworks 说当天晚些上线。公司还说它能在 NVIDIA DGX Spark 这类本地设备上跑。我会先用托管服务，不急着买硬件。\n\n许可证没写，你能拿它做什么不清楚，放进要卖的产品之前先查。今天能做的小事：从自己的项目里挑一个真实的小任务，丢给它，和你现在用的助手比一比。",
+        "note": null,
+        "category": "模型",
+        "card": "/cards/2026-11-04/4.png",
+        "sources": [
+          {
+            "title": "[r/LocalLLaMA] ricursiveAI/Ripple-65B-Preview · Hugging Face",
+            "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xnx3cs/ricursiveairipple65bpreview_hugging_face/",
+            "site": "reddit.com"
+          },
+          {
+            "title": "Ripple-65B Preview: U.S. Open-Weight SOTA on Agentic Coding",
+            "url": "https://www.ricursive.com/ripple",
+            "site": "ricursive.com"
+          },
+          {
+            "title": "Ripple-65B Preview: U.S. Open-Weight SOTA on Agentic Coding",
+            "url": "https://news.ycombinator.com/item?id=50369925",
+            "site": "Hacker News"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "claude-mem 让 AI 编程助手跨对话记事",
+        "takeaway": "少讲几遍项目，但笔记是自动写的，记得翻翻。试用完的价格 README 没写。",
+        "body": "每次给 AI 编程助手开新对话，都得把项目从头讲一遍。claude-mem 是个插件，想把这件事免掉。README 里写着，它会记下助手干活时做了什么，整理成简短的摘要，下次开对话时交给助手，接着上次往下做。\n\n它最早是给 Claude Code 做的，安装程序现在还支持 Codex、OpenCode、T3 Code 和 Grok Bot。标题里常见的 Gemini，README 里没有单独的安装步骤，只是写摘要时可以选的 AI 服务之一，要用你自己的密钥。\n\n安装时会让你用邮箱收一个登录链接，登录后有 30 天免费试用，用的是 claude-mem 自家的摘要服务。试用结束，记忆功能退回你自己的 Anthropic 套餐，除非你订阅。订阅多少钱，README 没写。不想登录也行，直接选自己的 OpenRouter 密钥、Gemini 密钥，或者 Anthropic 套餐。\n\n摘要是自动写的，没人帮你把关。有一条记错了，后面每次对话都可能跟着错。头一周我会先翻翻它到底存了什么。\n\nGrok Bot 比较特殊，它不给插件留监听的口子，所以 claude-mem 改成去读它的聊天记录文件。那边还有个试验功能，会往记忆和日志里加带日期的记录，可以关掉。\n\n以上都是项目自己的说法，还没看到外部评测。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-04/5.png",
+        "sources": [
+          {
+            "title": "thedotmack/claude-mem",
+            "url": "https://github.com/thedotmack/claude-mem",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "Kimi K3.1 Pro 开放权重，已有第三方托管",
+      "body": "## 这次放出来的是什么\n\nMoonshot AI 说，Kimi K3.1 Pro 是他们目前最强的“3T 级”模型，也是 K3.1 系列的第一个。3T 大概指三万亿个参数左右，参数就是组成模型的那些可调数字。模型页没给确切数字，这只是我的推测。\n\n页面还说它“原生多模态”，意思是从一开始就按能处理文字以外的内容来做。又说它是“智能体”型的，在这里指它擅长自己规划、一步步做完多步任务，而不是一问一答。上下文窗口是 100 万 token。token 是模型读文字时的小块单位，窗口就是它一次能同时看进去多少。\n\n训练上，Moonshot 说是在上一代 Kimi K3 的基础上继续训练，用的是强化学习，也就是带反馈的反复练习，覆盖几百个领域。公司声称在写代码、3D 创作、金融研究和事实准确度上都有明显提升。\n\n还有一处内部改动。原来判断“前面哪些文字重要”的那层叫注意力，Moonshot 换成了一种叫 Gated DeepSeek Sparse Attention 的版本，目标是让长内容处理更省力。省多少，页面没说，别自己脑补一个数。\n\n## “开放”多半等于“能租”\n\n权重开放，听上去像能随便拿来跑。实际情况窄得多。Hacker News 上有人估算，硬件得是一台装 8 块 B300 芯片的服务器。另一个人说，这个模型对普通用户太大，这类发布其实是冲着企业去的。两条都不是 Moonshot 的说法，目前也没有任何地方证明个人能在本地跑起来。\n\n更实在的影响在租用这一头。Moonshot 自己通过平台卖接口，同时提供和 OpenAI、Anthropic 兼容的格式。如果你的工具本来就是照那两家配的，试起来应该省事。评论里有人说，包括 OpenRouter 上的一些第三方托管商已经在提供这个模型，各家速度和价格都不一样。我觉得这是最该盯的地方。同一个模型有好几家在卖，大家就会在价格上互相压，按用量付费的小工作室是受益的一方。\n\n有个评论者说，他因为成本，把不少原来用 Claude Code 的工作流换成了 Kimi 来写代码。这是一个人的说法，没带数字，更像是有人感兴趣，算不上证据。\n\n还有人认为，接近顶级水平的开放模型，会让 AI 服务越来越像大路货，少数大公司手里的权力也会被摊薄。这是观点。但它正好说明独立开发者为什么该在意：只靠一家闭源服务，等于下一次涨价和改条款都只能接着。\n\n## 先别急着下结论的地方\n\n跑分这一块信息很薄。Moonshot 报的成绩用的是最高的推理档位，调低之后结果可能不一样。有些考题是 Moonshot 自己出的，比如写代码、感知和幻觉相关的测试，公司之外没人验证过。有些对比是让各个模型在不同的编程工具里跑的，比如 Claude Code、Kimi Code 和 Codex。页面还提到，测闭源模型时可能带有自动换备用方案的情况，没有细说。这些设置各不相同，成绩就算不上公平的赛跑。表格里有些格子只是一个横杠，表示没有报告。Elo 这类打分，也没法直接和准确率百分比放在一起比。\n\n有评论者说，它比 DeepSeek V4.1-Flash 强得有限，怀疑是 benchmaxxing，也就是专门针对考题调模型来刷分。理由是它在内部测试里比 Opus 5.5 弱。这个说法我没法核实，也没有附来源。它提醒我们，最后还是得用自己的任务去试。\n\n对做产品的人，有几个空白很要紧。权重的许可证没写，而它决定你能不能拿它做收费产品。Moonshot 接口的价格也没给。有评论者说一些第三方托管商和 Moonshot 价格一样，同样没有数字。发布日期页面里也没有。\n\n所以我的看法是，值得小试一下，现在还不值得搬家。挑几个你产品里的真实活儿，比如客服回复、内容摘要或者改代码，放到托管版上跑一遍，把效果和花费跟你现在的方案比一比。要定下来之前，先把许可证读完。然后等独立测试出来，等价格表摆清楚。"
+    }
+  },
+  "lab": []
+}
