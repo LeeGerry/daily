@@ -1,0 +1,195 @@
+{
+  "date": "2026-11-06",
+  "publishAt": "2026-11-07T12:00:00Z",
+  "en": {
+    "intro": "Cloudflare, Google and Matt Pocock have all put out add-ons that teach an AI coding assistant a new job, which makes three of today's five stories. The other two are Gemini Omni 1.2 Flash, a new model getting a lot of Hacker News attention, and NVIDIA's free Auto Ontology, a tool that gives AI apps a map of how facts connect.",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Cloudflare gives AI assistants a security audit routine",
+        "takeaway": "Free and open source, best run more than once. It needs a sandbox to test your code.",
+        "body": "Cloudflare has published a free add-on that teaches an AI coding assistant to audit a codebase the way a security team would. It's called security-audit, it's open source under the MIT license (which lets anyone use, copy and change it), and Cloudflare's README says it's the starting point for the system the company built to hunt for vulnerabilities (holes an attacker could use) across its own code.\n\nThe audit runs in six steps. The assistant surveys the code, hunts for weak spots, tests each suspect, writes the results in a fixed format, has a separate pass double-check those records, and finishes with a report. It coordinates several AI helpers, each kept isolated from the others.\n\nEvery finding gets one of three verdicts: confirmed, needs checking, or rejected. Confirmed means the assistant traced the problem from start to finish and saw a real result. Shakier leads get no severity score at all. I like that. The usual complaint about AI security tools is that they cry wolf.\n\nThe requirement that will stop some people is a sandbox, a sealed-off test environment enforced by your operating system. To run code from the project being audited, the skill wants one. Without it, the skill won't run your code and leaves those leads marked as unchecked.\n\nCloudflare also says a single run found roughly half of what repeated runs found in total. That's from Cloudflare's own tests, and nobody has verified it independently. So plan on running it more than once.\n\nIf your coding assistant can run helpers in parallel and you can set up a sandbox, point this at the app you're about to ship. Start with something small, since you'll want to run it more than once.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-06/1.png",
+        "sources": [
+          {
+            "title": "cloudflare/security-audit-skill",
+            "url": "https://github.com/cloudflare/security-audit-skill",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Gemini Omni 1.2 Flash: 15-second AI video at $0.07/sec",
+        "takeaway": "A 15-second 720p clip runs about $1.05. Test one short clip before you plan around it.",
+        "body": "Google says its new video model costs $0.07 per second at 720p. That's 30% less than the previous version, Gemini Omni 1.1. Do the math and a full 15-second clip comes to about $1.05.\n\nGemini Omni 1.2 Flash makes and edits video from text, reference images, short motion clips and audio cues. Clips can now run up to 15 seconds, up from 10, and you pick any length from 3 to 15. Google's announcement says it's generally available, meaning open to everyone rather than a limited preview. You get it through the Gemini API (the way your own app talks to the model directly) and through Gemini for business. If you just want to poke at it first, developers can prototype in Google AI Studio.\n\nThe editing is what I'd look at. You make follow-up requests in plain language: swap the product, change the background, add rain, switch from wide to vertical. Google says that works without regenerating the whole clip. You can draft at 360p or 720p, then upscale to 1080p or 4K once you like it. For anyone making product videos or promo clips, that's a cheaper way to iterate. Every output also carries an invisible watermark that marks it as AI-made.\n\nGoogle admits fast sports action, rapid script changes and complex physics still need work. It hasn't described usage limits or regional availability. On Hacker News, commenters liked that access was open, but several complained about payment errors and identity checks when adding balance. Some quoted prices per token that Google's post doesn't confirm, so I'd ignore those. The version naming confused people too.\n\nA cheap test: run one 5-second 720p clip from a single product image. That's about $0.35. Then check what the bill actually says.",
+        "note": null,
+        "category": "Models",
+        "card": "/cards/2026-11-06/2.png",
+        "sources": [
+          {
+            "title": "Gemini Omni 1.2 Flash",
+            "url": "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/",
+            "site": "blog.google"
+          },
+          {
+            "title": "Gemini Omni 1.2 Flash",
+            "url": "https://news.ycombinator.com/item?id=50392118",
+            "site": "Hacker News"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Matt Pocock shares the AI coding skills he uses daily",
+        "takeaway": "Two of Matt Pocock's add-ons make your AI coding assistant quiz you before it builds anything. Try one on a small project.",
+        "body": "Matt Pocock calls his repository \"Skills For Real Engineers.\" These are the agent skills he says he uses every day. An agent skill is a reusable set of instructions for an AI coding assistant, like a checklist you hand a new hire so they work your way. Pocock says they're for real engineering, the opposite of vibe coding (letting the AI write whatever it likes and hoping it runs).\n\nThe README names three problems: the AI misunderstanding what you want, talking too much, and writing code that fails. The most popular skills make the AI grill you with questions before it builds anything. One version also builds a shared glossary of your project's terms, which the README says cuts the AI's wordiness. A test-first skill pushes a loop: write a test that fails, make it pass, tidy up. That gives the AI quick feedback on its own code.\n\nA solo maker has nobody to say \"wait, what are we actually building?\" A skill that interrogates you first is a cheap stand-in for that colleague. The README says one of the grilling skills is meant for non-code work too, so it's worth a look even if you don't write code.\n\nIt installs on Claude Code, Codex, GitHub Copilot and Gemini CLI, and there's a route for Cursor, Windsurf and a few others. Plugin installs update themselves. Gemini CLI and the copy-the-files route need manual updates. Pick one route per assistant, or you'll get every skill twice. A setup skill runs once per project and asks where you track tasks, how you label them and where to save docs.\n\nThe only evidence that this works is Pocock's own README. No license or release date is mentioned, so I'd check the license before building a paid product around it. Try it on one small project first.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-06/3.png",
+        "sources": [
+          {
+            "title": "mattpocock/skills",
+            "url": "https://github.com/mattpocock/skills",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "NVIDIA's Auto Ontology is a free library for AI that queries data",
+        "takeaway": "Handy for apps answering questions over business data; overkill for most solo projects today.",
+        "body": "Ask a database for one product's revenue in Pennsylvania in June 2015, and NVIDIA's demo answers $588.80, from 3 invoice lines. It also shows the SQL query behind the answer (SQL is the language databases understand) and the steps it took to get there.\n\nThat's the quickstart in NVIDIA's Auto Ontology repository on GitHub. The README calls it an open library under the Apache 2.0 license, which means free to use, including in a product. It reads your database's metadata, like table and column names, and builds a shared dictionary of what your business words mean. NVIDIA calls that an ontology. The README says this layer gives AI agents trusted business meaning and reconciles definitions that differ across your systems. Agents can plug in through MCP, a common connector for AI tools, or through typed commands or a standard web connection.\n\nThe README lists five jobs: discover, ground, validate, expose and learn. Validate is the one I'd look at first. It checks the query the AI wrote against approved definitions and returns where the answer came from.\n\nGetting started takes more than a download. You run a web interface, two behind-the-scenes services and a Postgres database, with an optional password vault. The AI models come from NVIDIA, so you need an NVIDIA API key (a password that lets software use a service) for the hosted version, or your own servers running them. The quickstart also pulls sample data from a second repository. NVIDIA isn't accepting outside contributions. The README gives no accuracy numbers for Auto Ontology itself, only a pointer to a separate evaluation project.\n\nIf your product answers questions over a customer's messy business data, an afternoon with the demo is reasonable. If you're solo with one tidy database, you probably don't need this layer yet. Either way, you can borrow one idea today: show the query next to every answer.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-06/4.png",
+        "sources": [
+          {
+            "title": "NVIDIA/auto-ontology",
+            "url": "https://github.com/NVIDIA/auto-ontology",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Google ships official skills for AI coding assistants",
+        "takeaway": "Using Google Cloud or Gemini? Try one or two skills on a single project and see if your assistant slips less.",
+        "body": "Google has put a collection of official \"skills\" on GitHub, the site where developers share code. A skill is a packed set of instructions that teaches an AI coding assistant one specific job, like setting up a Google Cloud account. Google's README calls them Agent Skills.\n\nThe list is sorted into groups: getting started with Google Cloud, solutions that span several Google products, AI and machine learning, and infrastructure. Named entries include sign-in and permissions for Google Cloud, onboarding to Google Cloud, the Gemini API, Genkit (offered for Dart, Go, JavaScript and Python), BigQuery's AI and machine learning tools, storage, and a Skill Finder to help you pick the right one.\n\nIf you build on Google services and already work with an AI assistant, this matters. Instructions written by the company that runs the service should beat whatever the assistant half-remembers from its training. That's my guess, and Google hasn't shown any results to back it up.\n\nInstalling takes one typed command. If your computer can't run it, the README tells you to install a helper program first, and it points you to the one to get. The installer then asks which skills you want, which assistants to set up, and whether the skills apply to one project or all of them. A later update step can also offer to remove skills that have become obsolete.\n\nThere are gaps. The README doesn't say which assistants work, what the license is, or how many skills exist. Most entries are just a title, so what each one does is unclear. No date either.\n\nIf you use Google Cloud or Gemini, look through the list and install one or two skills for a single project. Then see whether your assistant makes fewer mistakes. If you don't touch Google's services, skip this one.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-06/5.png",
+        "sources": [
+          {
+            "title": "google/skills",
+            "url": "https://github.com/google/skills",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "Cloudflare gives AI assistants a security audit routine",
+      "body": "## What Cloudflare released\n\nSecurity-audit is a skill: a bundle of written instructions that an AI coding assistant follows, so it behaves like a specialist for one job. In this case the job is a security audit. Cloudflare's README says the skill turns a coding agent (an AI assistant that can read, run and edit code) into a security auditor. It does that by coordinating several separate AI helpers, each kept apart from the others.\n\nThe README also gives some history. This skill was the seed of Cloudflare's vulnerability discovery system, which later grew into a multi-stage system covering the company's code in bulk. So this is a single-project version of something Cloudflare uses internally, released under the MIT license. That license lets you use, copy and change it. Cloudflare hasn't said when it was released or how many vulnerabilities the larger system has found, so there's no track record to point to yet.\n\nThe audit has six phases. First comes reconnaissance, which is mapping what the project is and where the risky parts sit. Then hunting, which is led by coverage: the assistant tracks which parts of the code it has looked at, so it doesn't keep circling the same files. Next, each suspect gets validated. Results are written in a fixed structure, and a separate pass verifies those records independently. The last phase is a report written so it doesn't depend on the specific project.\n\n## The part I'd pay attention to\n\nMost of the design is about not fooling yourself. Every lead ends up as confirmed, needs checking, or rejected. Confirmed has a high bar: a complete trace from where the problem starts to where it does damage, plus a bounded result the assistant actually observed. Needs checking has to name the exact fact that's still unresolved, and it gets no severity rating. A lead that can't be backed up doesn't get to sound alarming.\n\nThat matters because AI security reviews tend to produce long lists of maybes. If you're a solo maker, a list of forty maybes is worse than no list. You don't have the time to chase them, and you can't tell which two are real. A format that forces the tool to say what it hasn't established is more useful than a confident-sounding summary.\n\nFindings are also written in a structured format, and the skill includes a small checker that validates them, plus another for the coverage record. In plain terms, the output is meant to be checked by a program as well as read by a person.\n\nThen there's the sandbox. To confirm a lead, the skill may need to run code from the project under audit. Cloudflare's README requires an operating-system-enforced sandbox for that, meaning a sealed-off test environment that your operating system enforces. If you don't have one, the skill won't run the code. It keeps the lead as needs checking instead. That's a sensible safety choice, but it means an audit without a sandbox gives you fewer confirmed results.\n\nBy default, a full audit also writes its output outside your project, in a folder under your home directory. It only writes inside your repository if you pick a folder that your version control ignores. That's a thoughtful default. It keeps audit notes, which may describe real holes, out of the code you push.\n\n## What a solo maker can do with it\n\nThe requirements are specific. You need a coding assistant that can use tools and run helpers in parallel, you need Node.js (a common tool for running JavaScript outside a browser), and you need that sandbox. If your assistant doesn't do parallel helpers, this isn't for you yet. If it does, the install is a single step with the Skills tool, and it can be set up just for you or for a single project.\n\nThe most useful number in the README is the one about repeat runs. In Cloudflare's own test runs, one pass turned up about half of what many passes uncovered when added together. Cloudflare measured that itself, and it hasn't been independently checked. Even so, it says something honest about AI auditing: one pass is only a sample. If you run it once, find nothing, and ship, you've learned less than it feels like. Run it two or three times and compare.\n\nThose numbers come from Cloudflare's own testing, so how it does on a small app built by one person is an open question. I'd start with the smallest app you've shipped and see how many confirmed findings come back and how long it takes.\n\nI'd still want a human reviewer for anything that handles payments or personal data. For the embarrassing mistakes you'd rather catch before launch, this can help, and it tells you which leads it couldn't verify. For a one-person studio, that's worth an afternoon."
+    }
+  },
+  "zh": {
+    "intro": "Cloudflare、Google 和 Matt Pocock 都放出了技能包，用来教 AI 编程助手干新活，今天五条里占了三条。另外两条：Gemini Omni 1.2 Flash 在 Hacker News 上热度很高，NVIDIA 则免费公开了 Auto Ontology 的代码，帮 AI 应用把事实之间的关系理成一张图。",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Cloudflare 开源了一套 AI 安全体检流程",
+        "takeaway": "免费开源，建议多跑几遍。要验证你的代码，得先备好沙箱。",
+        "body": "Cloudflare 放出了一个免费的小插件，让 AI 编程助手像安全团队一样给代码做一次体检。名字叫 security-audit，用 MIT 协议开源，谁都能用、能改、能复制。README 里说，它是 Cloudflare 内部那套找漏洞系统的起点。\n\n体检分六步：先摸清项目长什么样，再找薄弱的地方，接着逐个验证可疑点，把结果按固定格式记下来，然后另起一轮独立检查核对记录，最后出报告。中间会调度好几个互相隔离的 AI 帮手。\n\n每条发现只有三种结论：确认、待验证、排除。想标“确认”，得把问题从头到尾追一遍，还要亲眼看到结果。拿不准的只能标“待验证”，连严重程度都不给打。我喜欢这个设计。AI 查安全最招人烦的，就是什么都喊狼来了。\n\n门槛是沙箱，也就是由操作系统锁死的隔离测试环境。要运行被检查项目的代码，必须在里面跑。没有沙箱，它不会碰你的代码，可疑点就停在“待验证”。\n\nCloudflare 还说，他们自己测试时，跑一次只能找到多次累计漏洞的大约一半。这是自家测的数字，没人独立验证过。所以别跑一次就收工。\n\n你的 AI 编程助手如果支持多个帮手并行干活，又能搭出沙箱，今天可以挑个最小的应用试试，连跑两三遍，对比每遍查出来的东西。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-06/1.png",
+        "sources": [
+          {
+            "title": "cloudflare/security-audit-skill",
+            "url": "https://github.com/cloudflare/security-audit-skill",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Google 视频模型降价 30%，15 秒约 1 美元",
+        "takeaway": "720p 满 15 秒约 1.05 美元。先花约 0.35 美元试一条 5 秒的，再决定接不接。",
+        "body": "Google 的新视频模型 Gemini Omni 1.2 Flash，720p 每秒收 0.07 美元，比上一版 Omni 1.1 便宜 30%。一条满 15 秒的片子，算下来约 1.05 美元。\n\n它能用文字、参考图、3 秒以内的短动作片段和声音提示来做视频、改视频。单条时长从 10 秒涨到 15 秒，3 到 15 秒之间可以按秒选。Google 说已经正式开放，不是限量内测。你可以通过 Gemini API（让自己的 App 直接调用模型的接口）和 Gemini for business 用上它。想先玩玩，去 Google AI Studio 就行。\n\n我觉得最值得看的是改片。用大白话接着提要求：换产品、换背景、加一场雨、横屏改竖屏，Google 说都不用整条重新生成。可以先出 360p 或 720p 的草稿，满意了再放大到 1080p 或 4K。做商品视频、宣传短片的人，试错便宜了不少。每条输出还带一个看不见的水印，标明是 AI 生成的。\n\nGoogle 自己承认，快速的体育动作、剧情频繁变动、复杂的物理现象还在改进。使用限额和开放地区，Google 没说。Hacker News 上有人夸一上来就能用，也有人吐槽充值时付款报错、被要求验证身份。评论里还有人贴了一套按用量计的价格，Google 的文章没确认，先别信。版本名字也把人绕晕了，有人问这到底是不是 Gemini 4。\n\n一个便宜的试法：拿一张产品图，出一条 5 秒的 720p，约 0.35 美元。然后看看账单上到底写了什么。",
+        "note": null,
+        "category": "模型",
+        "card": "/cards/2026-11-06/2.png",
+        "sources": [
+          {
+            "title": "Gemini Omni 1.2 Flash",
+            "url": "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/",
+            "site": "blog.google"
+          },
+          {
+            "title": "Gemini Omni 1.2 Flash",
+            "url": "https://news.ycombinator.com/item?id=50392118",
+            "site": "Hacker News"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Matt Pocock 公开了自己每天用的 AI 编程技能包",
+        "takeaway": "Pocock 的技能包里有几个技能会让 AI 编程助手先拷问你再动手。挑一个，拿小项目试试。",
+        "body": "Matt Pocock 把自己每天用的一套 AI 编程助手技能包放上了 GitHub，仓库叫 Skills For Real Engineers。技能包就是一份能反复用的说明书，像你交给新同事的一张工作清单，让他照你的习惯干活。他说这是给正经做工程的人用的，跟 vibe coding 相反（vibe coding 就是让 AI 随便写，跑起来算赢）。\n\nREADME 点了三个毛病：AI 没听懂你要什么，话太多，写出来的代码跑不通。最受欢迎的几个技能，会让 AI 动手前先反复问你问题。其中一个还会顺手建一份项目术语表，README 说这样能让 AI 少说废话。另一个讲究测试先行：先写一个会失败的测试，再让代码通过，最后整理。AI 写的代码好不好，马上就有反馈。\n\n一个人做产品，旁边没人会问一句“等等，我们到底在做什么”。先拷问你的技能，算是个便宜的替身同事。README 说其中一个拷问技能也能用在非代码的事情上，不写代码的人也可以看看。\n\nClaude Code、Codex、GitHub Copilot、Gemini CLI 都能装，Cursor、Windsurf 等另有一条路。插件版会自己更新，Gemini CLI 和复制文件那条路要手动更新。每个助手只选一种装法，两种都装，每个技能会出现两遍。装完有个设置技能，每个项目跑一次，问你任务记在哪、标签怎么打、文档存哪。\n\n说它好用的，目前只有 Pocock 自己写的 README，没有别人的评测。许可证和发布日期也没写。要拿去做收费产品，我会先查许可证。先拿一个小项目试。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-06/3.png",
+        "sources": [
+          {
+            "title": "mattpocock/skills",
+            "url": "https://github.com/mattpocock/skills",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "NVIDIA 开源业务词典库 Auto Ontology",
+        "takeaway": "做客户数据问答的产品可以看看演示。一个人、一个干净数据库，先别上。",
+        "body": "问数据库：某个产品 2015 年 6 月在宾夕法尼亚州卖了多少钱。NVIDIA 的演示答 588.80 美元，来自 3 条发票明细，还把查询语句（数据库能听懂的语言，叫 SQL）和中间步骤一起列出来。\n\n这是 NVIDIA 放在 GitHub 上的 Auto Ontology 自带的快速上手例子。README 里说它是个开源库，用 Apache 2.0 协议，也就是免费用，放进自己的产品也行。它先读你数据库的元数据（表名、字段名这类信息），整理成一本业务词典，NVIDIA 管这个叫 ontology。词典的用处是给 AI 一个统一的说法：“收入”在几个系统里定义不一样时，以哪个为准。AI 工具可以通过 MCP（一种让 AI 工具互相连接的通用接口）、命令行或普通的网络接口来取用。\n\nREADME 列了五件事：发现、对齐定义、校验、开放、学习。我会先看校验。AI 写出查询后，拿公司认可的定义核对一遍，并说明答案从哪来。\n\n上手比下载一个包麻烦。要跑一个网页界面、两个后台服务和一个 Postgres 数据库，存密码的保险库可选。模型用 NVIDIA 的，所以要一把 NVIDIA 的 API 密钥（让软件调用某个服务的密码），或者自己有服务器跑这些模型。示例数据还得从另一个仓库拿。NVIDIA 目前不收外部贡献，也没给 Auto Ontology 自己的准确率数字，只指向一个单独的评测项目。\n\n如果你的产品要在客户乱糟糟的业务数据上回答问题，花一个下午跑跑演示合理。一个人、一个干净的数据库，多半还用不上。今天就能偷的一招：每个答案旁边，把查询语句也放出来。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-06/4.png",
+        "sources": [
+          {
+            "title": "NVIDIA/auto-ontology",
+            "url": "https://github.com/NVIDIA/auto-ontology",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Google 给 AI 编程助手发了一批官方技能包",
+        "takeaway": "用 Google Cloud 或 Gemini 的话，挑一两个技能包在单个项目上试，看助手出错少不少。",
+        "body": "Google 在 GitHub 上放了一批官方“技能包”。GitHub 是程序员共享代码的网站。技能包就是一份打包好的说明书，教 AI 编程助手干一件具体的活，比如开通 Google Cloud 账号。Google 的 README 里管它叫 Agent Skills。\n\n清单分了几大类：Google Cloud 入门、跨多个 Google 产品的方案、AI 和机器学习、基础设施。点了名的有 Google Cloud 的登录和权限、新手上手、Gemini API、Genkit（Dart、Go、JS、Python 四种语言都有）、BigQuery 的 AI 和机器学习工具、云存储，还有一个帮你挑技能包的 Skill Finder。\n\n如果你的产品跑在 Google 的服务上，又在用 AI 助手写代码，这事跟你有关。服务商自己写的说明，我猜比助手凭训练时的记忆瞎猜靠谱。这只是我的猜测，到底好不好用，得自己试。\n\n装法是在电脑上敲一行命令。命令跑不起来的话，README 会让你先补装一个基础软件。装的时候会问三件事：要哪些技能，给哪些助手配置，只在当前项目用还是所有项目都用。以后更新也是一行命令，还能顺手删掉过时的技能。\n\n缺的信息不少。README 没写支持哪些助手，没写许可证，没说一共有多少个。多数条目只有标题，具体能干什么看不出来。发布日期也没有。\n\n用 Google Cloud 或 Gemini 的话，翻一遍清单，挑一两个装在一个项目上，看助手出错有没有变少。不碰 Google 的服务，可以跳过。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-06/5.png",
+        "sources": [
+          {
+            "title": "google/skills",
+            "url": "https://github.com/google/skills",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "Cloudflare 开源了一套 AI 安全体检流程",
+      "body": "## Cloudflare 放出了什么\n\nsecurity-audit 是一个“技能包”，说白了就是一套写好的操作说明，AI 编程助手照着做，就能在某件事上像个专业人士。这次的事是安全审查。Cloudflare 的 README 说，它能把一个能读、能跑、能改代码的 AI 助手变成安全审计员，办法是调度好几个互相隔离的 AI 帮手分头干活。\n\nREADME 还交代了来历。这个技能包是 Cloudflare 内部漏洞发现系统的种子，那套系统后来长成了多阶段、能成批检查公司代码的大系统。所以你拿到的，是内部那套东西的单项目起点版，用 MIT 协议放出，可以随便用、复制、修改。发布日期，以及大系统到底找到过多少漏洞，Cloudflare 都没说，所以目前没有战绩可以参考。\n\n整个审计分六步。第一步是摸底，弄清项目是什么、危险的地方大概在哪。第二步是找漏洞，README 管这叫“以覆盖率带路”的找法。第三步，每个可疑点单独验证。第四步，结果按固定结构写下来。第五步，另起一轮独立检查，核对这些记录。最后一步出报告，写法不依赖具体项目。\n\n## 我会盯着看的地方\n\n这套设计的大半心思，花在“别自己骗自己”上。每条线索最后只有三种结论：确认、待验证、排除。“确认”的门槛很高，要有完整的追踪，从问题起点一直追到造成影响的地方，还要有助手亲眼观察到的、范围明确的结果。“待验证”必须写清楚还差哪一个具体事实没弄明白，并且不打严重程度。证据不足的线索，不许说得吓人。\n\n这点很重要，因为 AI 做安全审查，常见毛病就是吐出一长串“可能有问题”。一个人做产品，没精力一条条去查，也分不出哪几条是真的。一个逼着工具承认“这个我还没查实”的格式，比一份语气笃定的总结有用。\n\n发现的问题还会按固定格式存下来，附带一个小检查器来校验，覆盖记录也有一个。换句话说，输出不光给人看，也能让程序来核对。\n\n再说沙箱。要确认某个线索，技能包可能得运行被审项目里的代码。README 要求这时必须有操作系统层面强制隔离的沙箱，也就是锁死的测试环境。没有的话，它不会运行代码，线索就停在“待验证”。这个选择很稳妥，代价是没有沙箱时，你拿到的“确认”会少很多。\n\n还有一个默认设置我觉得挺周到。完整审计默认把输出写在你的项目之外，放在用户主目录下的一个文件夹里。只有你自己指定一个被版本管理忽略的文件夹，它才会往仓库里写。平时它不碰你的仓库。\n\n## 一个人的工作室今天能做什么\n\n条件挺具体。你的 AI 编程助手要能调用工具，还要能让多个帮手并行干活。另外要装 Node.js，一个在浏览器之外运行 JavaScript 的常用工具，再加上前面说的沙箱。助手不支持并行帮手，这个插件暂时还轮不到你。支持的话，装起来只要一步，用官方的技能工具装就行，可以只装给当前项目，也可以装给自己的整个用户账号。\n\nREADME 里我觉得最有用的是关于重复运行的那个数字。Cloudflare 自己的测试里，跑一次找到的，大约只有多次累计的一半。这是他们自己测的，没人独立验证过，Cloudflare 也没说怎么测的。但它说了一句实话：一次审计只是一个样本。跑一遍没发现问题就上线，你知道的比感觉上少。我会跑两三遍，把每遍的结果摆在一起比。\n\n这些数字都来自 Cloudflare 自己的测试，放到一个人做的小应用上表现如何，还不知道。我会拿手上最小的那个已上线应用先试，看看能回来多少条“确认”，一遍要跑多久。\n\n涉及支付、涉及用户隐私的部分，我还是想找真人再看一遍。至于上线前那些丢人的低级错误，这个插件也许能帮你先抓一批，还会老实告诉你哪些线索它没能验证。对一个人的工作室来说，试试不亏。"
+    }
+  },
+  "lab": []
+}
