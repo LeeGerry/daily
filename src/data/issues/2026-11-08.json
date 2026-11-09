@@ -1,0 +1,215 @@
+{
+  "date": "2026-11-08",
+  "publishAt": "2026-11-09T12:00:00Z",
+  "en": {
+    "intro": "Vercel built a tool that lets an AI click around a web browser for you, and Anthropic put a public collection of ready-made skills for its AI online. Also today: Apple wants Siri to do tasks on its own under its new CEO, one developer's switch from Claude to Pi set off a loud Hacker News argument, and a new open-source design kit called Astryx is made for AI to use.",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Vercel's agent-browser lets an AI drive a web browser",
+        "takeaway": "A free tool for letting an AI click through sites: test your signup flow or automate chores.",
+        "body": "Vercel Labs has released agent-browser, a free tool that lets an AI assistant use a web browser the way you would. Open a page, click a button, fill in a form, check what happened. It's open source under the Apache 2.0 license.\n\nIt reads each page as compact text and tags every button and link with a short label. The assistant picks a label, acts on it, reads the page again to see if it worked, and repeats. Those labels only match the page as it looked at that moment, so after the page changes the assistant has to take a fresh look.\n\nA helper program running in the background keeps the browser open between commands, so nothing restarts at every step. By default it closes the browser after an hour with no activity.\n\nOne detail I like: if a click can't land because something's covering the button, say a cookie consent banner, the tool reports a failure. It doesn't pretend it worked. An assistant that knows it failed can close the banner and try again.\n\nIf you run a website or web app, have an assistant walk through your signup or checkout and tell you where it broke. Or pull information off pages.\n\nIt runs on Mac, Windows and Linux. You install it through npm, the standard JavaScript package manager, or Homebrew, then it downloads its own copy of Chrome for testing. The README also covers driving your own running Chrome, the iOS Simulator, and cloud browser services such as Browserbase.\n\nThere's no release date or version number in the README, and it doesn't compare itself to other automation tools. I'd try it on one page of your own site before building anything on top of it.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-08/1.png",
+        "sources": [
+          {
+            "title": "vercel-labs/agent-browser",
+            "url": "https://github.com/vercel-labs/agent-browser",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Apple reportedly wants Siri to run tasks, including in other apps",
+        "takeaway": "Siri may soon run other makers' apps. Know your app's top actions as one-sentence commands.",
+        "body": "Siri booking a dinner through OpenTable. That's one of the examples in the latest Siri reporting, and it's pencilled in for spring.\n\nBloomberg's Mark Gurman reports that Apple CEO John Ternus is pushing AI chief Craig Federighi to move past small Siri tweaks and build an agent. That's an assistant that carries out tasks for you instead of only answering questions. The Verge, summing up Gurman, lays out the order. First comes finer control of Apple's own apps, like rotating and cropping a photo in Photos or organizing Safari tabs, expected with iOS 27.3. Apps from other companies (third-party apps) are likely to follow in the spring, with a Grubhub order as the other example. After that come ongoing tasks: Siri keeping track of a goal and working toward it without you prompting every step.\n\nGurman says OpenAI's Dots, Meta's Muse and Grok already work that way, and that Apple has no illusions about keeping pace. He believes Siri could act more like an agent as early as next year.\n\nIf you make an iPhone app, the step to watch is the third-party one. If Siri is going to operate other people's apps, my guess is the ones that spell out clearly what they can do will get used first. Apple hasn't said how apps would sign up, so that's a guess.\n\nNothing to ship today. A useful exercise anyway: write down the three or four things people do most in your app, each as one spoken sentence. If you can't, that's worth knowing.\n\nAll of this rests on Gurman's sources. Apple hasn't confirmed anything, and the timing is \"expected\" or \"likely\" throughout. Nobody has said which devices, regions or third-party apps, or what it costs.",
+        "note": null,
+        "category": "Platforms",
+        "card": "/cards/2026-11-08/2.png",
+        "sources": [
+          {
+            "title": "Sources: John Ternus wants more urgency in Apple's AI efforts, pushing Craig Federighi to move beyond Siri AI tweaks to agentic and other advanced capabilities (Mark Gurman/Bloomberg)",
+            "url": "https://www.bloomberg.com/news/newsletters/2026-11-08/apple-explores-turning-siri-ai-into-chatgpt-dots-like-agent-ios-28-shake-up?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc5NDE1MTkyNCwiZXhwIjoxNzk0NzU2NzI0LCJhcnRpY2xlSWQiOiJUTzZWMDFLSUpIOEkwMCIsImJjb25uZWN0SWQiOiJDNEVEQ0FFMUZBMDU0MEJFQTI0QTlGMjExQzFFOTA4MCJ9.36GAnE9alr4yBWfCUoJj6dU23ilQniOVEFSDSuoUVms",
+            "site": "bloomberg.com"
+          },
+          {
+            "title": "Sources: John Ternus wants more urgency in Apple's AI efforts, pushing Craig Federighi to move beyond Siri AI tweaks to agentic and other advanced capabilities (Mark Gurman/Bloomberg)",
+            "url": "https://www.techmeme.com/261108/p9#a261108p9",
+            "site": "techmeme.com"
+          },
+          {
+            "title": "Apple is racing to make Siri more agentic",
+            "url": "https://www.theverge.com/ai-artificial-intelligence/1029552/apple-siri-ai-agentic",
+            "site": "theverge.com"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Anthropic opens a public library of Claude skills",
+        "takeaway": "Examples and a template for teaching Claude your repeat tasks. Test before trusting them.",
+        "body": "Anthropic has put a public collection of \"skills\" for Claude on GitHub, the site where developers share code. A skill is a package of instructions, small scripts and reference material that Claude loads only when a task calls for it. Think of a recipe card the assistant pulls out when you ask for that dish.\n\nThe README says the examples run from art, music and design to testing web apps to business jobs like branding and communications. The repository also has the written specification for the format and a blank template. Each skill is a self-contained folder with one instructions file and a short description. For the wider Agent Skills standard, Anthropic points to a separate site.\n\nThe skills behind Claude's Word, PDF, PowerPoint and Excel handling are in there, and they're open source under the Apache 2.0 license. Many other skills are too, but Anthropic doesn't spell out the license for the rest. Notion is listed as a partner with its own skills.\n\nYou can use them in three places. Claude Code, Anthropic's coding tool, lets you add the repository as a source and install bundles. Paid Claude.ai plans already have the example skills. The Claude API, which is how you wire Claude into your own product, can use Anthropic's ready-made skills and take custom ones you upload.\n\nAnthropic calls the skills demonstration and educational material, and says Claude may behave differently from what the repo shows. Test them in your own setup before trusting them with anything important.\n\nI'd read two or three before writing your own. If you walk Claude through the same task every week, a skill is a tidy way to stop re-explaining it.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-08/3.png",
+        "sources": [
+          {
+            "title": "anthropics/skills",
+            "url": "https://github.com/anthropics/skills",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "A longtime Claude Code user quits for Pi, and Hacker News argues",
+        "takeaway": "Tools change fast. Keep your project notes portable so switching assistants stays cheap.",
+        "body": "244 releases in one year. That's the count a longtime Claude Code user gives for Anthropic's AI coding assistant, and he says more than three quarters of them changed the behind-the-scenes instructions the tool feeds the AI. He's retiring it as his main setup and moving to Pi, a stripped-down open source alternative you can customize. His post on caleb.software drew discussion on Hacker News.\n\nThe complaints are specific. Claude Code can only link one session to your code editor at a time, so a second tab never receives the text you highlight. He says that was reported in December 2025 and closed as a duplicate of an unrelated bug. The official VS Code add-on, he says, lacks half the built-in slash commands (shortcuts you type in the chat). He also says the default tool for running terminal commands comes with a description of almost 3,000 tokens (small chunks of text), mostly about git and GitHub, and that's text the model has to read before it does anything for you.\n\nAfter installing Pi, he wrote his own fix for the multi-tab problem in about 20 minutes.\n\nTreat it as one person's account. He admits the post is mostly criticism, and nobody has checked his numbers. He also says Anthropic announced support for a shared instruction file the day after he decided to leave. Commenters argued over several points. One said the post felt six weeks stale.\n\nThe part worth taking is the switching cost. My guess is that if your project's standing instructions live in plain text files, moving assistants gets a lot easier. If they live inside one tool's settings, it gets harder. I'd try a second assistant on a small side project before you need to.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-08/4.png",
+        "sources": [
+          {
+            "title": "Goodbye Claude, hello Pi",
+            "url": "https://caleb.software/posts/claude-to-pi.html",
+            "site": "caleb.software"
+          },
+          {
+            "title": "Goodbye Claude, hello Pi",
+            "url": "https://news.ycombinator.com/item?id=50410107",
+            "site": "Hacker News"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Meta open-sources Astryx, a design system for people and AI",
+        "takeaway": "Free kit of 150+ UI parts, MIT licensed. Beta, needs React 19, so test it on a side project first.",
+        "body": "13,000+ apps inside Meta run on Astryx, and now anyone can use it for free.\n\nA design system is a ready-made kit of buttons, forms, menus and page layouts that all look like they belong together, so you don't design each piece yourself. Meta says Astryx grew over eight years and became the biggest one in the company. The GitHub README lists 150+ components built with accessibility in mind, plus dark mode, ready-made page templates and a setup tool. It's MIT licensed, a permissive license that allows commercial use.\n\nThe pitch is that people and AI coding assistants work from the same reference. The docs, the components and the tool are written so an assistant reads what you read. Whether that produces better screens is an open question. I can't point you to any independent tests or comparisons.\n\nLooks change through themes, which are short lists of overrides for colors and other brand settings. Seven come ready-made: neutral, butter, chocolate, matcha, stone, gothic and y2k. A designer can edit those without making a separate copy of the whole project. You can also restyle any piece with the styling tools you already use. If a component still doesn't fit, you can copy its full source into your project and change it freely. The simplest setup needs no extra build tooling, meaning no added software to package your site.\n\nIt's in Beta, so the interface can still change under you. It needs React 19 or later (React is a popular toolkit for building web interfaces), so an older project means an upgrade first. The charts and data-visualization packages only exist as early test versions, and one experimental package isn't published at all.\n\nI'd try it on a throwaway project for an afternoon, especially if you're starting a new web front end alone. I wouldn't move a shipping product onto a Beta.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-08/5.png",
+        "sources": [
+          {
+            "title": "meta/astryx",
+            "url": "https://github.com/meta/astryx",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 4,
+      "headline": "A longtime Claude Code user quits for Pi, and Hacker News argues",
+      "body": "## What the post says\n\nThe post on caleb.software is a breakup note. The author has used Claude Code, Anthropic's AI coding assistant, since it became part of the Claude Pro subscription more than a year ago. He's now retiring it as his main \"harness\" and moving to Pi. A harness is the program wrapped around an AI model. It reads your files, runs commands and shows you results. The model supplies the intelligence, and the harness decides what the model sees and what it's allowed to do.\n\nHis list is mostly small, concrete irritations. Only one Claude Code session can be connected to the code editor at a time, so a second tab can't receive the text you highlight. He says that was reported in December 2025 and closed as a duplicate of an unrelated bug. The official VS Code add-on, he says, supports only about half of the built-in slash commands (shortcuts you type in the chat), has no custom status line, and mixes the output of helper agents into the main chat in the order things happened. He also points at overhead: the default description of the terminal-command tool runs almost 3,000 tokens, mostly about git and GitHub pull requests. Tokens are the chunks of text a model reads. A long description is something the model has to get through before it starts on your request.\n\nThen there's the pace. He counts 244 Claude Code releases this year, with over three quarters changing the system prompt or tool descriptions. The system prompt is the standing set of instructions the tool gives the model behind the scenes. If that's accurate, the instructions steering your assistant change often.\n\nAfter installing Pi, he wrote an extension in about 20 minutes to handle multiple open tabs with editor text selection. That's the detail that seems to have won him over. Pi is described as minimalist, customizable and open source, and the pitch is that you can bend it to fit instead of waiting for a fix.\n\n## What you can and can't trust here\n\nIt's one person's account, and he says himself that the post is mostly criticism. Several of the strongest claims are his own statements. Neither the 244-release figure nor the three-quarters figure has been confirmed. He also says Anthropic announced support for a shared instruction file, the plain-text notes a tool reads at the start of a session, a day after he made his decision. Whether that announcement landed on that date is unconfirmed. If it did, it would make one of his complaints moot, though not the others.\n\nThe Hacker News thread is only partly visible, so the size and shape of the debate are hard to judge. The comments we have are a mix. One person said Claude Code ignoring the instruction file made it seem dumb, and that as models improve, neither file may be needed. Another reported that, in tests with small local models on specific hardware, opencode beat ohmypi on coding benchmarks (standard tests). That's a narrow result and says little about the big hosted models most people use. Someone suggested running Pi with a local inference engine (software that runs a model on your own machine) on a MacBook for good speed. Someone asked whether using Codex through Pi is allowed, and no visible reply answers that. Vendor terms differ, so check before you build a workflow on it. One commenter said the post felt six weeks out of date. Another asked who the author even is. Reputation doesn't settle any of this, and nothing we have establishes his anyway.\n\nOne commenter says Claude Code sets the author of your saved changes to a GitHub user named claude, and finds that strange. I'd check what name shows up in your own project history before assuming anything.\n\n## How hard it is to leave\n\nYou don't have to care about Pi to take something from this. Whichever assistant you use, you're renting someone else's decisions about what the model sees, which shortcuts exist and how often that changes. Most of the time that's fine. It gets expensive when your habits and notes are tied to one tool.\n\nSo a few cheap moves make sense before you're frustrated. Keep your project's standing instructions in a plain text file you control, not inside one app's settings. Write down the three or four things your current assistant does that you'd miss, such as a shortcut, an editor link or a particular way it handles git. Then try a second tool on a throwaway project for an afternoon. The point of that afternoon is to find out what switching would cost.\n\nIf you don't write code daily, the same logic applies in a gentler form. Know which of your chats, templates and saved prompts could move to another tool tomorrow and which couldn't.\n\nMy own view is that the 20-minute extension is the most interesting claim in the post, and also the one most dependent on who's doing it. Someone comfortable with code can patch a missing feature in an open tool. Someone who isn't may be better off with a polished tool that changes under them than a flexible one they can't change. Neither choice is wrong. What you want is to be making it on purpose, which is hard to do if you've never tried the alternative."
+    }
+  },
+  "zh": {
+    "intro": "Vercel 做了个工具，让 AI 替你在浏览器里点来点去，Anthropic 也把一批现成的技能包(Agent Skills)公开放到了网上。另外，新 CEO 上任的 Apple 想让 Siri 自己动手办事，有位开发者从 Claude 换到 Pi，在 Hacker News 上吵成一片，开源的 Astryx（一套统一按钮、配色的界面规范）则是专门做给 AI 用的。",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Vercel 开源 agent-browser，让 AI 自己用浏览器",
+        "takeaway": "开源工具，让 AI 替你点网页。先拿自家注册流程试试，看哪里会卡住。",
+        "body": "Vercel Labs 放出了 agent-browser，一个开源的小工具（Apache-2.0 协议），让 AI 助手像人一样用浏览器：打开网页、点按钮、读页面，再看结果对不对。\n\n它把网页读成一小段精简文字，给每个按钮和链接标上短标签。AI 挑一个标签去操作，再读一遍页面确认成没成，然后做下一步。标签只对得上读取那一刻的页面，页面一跳转或有变化，就得重新读。\n\n后台有个常驻的小程序，让浏览器在两条指令之间一直开着，不用每步都重启。如果浏览器是无界面模式（看不到窗口，在后台跑），默认一小时没人下指令，它就把浏览器关掉退出。\n\n有个细节我挺喜欢。按钮被 cookie 同意横幅挡住，或者是藏起来的、灰掉的、在屏幕外面的，点击会直接报失败，不会假装成功。AI 知道失败了，才会先去关横幅再重试。\n\n对做产品的人，最直接的用法是让 AI 把你网站的注册或下单流程走一遍，告诉你卡在哪。也能拿来从网页上摘信息。\n\n它支持 Mac、Windows 和 Linux。用 npm（JavaScript 的包管理工具）或 Homebrew 安装，再下载一份测试专用的 Chrome。README 里还写了几种别的用法：接管你已经开着的 Chrome、连 iOS 模拟器、用 Browserbase 这类云端浏览器服务。\n\nREADME 里没提发布时间和版本号，也没跟别的自动化工具比过。我会先拿自己网站的一个页面试试，再决定要不要往上搭东西。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-08/1.png",
+        "sources": [
+          {
+            "title": "vercel-labs/agent-browser",
+            "url": "https://github.com/vercel-labs/agent-browser",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "报道称苹果想让 Siri 自己办事，还会碰别家的 App",
+        "takeaway": "报道说 Siri 以后可能去操作别人的 App。先把自家 App 最常用的几个操作，各写成一句话。",
+        "body": "报道里有个例子：Siri 帮你在 OpenTable 订晚饭。不过这一步排在春天，而且只是预计。\n\nBloomberg 的 Mark Gurman 说，苹果 CEO John Ternus 在催 AI 负责人 Craig Federighi：别再给 Siri 小修小补了，做一个能自己动手办事的助手（业内叫 agent）。The Verge 转述了 Gurman 的说法，顺序是这样：先更细地控制苹果自家的 App，比如在照片里旋转、裁剪图片，整理 Safari 标签页，预计跟着 iOS 27.3 来。别家的 App（第三方 App）更晚，大概在春天，例子是下 Grubhub 的单、订 OpenTable 的位。再往后是持续性的任务：Siri 记着你的目标，自己想下一步，不用你每步都开口。\n\nGurman 说 OpenAI 的 Dots、Meta 的 Muse 和 Grok 已经是这么干的，苹果自己也清楚没跟上。他觉得最早明年，Siri 就能更像个 agent。\n\n做 iPhone App 的人，盯第三方那一步。Siri 要是去操作别人的 App，我猜功能说得清楚的会先被用上。苹果没说 App 怎么接入，所以这只是猜。\n\n今天没什么要上线的。但有个小练习：把你 App 里用户最常做的三四件事，各写成一句人说的话。写不出来，也是个信号。\n\n这些都靠 Gurman 的消息来源。苹果没有确认，时间一律是“预计”“可能”“最早”。哪些设备、哪些地区、哪些第三方 App、收不收钱，都没人说。",
+        "note": null,
+        "category": "平台",
+        "card": "/cards/2026-11-08/2.png",
+        "sources": [
+          {
+            "title": "Sources: John Ternus wants more urgency in Apple's AI efforts, pushing Craig Federighi to move beyond Siri AI tweaks to agentic and other advanced capabilities (Mark Gurman/Bloomberg)",
+            "url": "https://www.bloomberg.com/news/newsletters/2026-11-08/apple-explores-turning-siri-ai-into-chatgpt-dots-like-agent-ios-28-shake-up?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc5NDE1MTkyNCwiZXhwIjoxNzk0NzU2NzI0LCJhcnRpY2xlSWQiOiJUTzZWMDFLSUpIOEkwMCIsImJjb25uZWN0SWQiOiJDNEVEQ0FFMUZBMDU0MEJFQTI0QTlGMjExQzFFOTA4MCJ9.36GAnE9alr4yBWfCUoJj6dU23ilQniOVEFSDSuoUVms",
+            "site": "bloomberg.com"
+          },
+          {
+            "title": "Sources: John Ternus wants more urgency in Apple's AI efforts, pushing Craig Federighi to move beyond Siri AI tweaks to agentic and other advanced capabilities (Mark Gurman/Bloomberg)",
+            "url": "https://www.techmeme.com/261108/p9#a261108p9",
+            "site": "techmeme.com"
+          },
+          {
+            "title": "Apple is racing to make Siri more agentic",
+            "url": "https://www.theverge.com/ai-artificial-intelligence/1029552/apple-siri-ai-agentic",
+            "site": "theverge.com"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Anthropic 公开 Claude 技能包仓库，附模板",
+        "takeaway": "有示例有模板，能教 Claude 做你的重复活儿。官方说只供演示，上线前自己测。",
+        "body": "Anthropic 在 GitHub 上放出了一个公开仓库，讲的是 Claude 的“技能包”。技能包就是一个文件夹，装着说明、小脚本和参考资料，Claude 遇到对应的任务才会翻出来用。有点像菜谱卡：你点哪道菜，它抽哪张。\n\n仓库分三块：一批示例技能，一份格式规范，一个空白模板。示例五花八门，有画画、音乐、设计，有测试网页应用，也有品牌、公关这类公司里的活儿。每个技能都是独立的文件夹，里面一份说明文件，开头只有名字和描述两项必填。更大范围的 Agent Skills 标准，Anthropic 指向了另一个网站 agentskills.io。\n\nClaude 处理 Word、PDF、PowerPoint、Excel 背后的技能也在里面，用 Apache 2.0 协议开源。其他技能里“很多”也是，具体用什么协议，仓库没有逐个交代。Notion 被列为合作方，已经发了自己的技能包。\n\n能用的地方有三处。Claude Code（Anthropic 的 AI 编程工具）可以把这个仓库添加为来源，再装现成的技能组合。Claude.ai 付费版已经能用示例技能。Claude API（把 Claude 接进自己产品的方式）能调用官方做好的技能，也能上传你自己写的。\n\nAnthropic 自己说，这些只用于演示和学习，Claude 实际表现可能和仓库里不一样。要拿去做重要的事，先在自己的环境里测透。\n\n我会先读两三个，再动手写自己的。如果你每周都要给 Claude 把同一件事讲一遍，技能包就是讲一次、存起来的办法。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-08/3.png",
+        "sources": [
+          {
+            "title": "anthropics/skills",
+            "url": "https://github.com/anthropics/skills",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Claude Code 老用户改投 Pi，评论区各说各的",
+        "takeaway": "工具改得很快。把项目说明写在普通文本里，以后换 AI 编程助手才不心疼。",
+        "body": "一年 244 个版本。一位用了 Claude Code 一年多的老用户这么数的。他说其中超过四分之三改了工具在背后塞给 AI 的指令或工具说明。他决定不再拿 Claude Code 当主力，换成 Pi，一个精简、能自己改、开源的同类工具。文章发在 caleb.software，Hacker News 上有人讨论。\n\n抱怨都很具体。Claude Code 同一时间只能有一个会话连上代码编辑器，开第二个标签页，就收不到你在编辑器里选中的文字。他说这个问题 2025 年 12 月就有人报过，被当成另一个不相干 bug 的重复项关掉了。官方的 VS Code 插件缺一半内置斜杠命令（在对话框里输入的快捷指令）。默认的终端命令工具，光说明文字就快 3,000 个 token（模型读文字的小单位），大多在讲 git 和 GitHub。模型每次得先读完这些，才开始干你交代的活。\n\n装上 Pi 之后，他花了大约 20 分钟，自己写了个扩展，把多标签页的问题补上了。\n\n只当一个人的说法看。他自己承认文章基本是在吐槽，那些数字也没经过核实。他还说，他刚做完决定，第二天 Anthropic 就宣布 Claude Code 要支持通用的说明文件，这个日期同样没法确认。评论区各说各的，有人嫌这篇像六周前的旧闻。\n\n我觉得能拿走的是换工具的成本。项目的长期说明要是写在普通文本文件里，换助手容易得多。要是锁在某个工具的设置里，就麻烦了。趁还没不满意，找个小项目，拿第二个助手试一下午。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-08/4.png",
+        "sources": [
+          {
+            "title": "Goodbye Claude, hello Pi",
+            "url": "https://caleb.software/posts/claude-to-pi.html",
+            "site": "caleb.software"
+          },
+          {
+            "title": "Goodbye Claude, hello Pi",
+            "url": "https://news.ycombinator.com/item?id=50410107",
+            "site": "Hacker News"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Meta 开源设计系统 Astryx，专为人和 AI 一起做界面",
+        "takeaway": "150 多个界面零件，MIT 协议免费用。还是 Beta，要 React 19 以上，先拿小项目试。",
+        "body": "Meta 把内部用了八年的设计系统开源了，名字叫 Astryx。Meta 说，公司里 13,000 多个应用都在用它。\n\n设计系统，就是一整套风格统一的现成零件：按钮、表单、菜单、页面布局，不用每样都自己设计。README 里写着，Astryx 有 150 多个考虑了无障碍的组件，带深色模式、现成的页面模板和一个命令行工具。用的是 MIT 协议，一种宽松的开源协议，商用也行。\n\n它主打的说法是，人和 AI 编程助手看同一套资料干活。文档、组件、工具都照这个思路写，助手读到的和你读到的一样。能不能因此做出更好看的界面，我没找到独立测试或对比，不好下结论。\n\n换外观靠主题。主题就是一小份覆盖清单，改颜色之类的品牌设置。现成的有七套：neutral、butter、chocolate、matcha、stone、gothic、y2k。设计师改这份清单就行，不用另外复制整个项目。单个零件也能用你熟悉的办法改样式，Tailwind、普通 CSS 都行。还是不合适，可以把某个组件的完整源码拷进自己的项目，随便改。最简单的用法不需要额外的构建工具。\n\n现在是 Beta，接口可能还会变。它要 React 19 或更新的版本（React 是做网页界面的常用工具），旧项目得先升级。图表和数据可视化的包只有早期测试版，另有一个实验性的包根本没发布。\n\n我会拿个一次性的小项目玩一下午，尤其是一个人从零开始做新网页前端的时候。已经上线在卖的产品，我不会搬到 Beta 上。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-08/5.png",
+        "sources": [
+          {
+            "title": "meta/astryx",
+            "url": "https://github.com/meta/astryx",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 4,
+      "headline": "Claude Code 老用户改投 Pi，评论区各说各的",
+      "body": "## 他到底在抱怨什么\n\ncaleb.software 上这篇文章，读起来像一封分手信。作者从 Claude Pro 订阅包含 Claude Code 开始用，一年多了。现在他决定不再拿它当主力，改用 Pi。\n\n先解释一个词。AI 编程助手其实分两层：一层是模型，负责想；另一层是包在外面的程序，负责读你的文件、跑命令、把结果摆给你看。Claude Code 和 Pi 属于外面这一层。模型能看到什么、能做什么，都由这层决定。\n\n他列的毛病大多很小，但很具体。Claude Code 同一时间只能有一个会话连上代码编辑器，所以开第二个标签页，就收不到你在编辑器里选中的文字。他说这个问题 2025 年 12 月就有人报过，后来被当成另一个不相干 bug 的重复项关掉了。官方的 VS Code 插件，按他的说法，缺一半内置斜杠命令（在对话框里输入的快捷指令），不支持自定义状态栏，还会把辅助 AI 的输出按时间顺序混进主对话。\n\n他还提到一笔额外开销。默认的终端命令工具，说明文字就快 3,000 个 token，大多在讲 git 和 GitHub 的合并请求。token 是模型读文字的小单位。说明越长，模型开工前要读的东西就越多。\n\n再说节奏。他数出今年 Claude Code 发了 244 个版本，超过四分之三改了系统提示或工具说明。系统提示是工具在背后一直递给模型的那套指令。这个数字要是准，就意味着指挥你那位助手的指令一直在变。\n\n装上 Pi 以后，他大约花 20 分钟写了个扩展，解决多标签页加编辑器选中文字的问题。看起来最打动他的就是这个。Pi 被描述成精简、可定制、开源，卖点是你可以自己动手改，不用干等官方修。\n\n## 哪些话能信，哪些要留个心眼\n\n这是一个人的说法，他自己也承认文章基本是在批评。最硬的几条都是他自己的陈述。244 个版本和四分之三这两个数字，没人核实过。\n\n他还说，他刚做完决定，第二天 Anthropic 就宣布 Claude Code 开始支持通用的说明文件，也就是工具每次开工前先读一遍的纯文本备忘。这个日期是否属实，同样没法确认。如果属实，他的一条抱怨确实就过时了，但其他几条还在。\n\nHacker News 的讨论只露出一部分，所以吵得多大、吵成什么样，很难判断。已有的评论五花八门。有人说 Claude Code 无视那份说明文件，让它显得有点蠢，而且模型越来越强，将来可能哪份文件都不需要。有人说在自己的测试里，用小型本地模型跑编程测试，opencode 比 ohmypi 成绩好。注意，那是小模型加特定硬件，跟大多数人用的云端大模型关系不大。有人建议在 MacBook 上用本地推理引擎（把模型跑在自己电脑上的软件）搭配 Pi，速度不错。有人问通过 Pi 用 Codex 算不算违规，这事没有定论。各家条款不一样，想在上面搭长期流程，先自己查清楚。还有人说这篇像六周前的旧闻，有人问作者到底是谁、是不是名人。名气不能证明什么，况且他的身份也没法确认。\n\n另有一位评论者说，Claude Code 会把提交记录的作者记成一个叫 claude 的 GitHub 用户，觉得很怪。我会先去看看自己项目的历史里显示的是什么名字，再下结论。\n\n## 换工具要花多少钱\n\n你不用关心 Pi，也能从这件事里拿到东西。不管用哪个助手，你都是在租别人的决定：模型能看到什么，有哪些快捷命令，这些东西多久变一次。多数时候没问题。贵的是你的习惯和笔记都绑在了一个工具上。\n\n所以趁还没生气，有几件便宜的事可以先做。把项目的长期说明写在一个你自己掌握的普通文本文件里，别放进某个软件的设置。写下你现在这个助手有哪三四样你会舍不得的东西，比如某个快捷命令、和编辑器的联动、处理 git 的某种方式。然后拿一个随时可以扔的小项目，用第二个工具玩一下午。这一下午的目的，就是弄清楚换工具到底要付什么代价。\n\n要是你不是天天写代码，道理一样，只是轻一点。想想你的对话记录、模板和存下来的提示词，哪些明天就能搬去别的工具，哪些搬不走。\n\n我自己的看法：文章里最有意思的是那个 20 分钟的扩展，也是最看人的一条。懂代码的人，能给开源工具补上缺的功能。不懂的人，也许用一个打磨好的、会在脚下悄悄变的工具，比用一个很灵活却改不动的工具更省心。两种选择都没错。要紧的是你选的时候是知道自己在选，而没试过另一边的人，很难做到这一点。"
+    }
+  },
+  "lab": []
+}
