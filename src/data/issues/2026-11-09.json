@@ -1,0 +1,305 @@
+{
+  "date": "2026-11-09",
+  "publishAt": "2026-11-10T12:00:00Z",
+  "en": {
+    "intro": "Anthropic cut the price of Fable 5.2 and Mythos 5.2 by 20%, to $8/$40 per million tokens, the chunks of text AI usage is billed in. Also today: a public collection of ready-made skills for Claude, Meta's cheap Muse Ember model, and two tools built for AI agents, one from Vercel Labs and one from Meta.",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Claude Fable 5.2 launches at $8/$40 per million tokens",
+        "takeaway": "Cheaper per token, plus a fast mode at double the price if your users can't wait for replies.",
+        "body": "Fast mode on Anthropic's new Fable 5.2 model costs $16 per million input tokens and $80 per million output tokens. That's exactly double the standard rate of $8 and $40. Tokens are the small chunks of text an AI model reads and writes. They're how you get billed when you build a model into your own app.\n\nAnthropic announced two models, Claude Fable 5.2 and Claude Mythos 5.2. They're the same underlying model. Fable has extra safeguards around cybersecurity and biology, so anyone can use it, and The Verge reports it launched the same day. Mythos is for vetted organizations doing security or biomedical research, which can apply through Anthropic's verification programs.\n\nThe standard price is down 20% from version 5.1, according to The New Stack. Anthropic's own page says only \"a lower price,\" so treat 20% as one outlet's number for now. Anthropic also says the new models write output up to 30% faster than 5.1, and fast mode pushes generation speed up to 2.5 times.\n\nIf your product has a Claude-powered feature, the lower standard rate trims your bill. If a customer is sitting there waiting for a reply, fast mode is the option to price out. Every request costs twice as much, so it only makes sense where speed is what people are paying for.\n\nAnthropic itself points most people to a different model, Opus 5.5, for everyday coding and knowledge work. It suggests moving up to Fable for harder jobs. I'd start with Opus 5.5 and only test Fable on the tasks where it falls short.",
+        "note": null,
+        "category": "Models",
+        "card": "/cards/2026-11-09/1.png",
+        "sources": [
+          {
+            "title": "Claude Fable 5.2 and Mythos 5.2",
+            "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+            "site": "anthropic.com"
+          },
+          {
+            "title": "Claude Fable 5.2 and Mythos 5.2",
+            "url": "https://news.ycombinator.com/item?id=50429906",
+            "site": "Hacker News"
+          },
+          {
+            "title": "Anthropic prices Fable 5.2 and Mythos 5.2 at $8/1M input and $40/1M output tokens, down 20% from 5.1; fast mode costs $16/1M input and $80/1M output tokens (Frederic Lardinois/The New Stack)",
+            "url": "https://thenewstack.io/anthropic-fable-coding-upgrade/",
+            "site": "thenewstack.io"
+          },
+          {
+            "title": "Anthropic prices Fable 5.2 and Mythos 5.2 at $8/1M input and $40/1M output tokens, down 20% from 5.1; fast mode costs $16/1M input and $80/1M output tokens (Frederic Lardinois/The New Stack)",
+            "url": "https://www.techmeme.com/261109/p40#a261109p40",
+            "site": "techmeme.com"
+          },
+          {
+            "title": "Anthropic says during prerelease testing Mythos 5.2 and Fable 5.2 formalized the proof of Fermat's Last Theorem and solved two open black hole physics problems (Jay Peters/The Verge)",
+            "url": "https://www.theverge.com/ai-artificial-intelligence/1030005/anthropic-claude-fable-mythos-5-2?view_token=eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IlZxTEU5c3dWWmMiLCJwIjoiL2FpLWFydGlmaWNpYWwtaW50ZWxsaWdlbmNlLzEwMzAwMDUvYW50aHJvcGljLWNsYXVkZS1mYWJsZS1teXRob3MtNS0yIiwiZXhwIjoxNzk0NjgzNDYyLCJpYXQiOjE3OTQyNTE0NjJ9.2LVCU8fAafdd4rkRbz6XCtLFvyK6Lugr0vpJRrELfpo&amp;utm_medium=gift-link",
+            "site": "theverge.com"
+          },
+          {
+            "title": "Anthropic says during prerelease testing Mythos 5.2 and Fable 5.2 formalized the proof of Fermat's Last Theorem and solved two open black hole physics problems (Jay Peters/The Verge)",
+            "url": "https://www.techmeme.com/261109/p39#a261109p39",
+            "site": "techmeme.com"
+          },
+          {
+            "title": "Anthropic releases Mythos 5.2 and Fable 5.2, saying they are \"best for the most ambitious, open-ended technical work\", with outputs up to 30% faster than 5.1 (Anthropic)",
+            "url": "https://www.techmeme.com/261109/p38#a261109p38",
+            "site": "techmeme.com"
+          },
+          {
+            "title": "llm-anthropic 0.31",
+            "url": "https://simonwillison.net/2026/Nov/9/llm-anthropic/",
+            "site": "simonwillison.net"
+          },
+          {
+            "title": "Anthropic launches new Claude Fable and Mythos 5.2 models",
+            "url": "https://www.theverge.com/ai-artificial-intelligence/1030005/anthropic-claude-fable-mythos-5-2",
+            "site": "theverge.com"
+          },
+          {
+            "title": "Anthropic releases new Mythos and Fable models amid RSI concerns",
+            "url": "https://techcrunch.com/2026/11/09/anthropic-releases-new-mythos-and-fable-models-amid-rsi-concerns/",
+            "site": "techcrunch.com"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Anthropic publishes example skills for Claude",
+        "takeaway": "Public templates for packaging a repeat task as a Claude skill. Test them before relying on them.",
+        "body": "Anthropic has put a public folder of example \"skills\" for Claude on GitHub, the site where developers share code. The README (the project's intro page) describes a skill as a folder of instructions, scripts and extra resources. Claude loads it when a task calls for it, so it does that one job better. Think of a recipe card you hand a cook before a specific dish.\n\nThe examples cover a lot of ground: art, music and design, testing web apps, company branding and communications. The Word, PDF, PowerPoint and Excel skills are in there too, and the README says they power Claude's own document features. Those are open source under Apache 2.0, a standard open-source license. The README only says \"many\" of the other skills are open source, so check each folder's license before you copy anything.\n\nFor a solo maker, the interesting bit is how little a skill needs. Each one is a self-contained folder built around an instructions file, and the top of that file needs just two things: a name and a short description. If you repeat a task all the time, like writing release notes in your brand voice, you could write it down once and let Claude pick it up when needed. Notion is listed as a partner with its own skills for Claude.\n\nTo try it today, open the template folder in the collection and read the written specification next to it. Paid Claude.ai plans already have the example skills. Claude Code users can install them as add-ons, and API users can upload their own skills. Anthropic says the examples are for demonstration and education only, and that Claude's real behavior may differ from what they show. Test anything in your own setup before you lean on it.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-09/2.png",
+        "sources": [
+          {
+            "title": "anthropics/skills",
+            "url": "https://github.com/anthropics/skills",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Meta's Muse Ember: a cheap small model, claims untested",
+        "takeaway": "Cheap enough to matter for high-volume features, but Meta's claims need your own test first.",
+        "body": "In its announcement, Meta says its new Muse Ember model matches the best score of Claude Haiku 5.5 at about a third of the cost. That's Meta's own claim, and the scores sit in charts, not text.\n\nEmber is the smallest model in Meta's Muse family, released November 9. Small models are the cheap, fast ones you give repetitive jobs. Meta lists sorting requests to the right place, pulling details out of documents, small coding steps, and calling other tools.\n\nIt costs $0.10 per million input tokens (what you send) and $0.50 per million output tokens (what comes back). Tokens are the chunks of text AI models bill by. Input you send repeatedly can be stored and reused (cached) for $0.004 per million.\n\nIt takes up to a million tokens at once, enough for very long documents, and it handles images, audio and video. You can reach it through Meta's developer service, Muse Code, Google Cloud and Oracle Cloud.\n\nTechCrunch reports Meta built it to pair with a bigger model, Muse Wonder: the big one sets the rules and Ember applies them across many cases. TechCrunch also says it's cost-competitive with the open models DeepSeek V4.1 Flash and GLM 5.3 Flash.\n\nOne chart caption says \"proposed pricing\" and another says \"list pricing,\" and Meta doesn't say which one backs the headline claim. Haiku's and GPT-6 Luna's prices aren't given either, so the comparison can't be checked. Ember also appears to have no open weights (published model files), so you can't run it yourself.\n\nIf one feature in your product runs thousands of times a day, pull 50 real examples and run them through Ember and your current model, then compare the answers and the bill. I'd wait for independent tests before moving production traffic.",
+        "note": null,
+        "category": "Models",
+        "card": "/cards/2026-11-09/3.png",
+        "sources": [
+          {
+            "title": "Our Smallest, Most Efficient Model: Muse Ember",
+            "url": "https://research.meta.ai/blog/muse-ember",
+            "site": "research.meta.ai"
+          },
+          {
+            "title": "Our Smallest, Most Efficient Model: Muse Ember",
+            "url": "https://news.ycombinator.com/item?id=50429024",
+            "site": "Hacker News"
+          },
+          {
+            "title": "Meta releases Muse Ember, its smallest and most cost-efficient AI model yet, saying it delivers more intelligence per dollar than Haiku 5.5 and GPT-6 Luna (Russell Brandom/TechCrunch)",
+            "url": "https://techcrunch.com/2026/11/09/meta-releases-muse-ember-a-new-lightweight-model-for-agent-execution/",
+            "site": "techcrunch.com"
+          },
+          {
+            "title": "Meta releases Muse Ember, its smallest and most cost-efficient AI model yet, saying it delivers more intelligence per dollar than Haiku 5.5 and GPT-6 Luna (Russell Brandom/TechCrunch)",
+            "url": "https://www.techmeme.com/261109/p35#a261109p35",
+            "site": "techmeme.com"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Vercel Labs releases a browser an AI agent can drive",
+        "takeaway": "Open source agent-browser lets an AI click through websites. Try it on one dull web chore you repeat.",
+        "body": "Vercel Labs published a small open source program that lets an AI agent use a web browser the way you do: open a page, look at it, click something, look again. It's called agent-browser, and the README says it's written in Rust, a language known for fast, compact programs.\n\nThe agent reads the page as short text, and each element on it gets a short reference, like a numbered tag. The agent says \"click that one,\" and the browser stays open between steps. If it's left idle, the browser closes itself after an hour.\n\nOne detail I like: if a click can't happen, it says so. Button hidden, disabled, scrolled out of view, or covered by something like a cookie banner? The click fails instead of pretending it worked. The agent has to close the banner first.\n\nThe labels go stale, though. Once the page changes or you move to another one, the agent has to take a fresh look.\n\nIt runs on Mac, Linux and Windows, and the license is Apache-2.0, a permissive open source one. Install goes through npm or Homebrew, the usual app installers for developers. Vercel hasn't said when it was released, and there are no speed comparisons with other browser tools.\n\nIf your product needs an agent that reads or operates websites, this is plumbing you don't have to build. Today, pick one dull web chore you repeat, like checking a competitor's prices or walking through your own signup page. Then ask your AI coding assistant to try it with this tool.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-09/4.png",
+        "sources": [
+          {
+            "title": "vercel-labs/agent-browser",
+            "url": "https://github.com/vercel-labs/agent-browser",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Meta's free Astryx design kit is built for AI helpers too",
+        "takeaway": "Free, MIT license, 150+ parts, but Beta and React 19+ only. Try it on a side project first.",
+        "body": "Meta's new free design system comes with seven ready-made looks, and two of them are called matcha and y2k. The others are neutral, butter, chocolate, stone and gothic.\n\nA design system is a shared kit of buttons, menus, forms and the rules for how they look. Meta calls this one Astryx. Its GitHub page says it grew inside the company over eight years and now powers 13,000+ apps. That's Meta's own number, and nobody has checked it independently. The same page says Astryx is in Beta, so expect rough edges.\n\nYou get 150+ components built to be accessible, which means usable with a keyboard or screen reader. There's also dark mode, starter templates and a small helper program you run from the terminal. A theme is just a list of overridden style values, so a designer can change the brand look without digging into component code. If you want to change a component deeply, you can copy its full source into your project. Under the hood it uses a styling tool called StyleX, but you can layer Tailwind or plain CSS on top.\n\nThe AI angle is Meta's big pitch. Meta says people and AI assistants should build from the same docs and the same helper tool. That's the pitch so far, and there's no outside reaction to weigh it against yet: the Hacker News discussion was empty.\n\nIt needs React 19 or newer. React is a popular tool for building web interfaces, and plenty of projects are still on older versions. The charts packages only exist as pre-release builds. The license badge says MIT, which is a permissive one.\n\nIf you're already on React 19, spin up a throwaway project and try one theme. If you're not on React, skip it. I'd keep a shipping app off a Beta kit for now.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-09/5.png",
+        "sources": [
+          {
+            "title": "meta/astryx",
+            "url": "https://github.com/meta/astryx",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "Claude Fable 5.2 launches at $8/$40 per million tokens",
+      "body": "## What changed in the price list\n\nAnthropic announced two models, Claude Fable 5.2 and Claude Mythos 5.2. Anthropic describes them as built for the most daunting technical challenges. They follow Fable 5.1 and Mythos 5.1, which The Verge says came out in September. Fable 5.2 is available now. Mythos 5.2 starts with vetted organizations only.\n\nThe standard price is $8 per million input tokens and $40 per million output tokens. A token is a small chunk of text, often a word or part of one. Input is what you send the model, and output is what it writes back. The New Stack calls this 20% below the 5.1 models. Anthropic's announcement doesn't use that number. It says only that the price is lower. The cut is probably real, but I'd confirm the old and new rates on Anthropic's pricing page before you plan around the exact percentage.\n\nThen there's fast mode, an optional setting that speeds up generation by up to 2.5 times. It costs $16 and $80, which is double the standard rate. Take a made-up example. Say one request sends 10,000 tokens in and gets 1,000 back. At the standard rate that's about 12 cents. In fast mode it's about 24 cents. Spread that over thousands of requests a day and the choice matters. Anthropic also says the new models are up to 30% faster than 5.1 even without fast mode, so the standard speed may already be good enough for your use.\n\n## Fable, Mythos, and who gets what\n\nThese two models are the same underneath. Fable carries safeguards around cybersecurity and biology, and that's what lets Anthropic offer it to everyone. Mythos is the version without those limits, for organizations doing beneficial security or biomedical research. They can apply through two programs Anthropic has expanded, the Life Sciences and Cyber Verification Programs. Anthropic hasn't said much about the application criteria.\n\nIf you make consumer apps, Fable is the one you'll use. Mythos isn't a product you can sign up for on a whim.\n\nAnthropic calls Claude Opus 5.5 its strongest daily driver for most coding and knowledge tasks. It suggests moving up to Fable or Mythos for more complex work. For a typical small product, a summarizer, a support helper or a writing tool, Opus 5.5 is still the default Anthropic recommends.\n\n## How much to trust the scores\n\nAnthropic shares several benchmarks, which are standard tests run on many models so you can compare them. On FrontierCode, Fable 5.2 at High effort scores 45.3%, against 45.5% for the best Opus 5.5 result. Effort levels are settings for how hard the model works on a problem. Anthropic says Fable gets there at roughly half the cost per task. Its phrasing doesn't make clear what the half is measured against. I read it as against Opus 5.5, but that's a guess. At Xhigh effort, Fable reaches 49.1%. That's a higher effort setting than the one used in the Opus comparison, so the two numbers don't line up cleanly.\n\nOn BenchCAD 2.1 at Max effort, Fable 5.2 scores 83.5. Opus 5.5 gets 65.3 and Fable 5.1 gets 44.4. That's a big jump over the previous Fable.\n\nThese are Anthropic's own results, run with safeguards on and at effort levels it chose. The full method is in a system card, a technical write-up I haven't read. Nobody outside the company has verified the numbers. Anthropic also lists some prerelease tests, including software migrations, three working electronic devices, two open problems in black hole physics, and a 30-hour formalization of Fermat's Last Theorem. Those are impressive claims, and they're also far from what most small apps do.\n\nThe reaction on Hacker News, a tech discussion site, was mixed. One commenter called the price too expensive. Another called $8/$40 'pretty sweet.' Several found the numbering confusing, since the flagship is 5.2 while Opus is 5.5. One asked whether the Opus 5.5 comparison was run before or after that model changed. Whether Opus 5.5 was altered is unknown, and for now it's one commenter's suspicion. The same goes for the argument that FrontierCode 2.0 treats Gemini unfairly.\n\n## What a small team can do this week\n\nFirst, if you already pay for a Claude model, look at your last month's bill and split it into input and output. Output costs five times as much per token, so a feature that writes long answers costs more than one that reads a lot and replies briefly. That tells you which part of your product the price cut helps.\n\nSecond, pick one feature where quality has been the sticking point and try Fable 5.2 on it. Leave the rest on whatever works today. Compare cost and results on your own real examples, not on the published scores.\n\nThird, only turn on fast mode where a person is actually waiting. A live chat is the obvious case. A report generated overnight isn't."
+    }
+  },
+  "zh": {
+    "intro": "Anthropic 把 Fable 5.2 和 Mythos 5.2 降价 20%，每百万 token（AI 按量收费的文字单位）分别是 8 美元和 40 美元。今天另外还有 Claude 的公开技能包仓库、Meta 主打便宜的小模型 Muse Ember，以及 Vercel Labs 和 Meta 各出的一个给 AI 助手用的工具。",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Claude Fable 5.2 标准价 8/40 美元",
+        "takeaway": "标准价更低，另有翻倍价的快速模式，只在用户等着看回复时才值得开。",
+        "body": "Claude Fable 5.2 的标准价是每百万 token 输入 8 美元、输出 40 美元。token 是 AI 读写文字的小单位，大致一个词或半个词。把模型接进自己的 App，账单就按它算。\n\nThe New Stack 说这比 5.1 便宜 20%。Anthropic 自己的页面只写了“更低的价格”，没提 20%，这个数先当成一家媒体的说法。\n\nAnthropic 这次发了两个模型，Fable 5.2 和 Mythos 5.2，底子是同一个。Fable 加了网络安全和生物方面的限制，所有人都能用，The Verge 说当天就上线。Mythos 留给做安全或生物医学研究的机构，要先申请，一开始只有审核过的机构能用。\n\n还有个可选的快速模式，生成速度最高快 2.5 倍，价格正好翻倍：输入 16 美元，输出 80 美元。Anthropic 还说新模型本身比 5.1 输出快最多 30%。\n\n产品里有 Claude 驱动的功能，标准价降了，账单会轻一点。快速模式只在用户盯着屏幕等回复的地方才划算，夜里跑的任务别开。\n\nAnthropic 自己推荐，大多数写代码和知识类的活儿用 Opus 5.5，更难的再往上换 Fable。我会先用 Opus 5.5，只拿它搞不定的任务去试 Fable。",
+        "note": null,
+        "category": "模型",
+        "card": "/cards/2026-11-09/1.png",
+        "sources": [
+          {
+            "title": "Claude Fable 5.2 and Mythos 5.2",
+            "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+            "site": "anthropic.com"
+          },
+          {
+            "title": "Claude Fable 5.2 and Mythos 5.2",
+            "url": "https://news.ycombinator.com/item?id=50429906",
+            "site": "Hacker News"
+          },
+          {
+            "title": "Anthropic prices Fable 5.2 and Mythos 5.2 at $8/1M input and $40/1M output tokens, down 20% from 5.1; fast mode costs $16/1M input and $80/1M output tokens (Frederic Lardinois/The New Stack)",
+            "url": "https://thenewstack.io/anthropic-fable-coding-upgrade/",
+            "site": "thenewstack.io"
+          },
+          {
+            "title": "Anthropic prices Fable 5.2 and Mythos 5.2 at $8/1M input and $40/1M output tokens, down 20% from 5.1; fast mode costs $16/1M input and $80/1M output tokens (Frederic Lardinois/The New Stack)",
+            "url": "https://www.techmeme.com/261109/p40#a261109p40",
+            "site": "techmeme.com"
+          },
+          {
+            "title": "Anthropic says during prerelease testing Mythos 5.2 and Fable 5.2 formalized the proof of Fermat's Last Theorem and solved two open black hole physics problems (Jay Peters/The Verge)",
+            "url": "https://www.theverge.com/ai-artificial-intelligence/1030005/anthropic-claude-fable-mythos-5-2?view_token=eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IlZxTEU5c3dWWmMiLCJwIjoiL2FpLWFydGlmaWNpYWwtaW50ZWxsaWdlbmNlLzEwMzAwMDUvYW50aHJvcGljLWNsYXVkZS1mYWJsZS1teXRob3MtNS0yIiwiZXhwIjoxNzk0NjgzNDYyLCJpYXQiOjE3OTQyNTE0NjJ9.2LVCU8fAafdd4rkRbz6XCtLFvyK6Lugr0vpJRrELfpo&amp;utm_medium=gift-link",
+            "site": "theverge.com"
+          },
+          {
+            "title": "Anthropic says during prerelease testing Mythos 5.2 and Fable 5.2 formalized the proof of Fermat's Last Theorem and solved two open black hole physics problems (Jay Peters/The Verge)",
+            "url": "https://www.techmeme.com/261109/p39#a261109p39",
+            "site": "techmeme.com"
+          },
+          {
+            "title": "Anthropic releases Mythos 5.2 and Fable 5.2, saying they are \"best for the most ambitious, open-ended technical work\", with outputs up to 30% faster than 5.1 (Anthropic)",
+            "url": "https://www.techmeme.com/261109/p38#a261109p38",
+            "site": "techmeme.com"
+          },
+          {
+            "title": "llm-anthropic 0.31",
+            "url": "https://simonwillison.net/2026/Nov/9/llm-anthropic/",
+            "site": "simonwillison.net"
+          },
+          {
+            "title": "Anthropic launches new Claude Fable and Mythos 5.2 models",
+            "url": "https://www.theverge.com/ai-artificial-intelligence/1030005/anthropic-claude-fable-mythos-5-2",
+            "site": "theverge.com"
+          },
+          {
+            "title": "Anthropic releases new Mythos and Fable models amid RSI concerns",
+            "url": "https://techcrunch.com/2026/11/09/anthropic-releases-new-mythos-and-fable-models-amid-rsi-concerns/",
+            "site": "techcrunch.com"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Anthropic 公开了一批 Claude 技能示例",
+        "takeaway": "想把重复的活交给 Claude，可以先照模板写一个技能，开头只要名字和描述。重要的活先自己测。",
+        "body": "Anthropic 在 GitHub 上放了一个公开仓库，里面是一批给 Claude 用的示例“技能”（Agent Skills）。README 里把技能说成一个文件夹，装着说明、脚本和参考资料，Claude 碰到对应的任务才翻出来用，那件事就做得更好。有点像上灶前递给厨子的一张菜谱卡。\n\n示例铺得挺开：画画、音乐、设计，测试网页应用，还有公司品牌和对外沟通。Word、PDF、PowerPoint、Excel 四个文档技能也在里面，README 说 Claude 自己的文档功能就靠它们。这四个用 Apache 2.0 许可（一种很常见的开源许可）。其他技能，README 只说“很多”是开源，没列哪些是。抄之前，先看每个文件夹自己的许可。\n\n对一个人做产品的人来说，有意思的是门槛低。每个技能就是一个文件夹，核心是一份说明文件，开头只要填两样：名字和一句描述。你要是总在重复某件事，比如按品牌语气写更新日志，可以写一次，让 Claude 需要时自己去取。Notion 也在名单上，列为合作方，有自己的 Claude 技能。\n\n今天能做的：打开仓库里的模板文件夹，旁边还有一份技能规范，对着读一遍。付费版 Claude.ai 已经能用这些示例，Claude Code 可以当插件装，API 用户能上传自己写的技能。Anthropic 说这些只用于演示和学习，Claude 实际表现可能和示例不一样。要干重要的活，先在自己的环境里测透。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-09/2.png",
+        "sources": [
+          {
+            "title": "anthropics/skills",
+            "url": "https://github.com/anthropics/skills",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Meta 发小模型 Muse Ember，分数是自家说的",
+        "takeaway": "高频功能可以拿 50 条真实数据比一比，上线前先等独立评测。",
+        "body": "Meta 11 月 9 日发了个新的小模型，叫 Muse Ember。Meta 说它在“每花一块钱买到多少智能”上，比 Claude Haiku 5.5 和 GPT-6 Luna 都强，拿到 Haiku 的最高分只要大约三分之一的钱。这是 Meta 自己的说法，分数只画在图表里，文字里没有具体数字。\n\n小模型就是又便宜又快的那种，适合派给它重复的活。Meta 列的有：把请求分给对的地方、从文档里抽信息、写代码里的小步骤、调用别的工具。\n\n价格是每百万 token 输入 0.10 美元（你发过去的），输出 0.50 美元（它回给你的）。token 是 AI 模型计费用的文字小块。反复发送的内容可以缓存，每百万只要 0.004 美元。\n\n它一次能吃 100 万 token，够塞很长的文档，图片、音频、视频也能处理。入口有 Meta 的开发者接口、Muse Code、Google Cloud 和 Oracle Cloud。\n\nTechCrunch 说，Meta 的设计是让它跟大模型 Muse Wonder 搭着用：大的定规矩，Ember 照着在大量情况里执行。TechCrunch 还说，它的价格跟开源的 DeepSeek V4.1 Flash、GLM 5.3 Flash 在一个档次。\n\n有几处没说清。一张图注写的是“拟定价格”，另一张写的是“标价”，Meta 没说头条结论用的是哪个。Haiku 和 Luna 的价格也没给，没法核对。Ember 看起来没有开放权重（公开的模型文件），不能下载来自己跑。\n\n如果你产品里有个功能一天要调上千次，挑 50 条真实数据，同时丢给 Ember 和现在用的模型，比比答案和账单。要上线的话，我会先等独立评测。",
+        "note": null,
+        "category": "模型",
+        "card": "/cards/2026-11-09/3.png",
+        "sources": [
+          {
+            "title": "Our Smallest, Most Efficient Model: Muse Ember",
+            "url": "https://research.meta.ai/blog/muse-ember",
+            "site": "research.meta.ai"
+          },
+          {
+            "title": "Our Smallest, Most Efficient Model: Muse Ember",
+            "url": "https://news.ycombinator.com/item?id=50429024",
+            "site": "Hacker News"
+          },
+          {
+            "title": "Meta releases Muse Ember, its smallest and most cost-efficient AI model yet, saying it delivers more intelligence per dollar than Haiku 5.5 and GPT-6 Luna (Russell Brandom/TechCrunch)",
+            "url": "https://techcrunch.com/2026/11/09/meta-releases-muse-ember-a-new-lightweight-model-for-agent-execution/",
+            "site": "techcrunch.com"
+          },
+          {
+            "title": "Meta releases Muse Ember, its smallest and most cost-efficient AI model yet, saying it delivers more intelligence per dollar than Haiku 5.5 and GPT-6 Luna (Russell Brandom/TechCrunch)",
+            "url": "https://www.techmeme.com/261109/p35#a261109p35",
+            "site": "techmeme.com"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Vercel Labs 开源了一个让 AI 操作的浏览器",
+        "takeaway": "agent-browser 能让 AI 点网页、读网页。挑一件你每周重复的网页杂活，让 AI 试试。",
+        "body": "Vercel Labs 放出一个开源小工具，叫 agent-browser，让 AI 像人一样用浏览器：打开网页，看一眼，点一下，再看一眼。README 里写着它用 Rust 写成，这是一种以快和省资源出名的编程语言。\n\nAI 看到的页面是一小段文字，页面上的按钮、输入框各有一个短编号，像给每样东西贴了号牌。AI 说“点这个”，浏览器就点。两步之间浏览器一直开着，默认闲置一小时后自动关掉。\n\n有个细节我喜欢：点不了就直说。按钮被藏起来、被禁用、滚到屏幕外，或者被 cookie 弹窗盖住，这一下会报失败，不会假装成功。AI 得先把弹窗关掉再点。\n\n编号会过期。页面一跳转或者内容一变，AI 得重新看一遍。\n\n它支持 Mac、Linux 和 Windows，协议是 Apache-2.0，一种宽松的开源协议。可以用 npm 或 Homebrew 安装，都是开发者常用的装软件工具。发布时间和版本号 README 里没写，也没有跟别家浏览器自动化工具比速度。\n\n如果你的产品要让 AI 去读网页、操作网页，这一块不用自己从头搭了。今天可以挑一件你每周都在重复的无聊网页杂活，比如看竞品价格，或者把自己的注册流程走一遍，让你的 AI 编程助手拿这个工具试试。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-09/4.png",
+        "sources": [
+          {
+            "title": "vercel-labs/agent-browser",
+            "url": "https://github.com/vercel-labs/agent-browser",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Meta 开源 Astryx 设计系统，AI 助手也能用",
+        "takeaway": "免费，MIT 协议，150 多个组件，但还在 Beta，要 React 19 以上。先拿小项目试。",
+        "body": "Meta 开源了一套设计系统，叫 Astryx，自带 7 个现成主题，其中两个叫 matcha 和 y2k。另外五个是 neutral、butter、chocolate、stone、gothic。\n\n设计系统就是一整套现成的按钮、菜单、表单，加上它们长什么样的规矩。GitHub 页面说，Astryx 在 Meta 内部长了八年，现在撑着 13,000 多个应用。这是 Meta 自己写的数字，没人独立核实过。页面同时标着 Beta，也就是测试阶段，会有毛边。\n\n里面有 150 多个组件，README 称它们都是无障碍组件。另外有深色模式、现成的页面模板，还有一个在终端里跑的命令行小工具。主题说白了就是一张“覆盖样式值”的清单，设计师改品牌外观，不用钻进组件代码。想深改某个组件，可以把它的完整源码拷进自己的项目。底层用的是 Meta 自家的样式工具 StyleX，但你照样可以叠 Tailwind、CSS modules 或普通 CSS。\n\nMeta 的主要卖点是 AI：人和 AI 编程助手照同一份文档、同一个命令行工具来搭界面。外界还没什么反馈，灵不灵现在说不准。\n\n门槛有两个。一是要 React 19 或更新，React 是做网页界面的常用工具，项目没升到 19 的就用不了。二是 vega 和 charts 这两个包只有预发布版，没有正式版。协议标的是 MIT，用起来很宽松。\n\n已经在 React 19 上的话，开个一次性的小项目，挑一个主题试试。没用 React 就先不用看了。已经上线的产品，我会先别换到 Beta 版的东西上。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-09/5.png",
+        "sources": [
+          {
+            "title": "meta/astryx",
+            "url": "https://github.com/meta/astryx",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "Claude Fable 5.2 标准价 8/40 美元",
+      "body": "## 价格表上变了什么\n\nAnthropic 发了两个模型，Claude Fable 5.2 和 Claude Mythos 5.2。官方说法是为最棘手的技术难题设计的。上一代 5.1 是 9 月发的，The Verge 提过。Fable 5.2 当天可用，Mythos 5.2 一开始只给审核过的机构。\n\n两个模型底子是同一个。Fable 加了网络安全和生物方面的保护措施，Anthropic 因此敢开放给所有人。Mythos 面向做有益的安全或生物医学研究的机构，可以通过扩大后的 Life Sciences and Cyber Verification Programs 申请。具体门槛还不清楚。你要是做面向普通用户的 App，用的就是 Fable，Mythos 不是想注册就能注册的东西。\n\n标准价是每百万 token 输入 8 美元、输出 40 美元。token 是一小段文字，常常是一个词或半个词。输入是你发给模型的内容，输出是它写回来的内容。The New Stack 说这比 5.1 便宜 20%。Anthropic 的公告里没有这个数字，只说价格更低。降了多少，目前只有 The New Stack 一家这么说。做预算之前，对着 Anthropic 的价格页，把新旧两个价格都看一遍。\n\n再说快速模式。它是个可选开关，生成速度最高快 2.5 倍，价格是 16 美元和 80 美元，正好翻倍。举个假设的例子：一次请求发出去 10,000 个 token，收回 1,000 个。标准价大约 0.12 美元，快速模式大约 0.24 美元。一天几千次请求下来，差别就出来了。Anthropic 还说，新模型默认的输出速度就比 5.1 快最多 30%，不开快速模式，速度可能已经够用。\n\nAnthropic 自己把 Claude Opus 5.5 称为大多数写代码和知识类任务的最强日常选择，更复杂的活儿再往上换 Fable 或 Mythos。\n\n## 分数能信几分\n\nAnthropic 给了好几个基准测试，也就是拿同一套题给不同模型考一遍，方便比较。在 FrontierCode 上，Fable 5.2 用 High 档拿到 45.3%，Opus 5.5 的最好成绩是 45.5%。“档”指的是让模型对一道题花多大力气的设置。Anthropic 说 Fable 的单题成本大约只有一半，没说清楚是跟谁比，我猜是跟 Opus 5.5。Xhigh 档下 Fable 到了 49.1%，但这是比 Opus 对比时更高的一档，两个数字不能直接放一起比。\n\nBenchCAD 2.1 在 Max 档，Fable 5.2 得 83.5，Opus 5.5 是 65.3，Fable 5.1 是 44.4。比上一代 Fable 涨得很多。\n\n这些都是 Anthropic 自己测的，开着保护措施、用它挑的档位。完整的测试方法写在一份叫 system card 的技术文档里，外人没有验证过这些数字。Anthropic 还列了发布前的一些测试：软件迁移、设计三个能工作的电子设备、解决黑洞物理里的两个开放问题、用 30 小时把费马大定理形式化。这些听着很厉害，也离大多数小 App 要做的事很远。\n\nHacker News 上的反应不一。有人嫌价格太贵，有人说 8 美元和 40 美元“相当香”。几个人说版本号看不懂，旗舰是 5.2，Opus 却是 5.5。还有人问，跟 Opus 5.5 的对比是在它被改动之前还是之后跑的。Opus 5.5 有没有被改过，现在没有答案，只是一位评论者的怀疑。另一位说 FrontierCode 2.0 对 Gemini 不公平，因为它被迫用 Devin CLI，别的模型却能用自己习惯的工具，这同样只是评论者的说法。\n\n## 这周能做的三件事\n\n第一，如果你已经在付 Claude 的钱，把上个月的账单拆成输入和输出两部分看。输出每个 token 的价格是输入的五倍，写长答案的功能比读很多内容、简短回复的功能贵得多。这样你就知道降价对产品的哪一块帮助最大。\n\n第二，挑一个一直卡在质量上的功能，拿 Fable 5.2 试一下，其余的先留在现在好用的模型上。用你自己的真实例子比较成本和效果，别看公布的分数。\n\n第三，快速模式只开在真有人在等的地方。实时聊天是最明显的例子，夜里生成的报告不算。"
+    }
+  },
+  "lab": []
+}
