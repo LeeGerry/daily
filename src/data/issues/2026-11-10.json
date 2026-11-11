@@ -1,0 +1,265 @@
+{
+  "date": "2026-11-10",
+  "publishAt": "2026-11-11T12:00:00Z",
+  "en": {
+    "intro": "About $740K in unauthorized AI spend, run up with stolen keys to AI services in a Railway hack, is the story to start with today. After that: Google's Gemini 4 Carbon and its agent swarm, Apple's planned Mac app for running AI models locally, Meta's Astryx design system, and ChatGPT's business profiles.",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Google's Gemini 4 Carbon is out, at a cheap November price",
+        "takeaway": "Test it on your real tasks before the intro price roughly doubles at the end of November.",
+        "body": "Gemini 4 Carbon costs $2 per million input tokens and $10 per million output tokens. Tokens are the small chunks of text an AI reads and writes, and they're how you get billed. The Verge reports that's an introductory price, and it roughly doubles after the end of November.\n\nCarbon is Google's new top model. Paying developers can use it through Google AI Studio and Gemini for business, which is how you'd plug it into your own app. Google AI Ultra subscribers get it in the Gemini app, in Google's AI coding tool Antigravity, and in AI Mode in Search. Google says it's strongest at security work and at long jobs where an AI has to plan and act over many steps.\n\nThe flashy part is a preview feature in Antigravity called swarm. You give it one prompt and it builds a team of AI helpers (Google calls them agents) that you can watch in real time. Carbon does the planning and checking. Faster models handle the parallel work and try to poke holes in the results.\n\nCarbon also uses more tokens than its sibling Argon, which Google still recommends for most coding and everyday work. A cheap token rate doesn't mean a cheap task, and The Verge makes that point too. The benchmark wins are Google's own numbers, and The Verge says Carbon sits behind Anthropic's Fable 5.2 on most of them.\n\nIf your app already pays for an AI model, pick three or four real tasks and run them on Carbon and Argon before the price changes. Compare what each job costs in total, not the rate. I'd skip swarm until Google says who gets it.",
+        "note": null,
+        "category": "Models",
+        "card": "/cards/2026-11-10/1.png",
+        "sources": [
+          {
+            "title": "Gemini 4 Carbon is now available",
+            "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
+            "site": "blog.google"
+          },
+          {
+            "title": "Gemini 4 Carbon is now available",
+            "url": "https://news.ycombinator.com/item?id=50442303",
+            "site": "Hacker News"
+          },
+          {
+            "title": "Gemini 4 Carbon is now available",
+            "url": "https://deepmind.google/blog/gemini-4-carbon-is-now-available/",
+            "site": "deepmind.google"
+          },
+          {
+            "title": "Google releases Gemini 4 Carbon with agent ‘swarm’ feature",
+            "url": "https://www.theverge.com/ai-artificial-intelligence/1030787/google-gemini-4-carbon-public-rollout",
+            "site": "theverge.com"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Apple's reported Harbor app would run AI models on your Mac",
+        "takeaway": "Leaked, in private preview, no price or date. Watch it if you want private on-device AI in a Mac app.",
+        "body": "Apple is reportedly building a Mac app called Harbor, and its whole job is to make running AI models on your own Mac easy. Leaker Aaron Perris found evidence of it, and 9to5Mac wrote it up. Apple hasn't announced anything.\n\nThe descriptions quoted in the article say Harbor turns a Mac into a private AI server. The model runs on your machine, on Apple's own chips, and your data stays on your hardware. You'd browse, download and load models from inside the app. These are \"open-weight\" models, meaning the model files are public and anyone can run them.\n\nIt also reportedly links several Macs over Thunderbolt 5 (a fast cable connection) and pools their memory so bigger models fit. Macs would find each other automatically, with no typed commands.\n\nHarbor is in private preview under Apple's Claris brand. There's no launch date, no price, no list of supported models and no list of supported Macs. 9to5Mac only suggests a public launch could come in the weeks and months ahead. The leaker's post hasn't been independently verified.\n\n9to5Mac points out that the Mac has become a popular machine for running AI models locally, on the Mac Studio, Mac mini and similar. Harbor would be Apple's own app for that job. Nothing in the leak says whether other apps could build on Harbor, though. It reads like an app for running models on a Mac you own.\n\nThere's nothing to install today. I'd write down which features in your product need to stay private, and which would work with a smaller model. One commenter on the article says macOS already ships with a local model you can chat with on M1 or newer Macs, using community servers on GitHub.",
+        "note": null,
+        "category": "Platforms",
+        "card": "/cards/2026-11-10/2.png",
+        "sources": [
+          {
+            "title": "[r/LocalLLaMA] Apple has new Mac app coming to make running local AI models easy",
+            "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xszbe7/apple_has_new_mac_app_coming_to_make_running/",
+            "site": "reddit.com"
+          },
+          {
+            "title": "Apple has new Mac app coming to make running local AI models easy",
+            "url": "https://9to5mac.com/2026/11/10/apple-has-new-mac-app-coming-to-make-running-local-ai-models-easy/",
+            "site": "9to5mac.com"
+          },
+          {
+            "title": "Apple has new Mac app coming to make running local AI models easy",
+            "url": "https://news.ycombinator.com/item?id=50446520",
+            "site": "Hacker News"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Meta open-sources Astryx, a free design kit for people and AI",
+        "takeaway": "Free Beta UI kit with 150+ parts and 7 themes. Needs React 19 or later.",
+        "body": "Meta just put a design system on GitHub with seven ready-made looks, including one called matcha and one called y2k.\n\nA design system is a kit of ready-made screen parts (buttons, menus, forms) plus the rules that make them look like they belong together. Meta's is called Astryx. The README says it grew inside the company over eight years and now powers 13,000+ apps. It's free under the MIT license, and it's in Beta.\n\nThe kit has 150+ components built to be accessible, plus dark mode, page templates and a helper tool. Changing the look means swapping a set of color and style settings. The seven themes listed are neutral, butter, chocolate, matcha, stone, gothic and y2k. If a component is close but not right, a feature called swizzle copies all of its code into your project so you can edit it. It also works with Tailwind or plain CSS if you already style things that way.\n\nFirst check your React version, because Astryx needs React 19 or later. React is the popular toolkit a lot of web apps are built on. If you're on something else, or an older version, this isn't for you yet. The charts packages have no stable release either.\n\nThe README also says the kit is designed so people and AI coding assistants build the same way. Meta hasn't said how it measured that, and nobody outside Meta has reviewed it. I'd treat it as a pitch until someone shows results.\n\nIf you're on React 19 and paying for a component library, open the docs playground and try a theme on a throwaway screen. Since it's Beta, I wouldn't rebuild a shipping app on it yet.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-10/3.png",
+        "sources": [
+          {
+            "title": "meta/astryx",
+            "url": "https://github.com/meta/astryx",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Railway breach: stolen AI keys ran up $740K",
+        "takeaway": "Rotate AI keys, set a monthly spend cap, and give each app its own narrowly scoped key.",
+        "body": "$740,000. That's how much fraudulent AI usage Railway says attackers ran up on stolen keys after breaking into its systems. Railway is a hosting service, a company that runs your app on its computers. BleepingComputer reports on Railway's own incident report.\n\nA key here is the password that lets your app call an AI service and bills your account. Many makers keep those keys in a private settings area on their host (the technical name is environment variables). Railway says attackers decrypted those settings for at most 1.85% of its workspaces, about 100,000. That's a ceiling. Railway hasn't said how many were actually stolen.\n\nThe attack started October 20. Attackers used a previously unknown flaw in Railway's build system to break out of its walled-off area and grab an internal credential. They copied Railway's own source code and used it to find a second flaw. Railway says they were fully out by October 21, and it told customers on October 22 to rotate their secrets, meaning swap in new keys and kill the old ones.\n\nRailway says the attackers went looking for AI provider keys, though some searches also hit cloud, database and payment credentials. It believes they wanted to resell the keys or use them to train other models. That's Railway's guess. It found no sign that customer code repositories or databases were taken.\n\nRailway says it's working with AI providers on refunds and will cover whatever they decline. Nothing is settled yet.\n\nIf you run on Railway, replace your AI keys now if you haven't. On any host, set a monthly spending limit with your AI provider, give each app its own key, and pick the narrowest permissions the key allows. A limit won't stop a theft, but it does decide how big the bill gets.",
+        "note": null,
+        "category": "Business",
+        "card": "/cards/2026-11-10/4.png",
+        "sources": [
+          {
+            "title": "In a report, Railway says it believes the October hack targeted AI provider keys for resale, and unauthorized spend on the stolen keys was estimated at ~$740K (Lawrence Abrams/BleepingComputer)",
+            "url": "https://www.bleepingcomputer.com/news/apple/railway-breach-leads-to-740-000-in-fraudulent-ai-charges/",
+            "site": "bleepingcomputer.com"
+          },
+          {
+            "title": "In a report, Railway says it believes the October hack targeted AI provider keys for resale, and unauthorized spend on the stolen keys was estimated at ~$740K (Lawrence Abrams/BleepingComputer)",
+            "url": "https://www.techmeme.com/261110/p57#a261110p57",
+            "site": "techmeme.com"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "ChatGPT now lets brands set up verified business agents",
+        "takeaway": "US online shops can claim a ChatGPT profile in beta. Pricing and eligibility are unclear.",
+        "body": "When a business shows up in a ChatGPT answer, you can now tap in and chat with that business's own agent. Ask what it sells, or how two products differ. OpenAI launched this on Tuesday as Business Agents, alongside Business Hub, a page where companies claim a profile, get verified and keep their product info current. Both are in beta, which means an early test version.\n\nThe agent speaks for the brand. The business sets its instructions and supplies background about itself. These chats are labeled and kept apart from the user's main ChatGPT conversation, so people can tell who they're talking to.\n\nHub also shows a few numbers: profile views, mentions in ChatGPT answers, website clicks, and the topics where your business turns up. The Verge and TechCrunch list slightly different metrics, so treat that list as partial.\n\nFor a small brand, this looks like a new place to be found, a bit like a listing in a search engine. It starts narrow, though: eligible US e-commerce and online service businesses. OpenAI hasn't said what \"eligible\" means or how verification works, and no one has mentioned pricing. TechCrunch also notes that OpenAI's earlier shopping push, with a checkout cart and commissions, was retired in March, and says it's unclear whether this one does better.\n\nIf you sell online in the US, find out whether you qualify. Either way, write down your prices and how your products differ, in plain sentences. An agent is only as good as the background you hand it. Outside the US, I'd wait.",
+        "note": null,
+        "category": "Platforms",
+        "card": "/cards/2026-11-10/5.png",
+        "sources": [
+          {
+            "title": "Introducing Businesses in ChatGPT",
+            "url": "https://openai.com/index/introducing-businesses-chatgpt",
+            "site": "openai.com"
+          },
+          {
+            "title": "ChatGPT is getting verified AI ‘Business Agents’",
+            "url": "https://www.theverge.com/ai-artificial-intelligence/1030552/openai-chatgpt-business-agents-hub",
+            "site": "theverge.com"
+          },
+          {
+            "title": "OpenAI rolls out new business profiles, making ChatGPT just a little bit more like Google",
+            "url": "https://techcrunch.com/2026/11/10/openai-rolls-out-new-business-profiles-making-chatgpt-just-a-little-bit-more-like-google/",
+            "site": "techcrunch.com"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "Google's Gemini 4 Carbon is out, at a cheap November price",
+      "body": "## What Google shipped\n\nGoogle has made Gemini 4 Carbon generally available. That covers developers, companies, scientists and regular consumers, though not all on the same terms. Google's blog calls it the company's strongest model, with top performance in cybersecurity and in long agentic work. Agentic just means the AI carries out a chain of steps on its own, instead of answering one question and stopping.\n\nPaying developers and enterprises reach Carbon through Google AI Studio and Gemini for business, which is the route you'd use to put it inside your own product. Google AI Ultra subscribers get it in Antigravity (Google's AI coding tool), the Gemini app, and AI Mode in Search. Cybersecurity defenders got it two weeks earlier through something called the Fairwind Program.\n\nThe second piece is swarm, a preview feature in Antigravity. One prompt becomes a coordinated team of agents, and you can follow them in real time. Google says Carbon takes the deep-thinking roles like architecture, coordination and auditing. Faster models run the parallel workspaces, each sealed off from the others, plus a set of verifiers whose job is to attack the results and find what's wrong. Google's demos include a 3D Eiffel Tower exhibition built with Three.js (a library for 3D graphics in a web browser), a 906K-triangle reconstruction of a Google office from city planning PDFs, and an open-world browser game set on the Mountain View campus.\n\nThey're impressive demos, but Google hasn't said whether swarm will be broadly released or when, so it's hard to build a plan around it.\n\n## The price and the benchmarks\n\nThe headline price is $2 per million input tokens and $10 per million output tokens, the same introductory rate as Argon, Google's other current model. The Verge puts that at around a fifth of OpenAI's GPT-6 Astra and a quarter of Anthropic's Fable 5.2, per token. The same report says the intro period ends at the end of November and per-token costs roughly double after that. Doubling would put Carbon somewhere near $4 and $20. That's a rough reading, and Google hasn't published an exact post-November number.\n\nGoogle says Carbon uses more tokens than Argon, because it spends extra effort exploring, reasoning and verifying. Google still calls Argon the ideal choice for most software engineering and knowledge work. So Carbon is pitched at harder jobs, and a harder job on a model that thinks more can cost more even at a low rate.\n\nGoogle's answer is cost per task. It says Carbon ranks first on CursorBench 4.0, Perplexity's WANDR and Zapier's AutomationBench, at more than twice as cheap per task as the next best outside model. It says Carbon ranks second on a new benchmark called MKA, built with Artificial Analysis, at more than six times lower average cost than the top model. A benchmark is a standard set of test tasks used to compare models.\n\nThen there's The Verge's version. It says Google's own numbers put Carbon among the most powerful models on most metrics but behind Fable 5.2. It also notes that companies can cherry-pick results and that a low per-token price doesn't necessarily mean a lower cost per task. Those two accounts frame the results differently. If you're choosing a model for money-making work, treat all of it as a starting point for your own tests.\n\nThe security numbers deserve the same care. Google says that in Project Fortify, on its internal benchmark, Carbon hit 100% recall on scanning and 95% precision on triage. Recall is the share of real problems the AI found. Precision is the share of what it flagged that turned out to be real. It also reports a relative improvement of over 25% on recall against Argon in open-source repository testing. Google's cloud security researchers used Carbon to prove that two bugs in a popular open-source project could actually be exploited, with details held back until responsible disclosure finishes. Internal benchmarks and undisclosed findings can't be checked yet.\n\n## What to do with it before November ends\n\nThe sensible move is small. If your product already calls an AI model, take a handful of real tasks you run today. Run them on Carbon and on Argon, and write down what each finished job costs, not what the rate card says. Include the failures and retries. You've got until the end of November to do this at the intro price, and the answer tells you whether the post-November price still makes sense.\n\nAccess is the messy part. Carbon in the consumer apps is for Ultra subscribers. One Hacker News commenter said their Gemini app still lacked the new model on a Pro plan and called Google's lineup confusing. Another asked whether the cheapest plan with access is $100 a month. Nobody confirmed that, and the lowest price that includes Carbon hasn't been stated. The Verge also says it's unclear when or whether Carbon reaches lower-tier or free users. If you only use the apps, check your own plan before planning around this.\n\nA few other reactions are worth a mention, with the right weight. One commenter said Carbon gave unusually useful feedback on an unfinished paper draft compared with other top models, and flagged it as a single anecdote. Another liked the pelican-on-a-GBike demo. Someone asked for a recommended coding harness to test the model, which suggests nobody has a settled answer on tooling yet.\n\nI think Carbon is worth a test and swarm is worth watching. A new top model at a low promotional price is a good reason to measure and a poor reason to rewrite anything. Argon stays Google's own pick for most work, the biggest claims come from Google, and the intro price ends at the end of November."
+    }
+  },
+  "zh": {
+    "intro": "Railway 被黑，攻击者拿被盗的 AI 服务密钥花掉约 74 万美元，今天先看这条。另外还有 Google 的 Gemini 4 Carbon 和它的 AI 智能体“swarm”功能、Apple 在做的本地 AI Mac 应用、Meta 的 Astryx 设计系统，以及 ChatGPT 的商家资料。",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Gemini 4 Carbon 上线，11 月底前是推广价",
+        "takeaway": "拿自己的真实任务测一遍。推广价 11 月底结束，之后大约翻倍。",
+        "body": "Gemini 4 Carbon 的价格是每百万 token 输入 2 美元、输出 10 美元。token 是 AI 读写文字的小块，也是计费单位。The Verge 说这是推广价，11 月底结束，之后大约翻倍。\n\nCarbon 是 Google 新的最强模型。付费开发者能通过 Google AI Studio 和 Gemini for business 调用，也就是把它接进你自己 App 的那条路。Google AI Ultra 订阅用户能在 Gemini App、Google 的 AI 编程工具 Antigravity 和搜索的 AI Mode 里用。Google 说它最擅长安全方面的活，还有那种要连着做很多步的长任务。\n\n最花哨的是 Antigravity 里预览中的 swarm。你给一句话，它拉起一队 AI 助手，你能实时看着它们干活。Carbon 负责规划和审查，更快的模型负责并行干活，另外还有专门挑错的。\n\n但 Carbon 比同门的 Argon 费 token，Google 自己也说大多数编程和日常工作还是用 Argon。单价低不等于一件活便宜，The Verge 也提了这一点。跑分第一是 Google 自己报的，The Verge 说 Carbon 在多数指标上排在 Anthropic 的 Fable 5.2 后面。\n\n你的产品要是已经在为 AI 模型付钱，挑三四个真实任务，在价格变之前用 Carbon 和 Argon 各跑一遍。比一件活总共花多少，别比单价。swarm 先看着，Google 还没说谁能用。",
+        "note": null,
+        "category": "模型",
+        "card": "/cards/2026-11-10/1.png",
+        "sources": [
+          {
+            "title": "Gemini 4 Carbon is now available",
+            "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
+            "site": "blog.google"
+          },
+          {
+            "title": "Gemini 4 Carbon is now available",
+            "url": "https://news.ycombinator.com/item?id=50442303",
+            "site": "Hacker News"
+          },
+          {
+            "title": "Gemini 4 Carbon is now available",
+            "url": "https://deepmind.google/blog/gemini-4-carbon-is-now-available/",
+            "site": "deepmind.google"
+          },
+          {
+            "title": "Google releases Gemini 4 Carbon with agent ‘swarm’ feature",
+            "url": "https://www.theverge.com/ai-artificial-intelligence/1030787/google-gemini-4-carbon-public-rollout",
+            "site": "theverge.com"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "苹果可能在做 Harbor，让 Mac 本地跑 AI 更简单",
+        "takeaway": "还是爆料，私测中，没价格没日期。想做数据不出本机的 AI 功能，先留意着。",
+        "body": "苹果好像在做一个 Mac 应用，叫 Harbor，专门让你在自己的 Mac 上跑 AI 模型。爆料人 Aaron Perris 翻出了线索，9to5Mac 跟进写了一篇。苹果自己什么都没宣布。\n\n文中引用的描述是这样：Harbor 能把一台 Mac 变成私人的 AI 服务器。模型跑在你自己的机器上，用苹果自家芯片，数据不离开你的硬件。你可以在应用里直接浏览、下载、加载模型。这类模型叫“开放权重”模型，意思是模型文件公开，谁都能下载来跑。\n\n它还能用 Thunderbolt 5（一种很快的数据线连接）把好几台 Mac 连起来，内存合在一起用，大模型就装得下了。Mac 之间自动互相发现，不用敲命令。\n\nHarbor 目前在苹果的 Claris 品牌下做私测。上线日期、价格、支持哪些模型、哪些 Mac 能用，都没有说。9to5Mac 只猜公开发布可能在未来几周到几个月内。爆料那条帖子也没有别处证实。\n\n9to5Mac 提到，Mac Studio、Mac mini 这类机器，已经成了不少人本地跑 AI 的选择。Harbor 要是真的上线，就是冲着这些人去的。\n\n今天没什么可装的。我会先列一张清单：自己产品里哪些功能必须保密，哪些换个小模型也够用。评论区有人说，macOS 已经自带一个本地模型，M1 及以后的 Mac 用 GitHub 上的社区服务就能聊。",
+        "note": null,
+        "category": "平台",
+        "card": "/cards/2026-11-10/2.png",
+        "sources": [
+          {
+            "title": "[r/LocalLLaMA] Apple has new Mac app coming to make running local AI models easy",
+            "url": "https://www.reddit.com/r/LocalLLaMA/comments/1xszbe7/apple_has_new_mac_app_coming_to_make_running/",
+            "site": "reddit.com"
+          },
+          {
+            "title": "Apple has new Mac app coming to make running local AI models easy",
+            "url": "https://9to5mac.com/2026/11/10/apple-has-new-mac-app-coming-to-make-running-local-ai-models-easy/",
+            "site": "9to5mac.com"
+          },
+          {
+            "title": "Apple has new Mac app coming to make running local AI models easy",
+            "url": "https://news.ycombinator.com/item?id=50446520",
+            "site": "Hacker News"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Meta 开源免费界面套件 Astryx，还在 Beta",
+        "takeaway": "免费的 Beta 界面套件，150 多个组件、7 套主题。要求 React 19 或更新，先拿小项目试。",
+        "body": "Meta 把一套设计系统放上了 GitHub，里面有七套现成的皮肤，其中一套叫 matcha，一套叫 y2k。\n\n设计系统就是一整套现成的界面零件（按钮、菜单、表单），加上让它们看起来像一家人的规矩。Meta 这套叫 Astryx。README 里写着，它在公司内部长了八年，现在撑着 13,000 多个应用。MIT 协议，免费用，目前是 Beta。\n\n零件有 150 多个，都做了无障碍支持（照顾有视觉、操作障碍的用户），另外有深色模式、页面模板和一个命令行小工具。换风格就是换一组颜色和样式设置。七套主题是 neutral、butter、chocolate、matcha、stone、gothic、y2k。某个零件差一点意思，有个叫 swizzle 的功能会把它的全部源码复制进你的项目，随便改。你要是已经在用 Tailwind 或普通 CSS，也能接着用。\n\n先看一眼你的 React 版本。Astryx 要求 React 19 或更新。React 是很多网页应用用的开发框架。版本老，或者用的是别的，暂时没你的份。图表相关的包也还没有稳定版。\n\nREADME 还说，这套东西的接口、文档和工具，是为了让人和 AI 编程助手用同一种方式做东西。Meta 没说这个怎么测的，外人也没评测过。我先当宣传看，等有人拿出结果再说。\n\n用 React 19，又在为组件库付钱的话，去文档站的试玩区，拿个一次性页面把几套主题换着玩玩。Beta 阶段，我不会把已经上线的 App 重写到它上面。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-10/3.png",
+        "sources": [
+          {
+            "title": "meta/astryx",
+            "url": "https://github.com/meta/astryx",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Railway 被入侵，被盗 AI 密钥刷掉约 74 万美元",
+        "takeaway": "换掉 AI 密钥，设月度消费上限，每个 App 单独用一把最小权限的密钥。",
+        "body": "Railway 说，攻击者拿着偷来的密钥，花掉了约 74 万美元的 AI 额度。Railway 是个托管服务，替你把 App 放在它的服务器上跑。消息来自 BleepingComputer 对 Railway 事故报告的转述。\n\n这里的密钥，就是让你的 App 调用 AI 服务、并且记在你账上的那串密码。很多人把它放在托管平台的私密设置里（技术上叫环境变量）。Railway 说，攻击者解密了最多 1.85% 工作区的这类设置，约 10 万个。这只是上限，实际被偷了多少，Railway 没公布。\n\n经过是这样：10 月 20 日，攻击者利用构建系统里一个此前没人知道的漏洞，跳出隔离环境，拿到一个内部凭证。接着拷走 Railway 自己的源代码，从里面找到第二个漏洞。Railway 说 10 月 21 日已把人完全清出去，10 月 22 日通知客户轮换密钥，也就是换上新的、作废旧的。\n\nRailway 说攻击者专门在找 AI 服务商的密钥，也有些搜索瞄着云服务、数据库和支付服务的凭证。它猜对方想转卖，或者拿去做模型蒸馏（用别人模型的输出训练自己的模型）。这只是 Railway 的判断。它说没发现客户的代码仓库或数据库被下载。\n\n钱的事：Railway 在和 AI 服务商谈退款，服务商不退的部分它来补。目前还没有定论。\n\n今天能做的：如果你的 App 在 Railway 上，还没换密钥就先换掉。不管用哪家托管，去 AI 服务商后台设一个月度消费上限，每个 App 单独用一把密钥，权限给最小的。上限拦不住被偷，但能决定账单有多大。",
+        "note": null,
+        "category": "商业",
+        "card": "/cards/2026-11-10/4.png",
+        "sources": [
+          {
+            "title": "In a report, Railway says it believes the October hack targeted AI provider keys for resale, and unauthorized spend on the stolen keys was estimated at ~$740K (Lawrence Abrams/BleepingComputer)",
+            "url": "https://www.bleepingcomputer.com/news/apple/railway-breach-leads-to-740-000-in-fraudulent-ai-charges/",
+            "site": "bleepingcomputer.com"
+          },
+          {
+            "title": "In a report, Railway says it believes the October hack targeted AI provider keys for resale, and unauthorized spend on the stolen keys was estimated at ~$740K (Lawrence Abrams/BleepingComputer)",
+            "url": "https://www.techmeme.com/261110/p57#a261110p57",
+            "site": "techmeme.com"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "ChatGPT 上线认证商家资料和品牌 AI 助手",
+        "takeaway": "美国网店可在 beta 里认领 ChatGPT 商家资料。资格和价格没说清，先把产品差别写下来。",
+        "body": "ChatGPT 的回答里要是出现某家商家，现在可以点进去，直接跟这家的 AI 助手聊。问它卖什么，或者两款产品差在哪。OpenAI 周二上线了这套东西，叫 Business Agents，配套的还有 Business Hub：公司在这里认领商家资料，通过验证，再自己更新产品和服务信息。两样都是 beta，也就是早期测试版。\n\n这个助手替品牌说话。怎么答由商家设定，背景资料也由商家提供。这类对话有明确标注，和你跟 ChatGPT 的主对话分开，不会搞混在跟谁聊。\n\nHub 还给几个数字：资料页被看了多少次、在 ChatGPT 回答里被提到几次、网站点击数，以及你出现在哪些话题下。The Verge 和 TechCrunch 列的指标不完全一样，这份清单可能不全。\n\n对小品牌来说，这像多了一个被找到的地方，有点像搜索引擎里的商家名录。但起步很窄，只给美国符合条件的电商和在线服务商。“符合条件”指什么、怎么验证，OpenAI 都没说，价格也没人提。TechCrunch 还提到，OpenAI 之前带结账购物车和抽成的购物功能，3 月就下线了，这次会不会好一点，还不清楚。\n\n如果你在美国做线上生意，先去查查自己够不够格。不管在哪，都可以把价格和产品差别用大白话写下来。助手能答得多好，取决于你给它的背景材料。美国以外，我会先等。",
+        "note": null,
+        "category": "平台",
+        "card": "/cards/2026-11-10/5.png",
+        "sources": [
+          {
+            "title": "Introducing Businesses in ChatGPT",
+            "url": "https://openai.com/index/introducing-businesses-chatgpt",
+            "site": "openai.com"
+          },
+          {
+            "title": "ChatGPT is getting verified AI ‘Business Agents’",
+            "url": "https://www.theverge.com/ai-artificial-intelligence/1030552/openai-chatgpt-business-agents-hub",
+            "site": "theverge.com"
+          },
+          {
+            "title": "OpenAI rolls out new business profiles, making ChatGPT just a little bit more like Google",
+            "url": "https://techcrunch.com/2026/11/10/openai-rolls-out-new-business-profiles-making-chatgpt-just-a-little-bit-more-like-google/",
+            "site": "techcrunch.com"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "Gemini 4 Carbon 上线，11 月底前是推广价",
+      "body": "## Google 这次拿出了什么\n\nGoogle 把 Gemini 4 Carbon 正式开放了，对象包括开发者、企业、科研人员和普通用户，不过各人的条件不一样。Google 的博客说这是它最强的模型，在网络安全和长流程的“智能体”工作上表现最好。智能体的意思是，AI 自己连着做很多步，不会答完一个问题就停。\n\n付费开发者和企业，通过 Google AI Studio 和 Gemini for business 调用 Carbon。这条路就是把它接进你自己的产品。Google AI Ultra 订阅用户，能在 Antigravity（Google 的 AI 编程工具）、Gemini App 和搜索的 AI Mode 里用。网络安全防御人员两周前就通过一个叫 Fairwind 的计划用上了。\n\n另一样是 swarm，Antigravity 里的预览功能。一句话变成一队协作的 AI 助手，你能实时跟踪。Google 说 Carbon 担任要深想的角色，比如架构、协调和审查。更快的模型负责各自隔离的并行工作区，还有一批专门攻击结果、找毛病的验证者。博客里的演示有用 Three.js（一个在网页里做 3D 的工具库）做的埃菲尔铁塔展览，用城市规划 PDF 还原的 Google 办公室，约 90.6 万个三角面，还有一个以山景城园区为背景的开放世界网页游戏。\n\n演示很好看。但 Google 没说 swarm 会不会、什么时候全面开放，所以没法围着它排计划。\n\n## 价格和跑分，各说各的\n\n标价是每百万 token 输入 2 美元、输出 10 美元，和 Argon 的推广价一样。Argon 是 Google 的另一个现役模型。The Verge 算下来，按每个 token 计，大约是 OpenAI GPT-6 Astra 的五分之一、Anthropic Fable 5.2 的四分之一。同一篇报道还说，推广期 11 月底结束，之后每个 token 的价格大约翻倍。照翻倍粗算，是 4 美元和 20 美元上下。这是我粗算的，Google 没公布具体数字。\n\nGoogle 说 Carbon 比 Argon 更费 token，因为它要多花力气去探索、推理和验证。Google 仍然说，大多数软件工程和知识工作，Argon 是最合适的选择。所以 Carbon 是给更难的活准备的。活更难，模型想得更多，单价再低，总账也可能更高。\n\nGoogle 的回答是看每个任务的成本。它说 Carbon 在 CursorBench 4.0、Perplexity 的 WANDR 和 Zapier 的 AutomationBench 上排第一，每个任务的成本比第二名的外部模型低一半以上。它还说，在和 Artificial Analysis 合作的新测试 MKA 上排第二，平均成本比第一名低 6 倍以上。基准测试，就是一套标准题目，用来给不同模型打分。\n\n再看 The Verge 的版本。它说按 Google 自己的数字，Carbon 在多数指标上属于最强的那一档，但排在 Fable 5.2 后面。它还提醒，公司可以挑着晒成绩，每个 token 便宜也不一定是每个任务便宜。两种说法的角度不一样。要选一个拿来赚钱的模型，这些都只能当起点，最后得靠自己的测试。\n\n安全方面的数字也一样要留点余地。Google 说在 Project Fortify 里，按它的内部测试，Carbon 扫描的召回率是 100%，筛选的准确率是 95%。召回率是真问题里被找出来的比例，准确率是被标出来的东西里真有问题的比例。它还说在开源仓库的测试里，召回率比 Argon 相对提高了 25% 以上。Google 云安全研究团队用 Carbon 证明了一款流行开源软件里的两个漏洞确实能被利用，细节等负责任披露完成后再公布。内部测试和没公开的发现，现在都没法验证。\n\n## 11 月结束前能做什么\n\n能做的事很小。如果你的产品已经在调用 AI 模型，挑几个现在就在跑的真实任务，在 Carbon 和 Argon 上各跑一遍，记下一件活完整做完花多少钱，别看价目表上的单价。失败和重试也算进去。推广价到 11 月底，你有时间做这件事，结果能告诉你涨价之后还划不划算。\n\n用上它是个麻烦事。App 里的 Carbon 是给 Ultra 订阅用户的。Hacker News 上有人说，自己是 Pro 套餐，Gemini App 里还没有新模型，还吐槽 Google 的产品线太乱。另一个人问，能用的最低套餐是不是每月 100 美元。没人确认过，包含 Carbon 的最低订阅价，目前也不清楚。The Verge 还说，Carbon 什么时候、会不会给低档订阅用户和免费用户，目前不清楚。如果你只用 App，先查自己的套餐，再决定要不要围着它做计划。\n\n还有几条反馈，按分量说一下。有人说 Carbon 给他一份没写完的论文草稿提的意见，比其他顶级模型有用得多，同时他自己也说这只是个例。有人夸了那个骑着 GBike 的鹈鹕演示。还有人问有没有推荐的编程工具来测这个模型，看来用什么工具来测，大家还没有定论。\n\n我的看法是，Carbon 值得测一下，swarm 值得看着。新的顶级模型加低价促销，适合拿来测量，不适合拿来重写代码。Argon 仍然是 Google 自己推荐的主力，最大的那些说法都出自 Google，而推广价 11 月底就到期了。"
+    }
+  },
+  "lab": []
+}
