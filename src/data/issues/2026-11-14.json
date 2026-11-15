@@ -1,0 +1,185 @@
+{
+  "date": "2026-11-14",
+  "publishAt": "2026-11-15T12:00:00Z",
+  "en": {
+    "intro": "An AI coding assistant can now open Chrome's debugging tools and look at your page itself. Google calls it Chrome DevTools MCP. Also today: web-building advice from the Chrome team written for those assistants, an Alibaba code reviewer that comments line by line, a datasette-llm update for services that copy OpenAI's interface, and Univer, an open-source kit for putting spreadsheets and docs inside your own app.",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Your AI coding assistant can now drive a real Chrome window",
+        "takeaway": "Let your assistant test and debug in Chrome, but keep your logins out of that browser.",
+        "body": "A coding assistant can now open a real Chrome window, click through your web app and read the error messages itself. That's what Chrome DevTools MCP does. MCP is a standard way to plug outside tools into an AI assistant. DevTools is the inspection panel built into Chrome. The project's README lists Antigravity, Claude, Cursor, Copilot and Gemini CLI as assistants that can use it.\n\nIf you build alone, the appeal is obvious. Normally you spot a bug, copy the error, paste it into the chat and wait. Here the assistant can look at the page, take a screenshot, check the console where errors show up, watch network requests and record how fast the page loads. It can work out why a page is slow or why a button does nothing, then test its own fix.\n\nThe same access cuts the other way. The README warns that the assistant can inspect and change anything in that browser, sensitive data included. By default the tool also collects usage statistics, checks for updates and may send page addresses to Google's database of real-user speed data. Each of those can be switched off.\n\nIf you already use one of those assistants, try it on a test copy of your site, in a Chrome with nothing logged in. Ask it why your slowest page is slow. Officially it works with Google Chrome and Chrome for Testing (a build of Chrome meant for automated tests) only. It needs a current Chrome, plus a couple of standard developer tools installed first. The README lists them.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-14/1.png",
+        "sources": [
+          {
+            "title": "ChromeDevTools/chrome-devtools-mcp",
+            "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Chrome team gives AI coders a modern web cheat sheet",
+        "takeaway": "Point your AI assistant at current web practice to cut cleanup of its outdated front-end code. Test it first.",
+        "body": "AI coding assistants write old-fashioned web code, and the Chrome team has a theory about why. The project's README says the models learned from huge piles of legacy code, so they keep reaching for outdated habits even when the browser can now do the job on its own.\n\nThe fix is called Modern Web Guidance. It's a set of instruction packs (the project calls them skills) that a coding assistant reads before it writes anything. They carry web best practices plus data on which browsers support which features. Google's Chrome team published it on GitHub, but the README says the Microsoft Edge, Mozilla Firefox and MDN teams help look after it too. Four teams behind one set of advice carries more weight than one company's opinion.\n\nCoverage is 250 web features, 140 of them in CSS and layout, meaning how a page is arranged and styled. The rest spans accessibility, performance, forms, user experience and built-in browser AI. The advice leans toward features the browser already has, with small fallbacks for older browsers instead of heavy add-on libraries. There's also a scanner that looks through an existing project for outdated patterns.\n\nIf you build web apps with an AI assistant, this could trim the cleanup you do afterward. The README doesn't give a number for how much better the code gets, though it does point to a public results dashboard. I'd call it promising until someone shows a number.\n\nYou can test it cheaply. Install it in a throwaway project, then run the scanner on an older one and see what it flags. Check which assistants it supports first. That isn't clear yet.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-14/2.png",
+        "sources": [
+          {
+            "title": "GoogleChrome/modern-web-guidance-src",
+            "url": "https://github.com/GoogleChrome/modern-web-guidance-src",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Alibaba open-sources an AI code reviewer",
+        "takeaway": "Open-source, line-by-line AI review for your code. The benchmark results are self-reported, so test it first.",
+        "body": "Alibaba says the code reviewer it built for its own staff has flagged millions of defects over two years, for tens of thousands of developers. Now it's open source (the code is public) under the name Open Code Review.\n\nIt runs from a terminal, the text window developers type commands into. Point it at the changes you just made and it sends them to an AI model you choose. Back come comments pinned to specific lines, like a colleague scribbling in the margin. The AI can open the whole file, search the rest of your project and look at other changed files, so it isn't judging a snippet blind. Fixed rules decide which files get looked at and which checks apply.\n\nThe headline claim in the README (the project's intro page) is a comparison with Claude Code on the same underlying model. Open Code Review scores higher on precision (how many flagged problems are real) and uses about a ninth of the tokens, the units AI services bill by. The README also admits its recall is lower, meaning it misses more real problems. Alibaba calls that a deliberate trade for less noise.\n\nThe numbers are self-reported, and the model isn't named. The benchmark, AACR-Bench, covers 200 real code changes from 50 projects, with 1,505 known issues checked by 80+ senior engineers.\n\nFor a solo maker, this is a second pair of eyes on every change. The code is public, but you plug in your own AI model, and that may cost money. The license isn't named in the README, only linked from the repository, so read it before building this into anything you sell. It runs on Windows, macOS and Linux. A whole-file mode suits an old codebase you've inherited. Try it on a project you know well and see whether the comments are worth reading.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-14/3.png",
+        "sources": [
+          {
+            "title": "alibaba/open-code-review",
+            "url": "https://github.com/alibaba/open-code-review",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Datasette can now use AI models on your own computer",
+        "takeaway": "datasette-llm 0.1a11 accepts OpenAI-style endpoints, so Ollama or LM Studio can power it. Early release.",
+        "body": "Datasette can now use an AI model running on your own computer. Simon Willison posted on 14 November that datasette-llm 0.1a11 adds support for OpenAI-compatible endpoints.\n\ndatasette-llm is the middle layer that decides which AI model Datasette's other plugins talk to. An \"OpenAI-compatible\" endpoint is any server that speaks the same loose, unofficial protocol OpenAI's own service uses. Willison calls it a pseudo-standard, which is fair.\n\nSo you can point Datasette at LM Studio, Ollama or llama.cpp. Those are three apps that run AI models on your own machine. Willison also notes llama.cpp just hit version 1.0.0. The result he describes is a local server running a Datasette Agent instance powered by whichever model you chose.\n\nIf you already keep your product data in Datasette, that's the appeal. The model sits on your computer instead of someone else's server, and you pick it.\n\nThe post doesn't spell out the setup steps or say which plugins besides the agent benefit. And \"compatible\" can hide gaps, with no detail on where they are. The \"a\" in 0.1a11 usually marks an early test release, so I'd try it on a copy of your data first.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-14/4.png",
+        "sources": [
+          {
+            "title": "datasette-llm 0.1a11",
+            "url": "https://simonwillison.net/2026/Nov/14/datasette-llm/",
+            "site": "simonwillison.net"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Univer: open-source spreadsheet and docs editor for your app",
+        "takeaway": "Open-source core adds spreadsheets and docs to your app. Collaboration is licensed separately.",
+        "body": "Univer is a kit for putting spreadsheets and documents inside your own app, and the core of it is open source under Apache-2.0. Its GitHub README calls it an Office SDK, which just means a set of ready-made building blocks a developer adds to a product.\n\nThe free part covers a long list of spreadsheet features: formulas, sorting, filtering, merged cells, conditional formatting, comments, undo and redo. The document side covers rich-text editing, lists, hyperlinks and comments. The README calls these \"selected\" capabilities, so the real list may be longer.\n\nIf your product needs a table people can edit and calculate in, this looks like a much shorter route than writing one yourself. That's my read, not a promise from Univer.\n\nThere's an AI angle too. Agents (AI helpers that act on your behalf) can use the same open-source access points as the editor. Your app picks the AI model and decides how it calls tools. The README's quotation example edits, calculates and saves without any AI add-on, so you can skip that part entirely.\n\nReal-time collaboration, edit history, and importing or exporting Office files live in a separate Server SDK, so they're not part of the free core. Commercial plugins and AI extensions are separate too, all licensed on their own terms. The README doesn't give prices, a release date or a version number.\n\nIf you'd need Office file import or live co-editing, find out what those cost before you build around Univer. Otherwise, the quick start uses just the Sheets core, which makes it a cheap way to see how far the free part gets you.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-14/5.png",
+        "sources": [
+          {
+            "title": "dream-num/univer",
+            "url": "https://github.com/dream-num/univer",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "Your AI coding assistant can now drive a real Chrome window",
+      "body": "## What the agent actually gets\n\nChrome DevTools MCP is a small program that sits between your AI coding assistant and a running copy of Chrome. MCP is a standard way to hand an assistant a set of outside tools. The README says it works as an MCP server and also as a command line tool, so you can use it from a terminal without an assistant if you like. It names Antigravity, Claude, Cursor, Copilot and Gemini CLI as assistants that can drive it.\n\nThe list of abilities reads like a day of front-end debugging. The assistant can record a performance trace, which is a timeline of what the browser did while loading a page. It can analyze network requests, take screenshots and read console messages. Those messages come with stack traces (the trail of steps that led to an error) mapped back to your original source code, so an error points at the file you wrote, not the squashed version the browser received. It can also click and type through Puppeteer, an automation library that scripts a browser.\n\nThe package also ships ready-made instructions the README calls skills. They cover accessibility debugging, cookie problems, slow loading of the main content on a page (the LCP score), memory leaks and general troubleshooting. For a solo builder who doesn't have a performance specialist down the hall, that's the interesting part. You don't have to know what to ask. You can say the page feels slow and let the assistant follow a playbook.\n\nI think the gain is a closed loop. The assistant changes the code, reloads, looks at the screenshot and the console, and decides whether it worked. Without a browser connection, you're the one carrying that information back by hand. The README doesn't say how much time this saves, and I wouldn't trust anyone who quoted a number.\n\n## What it can see, and who else hears about it\n\nThe README is blunt here. The tool exposes the browser's content to connected assistants, and they can inspect, debug and modify any data in the browser or in DevTools. If you're logged into a store dashboard, a payment provider or your email in that Chrome window, the assistant can in principle see all of it.\n\nThe sensible response is boring. Run it against a test copy of your site, in a Chrome with nothing logged in, and keep the work you do with it separate from your everyday browsing. If you build for clients, think twice before pointing it at their live admin pages.\n\nThere are smaller leaks too. The performance tools may send the addresses of pages you trace to Google's CrUX service, which holds real-user speed data collected from Chrome users. That's useful, since it lets your page's lab results sit next to what real visitors experience. It also means a page address leaves your machine. Usage statistics are collected by default, and the server checks the npm registry (the public catalog where this kind of package is published) for updates. The README says all three can be turned off, through settings on the command line and in environment variables (settings your computer keeps for programs). If your pages are private or unreleased, turn them off before the first run.\n\nConnecting an assistant to the server doesn't open Chrome. The browser starts only when the assistant uses a tool that needs one.\n\n## Getting set up without making a mess\n\nYou need three things: the current long-term-support version of Node.js, a current stable Chrome, and npm, the installer that comes with Node. Officially the tool supports Google Chrome and Chrome for Testing, a build of Chrome meant for automated tests. Other browsers built on the same engine may work. The README doesn't promise it, so don't plan around it.\n\nThe skills have to be updated whenever the server or command line tool is, or the assistant may reach for tools and settings that have changed. And the skill that covers the command line tool needs that tool installed system-wide rather than inside a single project. If something works strangely a month from now, check those first.\n\nThere's a fair amount we don't know yet. The README shows no version number beyond the label for the latest release, and no release date. The discussion on Hacker News had no comments when this was written, so there's no outside word yet on how it holds up on messy real-world apps. That's a reason to try it on something low-stakes first.\n\nFor a one-person studio, I'd start with one question: why is my slowest page slow? It's a bounded task and the answer is easy to check yourself. If the assistant's findings match what you see, give it a bigger job. If it wanders, you've lost an hour and nothing else, provided you kept that browser clean."
+    }
+  },
+  "zh": {
+    "intro": "AI 编程助手现在能直接打开 Chrome 的调试工具，自己去看网页，Google 管这个叫 Chrome DevTools MCP。今天还有 Chrome 团队专门写给 AI 助手的网页开发建议、阿里开源的逐行点评代码审查工具、datasette-llm 的一次小更新，以及 Univer 开源的、能嵌进你自己 App 的表格和文档组件。",
+    "items": [
+      {
+        "n": 1,
+        "headline": "AI 编程助手现在能自己操作一个真的 Chrome",
+        "takeaway": "让助手在 Chrome 里测试、查错很省事，但那个浏览器里别登任何账号。",
+        "body": "AI 编程助手现在能自己打开一个真的 Chrome，在你的网页应用里点来点去，再把报错读出来。这是 Chrome DevTools MCP 干的事。MCP 是一套给 AI 助手外接工具的通用接口，DevTools 是 Chrome 自带的检查面板。README 里写着，Antigravity、Claude、Cursor、Copilot、Gemini CLI 这些助手都能用。\n\n一个人做产品，最烦的是来回搬运。发现 bug，复制报错，贴给助手，等它回，再试。现在助手可以自己看页面、截图、翻控制台（报错会出现的地方）、盯网络请求，还能录一段页面加载的过程。页面为什么慢，按钮为什么没反应，它能自己查，改完也能自己再测一遍。\n\n同一个权限也有另一面。README 直说，助手能查看、修改这个浏览器里的任何数据，包括敏感的。另外默认还会收集使用统计、定期查有没有新版本，测速时可能把页面网址发给 Google 存真实用户速度数据的 CrUX 服务。这三项都能关。\n\n已经在用这些助手的话，拿网站的测试副本试，Chrome 里别登任何账号。先问一句：我最慢的那个页面为什么慢。官方只支持 Google Chrome 和 Chrome for Testing（专门给自动化测试用的 Chrome 版本），别的基于同一内核的浏览器不保证。要装最新稳定版 Chrome，还要先装好两个常见的开发工具，README 里有写。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-14/1.png",
+        "sources": [
+          {
+            "title": "ChromeDevTools/chrome-devtools-mcp",
+            "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Chrome 团队给 AI 写代码发了份网页指引",
+        "takeaway": "目的是让 AI 先读现代网页写法，少写老代码。效果还没数字，先在练手项目试。",
+        "body": "AI 写网页代码，总爱用老办法。Chrome 团队的说法是：模型学的是网上堆成山的旧代码，习惯就带过来了，哪怕浏览器现在自己就能搞定。\n\n他们的解法叫 Modern Web Guidance，是一组“技能包”，也就是让 AI 编程助手动笔前先读的说明。里面有网页开发的最佳做法，还有哪些浏览器支持哪些功能的数据。项目放在 GitHub 上，README 里写着由 Chrome、Edge、Firefox 和 MDN 四个团队一起维护。四家浏览器的人坐一桌，比一家公司的一面之词有分量。\n\n覆盖 250 个网页功能，其中 140 个在 CSS 和排版（管页面怎么摆、怎么好看）。其余涉及无障碍、性能、表单、用户体验，还有浏览器内置的 AI 功能。思路是优先用浏览器自带的能力，老浏览器只补轻量的兜底，不拉一大堆补丁库。说明写得很省字数，团队说会跑测试，把模型本来就会的内容删掉。另外带一个扫描工具，能翻一遍现有项目，找出过时写法。\n\n效果到底多好，README 没给数字，只放了一个公开的测试结果页面。我先当它有戏，等有人拿出对比再说。\n\n想试很便宜。一行命令装上，会弹出问答式向导。先在练手项目里装，再拿一个老项目扫一遍，看它挑出什么。支持哪些 AI 助手，现在没写清楚，装之前先查一下。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-14/2.png",
+        "sources": [
+          {
+            "title": "GoogleChrome/modern-web-guidance-src",
+            "url": "https://github.com/GoogleChrome/modern-web-guidance-src",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "阿里开源 AI 代码审查工具，逐行给评论",
+        "takeaway": "能在具体某一行留评论，代码公开，但模型要自己接。对比数据是自己测的，先拿熟项目试。",
+        "body": "阿里开源了一个 AI 代码审查工具，叫 Open Code Review。它原本是阿里集团内部用的审查助手，README 里写着，两年里服务了几万名开发者，查出几百万个代码缺陷。\n\n用法是在终端（开发者敲命令的那个窗口）里，对着你刚改的代码跑一下。它把改动交给你自己选的 AI 模型，回来的是钉在具体某一行上的评论，像同事在页边写批注。AI 能打开整个文件、搜整个项目、看其他改过的文件，不用对着一小段代码瞎猜。挑哪些文件看、套哪些检查规则，由固定的程序逻辑决定，不靠模型临场发挥。\n\n最抢眼的是跟 Claude Code 的对比。README 说同一个底层模型下，它的精确率（报出来的问题里有多少是真的）明显更高，token（AI 按量计费的文字单位）只用大约九分之一，速度也更快。代价它自己认了：召回率更低，也就是漏掉的真问题更多。阿里说这是有意的取舍，宁可少报，也不要一堆噪音。\n\n这些数字是自己测的，没有第三方验证，用的是哪个模型也没写。测试集叫 AACR-Bench，有 50 个开源项目、200 个真实代码改动、1,505 个已知问题，80 多位资深工程师交叉核对过。\n\n对一个人做产品的人，这相当于每次改完多一双眼睛。支持 Windows、macOS、Linux。代码公开，但模型要自己接，调用可能要花钱。许可证 README 里只放了链接，没写是哪一种，放进要卖的产品之前先读一遍。它还有整份文件审查的模式，适合接手的老项目。今天可以拿一个你很熟的项目跑一遍，看评论值不值得读。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-14/3.png",
+        "sources": [
+          {
+            "title": "alibaba/open-code-review",
+            "url": "https://github.com/alibaba/open-code-review",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Datasette 现在能用你电脑上跑的 AI 模型",
+        "takeaway": "支持 OpenAI 兼容接口，Ollama、LM Studio 都能接。早期版，先拿数据副本试。",
+        "body": "Datasette 现在能用你自己电脑上跑的 AI 模型了。Simon Willison 11 月 14 日发了条短帖，说 datasette-llm 0.1a11 加了对“OpenAI 兼容接口”的支持。\n\ndatasette-llm 是 Datasette（一个用来浏览和查询数据的工具）里的中间层插件，管其他插件该去找哪个 AI 模型。“OpenAI 兼容接口”，指的是任何照 OpenAI 那套方式收发消息的服务器。Willison 管这套叫“伪标准”。\n\n所以现在可以把 Datasette 接到 LM Studio、Ollama 或 llama.cpp 上。这三个都是在自己电脑上跑模型的工具。他还顺口提了一句，llama.cpp 刚发了 1.0.0。接好之后，按他的说法，你本地会起一个服务，里面跑着 Datasette Agent，用的就是你挑的那个模型。\n\n对自己做产品的人，好处很直接：数据本来就放在 Datasette 里的话，模型也可以留在自己机器上，不用交给别人的服务器，想换哪个自己定。\n\n短板也有。Willison 没写具体怎么设置，也没说除了 Agent 还有哪些插件能受益。“兼容”两个字常常藏着缺口，缺在哪里同样没讲。版本号里的 a 一般表示早期测试版，我会先拿一份数据副本试。\n\n如果你已经在用 Ollama 或 LM Studio，可以去翻翻这个版本。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-14/4.png",
+        "sources": [
+          {
+            "title": "datasette-llm 0.1a11",
+            "url": "https://simonwillison.net/2026/Nov/14/datasette-llm/",
+            "site": "simonwillison.net"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Univer：把表格和文档编辑器装进你的 App",
+        "takeaway": "核心免费开源，能嵌表格和文档。多人协作、Office 文件导入导出要另外授权，价格没公布。",
+        "body": "Univer 是一套能把表格和文档编辑器装进你自己 App 的零件，核心部分用 Apache-2.0 协议开源。README 管它叫 Office SDK，意思就是一套开发者往产品里搭的现成积木。\n\n免费的部分，表格这边有公式、排序、筛选、合并单元格、条件格式、批注、撤销重做。文档这边有富文本编辑、列表、超链接、批注。README 说这些是“精选”能力，实际可能更多。\n\n如果你的产品需要一张用户能改、能算的表，直接嵌一个，应该比自己从头写省事得多。这是我的判断，Univer 没这么承诺。\n\nAI 这块也有。AI 助手能调用和编辑器同一套开放接口，用哪个模型、怎么调工具，由你的 App 决定。README 里的报价单例子，编辑、计算、保存全程没用 AI 组件，所以 AI 部分你完全可以不碰。\n\n多人实时协作、修改历史、Office 文件导入导出，放在另一个服务端套件里，不在免费核心里。商用插件和 AI 扩展也是单独授权。价格、发布日期、版本号，我看到的资料里都没写。\n\n要是你的产品离不开导入 Office 文件或多人同时编辑，先问清楚这些多少钱，再决定要不要围着 Univer 搭。其他情况，快速上手只用到表格核心，拿来试试免费部分能走多远，成本很低。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-14/5.png",
+        "sources": [
+          {
+            "title": "dream-num/univer",
+            "url": "https://github.com/dream-num/univer",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "AI 编程助手现在能自己操作一个真的 Chrome",
+      "body": "## 助手到底拿到了什么\n\nChrome DevTools MCP 是一个小程序，夹在 AI 编程助手和一个正在运行的 Chrome 之间。MCP 是一套给助手外接工具的通用接口。README 说它既能当 MCP 服务用，也有命令行版本，所以不接助手，直接在终端里用也行。能驱动它的助手，README 点了名：Antigravity、Claude、Cursor、Copilot、Gemini CLI。\n\n它的功能清单，读起来像一整天的前端排错。助手可以录性能记录，也就是页面加载时浏览器干了什么的一条时间线。可以分析网络请求，截图，读控制台消息。这些消息带的调用路径（一个错误是怎么一步步走到的）会对应回你自己写的源码，所以报错指向你写的那个文件，而不是压缩过的版本。它还能通过 Puppeteer 点击、输入。Puppeteer 是一个用脚本控制浏览器的工具。\n\n包里还带了几组现成的操作说明，README 叫它们技能包。内容包括无障碍问题排查、Cookie 问题、页面主要内容加载太慢（LCP 指标）、内存泄漏，还有通用排错。对身边没有性能专家的独立开发者，这几组才是有意思的地方。你不用先知道该问什么，说一句页面感觉慢，让助手照着现成的流程查就行。\n\n我觉得最大的好处在于，助手自己能验证。它改代码，刷新页面，看截图和控制台，判断到底修没修好。没接浏览器的时候，这些信息得你一趟趟手动搬回去。至于能省多少时间，README 没给数字，谁要是报个数字给你，我不会信。\n\n## 它能看到什么，还有谁会知道\n\nREADME 在这里说得很直白。这个工具会把浏览器里的内容开放给连上来的助手，助手可以查看、调试、修改浏览器或 DevTools 里的任何数据。如果你在那个 Chrome 里登着店铺后台、支付平台或邮箱，理论上助手全都看得到。\n\n对策挺无聊，但管用。拿网站的测试副本去试，用一个什么都没登录的 Chrome，把用它做的事和日常上网分开。如果你是给客户做东西的，别轻易拿它去碰客户线上的后台页面。\n\n还有几处小的外流。性能工具可能把你录制的页面网址发给 Google 的 CrUX 服务。CrUX 存的是从 Chrome 用户那里收来的真实速度数据。这有用，能让你页面的测试结果和真实访客的体验放在一起看。同时也意味着，页面网址会离开你的电脑。使用统计默认是开着的，服务也会定期去 npm 的公共仓库（这类软件包发布的地方）查有没有新版本。README 说这三项都能关，办法是命令行里加设置，或者设电脑的环境变量（电脑给程序保存的设置）。如果你的页面还没发布或属于私密内容，第一次运行前先关掉。\n\n另外，助手连上服务，并不会马上打开 Chrome。只有助手用到需要浏览器的工具时，浏览器才会启动。\n\n## 装的时候别弄乱\n\n要备好三样东西：Node.js 的当前长期支持版、当前稳定版 Chrome，还有 npm，也就是装 Node.js 时一起带上的安装工具。官方只支持 Google Chrome 和 Chrome for Testing，后者是专门给自动化测试用的 Chrome 版本。基于同一内核的其他浏览器可能也行，README 没有保证，别拿它当计划的一部分。\n\n服务或命令行工具每次更新，技能包也得跟着更新，不然助手可能还在用已经变了的工具和参数。命令行那一组技能包还要求命令行工具装在整台电脑上，而不是某个项目里。过一个月要是发现哪里怪怪的，先查这两处。\n\n还有不少事现在不清楚。README 里除了表示最新版的标签，没有版本号，也没有发布日期。Hacker News 上的讨论帖还没有评论，所以它在乱七八糟的真实项目里表现如何，暂时没人说。这正是先拿低风险的东西试的理由。\n\n一个人的工作室，我会从一个问题开始：我最慢的那个页面为什么慢？任务范围清楚，答案你自己也容易核对。助手查出来的和你看到的对得上，再给它大一点的活。它要是乱跑，只要那个浏览器是干净的，至少没有私密数据可看。"
+    }
+  },
+  "lab": []
+}
