@@ -1,0 +1,215 @@
+{
+  "date": "2026-11-17",
+  "publishAt": "2026-11-18T12:00:00Z",
+  "en": {
+    "intro": "OpenAI launched GPT-6.2 Astra and Sol, and says both are better at coding and using a computer while costing less. Also today: an open-source spreadsheet editor you can put inside your own app, and Simon Willison's notes on running AI coding assistants safely in a sealed-off space (a sandbox).",
+    "items": [
+      {
+        "n": 1,
+        "headline": "GPT-6.2 Astra is 20% cheaper; Sol holds at $2/$10",
+        "takeaway": "Same API work costs less on Astra, but reviews are mixed. Test it on your own tasks before switching.",
+        "body": "OpenAI's new top model costs 20% less than the one it replaces. GPT-6.2 Astra runs $8 per million input tokens and $40 per million output tokens, down from $10 and $50 for GPT-6 Astra. Tokens are the small chunks of text an AI reads and writes, and they're how you get billed.\n\nThere's a second model, GPT-6.2 Sol, aimed at everyday work. Sol stays at $2 and $10. That's the same as the last two Sol versions and half what GPT-5.6 Sol charged ($4 and $20). Both are in OpenAI's API, the paid connection developers use to put these models inside their own apps.\n\nRepeated text is cheaper too. Astra's cached price, what you pay when the same material is sent again, is $0.40 per million tokens, down from $1. Simon Willison says that helps in long agent sessions, where the AI works through a task on its own for a while.\n\nThe reviews are mixed. Willison reports Astra scoring below Anthropic's Claude Fable 5.2 on various benchmarks, though he doesn't say which ones. Some users find its communication style confusing. His own test, getting each model to turn a map of Yonkers into a stomping mech, didn't impress him with either one. Theo Browne's early feedback says Astra manages many helper agents well on long tasks but sometimes asks odd technical questions. One session sat blocked for two hours on one.\n\nThe reports so far don't say how Sol does at coding. If you already pay for an Astra-class model, the same work now costs less. I'd run one real task from your own product through it before switching anything.",
+        "note": null,
+        "category": "Models",
+        "card": "/cards/2026-11-17/1.png",
+        "sources": [
+          {
+            "title": "GPT‑6.2 Astra and Sol",
+            "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+            "site": "openai.com"
+          },
+          {
+            "title": "GPT‑6.2 Astra and Sol",
+            "url": "https://news.ycombinator.com/item?id=50535230",
+            "site": "Hacker News"
+          },
+          {
+            "title": "GPT‑6.2 Astra and GPT‑6.2 Sol",
+            "url": "https://simonwillison.net/2026/Nov/17/gpt62-astra-and-sol/",
+            "site": "simonwillison.net"
+          },
+          {
+            "title": "Introducing GPT-6.2 Astra and Sol",
+            "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+            "site": "openai.com"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Superpowers gives AI coding assistants a work routine",
+        "takeaway": "A ready-made routine that makes your AI coder ask, plan, then build. Install it once per tool.",
+        "body": "Before it writes a line of code, Superpowers makes your AI coding assistant ask what you're trying to do.\n\nSuperpowers is an add-on for AI tools that write code for you. Its GitHub page calls it a complete software development methodology. In plain terms, it's a work routine built from small reusable instruction sets, which it calls skills. The README says these skills trigger automatically, so you don't have to do anything special.\n\nThe routine goes like this. The assistant asks questions, then shows you a written plan of what it will build, in small chunks you can read. Once you sign off on the design, it writes a step-by-step plan. The README says it pushes for tests that fail first and then pass, for skipping features nobody asked for, and for not repeating work. After you say go, helper agents work through each task and review what they did.\n\nThe README lists 16 supported tools, including Claude Code, Codex, Cursor, Gemini CLI and GitHub Copilot CLI. Installation differs for each. If you use more than one, you install it separately in every one.\n\nIf you build with AI but never learned a formal process, this hands you one. The README also says agents can work for a couple of hours without drifting from the plan. That's the project describing itself, and I wouldn't count on it until you've seen it hold up on your own work.\n\nThe README states one limit plainly. In Hermes Agent, a very long first session can lose the starting instructions, and it suggests a fresh session if the skills stop kicking in.\n\nTo try it today, pick the one assistant you already use, follow its install steps in the README, and run the routine on a small feature. You'll know quickly whether the questions up front save you rework.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-17/2.png",
+        "sources": [
+          {
+            "title": "obra/superpowers",
+            "url": "https://github.com/obra/superpowers",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Univer: free spreadsheet and docs editor for your app",
+        "takeaway": "The editor is open source. Live co-editing and file import/export are licensed separately. Check first.",
+        "body": "Univer's README describes a spreadsheet and document editor you can build into your own app, with the core released free under the Apache-2.0 open-source license. The spreadsheet side lists cell styles, merged cells, formulas, filtering, sorting, data validation, conditional formatting, comments, and find and replace. Docs editing is in there too.\n\nThink of it as the Excel-and-Word layer you'd otherwise have to build yourself. If your product lets customers edit quotes, price lists or reports inside the app, that's a big chunk of work you might skip.\n\nUniver splits its Office SDK (a toolkit developers build into their apps) into three parts. The Web SDK runs in the browser: editing, drawing the sheet, calculating formulas. The Server SDK is the backend, the behind-the-scenes part: live editing by several people, edit history, and importing and exporting Office files. The AI SDK connects all of it to AI agents, programs that carry out tasks for you.\n\nOnly the Web SDK core is open source. The Server SDK, the commercial plugins and the commercial AI extensions are licensed separately. So live co-editing probably sits on the paid side. Univer hasn't spelled out where the free line falls.\n\nThe AI side is more open. The README says agents can use the same open-source commands as the editor, with your app supplying the model and the tool orchestration. It also includes a quotation example that covers editing, calculation and saving, with no AI SDK involved.\n\nIf you need in-app tables or documents, try the open-source part against your actual use case. Before you build around it, find out whether you need file import and export or live co-editing, and ask what those cost. Univer also lists presentations, PDFs and canvases, but the README doesn't say which are open source.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-17/3.png",
+        "sources": [
+          {
+            "title": "dream-num/univer",
+            "url": "https://github.com/dream-num/univer",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Run your AI agent's code in a sealed box",
+        "takeaway": "Willison's three demo sandboxes keep agent-run code off your machine. They're experimental.",
+        "body": "Simon Willison has released three small tools that let an AI coding assistant run its code somewhere other than your own computer. He built them together with Prime Radiant, an AI research group that also makes Superpowers, among other things, and posted about them on 17 November.\n\nA coding assistant writes code, then runs it. If it makes a mistake, or a booby-trapped web page tricks it into a harmful action (that's called prompt injection), the damage can reach your files. The fix here is a sealed-off box, a sandbox. The assistant stays outside and sends code in. The box runs it and sends results back.\n\nThe three versions run the box in different ways. One emulates a small Linux computer in software. One uses Apple's container feature on a Mac. One uses Microsoft's Quicksand library, which bundles a virtual machine (a computer simulated inside yours) and a small Linux. All three offer the same local address, and Pi, Claude Code or Codex can be set to call it whenever they want to execute something.\n\nThere are two extras. An optional filter lists which websites the code may contact. And the box can make logged-in calls to a service without ever handing the secret key to the assistant. A settings screen lets you change the filter while the box is running.\n\nIf you already run coding assistants, especially with a model on your own machine, this is worth a look. If you don't write code, the useful question is smaller: where does the code your tool writes actually run?\n\nWillison's post treats these as a demonstration of the pattern, and he says safely running untrusted code is still hard. It gives no security test results, and it doesn't say whether the Apple version works anywhere but Apple's system. I'd treat them as a starting point.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-17/4.png",
+        "sources": [
+          {
+            "title": "External sandboxes for coding agents",
+            "url": "https://simonwillison.net/2026/Nov/17/external-sandboxes-for-coding-agents/",
+            "site": "simonwillison.net"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "AG-UI 1.0 sets one standard for AI agents in your app",
+        "takeaway": "A frozen, free standard could save you custom wiring when adding an AI agent to your app.",
+        "body": "AG-UI 1.0 is out, according to the project's own README on GitHub. It's a shared set of rules (a protocol) for how an AI agent talks to the app a person actually uses. An agent here means an AI that does multi-step work for you instead of answering one question.\n\nToday, if you build an agent with one toolkit and want it inside your app, someone writes custom wiring to join the two. AG-UI replaces that with one two-way stream of small, labeled messages. The agent sends them. Any app that understands the format can show them, whichever toolkit built the agent. The README says the same agent can run in a web app, a mobile app, a terminal or Slack.\n\nThe 1.0 label is the part to care about. The README calls the spec stable and frozen, so the rules shouldn't shift under you. It also says older 0.x agents work with 1.0 apps and the other way round. Ready-made code libraries exist for TypeScript, Python and .NET. The license is MIT, which means free to use, including in something you sell.\n\nThe README names Google, Microsoft, Amazon and Oracle as adopters, and says AG-UI is built into most agent frameworks. LangChain, CrewAI, Mastra and Pydantic AI are among the toolkits it lists as integrations, each with a live demo. That's the project's own claim, and the README doesn't say how adoption was measured. It gives no release date for 1.0 either.\n\nIf you're adding an agent to an app, look at this before you write your own glue. The README offers a starter-kit generator that sets up a front end (the screen people use) wired to the framework you pick. Its templates call OpenAI, so you'll need an OpenAI key. The bare protocol example needs no keys. If you don't code, there's nothing to do today except know it exists.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-17/5.png",
+        "sources": [
+          {
+            "title": "ag-ui-protocol/ag-ui",
+            "url": "https://github.com/ag-ui-protocol/ag-ui",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "GPT-6.2 Astra is 20% cheaper; Sol holds at $2/$10",
+      "body": "## What changed, in money terms\n\nOpenAI has put out two models, GPT-6.2 Astra and GPT-6.2 Sol. Astra is described as a new top-tier model for the hardest projects. Sol is described as an efficient, versatile model for everyday work. Both are available through OpenAI's API, the paid connection that lets you build the models into your own software.\n\nThe prices are the clearest part of the story. Astra costs $8 per million input tokens and $40 per million output tokens. Tokens are the chunks of text a model reads and writes, so input is what you send and output is what comes back. The previous Astra was $10 and $50, which makes the new one 80% of the old price. Simon Willison points out that Anthropic's Claude Fable 5.2 sits at exactly $8 and $40, and that it also dropped to 80% of its predecessor's price. Two competing top models landing on the same number probably means both companies are watching the same market.\n\nSol stays at $2 and $10, the same as GPT-6.1 Sol and GPT-6 Sol. Against GPT-5.6 Sol, which was $4 and $20, that's half. So if you're a few versions behind, moving up gets you a price cut. If you're on a recent Sol, the price is flat and the question is only whether it works better for you.\n\nA made-up example: a job that sends 10 million tokens in and gets 1 million back costs $120 on the new Astra and $150 on the old one. On Sol it's $30. On GPT-5.6 Sol it would have been $60. Your own numbers will differ, but the arithmetic is simple enough to do for your own usage.\n\nThere's also a cached price. When you send the same text again, for example the same long set of instructions at the start of every request, you pay less. Astra's cached rate is $0.40 per million tokens, down from $1. Willison says this helps longer-running agent sessions, where an AI works through a multi-step task by itself and keeps re-reading what it has already seen.\n\n## Where the reviews land\n\nOpenAI's own announcement page is the weak link here. It came through with only a title and no body text, so OpenAI's claims about better coding, computer use and cost can't be checked against it. Hacker News commenters also said the page was laggy, didn't show its graphs properly, and that the linked system card, the document where a lab describes how the model behaves, wasn't up yet when they looked. Whether that's fixed now is unknown.\n\nSo most of what we know comes from Willison, and it's mixed. He says Astra isn't scoring as high as Fable 5.2 on various benchmarks. He doesn't name the benchmarks or give scores, so there's nothing to verify. He also says some users find Astra's communication style confusing.\n\nHis own test was a demanding one. He asked both new models to use map data to morph Yonkers into a giant mech that stomps through Manhattan, Queens and Brooklyn. He ran them at an effort level called Ultra in Codex CLI, OpenAI's coding tool. He judged that neither did a good enough job, compared with Claude Fable 5.2 and Gemini 4 Carbon. It's one test, and a deliberately odd one, so I wouldn't treat it as a verdict. It does mean the new models aren't a clear win on everything.\n\nTheo Browne's pre-release feedback is more useful for anyone running agents. He says Astra handles many helper agents well on long tasks, but sometimes asks strange questions about its own internal implementation. Willison cites a session that was blocked for two hours on exactly that kind of question. If you leave an agent running while you do something else, that's the failure to watch for. A cheaper model that stalls for two hours isn't cheap.\n\nOn Sol, there's little to go on. Nothing reported so far says how it compares with other models on coding or computer use. The price is known. The quality isn't.\n\nSome Hacker News commenters speculated that OpenAI timed the launch around Anthropic's IPO. That's speculation, and nothing reported confirms it.\n\n## What I'd do with it this week\n\nIf your product already calls an OpenAI model, pick one real task you care about and run it on the new models next to what you use now. A support reply, a summary, a bit of code generation, whatever your customers actually touch. Compare the output and the bill. The price table tells you what you'll pay. It doesn't tell you whether the answers are better for your use.\n\nIf you're on an older Sol, especially GPT-5.6, the price halves, so the test is cheap to justify. If you're on a recent Sol, nothing changes on cost, so switching only makes sense if quality improves for you, and nothing reported so far shows that.\n\nIf you run long, unattended agent jobs on Astra, set a time limit or check in on a schedule. The reported two-hour block is the kind of thing that eats a day without anyone noticing.\n\nThe pricing is real and it's good. I'd wait for the full announcement page and the system card before committing to a big switch."
+    }
+  },
+  "zh": {
+    "intro": "OpenAI 发了 GPT-6.2 Astra 和 Sol，说两个都更会写代码、更会操作电脑，价格还更低。另外有一个开源的表格编辑器，能直接装进你自己的 App；还有 Simon Willison 聊怎么让 AI 编程助手在一个隔离的环境（也叫沙箱）里安全地跑。",
+    "items": [
+      {
+        "n": 1,
+        "headline": "GPT-6.2 Astra 降价 20%，Sol 价格不变",
+        "takeaway": "同样的活在 Astra 上更便宜，但评价不一。换之前先拿自己的任务跑一遍。",
+        "body": "OpenAI 最新的旗舰模型，比它替下的那个便宜 20%。GPT-6.2 Astra 每百万 token 输入 8 美元、输出 40 美元，上一代 GPT-6 Astra 是 10 美元和 50 美元。token 是 AI 读写文字的小块，也是计费的单位。\n\n同时发布的还有 GPT-6.2 Sol，定位日常工作，价格没动，还是 2 美元和 10 美元。跟前两代 Sol 一样，是 GPT-5.6 Sol（4 美元和 20 美元）的一半。两个模型都能在 OpenAI 的 API 里调用，也就是开发者把模型接进自己 App 的那条付费通道。\n\n重复发送的内容也更便宜了。Astra 的缓存价是每百万 token 0.40 美元，之前是 1 美元。缓存价指同一段内容再发一遍时收的钱。Simon Willison 说，这对长时间跑的 AI 助手会话有好处，那种场景下 AI 会自己连着干一阵活。\n\n评价有褒有贬。Willison 说 Astra 在多项测试里分数不如 Anthropic 的 Claude Fable 5.2，具体是哪几项没说。有用户觉得它说话方式让人摸不着头脑。他自己的测试是让两个模型用地图数据把 Yonkers 变成一个踩过曼哈顿的巨型机甲，结果他对两个都不满意。Theo Browne 的早期反馈是，Astra 跑长任务时能调度很多个小助手，但偶尔会问一些奇怪的内部技术问题。有一次任务就卡在这种问题上两个小时。\n\nSol 写代码到底怎么样，目前没有报道。如果你已经在付 Astra 这一档的钱，同样的活现在更便宜。我会先拿自己产品里的一个真实任务跑一遍，再决定换不换。",
+        "note": null,
+        "category": "模型",
+        "card": "/cards/2026-11-17/1.png",
+        "sources": [
+          {
+            "title": "GPT‑6.2 Astra and Sol",
+            "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+            "site": "openai.com"
+          },
+          {
+            "title": "GPT‑6.2 Astra and Sol",
+            "url": "https://news.ycombinator.com/item?id=50535230",
+            "site": "Hacker News"
+          },
+          {
+            "title": "GPT‑6.2 Astra and GPT‑6.2 Sol",
+            "url": "https://simonwillison.net/2026/Nov/17/gpt62-astra-and-sol/",
+            "site": "simonwillison.net"
+          },
+          {
+            "title": "Introducing GPT-6.2 Astra and Sol",
+            "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+            "site": "openai.com"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Superpowers 给 AI 编程助手配了套做事流程",
+        "takeaway": "先问清楚、再做计划、最后动手。每个 AI 工具要单独装一次，先拿小功能试。",
+        "body": "Superpowers 让 AI 编程助手在写第一行代码之前，先问你到底想做什么。\n\n它是 GitHub 上的开源项目，README 管它叫“完整的软件开发方法”。说人话，就是一套工作流程，拆成一个个能重复使用的小技能包（项目里叫 skill），装上以后 AI 助手会照着走。README 说技能会自动触发，你不用特别操作。\n\n流程大概是这样。助手先跟你聊，把需求问清楚，再把要做的东西分成几小段写给你看。你点头以后，它写一份分步的实施计划。README 里强调三件事：先写测试，看它失败，再让它通过；不做没人要的功能；不写重复的代码。你说“开始”，几个小助手分头干活，干完互相检查。\n\n支持的工具有 16 个，包括 Claude Code、Codex、Cursor、Gemini CLI、GitHub Copilot CLI。每个工具的装法不一样。同时用好几个的话，每个都得单独装一遍。\n\n如果你靠 AI 做 App，又没学过正规的开发流程，这等于直接递给你一套。README 还说 AI 能连着干一两个小时不偏离计划。这是项目对自己的描述，我会先拿一个小功能试试，再决定信不信。\n\nREADME 也写了一个短板。在 Hermes Agent 里，如果第一轮就聊得特别长，开头那段启动指令会丢，技能就不灵了。它建议这时候开个新会话。\n\n今天能做的：挑你最常用的那一个助手，照 README 装好，拿一个小功能跑一遍。看看它一上来问的那些问题，能不能帮你少返工。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-17/2.png",
+        "sources": [
+          {
+            "title": "obra/superpowers",
+            "url": "https://github.com/obra/superpowers",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Univer：能嵌进 App 的开源表格和文档编辑器",
+        "takeaway": "编辑器核心开源，多人协作和文件导入导出单独授权，动手前先问价。",
+        "body": "Univer 的 README 里写着，它是一套能嵌进你自己 App 的表格和文档编辑器，核心部分用 Apache-2.0 协议开源。表格这边列了单元格样式、合并单元格、公式、筛选、排序、数据校验、条件格式、批注、查找替换。文档编辑也有。\n\n打个比方，就是 Excel 和 Word 那一层，不用你自己从头写。如果你的产品让客户在里面改报价单、价目表、报表，这能省一大块活。\n\nUniver 把整套 Office SDK（给开发者嵌进产品里用的工具包）分成三块。Web SDK 跑在浏览器里，管编辑、画表格、算公式。Server SDK 是后台，管多人同时编辑、修改历史、导入导出 Office 文件。AI SDK 把这些能力接给 AI 助手。\n\n开源的只有 Web SDK 的核心。Server SDK、商业插件、商业 AI 扩展都是单独授权。所以多人实时协作大概率在收费那边，但 Univer 没把免费和收费的线划清楚。标题里的“协作编辑”，别急着当成免费功能。\n\nAI 这块倒是更开放。README 说 AI 助手可以调用和编辑器同一套开源接口，模型和工具调度由你的 App 自己配。里面有个报价单的例子，编辑、计算、保存都走完，不依赖 AI SDK。\n\n今天能做的：如果你要在 App 里放表格或文档，拿开源部分对着你的真实场景试一下。动手前先想清楚要不要文件导入导出、要不要多人实时协作，要的话先问价。Univer 还列了演示文稿、PDF、画布，哪些开源，它没说。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-17/3.png",
+        "sources": [
+          {
+            "title": "dream-num/univer",
+            "url": "https://github.com/dream-num/univer",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "让 AI 写的代码，在隔离的盒子里跑",
+        "takeaway": "Willison 的三个沙箱，把 AI 助手运行的代码挪出你的电脑。目前是演示，没给安全测试结果。",
+        "body": "Simon Willison 放出了三个小工具，让 AI 编程助手写出来的代码，不在你自己的电脑上跑，换到一个隔离的盒子里跑。他是和 Prime Radiant 一起做的，这是个 AI 研究团队，做过 Superpowers 等项目。文章 11 月 17 日发的，目的是让人更放心地试本地模型（直接跑在自己电脑上的 AI 模型）。\n\nAI 编程助手写完代码，通常直接就运行了。它写错了，或者读到网页里藏的坏指令被骗了（这叫提示词注入），后果可能落在你的文件上。办法是造一个隔离的测试环境，也叫沙箱。助手留在外面，把代码递进去，盒子跑完再把结果递出来。有点像把危险的实验搬进通风橱。\n\n三个版本，盒子的造法不一样。一个在软件里模拟一台小 Linux 电脑。一个用 Mac 自带的容器功能。一个用微软的 Quicksand 库，里面带着虚拟机（在你电脑里模拟出来的另一台电脑）和精简版 Linux。三个对外是同一个本地接口，Pi、Claude Code、Codex 都能设置成：每次要运行代码，就来调它。\n\n还有两样配件。一样是可选的网址白名单，规定代码只能访问哪些网站，盒子开着也能在设置界面里改。另一样是让盒子替你带着密钥去调用需要登录的服务，助手自己始终看不到密钥。\n\n已经在用这类助手的人，尤其是想试本地模型的，值得去看看。不写代码的话，也可以问问自己用的工具：它写出来的代码，到底在哪儿跑。\n\nWillison 把这三个东西当作这种做法的演示，不是成熟产品。他自己也说，安全地跑不可信的代码仍然很难。文章没给安全测试结果，隔离到底有多牢不知道。Mac 容器那版除了苹果系统能不能用，许可协议怎么写，也都没说。我会当个起点看。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-17/4.png",
+        "sources": [
+          {
+            "title": "External sandboxes for coding agents",
+            "url": "https://simonwillison.net/2026/Nov/17/external-sandboxes-for-coding-agents/",
+            "site": "simonwillison.net"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "AG-UI 1.0 为 AI 智能体接进 App 定了统一规矩",
+        "takeaway": "规格冻结又免费。给 App 加 AI 智能体之前，先看它能不能省掉自己接线。",
+        "body": "AG-UI 发了 1.0，消息来自项目自己放在 GitHub 上的说明文档。它是一套公共规矩（行业里叫协议），管 AI 智能体怎么跟用户手里的 App 对话。智能体就是能自己分好几步把事办完的 AI，不是问一句答一句的那种。\n\n现在你用某个工具搭了个智能体，想放进自己的 App，通常得有人手写一堆接线代码，把两头接上。AG-UI 想用一条双向的消息流代替这堆接线。智能体发出一条条带标签的小消息，只要 App 看得懂这个格式，就能显示出来，不管智能体是哪个框架做的。README 里说，同一个智能体可以跑在网页、手机 App、终端和 Slack 里。\n\n1.0 这个数字才是重点。README 说规格已经稳定并且冻结，意思是规则不会在你脚下变。它还说旧的 0.x 智能体能配 1.0 的 App，反过来也行。TypeScript、Python、.NET 都有现成的代码库。许可证是 MIT，免费用，拿去做收费产品也行。\n\nREADME 点名 Google、微软、亚马逊、Oracle 在用，还说大多数智能体框架已经内置。LangChain、CrewAI、Mastra、Pydantic AI 都在支持名单里，每个都有在线演示。这是项目自己的说法，采用情况怎么统计的，它没写。1.0 哪天发的，也没写。\n\n如果你正打算给 App 加智能体，动手自己接线之前，先看看它。README 提供一个脚手架工具，能生成一个已经接好你所选框架的前端（用户看到的那层界面）。模板调用的是 OpenAI，所以你得有一个 OpenAI 的 API 密钥。只演示协议本身的例子不需要密钥。不写代码的话，今天知道有这么个东西就够了。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-17/5.png",
+        "sources": [
+          {
+            "title": "ag-ui-protocol/ag-ui",
+            "url": "https://github.com/ag-ui-protocol/ag-ui",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "GPT-6.2 Astra 降价 20%，Sol 价格不变",
+      "body": "## 价格变了多少\n\nOpenAI 一口气放出两个模型：GPT-6.2 Astra 和 GPT-6.2 Sol。Astra 定位是最难的项目，Sol 定位是日常工作，讲究高效、通用。两个都能通过 API 调用，也就是开发者把模型接进自己软件时用的那条付费通道。\n\n价格是这次最清楚的部分。Astra 每百万 token 输入 8 美元，输出 40 美元。token 是模型读写文字的小块，输入是你发过去的，输出是它回来的。上一代 Astra 是 10 美元和 50 美元，新价格正好是旧价的 80%。Simon Willison 指出，Anthropic 的 Claude Fable 5.2 也是 8 美元和 40 美元，同样是上一代的 80%。两家的顶级模型落在同一个数上，我猜是都在盯着同一个市场。\n\nSol 是 2 美元和 10 美元，跟 GPT-6.1 Sol、GPT-6 Sol 一样。对比 GPT-5.6 Sol 的 4 美元和 20 美元，是一半。所以如果你还停在几个版本之前，升上来价格直接砍半。如果你用的已经是近期的 Sol，价格没变，剩下的问题只有一个：它对你的活好不好用。\n\n举个编出来的例子：一个任务发过去 1000 万 token，收回 100 万 token。新 Astra 要 120 美元，旧 Astra 要 150 美元。Sol 是 30 美元，换成 GPT-5.6 Sol 则是 60 美元。你的真实数字会不一样，不过算法就这么简单，拿自己的用量套一遍就行。\n\n还有一个缓存价。同一段文字重复发送，比如每次请求开头都带同一大段说明，收费会更低。Astra 的缓存价是每百万 token 0.40 美元，之前是 1 美元。Willison 说，这对长时间运行的 AI 助手会话有好处。那种场景下，AI 自己一步步做完一个多步骤的任务，会反复读它已经看过的内容。\n\n## 评价不一\n\nOpenAI 自己宣称的编程、操作电脑和成本方面的提升，这里没法核实。Hacker News 上有人说页面很卡，图表显示不全，也有人说链接里的系统卡还没上线。系统卡是实验室用来说明模型行为的文档。现在补上没有，不清楚。\n\n所以大部分信息来自 Willison，而他的说法有褒有贬。他说 Astra 在多项测试里分数不如 Fable 5.2。具体是哪几项、差多少，他没给，也就没法核对。他还提到，有用户觉得 Astra 的沟通方式让人困惑。\n\n他自己出的题很刁钻。他让两个新模型用地图数据，把 Yonkers 变成一个巨型机甲，踩过曼哈顿、皇后区和布鲁克林。两个模型都用了叫 Ultra 的力度档位，跑在 Codex CLI 里。他的结论是，跟 Claude Fable 5.2 和 Gemini 4 Carbon 比，两个都没做好。这只是一道题，还是故意出得很怪的题，我不会把它当判决。但它至少说明，新模型不是样样都赢。\n\nTheo Browne 的发布前反馈，对跑 AI 助手的人更有用。他说 Astra 在长任务里调度很多个小助手挺稳，但偶尔会问一些关于自己内部实现的奇怪问题。Willison 引用了一次任务，就在这种问题上卡了两个小时。如果你习惯把 AI 助手放着跑，自己去忙别的，这就是要防的坑。一个会卡两小时的便宜模型，算不上便宜。\n\nSol 目前没什么可说的。已有报道里，没有谁讲它在编程或操作电脑上跟别的模型比怎么样。价格是知道的，质量不知道。\n\nHacker News 上有人猜，OpenAI 是照着 Anthropic 上市的时间点来安排这次发布的。这只是猜测，没有任何报道证实。\n\n## 这周能做的事\n\n如果你的产品已经在调用 OpenAI 的模型，挑一个你在意的真实任务，用新模型和现在在用的各跑一遍。最好拿客户真正会碰到的东西来测：一条客服回复、一段摘要、一小段生成的代码。对比输出，也对比账单。价格表只能告诉你要付多少钱，答案有没有变好，它说了不算。\n\n如果你用的是老一点的 Sol，尤其是 GPT-5.6，价格直接减半，这个测试不用犹豫。如果你用的是近期的 Sol，成本上没有变化，只有质量真的变好才值得换，而目前的报道里没有这方面的证据。\n\n如果你在 Astra 上跑长时间、没人盯着的 AI 助手任务，建议设一个时间上限，或者定时去看一眼。报道里那次两小时的卡顿，就是会悄悄吃掉一整天的那种事。\n\n降价是真的，而且挺划算。大范围切换之前，我会先等完整的发布页和系统卡出来。"
+    }
+  },
+  "lab": []
+}
