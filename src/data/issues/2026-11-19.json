@@ -1,0 +1,235 @@
+{
+  "date": "2026-11-19",
+  "publishAt": "2026-11-20T12:00:00Z",
+  "en": {
+    "intro": "Gemini on the Mac can now use your apps, files and the web for you, but only if you pay and live in the US. Today also covers an Apple job listing that hints at a similar agent, a Gemini API feature that helps a model pick the right tool from a huge set, a framework for AI coding helpers called obra/superpowers, and a playbook with 117 App Store rejection patterns.",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Superpowers gives AI coding tools a build method",
+        "takeaway": "An add-on that makes your AI assistant ask questions and plan first. Install it separately for each tool.",
+        "body": "Before it writes a line of code, this add-on makes your AI assistant ask what you're actually trying to build. That's the pitch of Superpowers, a GitHub project from obra.\n\nThe README describes it as a full method for building software with AI coding assistants. It's made of small reusable skills (written instructions the assistant picks up when they fit the job) plus a starting prompt that makes sure it uses them. Once you say you're building something, the assistant asks questions, then shows you a spec (a written description of what to build) in chunks short enough to read. After you approve the design, it writes a plan. The README says the plan leans on writing tests that fail first and then pass, building only what's needed, and not repeating yourself.\n\nSay \"go\" and it hands each task to helper agents (separate AI workers). They do the work, check it, and keep moving. The README says the skills kick in on their own, so there's nothing special to do per project.\n\nIf you work alone, nobody is there to ask \"wait, what are we building?\" or to look over the plan. This is a stand-in for that. If you build with AI help and don't code much, the up-front questions are probably the most useful part.\n\nInstallation differs by tool, and you repeat it for each one you use. Claude Code, Codex, Cursor and Gemini CLI are on the list, along with a dozen more. On Hermes Agent, a very long session can lose the starting instructions, and the README suggests a fresh session if the skills stop firing.\n\nThe README also says agents can work for a couple of hours without straying from the plan. That's the project's own claim, and I haven't seen anyone check it. I'd try it on a small side project first.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-19/1.png",
+        "sources": [
+          {
+            "title": "obra/superpowers",
+            "url": "https://github.com/obra/superpowers",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Gemini on Mac can now work your apps for you",
+        "takeaway": "US paid users can hand Gemini Mac chores, or use it to test their own app.",
+        "body": "Gemini can now work your Mac while you do something else. Google announced it Thursday for the Gemini Mac app. You give it a task, and it opens files, drives desktop apps and browses websites on its own, with a live preview running in the chat. Your screen and cursor stay free. Google calls this \"computer use,\" which means an AI that clicks and types the way you would.\n\nYou can pause it, stop it, or approve actions before they happen. The Verge reports you also choose which of your apps Gemini may touch.\n\nGoogle's suggested jobs are ordinary chores: filling out forms, repeating a task across a batch of files, sorting files into folders, building a slideshow, listing items for sale.\n\nAccess is narrow. It's English only, US only, and it needs the Gemini Mac app plus a paid Google AI Plus, Pro or Ultra plan. Google hasn't said when other countries or platforms get it. TechCrunch notes that OpenAI, Anthropic and Meta already offer similar agent features on the desktop, so Google is late.\n\nFor a small maker, an agent that can click through your own app is a cheap way to see where a first-time user gets lost. If you're in the US and pay for a plan, give it a dull job first, like sorting a messy folder, and keep approvals on. Then point it at your app's signup and see where it stumbles.\n\nIf you ship a Mac app, check whether it asks for \"full disk access,\" the permission to read everything on the drive. The Verge says Apple is adding restrictions for it, previewed in the macOS 27.3 beta, because of agents like this.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-19/2.png",
+        "sources": [
+          {
+            "title": "Google adds computer use to Gemini for macOS, letting it work across apps, files, and the web in the background, available to US AI Plus, Pro, and Ultra users (Sarah Perez/TechCrunch)",
+            "url": "https://techcrunch.com/2026/11/19/google-gives-gemini-the-ability-to-use-your-mac-for-you/",
+            "site": "techcrunch.com"
+          },
+          {
+            "title": "Google adds computer use to Gemini for macOS, letting it work across apps, files, and the web in the background, available to US AI Plus, Pro, and Ultra users (Sarah Perez/TechCrunch)",
+            "url": "https://www.techmeme.com/261119/p47#a261119p47",
+            "site": "techmeme.com"
+          },
+          {
+            "title": "Gemini on Mac can now use your computer",
+            "url": "https://www.theverge.com/tech/1037902/google-gemini-macos-ai-computer-use",
+            "site": "theverge.com"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Gemini API loads tools only when the model asks",
+        "takeaway": "Big tool lists needn't ride along on every request. Still preview, so measure the savings yourself.",
+        "body": "Google's Gemini API can now keep the fine print of your tools out of the conversation until the model needs one.\n\nSay you've built an AI feature that can do things: look up an order, book a slot, send an email. Each ability is a \"tool,\" and normally you send the model the full instructions for every tool on every request. Those instructions count as tokens, the small chunks of text AI companies bill by. A long tool list means a bigger bill, slower answers, and more chances for the model to grab the wrong tool.\n\nGoogle's announcement calls the fix Tool Retrieval, and it's in preview. For tools you mark as held back, the model sees only a name and a short description. When it wants one, it asks by name and the detailed instructions load right then. Searching, loading and calling all happen inside a single request. Google runs the search on its servers, so there's nothing to build or host. If you'd rather use your own tool catalog or permission rules, you can run the search yourself, with one extra back-and-forth per search.\n\nThere's no separate charge. You pay normal token rates, plus a small fixed block of extra tokens when it's on. Every tool the model loads gets billed as input for the rest of that conversation, so your savings depend on how many it pulls in. Google gives no savings numbers and tells you to measure on your own traffic.\n\nIt works only in the Interactions API, a part of the Gemini API, and only with Gemini 3.6 or later. If you connect a remote MCP server (a hosted bundle of tools from another service), one setting holds back everything it offers.\n\nWith three or four tools, skip it. With dozens, run the same test conversations with and without it and compare token counts. I'd do that before rebuilding anything around a preview.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-19/3.png",
+        "sources": [
+          {
+            "title": "Introducing Tool Retrieval in the Gemini API",
+            "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/",
+            "site": "blog.google"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Apple is hiring to build an AI agent that runs your apps",
+        "takeaway": "Early days, but Apple's Siri preview in iOS 27.3 is the one thing to look at if you ship an iOS app.",
+        "body": "Apple is hiring someone to build an AI agent that can use a computer the way you do. An agent, in this sense, is an assistant that does the steps for you instead of just answering questions. It opens apps, browses the web, writes and fixes code, and calls online services.\n\nBloomberg's Mark Gurman spotted the job listing. The Verge says it describes an agent that plans and carries out multi-step tasks across apps, browsers and code, and coordinates smaller specialized helpers. The person hired would work with the Siri, interface and Apple Foundation Models teams. TechCrunch says the role is a senior engineering manager. The Verge calls it an engineer. Sources disagree on that detail.\n\nIt's early. Bloomberg says the project is in its early stages and Apple has eyed a launch as soon as the end of next year. Apple didn't answer TechCrunch. There's no name, and nobody has said whether it would run on iPhone, Mac or both.\n\nThe timing is odd. TechCrunch, citing Bloomberg, says macOS 27.3 will show warnings that discourage people from giving third-party agents full access. Meanwhile The Verge says ChatGPT, Perplexity and Meta's Muse can already control a Mac through their apps, and Google just started letting Gemini do it. To me that reads like Apple wants to hold the keys itself.\n\nFor a small maker, there's nothing to build for yet. But if an agent ends up tapping through your app for a customer, your app has to make sense to it. The one real thing to look at now is the Siri developer preview in iOS 27.3. The Verge says it lets developers connect Siri's AI to all apps. If you ship on iOS, read what it asks of you.",
+        "note": null,
+        "category": "Platforms",
+        "card": "/cards/2026-11-19/4.png",
+        "sources": [
+          {
+            "title": "A job listing shows Apple is developing an AI agent that can write code, browse the web, control apps, navigate devices, and coordinate subagents for users (Mark Gurman/Bloomberg)",
+            "url": "https://www.bloomberg.com/news/articles/2026-11-19/apple-is-working-on-ai-agent-for-device-control-apps-browsing-and-coding?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc5NTEyNDc2NSwiZXhwIjoxNzk1NzI5NTY1LCJhcnRpY2xlSWQiOiJUT1I5MEtLSkg2VjUwMCIsImJjb25uZWN0SWQiOiJDNEVEQ0FFMUZBMDU0MEJFQTI0QTlGMjExQzFFOTA4MCJ9.76_dY8UuzU3uFF5ExyvuszXnM3mdj2w3dulsez1QvhY",
+            "site": "bloomberg.com"
+          },
+          {
+            "title": "A job listing shows Apple is developing an AI agent that can write code, browse the web, control apps, navigate devices, and coordinate subagents for users (Mark Gurman/Bloomberg)",
+            "url": "https://www.techmeme.com/261119/p52#a261119p52",
+            "site": "techmeme.com"
+          },
+          {
+            "title": "Apple is hiring engineers to build its own AI agent",
+            "url": "https://www.theverge.com/tech/1038227/apple-ai-agent-engineer-job-listing",
+            "site": "theverge.com"
+          },
+          {
+            "title": "Apple may be developing its own AI agent that runs your Mac",
+            "url": "https://techcrunch.com/2026/11/19/apple-may-be-developing-its-own-ai-agent-that-runs-your-mac/",
+            "site": "techcrunch.com"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "A pre-flight scanner for App Store and Google Play rejections",
+        "takeaway": "Scan your code and use the plain-English checklist before submitting. Check the update date first.",
+        "body": "A scanner that ends every run with one of three verdicts: BLOCKED, CLEAR or NOT CHECKED. That's App Store Compliance Playbook, a GitHub project by mjmirza that looks over your iOS or Android project before you send it to Apple or Google.\n\nThe README says it pairs a reference guide of 117 rejection patterns with a pre-submission checklist. The scanner lists problems with the serious ones first. BLOCKED means it found a critical risk. CLEAR means no critical risk in your code, which is a narrower promise than \"Apple will approve this.\" NOT CHECKED means it couldn't find an app project to read.\n\nThe project says it covers the top modern rejection causes first, and it names two. One is a demo login that works against a live server, so the reviewer can get inside. The other is a privacy declaration that matches what the app really does, including every SDK (a bundle of someone else's code, like an analytics or ads kit) you added. The README says the quick start installs nothing and changes nothing in your app.\n\nIf you build with an AI coding assistant, the scanner can plug in so it runs before an upload and stops the upload when something critical turns up. Claude Code, Codex CLI, Cursor and GitHub Copilot are on the list, plus several others. Codex needs you to approve it once.\n\nIt reads code and settings only. Your account setup and store listing are left to the checklist, which is in plain English, so no coding is needed for that part. Apps built with Expo, a toolkit that hides the native project folders, get partial coverage unless you generate those folders first.\n\nThe project says every guideline number traces to a live Apple or Google source. I can't confirm that, and nobody independent has weighed in yet. Apple's rules shift, so check when the project was last updated before you trust it.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-19/5.png",
+        "sources": [
+          {
+            "title": "mjmirza/app-store-compliance",
+            "url": "https://github.com/mjmirza/app-store-compliance",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 2,
+      "headline": "Gemini on Mac can now work your apps for you",
+      "body": "## What Google shipped\n\nGoogle announced on Thursday that its Gemini desktop app for macOS can now do what it calls computer use. In plain terms, you describe a job, and the AI carries it out across your local files, your native Mac apps and websites. TechCrunch and The Verge both describe the same setup. The agent works in a live preview inside the chat, so your own screen and cursor stay free for other things. You can pause it, stop it, or approve its actions before they happen. The Verge adds that you decide which of your apps Gemini can reach.\n\nThe examples Google gives are modest, and I think that's the right instinct: filling out forms, repeating the same task across a batch of files, sorting files into folders by some rule, turning files or an online dashboard into a slideshow, listing items for sale. People put these jobs off because they're tedious.\n\nThe limits are tight. It rolls out in English for US users only, and it needs both the Gemini Mac app and a paid Google AI Plus, Pro or Ultra subscription. Google hasn't given a date for other countries, other languages, or other platforms such as Windows or phones. TechCrunch also points out that OpenAI, Anthropic and Meta already offer agent features in their desktop apps. Google is arriving after them. Earlier the same week, it widened the rollout of Gemini Tasks, an in-app agent that can sign in to websites, make purchases and book appointments. That makes this one piece of a larger push.\n\n## The Apple detail\n\nThe most useful line for Mac developers sits near the end of The Verge's piece. Apple is launching new restrictions for apps that want full disk access, a permission that lets an app read nearly everything on your drive. The Verge links this to the risk of AI agents with computer use, and a preview of the settings arrived in the macOS 27.3 beta.\n\nNeither report says how those restrictions will affect Gemini's own computer use once they take effect. Google also hasn't described its safeguards beyond the approval prompts and the choice of which apps are reachable. I wouldn't read anything into that gap yet. I'd just note that Apple is tightening what apps can reach on the Mac while Google builds an agent that works inside those apps, and small developers sit downstream of both.\n\nIf your Mac app asks for full disk access today, it's worth asking whether it needs to. A narrower permission is easier to explain to users, and it's less likely to get caught in whatever Apple tightens next.\n\n## What a small maker can do with it\n\nA background agent is a handy helper, and it's also a new kind of user.\n\nAs a helper, it's a way to hand off repetitive work. If you sell a small app, you probably have chores like renaming screenshots, sorting exports into folders, filling in the same store-listing fields again and again, or building a quick deck from a dashboard. Google lists several of those as intended uses. Start with something low stakes, keep approvals on, and watch the first few runs before you let it go further. You're paying for a plan either way, so a dull folder is a cheap place to learn how much it gets wrong.\n\nAs a user, it's more interesting. An agent that clicks through apps is a rough stand-in for a first-time customer who doesn't read your help page. If it can't find your signup button, or gets stuck on a screen that makes sense only to you, a real person may struggle there too. Reports don't say how Gemini reads an app's screen, so I wouldn't promise anything about what helps it. Clear button names and plain steps are good for humans anyway. If you're in the US with a paid plan, an afternoon spent watching it try your app costs little.\n\nWhat follows is my opinion. More people will point agents at the small apps they use, and some of those agents will do it unattended. Makers who treat that as a normal way to use their product will probably have an easier time. The restrictions Apple is previewing suggest Apple expects agents to be a common sight on the Mac."
+    }
+  },
+  "zh": {
+    "intro": "Mac 版 Gemini 现在能替你操作 App、文件和网页，不过只有美国的付费用户用得上。今天还有 Apple 的一则招聘启事，像是在做类似的 AI 助手；Gemini API 的新功能，能让模型从一大堆工具里自己挑；一个叫 obra/superpowers 的 AI 编程助手框架；以及一份列了 117 种 App Store 被拒原因的手册。",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Superpowers 让 AI 编程助手先问再写",
+        "takeaway": "一个让 AI 助手先追问、先做计划的插件。每个工具都要单独装一遍。",
+        "body": "一行代码还没写，AI 助手先问你：你到底想做什么？这是 GitHub 上一个叫 Superpowers 的项目搞出来的，作者是 obra。\n\nREADME 说它是一整套用 AI 编程助手做软件的方法。里面是一堆可以拼着用的小技能（写好的操作说明，遇到合适的活儿助手就会翻出来用），外加一段开场指令，保证助手真去用。你一说要做东西，它先追问，再把设计说明拆成一小段一小段给你看，短到真能读完。你点头之后，它写实施计划。README 说计划会强调：先写一个会失败的测试，再让它通过；只做需要的；别重复自己。\n\n你说一声“go”，它就把每项任务分给几个独立的 AI 帮手，各自干活、自查、接着往下走。README 还说这些技能会自己触发，不用每个项目单独设置。\n\n一个人做产品，没人会问你“等等，咱们到底在做什么”，也没人帮你看计划。这套东西算是顶上这个位置。如果你是靠 AI 帮忙、自己不怎么写代码的人，开头那几个问题可能最有用。\n\n装法因工具而异，用几个工具就得装几遍。Claude Code、Codex、Cursor、Gemini CLI 都在名单上，后面还有十几个。Hermes Agent 上，特别长的对话可能把开场指令弄丢，README 建议技能不灵了就开个新对话。\n\nREADME 还说助手能连续干上一两个小时不偏离计划。这是项目自己的说法，目前没有独立验证。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-19/1.png",
+        "sources": [
+          {
+            "title": "obra/superpowers",
+            "url": "https://github.com/obra/superpowers",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Gemini 的 Mac 版能在后台替你操作 App 了",
+        "takeaway": "美国付费用户可以把杂活甩给它，也能拿它当试用员，测自己的 App 哪里难用。",
+        "body": "Gemini 的 Mac 版能替你干活了。Google 周四宣布，给 Gemini 桌面应用加上 computer use，说白了就是让 AI 在本地文件、Mac 上的 App 和网页之间来回跑，把一件多步骤的事办完。你交代一件事，它去翻文件、操作 App、在后台打开网页，聊天窗口里有实时画面可以看。你自己的屏幕和光标照常用。\n\n它做什么，你可以随时暂停、叫停，动手之前也能让它先问你。The Verge 还提到，哪些 App 能让 Gemini 碰，由你自己选。\n\nGoogle 举的例子都是杂活：填表、对一批文件重复同一个操作、按规则把文件归进文件夹、用文件或网页上的数据看板做幻灯片、整理要挂出去卖的东西。\n\n门槛不低。只支持英文，只开放美国，要装 Gemini 的 Mac 应用，还得订 Google AI Plus、Pro 或 Ultra 其中一档。别的国家和平台什么时候有，Google 没给时间。TechCrunch 提了一句，OpenAI、Anthropic、Meta 的桌面应用早就有类似功能，Google 算晚到。\n\n对做小产品的人，有两种用法。一是甩杂活，先挑个无关紧要的乱文件夹，审批保持打开。二是当试用员：让它去你自己 App 的注册页走一遍，它卡在哪，真用户也可能卡在哪。\n\n做 Mac 应用的再看一眼：The Verge 说 Apple 要收紧一项叫“完整磁盘访问”的权限，原因是能替人操作电脑的 AI 助手可能带来风险，设置的预览已经出现在 macOS 27.3 beta 里。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-19/2.png",
+        "sources": [
+          {
+            "title": "Google adds computer use to Gemini for macOS, letting it work across apps, files, and the web in the background, available to US AI Plus, Pro, and Ultra users (Sarah Perez/TechCrunch)",
+            "url": "https://techcrunch.com/2026/11/19/google-gives-gemini-the-ability-to-use-your-mac-for-you/",
+            "site": "techcrunch.com"
+          },
+          {
+            "title": "Google adds computer use to Gemini for macOS, letting it work across apps, files, and the web in the background, available to US AI Plus, Pro, and Ultra users (Sarah Perez/TechCrunch)",
+            "url": "https://www.techmeme.com/261119/p47#a261119p47",
+            "site": "techmeme.com"
+          },
+          {
+            "title": "Gemini on Mac can now use your computer",
+            "url": "https://www.theverge.com/tech/1037902/google-gemini-macos-ai-computer-use",
+            "site": "theverge.com"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Gemini API 改成模型点名了，才加载工具说明",
+        "takeaway": "工具多的话，说明书不用每次全带。还是预览版，省多少得拿自己的流量测。",
+        "body": "Gemini API 加了个新功能：工具的详细说明书，模型用到了才加载。\n\n假设你做了个能办事的 AI 功能，查订单、约时间、发邮件。每个能力叫一个“工具”，平常每次请求，都得把所有工具的完整说明塞给模型。这些说明按 token 计费（AI 公司就按这种小段文字收钱）。工具一多，账单变厚，回答变慢，模型还更容易挑错工具。\n\nGoogle 给这个办法起名 Tool Retrieval，现在是预览版。你把某些工具标成“先扣着”，模型一开始只看到名字和一句话介绍。要用哪个，它按名字点单，详细说明这时才加载。搜索、加载、调用，都在同一次请求里完成。默认的搜索由 Google 服务器去跑，你不用自己搭，也不用托管。想用自己的工具目录或权限规则，也可以自己做搜索，每搜一次多来回一趟。\n\n不单独收费。照常按 token 付钱，开启后多一小块固定的 token。模型加载进来的每份说明，在这场对话剩下的部分里都按输入计费，所以省多少，要看它实际拉了几个。没加载的说明不占提示词开头，每轮开头保持一致，缓存的那一段不会变。Google 没给节省的数字，让你拿自己的流量去测。\n\n只能在 Interactions API（Gemini API 的一部分）里用，模型要 Gemini 3.6 或更新。如果你接了远程 MCP 服务器（别家服务托管的一整套工具），一个开关就能把它提供的工具全部扣住。\n\n三四个工具的话别折腾。有几十个，就用同一批测试对话，开和关各跑一遍，比一比 token 数。预览版，我会先测完再决定要不要改架构。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-19/3.png",
+        "sources": [
+          {
+            "title": "Introducing Tool Retrieval in the Gemini API",
+            "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/",
+            "site": "blog.google"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "苹果招人，要做能替你操作 App 的 AI 智能体",
+        "takeaway": "还很早。做 iOS 的话，先看 iOS 27.3 里 Siri 的开发者预览。",
+        "body": "苹果在招人，要做一个自己的 AI 智能体。说人话，就是一个不光回答问题、还能替你一步步动手的助手：上网、在几个 App 之间来回切、写代码、改代码、调用各种在线服务。\n\n招聘启事是 Bloomberg 的 Mark Gurman 发现的。The Verge 转述里写着，这个助手要能规划并完成跨 App、浏览器、命令行、代码和接口的多步任务，还能指挥几个分工不同的小助手。招来的人要跟 Siri、界面框架、Apple Foundation Models 三个团队一起干。职位名两家说法不一样，TechCrunch 说是高级工程经理，The Verge 说是工程师。\n\n还早。Bloomberg 说项目在早期，苹果盯着的上线时间最早是明年底。TechCrunch 去问苹果，没回。产品没有名字，跑在 iPhone 上还是 Mac 上，也没人说。\n\n有意思的是时间点。TechCrunch 引 Bloomberg 说，macOS 27.3 会弹警告，劝用户别给第三方智能体完整权限。10 月苹果也跟开发者打过招呼，要加控制，用户得做出“非常明确的操作”才能给这种特权。另一边，The Verge 说 ChatGPT、Perplexity、Meta 的 Muse 已经能通过 Mac 版 App 操作电脑，Google 的 Gemini 刚开始也行。我的读法是，苹果想自己拿钥匙。\n\n对小团队，现在没什么可做的。但哪天有个智能体替用户在你的 App 里点来点去，你的界面得让它看得懂。眼下唯一摸得到的是 iOS 27.3 里 Siri 的开发者预览，The Verge 说它能让开发者把 Siri 的 AI 接进所有 App。做 iOS 的话，去看看它要你配合什么。",
+        "note": null,
+        "category": "平台",
+        "card": "/cards/2026-11-19/4.png",
+        "sources": [
+          {
+            "title": "A job listing shows Apple is developing an AI agent that can write code, browse the web, control apps, navigate devices, and coordinate subagents for users (Mark Gurman/Bloomberg)",
+            "url": "https://www.bloomberg.com/news/articles/2026-11-19/apple-is-working-on-ai-agent-for-device-control-apps-browsing-and-coding?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc5NTEyNDc2NSwiZXhwIjoxNzk1NzI5NTY1LCJhcnRpY2xlSWQiOiJUT1I5MEtLSkg2VjUwMCIsImJjb25uZWN0SWQiOiJDNEVEQ0FFMUZBMDU0MEJFQTI0QTlGMjExQzFFOTA4MCJ9.76_dY8UuzU3uFF5ExyvuszXnM3mdj2w3dulsez1QvhY",
+            "site": "bloomberg.com"
+          },
+          {
+            "title": "A job listing shows Apple is developing an AI agent that can write code, browse the web, control apps, navigate devices, and coordinate subagents for users (Mark Gurman/Bloomberg)",
+            "url": "https://www.techmeme.com/261119/p52#a261119p52",
+            "site": "techmeme.com"
+          },
+          {
+            "title": "Apple is hiring engineers to build its own AI agent",
+            "url": "https://www.theverge.com/tech/1038227/apple-ai-agent-engineer-job-listing",
+            "site": "theverge.com"
+          },
+          {
+            "title": "Apple may be developing its own AI agent that runs your Mac",
+            "url": "https://techcrunch.com/2026/11/19/apple-may-be-developing-its-own-ai-agent-that-runs-your-mac/",
+            "site": "techcrunch.com"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "提交 App 前，先让脚本查一遍被拒风险",
+        "takeaway": "先扫代码，再按大白话清单查账号和商店页面。用之前看一眼它最近更新时间。",
+        "body": "一个扫描工具，每次跑完只给三种结论：拦下、通过、没查成。它叫 App Store Compliance Playbook，GitHub 上 mjmirza 做的，在你把 App 交给苹果或谷歌之前，先替你把 iOS 或 Android 项目过一遍。\n\n项目里有一份 117 种被拒原因的参考手册，加一份提交前检查清单。扫描结果把严重的排在前面。拦下是查到了致命风险。通过是代码里没发现致命风险，这比“苹果会放行”的承诺小得多。没查成是没找到能读的 App 项目。\n\n它说优先照顾现在主要的被拒原因，点名的有两个。一个是演示账号：登录要能连上真正在跑的服务器，审核员才进得去。另一个是隐私声明：要跟 App 的实际行为一致，你装的每个 SDK（别人写好的一包代码，比如统计或广告工具）也算在内。README 说照快速上手跑一遍，什么都不装，也不改你的 App。\n\n用 AI 编程助手的话，可以把它接进去，上传前自动跑一遍，发现致命问题就把上传拦下。支持名单里有 Claude Code、Codex CLI、Cursor、GitHub Copilot，还有好几个。Codex 要你手动批准一次才生效。\n\n它只看得到代码和配置。账号设置、商店页面这些交给检查清单，清单是大白话写的，不会写代码也能用。用 Expo 做的 App（一种把原生项目文件夹藏起来的开发工具）只能查一部分，要先把那些文件夹生成出来才查得全。\n\n项目说每条规则编号和数据都能追到苹果或谷歌的官方出处。这点我没法确认，也还没看到别人的评价。苹果的规则常变，用之前先看看它最近一次更新是什么时候。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-19/5.png",
+        "sources": [
+          {
+            "title": "mjmirza/app-store-compliance",
+            "url": "https://github.com/mjmirza/app-store-compliance",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 2,
+      "headline": "Gemini 的 Mac 版能在后台替你操作 App 了",
+      "body": "## Google 这次放出了什么\n\nGoogle 周四宣布，Gemini 的 macOS 桌面应用可以做 computer use 了。大白话是：你说一件事，AI 在你的本地文件、Mac 自带或装的 App、还有网页之间来回操作，把事办完。TechCrunch 和 The Verge 讲的是同一套东西。AI 干活时，聊天窗口里有一块实时预览，你的屏幕和光标不被占用，可以接着做别的。你能暂停，能叫停，动手之前也能先批准。The Verge 还补了一句：Gemini 能碰哪些 App，由你决定。\n\nGoogle 给的例子相当朴素：填表，对一批文件重复同一个操作，按某个规则把文件归进文件夹，用文件或线上数据看板做幻灯片，列出要卖的东西。都是人会拖着不想做的活。\n\n限制很明确。目前只有美国用户、只有英文，要装 Gemini 的 Mac 应用，还要订 Google AI Plus、Pro 或 Ultra。别的国家、别的语言、Windows 和手机，Google 都没给时间表。人不在美国的话，这条今天只能看看。\n\nTechCrunch 指出，OpenAI、Anthropic 和 Meta 的桌面应用已经有类似的代理功能，Google 是后到的。同一周，Google 刚扩大了 Gemini Tasks 的推送范围，那是个应用内的代理，能登录网站、下单、约时间。这次的 Mac 版，看起来是同一条线上的又一步。\n\n## Apple 那一句\n\n对做 Mac 应用的人，最该看的是 The Verge 提到的 Apple 那一句。Apple 要对申请“完整磁盘访问”的 App 加新限制。The Verge 把它和能操作电脑的 AI 代理带来的风险连在一起，新设置的预览已经出现在 macOS 27.3 beta 里。\n\n至于这些限制生效以后，会不会影响 Gemini 自己的 computer use，Google 和 Apple 都没说。这个空档我先不解读。我只注意到一件事：Google 在做一个要钻进各个 App 里干活的代理，Apple 同时在收紧“完整磁盘访问”这类权限，小开发者夹在这两头。\n\n如果你的 Mac 应用现在就要完整磁盘访问，不妨问问自己真的需要吗。权限范围小一点，对用户好解释，Apple 下一轮再收紧时，也不容易被波及。\n\n## 试之前先想清楚\n\nGoogle 交代了能暂停、能批准、能选 App。除此之外，安全和隐私上还做了什么，目前没有更细的说法。所以涉及客户资料、账号密码、财务表格的文件夹，我会先不让它碰。能选 App 的话，一开始只放一两个。\n\n## 小开发者今天能做什么\n\n后台代理有两种身份：帮手，和一种新型用户。\n\n当帮手，是把重复的活交出去。做小产品的人，手上多半有这类杂事：给截图改名、把导出的文件归类、一遍遍填商店页面上同样的栏目、从数据看板做一份简报。Google 自己就把其中几类列成了用途。要试的话，我会先挑一个出错也没关系的乱文件夹，审批保持开着，前几次盯着它做完再放手。反正套餐是要付费的，拿一个无聊的文件夹练手，最便宜。\n\n当用户，更有意思。一个会点来点去的代理，有点像一位从不看帮助页面的新客户。它找不到你的注册按钮，或者卡在一个只有你自己看得懂的界面上，真人也可能在同一处犯难。Google 没讲 Gemini 是怎么“看”一个 App 界面的，所以什么写法对它有帮助，我不敢打包票。不过按钮名字清楚、步骤简单，对人本来就是好事。\n\n今天要动手的话，三步就够：先确认自己在美国、订了套餐；再挑一件出错也无所谓的杂活；开着审批，看预览里它每一步怎么走。花一个下午就行。\n\n下面是我的看法。以后会有更多人让代理去操作自己常用的小 App，有的还是无人看着的时候。把这种用法当成正常使用方式的开发者，日子大概会好过一些。"
+    }
+  },
+  "lab": []
+}
