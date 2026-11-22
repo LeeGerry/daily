@@ -1,0 +1,163 @@
+{
+  "date": "2026-11-21",
+  "publishAt": "2026-11-22T12:00:00Z",
+  "en": {
+    "intro": "Researchers say AI routers like OpenRouter, the middlemen that pass your requests on to different AI models, leaked keys and broke their \"zero data retention\" promise not to store what you send. The rest of today: an open playbook for avoiding App Store and Google Play rejections, Firecrawl's single API for pulling web data into agents, and Superpowers, a working method for AI coding assistants.",
+    "items": [
+      {
+        "n": 1,
+        "headline": "A checker for App Store and Play rejection risks",
+        "takeaway": "Scan your app before submitting. A clear result isn't approval, and demo login and privacy checks stay manual.",
+        "body": "A rejection from Apple or Google means fixing, resubmitting and waiting in line again. A GitHub project from a developer who goes by mjmirza tries to catch the usual causes before a reviewer does.\n\nIt's called App Store Compliance Playbook. There are two parts: a reference you can read online, and a small checking script. The script scans your iOS or Android project folder and prints a verdict. There are four possible verdicts. Blocked means it found something likely to get you rejected. Clear means nothing critical turned up in the code. Stale means its rules are more than 60 days old and need updating. Not checked means it couldn't find an app project. The README says nothing gets installed and nothing in your app changes when you run it.\n\nClear doesn't mean approved. The README says so itself, and adds that the reviewer still looks at things a scan can't see.\n\nThe README also names the two biggest causes of rejection. One is a demo login that works against your live server. The other is a privacy declaration that matches what the app really does, including every third-party chunk of code (an SDK) inside it. The account and listing checks are done by hand.\n\nIt can also plug into AI coding tools such as Claude Code, Cursor and Codex CLI, so the check runs before you submit. There are no numbers on how many rejections it has prevented. The README lists a license badge (OpenRoots ORA 2.3) but the terms aren't described, so read them before relying on it. If you don't code, the repo points to a plain-English checklist.",
+        "note": null,
+        "category": "Platforms",
+        "card": "/cards/2026-11-21/1.png",
+        "sources": [
+          {
+            "title": "mjmirza/app-store-compliance",
+            "url": "https://github.com/mjmirza/app-store-compliance",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "AI routers leaked bait secrets, even on 'zero retention' calls",
+        "takeaway": "Keep keys and customer details out of prompts, and don't promise users zero retention without checking.",
+        "body": "Nearly two million fake secrets went into AI prompts, and some of them came back to bite.\n\nHD Moore, chief research officer at the security firm Dragos, planted bait passwords and links in requests sent through AI routers and resellers. Think of a dye pack in a bank bag: if the bait gets used, you know someone opened it. A router is a middleman. You send it a prompt, and it passes it to whichever AI company is cheapest or fits the job. OpenRouter and Vercel work this way. Ars Technica reports on his findings.\n\nAt least three hosting providers had been breached. Attackers copied requests at the front door. The bait Amazon cloud keys were then used tens of thousands of times. Some of the stolen requests carried a zero data retention flag, the label that says your prompt won't be kept.\n\nSeparately, a Chinese AI lab's systems opened secret links from more than half the prompts sent to its models between July and October. That includes about two-thirds of those marked no data collection or zero retention. Usually two or three days later.\n\nUpdate, Nov 21: posts on Hacker News and X say OpenRouter emailed customers that some prompts may have been read, citing a report about MiniMax. OpenRouter also dropped its zero retention label from MiniMax-model endpoints. Ars doesn't confirm that MiniMax is the lab Moore saw.\n\nIf your app passes customer text through a router, your privacy page may promise more than the chain can keep. I'd hold off repeating any zero retention claim until you know who touches the data. Keep keys, passwords and personal details out of prompts. Moore's advice is to use a big provider directly under one contract, or host the model yourself. Even then, he says, leaks aren't ruled out.\n\nArs gives no independent check of Moore's account.",
+        "note": null,
+        "category": "Platforms",
+        "card": "/cards/2026-11-21/2.png",
+        "sources": [
+          {
+            "title": "Researchers used canary credentials in requests to AI routers like OpenRouter and Vercel, even under \"ZDR\" policies, and saw \"privacy\" often broken, keys stolen (Dan Goodin/Ars Technica)",
+            "url": "https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/",
+            "site": "arstechnica.com"
+          },
+          {
+            "title": "Researchers used canary credentials in requests to AI routers like OpenRouter and Vercel, even under \"ZDR\" policies, and saw \"privacy\" often broken, keys stolen (Dan Goodin/Ars Technica)",
+            "url": "https://www.techmeme.com/261121/p10#a261121p10",
+            "site": "techmeme.com"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Firecrawl puts web search, scraping and data in one tool",
+        "takeaway": "1,000 free credits a month with no signup. Good for testing live web data in an AI tool before you pay.",
+        "body": "Firecrawl is giving away 1,000 free credits a month with no signup and no API key (an access code). That's its Keyless tier, the project's GitHub README says, and the easiest way in.\n\nThe project calls itself \"knowledge infrastructure to make your agents smarter.\" It scrapes web pages, which means it pulls their content out automatically. It also runs web searches. The hosted version says it reaches 550+ data providers through a collection it calls Alexandria. The README doesn't list a single provider, so I'd read that number as a claim until I see the list.\n\nYou can run it three ways: on your own computer (Firecrawl Local), on the company's servers (Firecrawl Cloud), or on a server you manage yourself. The local version needs two developer tools first, Rust and a C compiler, so non-coders may stall there. Setup can connect it to Claude Code, Claude Desktop, Cursor, Windsurf, Gemini CLI and Codex, backing up their settings first. Pages that only load in a real browser need Chrome or Chromium. Without one, simple pages still work and the rest come back with a warning.\n\nLocal scraping needs no key. Search runs through Cloud without an account, but it's rate-limited. Structured data extraction, two features called Interact and Agent, and anything beyond one machine are Cloud only.\n\nIf a single-page scrape fails locally, Cloud may fetch it by default. You can switch that off, which matters for private pages.\n\nThe README says Cloud covers 96% of the web, with 95 out of 100 pages returning in 3.4 seconds or less. It links a blog post for that, and I haven't seen it checked independently. Pricing past the free credits isn't stated.\n\nIf your product needs live web information, run one real task through the free credits before wiring up several services.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-21/3.png",
+        "sources": [
+          {
+            "title": "firecrawl/firecrawl",
+            "url": "https://github.com/firecrawl/firecrawl",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Superpowers gives your coding AI a plan-first routine",
+        "takeaway": "Open workflow for AI coding tools: it asks, plans, then builds. Try it on one small feature in one tool.",
+        "body": "Before it writes a line of code, Superpowers makes your AI coding assistant ask what you're actually trying to build. That's the whole pitch, and it's a decent one.\n\nSuperpowers is a bundle of working habits for coding assistants, shared openly on GitHub, a site where people publish code. The README (the project's front page) calls it a complete software development methodology. It's built from small reusable instructions (called skills) that the assistant picks up on its own. The README says they trigger automatically, so you don't have to do anything special.\n\nThe assistant asks questions first, then shows you the plan in small, readable chunks for your OK. After that it writes a step-by-step build plan. That plan leans on writing a check first and watching it fail, then writing the code that passes it. It also says to skip features you don't need yet and to avoid repeating yourself. When you say go, helper AI agents work through each task and inspect and review their own work.\n\nIf you work alone, nobody reviews your work. This gives your assistant something like a small team's habits: someone asks, someone plans, someone checks. My guess is the first step helps non-coders most, because being asked what you really want cuts down on rework.\n\nI haven't seen any independent testing. The README says agents working a couple of hours without drifting is \"not uncommon\" but gives no measurement. Treat that as a claim.\n\nThe install guide covers 16 tools, including Claude Code, Codex, Cursor and Gemini CLI. If you use more than one, you install it separately for each. For today, pick one project and the one assistant you already use. Give it a small feature and see whether the questions it asks are useful. Companies can email the maker for paid support.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-21/4.png",
+        "sources": [
+          {
+            "title": "obra/superpowers",
+            "url": "https://github.com/obra/superpowers",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "A checker for App Store and Play rejection risks",
+      "body": "## What you actually get\n\nThe project is a GitHub repository by mjmirza, called App Store Compliance Playbook. It has two halves. One is a reference, readable on GitHub or as a website, covering what gets apps rejected on the App Store and Google Play. The other is a guard script that looks at your project folder and reports what it finds.\n\nThe README describes the goal as catching rejection causes before the reviewer does. It also says, plainly, that it doesn't guarantee approval. I'd take that at face value.\n\nRunning it takes two steps: download the project, then point the script at your app folder. The README says nothing is installed and nothing in your app is changed. That matters for a first try. You can run it and read the output before deciding whether to go further.\n\nThe output ends in one of four verdicts. Blocked means a critical rejection risk turned up. Clear means no critical risk in the code, which the README is careful to say is not an approval. Stale means the rule set is more than 60 days old. Not checked means the script couldn't find an iOS or Android project, or couldn't write its scan files. The stale verdict is the one I find most interesting. Store rules change, and a checker that tells you when its own rules have gone old is being honest about how this works. The fix is an update of the project's files.\n\n## The two checks that cause most trouble\n\nThe README says the two checks behind most rejections are a working demo account connected to your live server, and a privacy declaration that matches what the app does at runtime, including every SDK. An SDK is a bundle of someone else's code that you build into your app, such as analytics or ads. Each one may collect data, and your declaration to the store has to account for it.\n\nThe guard can read parts of this. For privacy it looks at the app's privacy manifest, a file that tells Apple what data the app uses, and at purpose strings, the short messages explaining why the app asks for access to something on the phone. For Android it checks permissions. Account and listing checks are different. The limitations list says those must be done by hand and recorded in a file in your project.\n\nOne detail helps people building with Expo, a popular toolkit for making phone apps with less native code. If your project has no native folders, the guard still reads the Expo configuration for those messages, the privacy manifest and Android permissions. Running Expo's prebuild step generates the native folders and extends the scan to native code. Large projects can take up to a minute to scan, according to the README.\n\n## Fitting it into an AI coding workflow\n\nThe repository also includes an installer that connects the guard to AI coding tools, so it runs before the commands that submit your app. The README lists Claude Code, Codex CLI, Gemini CLI, OpenCode, Cursor, GitHub Copilot CLI, VS Code with Copilot cloud agent, JetBrains and Grok. You can install into every supported tool found on your machine, or name specific ones. It needs git and bash, two standard developer tools, plus the Python language (python3) for every tool except Claude Code. I can't say how the Grok setup works.\n\nIf you already let an AI assistant run your build and submit steps, this is the sensible place for a check like this. A reminder you have to remember to run is a reminder you'll skip on a Friday evening.\n\nThere's also a path for people who don't use a terminal. The project points non-developers to a plain-English checklist, and to an appeal guide for apps that were already rejected. I haven't seen either, so I can't say how good they are.\n\n## What's still unknown\n\nA fair amount. The README says its guideline numbers and statistics trace to live Apple or Google sources, but the statistics behind its list of top modern rejection causes aren't included. There's no figure for how many rejections the playbook has prevented, and no measured effectiveness. The author is known only by a GitHub handle. The README shows a license badge reading OpenRoots ORA 2.3, and the terms aren't described, so check them before building it into a paid workflow. The Hacker News thread had no comments, so there's no outside feedback yet.\n\nIt's a low-risk try, since the README says nothing in your app changes. Treat a clear verdict as a sign you've cleared the obvious problems. The demo account and the privacy declaration still need a person checking them."
+    }
+  },
+  "zh": {
+    "intro": "研究人员称，OpenRouter 这类 AI 路由器（帮你把请求转给不同模型的中间商）泄露了密钥，还打破了“零数据留存”的承诺，也就是答应过不存你发的内容。今天另外三条：一份避开 App Store 和 Google Play 拒审的公开手册，Firecrawl 的一站式数据接口，还有给 AI 编程助手用的做事方法 Superpowers。",
+    "items": [
+      {
+        "n": 1,
+        "headline": "提交前先查 App 拒审风险的 GitHub 项目",
+        "takeaway": "提交前先扫一遍。“通过”不等于过审，演示账号和隐私声明还得自己查。",
+        "body": "被苹果或谷歌拒审一次，就得改、重新提交、再排一轮队。GitHub 上有个叫 mjmirza 的开发者，做了个项目想在审核员之前把常见原因先揪出来。\n\n项目叫 App Store Compliance Playbook，分两块：一份能在线读的参考手册，和一个检查脚本。脚本扫你的 iOS 或 Android 项目文件夹，最后给一句结论，一共四种。\n\n- 拦下：发现了很可能被拒的严重问题。\n- 通过：代码里没查出严重问题。\n- 规则过期：它自带的规则超过 60 天没更新，得先更新。\n- 没检查：没找到 App 项目。\n\nREADME 里写着，运行时不装任何东西，也不改你的 App。\n\n通过不等于过审。README 自己就这么说，还补了一句：扫描看不到的地方，审核员照样会看。\n\nREADME 点名了拒审最常见的两个原因。一个是演示账号要能登录，而且连的是真实服务器。另一个是隐私声明要和 App 实际行为对得上，里面每一个第三方代码包（也叫 SDK）都得算进去。账号和商店页面这些，得自己手动查。\n\n它还能接进 Claude Code、Cursor、Codex CLI 这类 AI 编程助手，让检查在提交前自动跑。至于它帮人避开了多少次拒审，没有数字。许可证标的是 OpenRoots ORA 2.3，条款没写明，真要用在正经流程里，先自己读一遍。不写代码的人，项目里也给了一份大白话清单。",
+        "note": null,
+        "category": "平台",
+        "card": "/cards/2026-11-21/1.png",
+        "sources": [
+          {
+            "title": "mjmirza/app-store-compliance",
+            "url": "https://github.com/mjmirza/app-store-compliance",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "AI 路由器泄露了诱饵机密，连“零留存”请求也没躲过",
+        "takeaway": "密钥和客户信息别放进提示词，没查清数据经过谁之前，别向用户承诺零留存。",
+        "body": "近 200 万条假机密被塞进 AI 提示词，有一部分真的被人拿去用了。\n\n做这事的是 Dragos 的首席研究官 HD Moore。他往经过 AI 路由器和转售商的请求里，埋了假密码、假的亚马逊云密钥和专属链接。有点像钞票里夹的染色包，谁动过，一看就知道。路由器是个中间商：你把提示词交给它，它转给最便宜或最合适的 AI 公司，OpenRouter 和 Vercel 都这么干。以下内容来自 Ars Technica 对这项研究的报道。\n\n结果是，至少三家 AI 托管商被黑了。攻击者在入口处把请求整份抄走，有些请求连模型都没跑就被拒了，也照抄。被偷的假亚马逊密钥被调用了几万次，翻存储桶，翻密码库，还想开通 Bedrock 模型。其中两起里，被偷的请求有一部分标着“零数据留存”，也就是承诺不保存你提示词的那个标签。\n\n另一头，一家中国 AI 实验室的系统，在 7 月到 10 月间，打开了发给它模型的一半以上提示词里的埋点链接。标着“不收集数据”或零留存的，也有约三分之二被打开，通常隔两三天。几家美国托管商转售它的模型，也触发了同一个爬虫。\n\n11 月 21 日更新：Hacker News 和 X 上的帖子说，OpenRouter 给客户发了邮件，称部分提示词可能被读过，起因是一份涉及 MiniMax 的报告。OpenRouter 还把 MiniMax 模型端点上的零留存标签撤了。Ars 没确认 MiniMax 就是 Moore 看到的那家。\n\n如果你的 App 把用户文字交给路由器转发，隐私页上写的承诺，可能比这条链路守得住的更多。零留存这类话，在搞清楚谁碰过数据之前，我不会往自己页面上写。密钥、密码、个人信息，别放进提示词。Moore 的建议是直接找大厂、签一份合同，最稳的是自己部署模型。他也说，这样仍然不保证不漏。\n\nMoore 的说法目前没有第三方验证。",
+        "note": null,
+        "category": "平台",
+        "card": "/cards/2026-11-21/2.png",
+        "sources": [
+          {
+            "title": "Researchers used canary credentials in requests to AI routers like OpenRouter and Vercel, even under \"ZDR\" policies, and saw \"privacy\" often broken, keys stolen (Dan Goodin/Ars Technica)",
+            "url": "https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/",
+            "site": "arstechnica.com"
+          },
+          {
+            "title": "Researchers used canary credentials in requests to AI routers like OpenRouter and Vercel, even under \"ZDR\" policies, and saw \"privacy\" often broken, keys stolen (Dan Goodin/Ars Technica)",
+            "url": "https://www.techmeme.com/261121/p10#a261121p10",
+            "site": "techmeme.com"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Firecrawl 把搜索、抓网页和数据源塞进一个工具",
+        "takeaway": "每月 1,000 个免费额度，免注册。付费前先拿它试试，你的 AI 工具接实时网页数据行不行。",
+        "body": "每月 1,000 个免费额度，不用注册，也不用 API key（一串访问密码）。这是 Firecrawl 的 Keyless 档，README 里写的，也是最省事的上手方式。\n\nFirecrawl 自称“给 AI 助手用的知识基础设施”。说人话：帮 AI 工具去网上抓网页内容，也能做搜索。托管版说能接 550 多个数据源，集合叫 Alexandria。README 一个源都没列，名单出来之前，我只当它是宣传数字。\n\n有三种用法：装在自己电脑上（Firecrawl Local），用官方托管的云服务（Firecrawl Cloud），或者自己架服务器。本地版要先装 Rust 和 C 编译器两个开发工具，不写代码的人多半卡在这一步。装好后做一次初始化，就能接到 Claude Code、Claude Desktop、Cursor、Windsurf、Gemini CLI 和 Codex，改配置前会先备份。需要真浏览器才能打开的页面，得有 Chrome 或 Chromium。没有的话，普通页面照常抓，其他的会带着警告返回。\n\n本地抓取不要 key。搜索走云端，不用账号也能用，但有频率限制。结构化数据提取、Interact 和 Agent 两个功能，还有超出一台机器的规模，都只有云端有。\n\n还有一点：本地抓单个页面失败时，默认可能转给云端去抓，不过可以关掉。页面是私密内容的话，先想清楚这件事。\n\nREADME 还说云端覆盖 96% 的网页，P95 延迟 3.4 秒，意思是 100 个页面里有 95 个在 3.4 秒内返回。数字链到一篇博客，没写有第三方验证。免费额度之外怎么收费，也没写。\n\n产品要用实时网页信息的话，先拿免费额度跑一个真实任务，再决定要不要接好几家服务。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-21/3.png",
+        "sources": [
+          {
+            "title": "firecrawl/firecrawl",
+            "url": "https://github.com/firecrawl/firecrawl",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Superpowers 让编程 AI 先问、先规划、再动手",
+        "takeaway": "给 AI 编程助手定的做事流程：先问你，再排计划，最后才写代码。拿一个小功能、一个工具试试。",
+        "body": "Superpowers 让 AI 编程助手动手写代码之前，先问你到底想做什么。它的卖点就这一句，我觉得挺实在。\n\n这是一套给助手定的做事流程，放在 GitHub 上。README（项目首页的说明）管它叫完整的软件开发方法。底子是一堆可以重复用的小说明，叫技能包，助手会自己调用。README 写着会自动触发，你不用额外操作。\n\n流程是这样的：助手先问你，再把方案拆成一小段一小段给你看，你点头了才往下走。接着它写一份分步的施工计划。计划强调先写检查、看它失败、再写代码让它通过，还要求暂时用不上的功能别做，别重复造轮子。你说开工以后，几个帮手 AI 分头干活，互相检查、复核。\n\n一个人做产品，没人帮你审方案。这套东西有点像给助手配了个小团队的习惯：有人问，有人排计划，有人检查。我猜最受益的是不写代码的人，被追问一遍真正想要什么，返工会少很多。\n\n没看到第三方测评。README 说助手连着干两个小时不偏离计划「不罕见」，但没给任何测量。当成作者的说法就好。\n\n安装说明列了 16 个工具，Claude Code、Codex、Cursor、Gemini CLI 都在。用不止一个的话，每个都得单独装。Hermes Agent 有个坑：会话太长被压缩后，技能包可能不再触发，得开新会话。\n\n今天可以这么试：挑一个项目、一个你已经在用的助手，给它一个小功能，看它先问的那些问题有没有用。公司想要付费支持，README 里留了一个销售邮箱 sales@primeradiant.com，可以发邮件问。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-21/4.png",
+        "sources": [
+          {
+            "title": "obra/superpowers",
+            "url": "https://github.com/obra/superpowers",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "提交前先查 App 拒审风险的 GitHub 项目",
+      "body": "## 它到底给了你什么\n\n这是 GitHub 上 mjmirza 做的项目，叫 App Store Compliance Playbook，分两块。一块是参考手册，讲 App Store 和 Google Play 都会因为什么拒审，可以在 GitHub 上读，也有网页版。另一块是个检查脚本，看你的项目文件夹，然后报告查到了什么。\n\nREADME 说它的目标是在审核员之前抓到拒审原因，同时明说不保证过审。我愿意照字面理解这句话。\n\n用起来只有两步：把项目下载下来，再让脚本去看你的 App 文件夹。README 写着，不会装任何东西，也不会改你的 App。第一次试的话，这点很重要，先跑一遍，看完输出再决定要不要往下走。\n\n输出最后是四种结论之一。“拦下”，表示查到了严重的拒审风险。“通过”，表示代码里没查出严重风险，README 特意强调这不是过审。“规则过期”，表示它的规则超过 60 天没更新。“没检查”，表示没找到 iOS 或 Android 项目，或者扫描文件写不进去。我最在意的是“规则过期”。商店规则总在改，检查工具能告诉你自己的规则旧了，这个态度比较诚实。解决办法是给规则包做一次 git pull，也就是用 git 把最新的规则拉下来。\n\n## 最容易出事的两项\n\nREADME 说，导致大部分拒审的检查有两项。一项是演示账号要能用，而且连着真实服务器。另一项是隐私声明要和 App 运行时的行为一致，包括里面每一个 SDK。SDK 就是你装进 App 的别人写的一包代码，比如统计、广告之类。每一包都可能收集数据，你给商店的声明得把它们算进去。\n\n脚本能读到其中一部分。隐私方面，它看 App 的隐私清单（一个告诉苹果 App 用了哪些数据的文件），也看权限说明文字，就是 App 向用户申请相机、定位这类权限时弹出的那句解释。Android 那边，它查权限。账号和商店页面就不一样了，限制清单里写明，这些要手动检查，再记录在项目里的一个文件里。\n\n对用 Expo 的人有个细节。Expo 是一个做手机 App 的常用工具，能少碰原生代码。如果你的项目没有原生文件夹，脚本仍会读 Expo 的配置文件，去查权限说明文字、隐私清单和 Android 权限。再跑一下 Expo 的预构建步骤，会生成原生文件夹，扫描就能覆盖到原生代码。README 说，大项目扫一次最多要一分钟。\n\n## 接进 AI 编程助手\n\n仓库里还带了安装脚本，能把这个检查接进 AI 编程助手，在提交 App 的命令之前自动跑。README 列的有 Claude Code、Codex CLI、Gemini CLI、OpenCode、Cursor、GitHub Copilot CLI，还有 VS Code、JetBrains 和 Grok。可以一次装进电脑上找到的所有工具，也可以只点名几个。前提是装了 git 和 bash 这两个开发者常备工具，除了 Claude Code，其他工具还要有 Python 3。\n\n如果你已经让 AI 助手替你跑构建和提交，检查放在这里最顺手。它挂在提交命令前面，就不用靠自己记得去跑。\n\n不用终端的人也有路。项目给不写代码的人指了一份大白话清单，还有一份给已被拒 App 的申诉指南。这两份我没法评价好不好用。\n\n## 还不清楚的事\n\n不少。README 说里面的条款编号和统计数据都能追溯到苹果或谷歌的在线来源，但它列出的“最新拒审原因”背后的统计，没有附上。它帮人躲过多少次拒审，也没有数字，没有测过效果。作者只知道 GitHub 名字。许可证徽章写的是 OpenRoots ORA 2.3，条款没讲，放进收费产品的流程之前先自己读。Hacker News 上的讨论是空的，外面的反馈目前没有。\n\n试一下风险不大，毕竟 README 说不会改你的 App。看到“通过”，就当是明显的坑已经绕过了。演示账号和隐私声明，还是得有人亲自去核对。"
+    }
+  },
+  "lab": []
+}
