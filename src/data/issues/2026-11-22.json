@@ -1,0 +1,195 @@
+{
+  "date": "2026-11-22",
+  "publishAt": "2026-11-23T12:00:00Z",
+  "en": {
+    "intro": "Before you submit to the App Store or Google Play, there's a checklist for the privacy and deadline slips that can get an app rejected. Also today: Firecrawl's pitch of one service for 550+ data sources, a beginner's guide to running AI on your own computer, and two add-ons that give AI coding assistants better working habits and a way to research topics across Reddit, X, YouTube and Hacker News.",
+    "items": [
+      {
+        "n": 1,
+        "headline": "A pre-submission scanner for App Store and Play rejections",
+        "takeaway": "Check your build for likely rejection causes first; a clear scan still isn't approval.",
+        "body": "A public GitHub project called App Store Compliance Playbook scans your iOS or Android app folder for likely rejection causes before you submit. The project says it catches problems before the reviewer does. It also says, up front, that it doesn't guarantee approval.\n\nThe README names the two top modern rejection causes and covers them first. One is a demo login that works against a live server, so the reviewer can actually get in. The other is a privacy declaration that matches what the app really does, including every SDK. An SDK is a chunk of someone else's code, like an analytics or ads kit, bundled into your app. Both are dull, checkable things, which is the kind of mistake a script is good at catching.\n\nThe scan ends in one of four verdicts: blocked, clear, stale, or not checked. Clear only means no critical risk turned up in the code. Stale means the rules it checks against are more than 60 days old. A small project takes about a second to scan. A big one can take up to a minute. The README says nothing gets installed and nothing in your app changes.\n\nRunning it means using a terminal, the window where you type commands, and having two standard developer tools, git and bash, available. If you don't code, the README points to a plain-English checklist and an appeal guide. Apps built with Expo, a toolkit for making phone apps, work too, even without native code folders, since the scan reads their configuration for permissions and privacy settings.\n\nAccount and listing checks still need a person. No outcome data is given, and nobody independent has weighed in yet. I'd use it as a second pair of eyes the day before you submit, and read the two top-cause sections even if you never run the scan.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-22/1.png",
+        "sources": [
+          {
+            "title": "mjmirza/app-store-compliance",
+            "url": "https://github.com/mjmirza/app-store-compliance",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Firecrawl gives AI agents search, scraping and 550+ data sources",
+        "takeaway": "Try the 1,000 free monthly credits, no signup, before you build your own scrapers.",
+        "body": "Firecrawl will give you 1,000 free credits a month with no signup and no API key. That's where I'd start. You can test the whole idea before committing to anything.\n\nFirecrawl is a toolkit that lets AI agents (programs that do tasks on their own) read and search the web. Its GitHub README calls it \"knowledge infrastructure to make your agents smarter\" and offers it three ways: on your own computer, as a hosted service called Firecrawl Cloud, or on a server you run yourself.\n\nThe local version is one program that turns websites into clean, plain text. It plugs into AI assistants like Claude Code, Cursor, Gemini CLI and Codex. A setup step finds the ones you have and adds itself, backing up their settings first. Installing it takes Rust and a C compiler. Pages that rely on JavaScript only load properly if Chrome or Chromium is on the machine.\n\nBy default, if a single-page grab fails locally, Firecrawl Cloud picks it up and marks the result as such. So \"local\" can stop being local unless you switch that off.\n\nThe bigger offer is in Cloud. It adds search and Firecrawl Alexandria, a set of 550+ data providers that the README says goes beyond scraping. The README claims 96% of the web covered and 3.4 seconds or less for 95% of pages, but the benchmarks behind those numbers weren't provided.\n\nThe README doesn't say what Alexandria costs, or which providers are on the list. I'd want both before building a product on it.\n\nIf your app needs an AI to look things up online, this could replace a pile of scrapers you'd otherwise have to fix every time a site changes. Today, run a few searches on the free credits and see whether the results are good enough.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-22/2.png",
+        "sources": [
+          {
+            "title": "firecrawl/firecrawl",
+            "url": "https://github.com/firecrawl/firecrawl",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "A beginner's guide to running AI chat on your own PC",
+        "takeaway": "Check your graphics card's memory first. It decides which local models you can run.",
+        "body": "GPUPartner has published a beginner's guide to running an AI chat assistant on your own Windows PC. It says setup takes about 10 to 15 minutes once the hardware is ready, not counting downloads.\n\nThe app is Unsloth Desktop, a free program with a chat window for an AI model. The guide says you don't need terminal commands, a Python setup or a subscription.\n\nThe author's machine has an RTX 5090, a graphics card with 32GB of its own memory (VRAM). The guide puts it at about $1,999, an unchecked aside.\n\nThe guide pitches local models for chores that use lots of tokens (chunks of text), like research, data collection and coding help. A model at home is private, though anyone on your home network can use it if you switch that on, and one Hacker News commenter raised a security worry about that.\n\nRough sizing: 8-12GB of VRAM handles 9B-12B models, and 32GB handles 27B-35B. The main example is Qwen3.8-27B, shrunk to 4-bit from about 56GB at full size. That shrinking (quantization) stores the model's numbers less precisely so it takes less memory. The guide says it trades some accuracy for fit and speed.\n\nInkling 2 Mini is newer: the guide says it came out November 17 from Thinking Machines Lab under an Apache 2.0 license. Its 4-bit file is 17.6GB. On a 16GB card the rest spills into regular memory, a little slower.\n\nThe tier table and speed figures come from GPUPartner's own calculator, with no method given, and only the article mentions the model names and dates. One commenter got about 12 tokens a second from a 9B model on a laptop and said quality isn't comparable to the best paid models.\n\nI'd try a small model on the machine you already own before spending anything on hardware.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-22/3.png",
+        "sources": [
+          {
+            "title": "A Beginner's Guide to Local AI with Inkling, Qwen, and Unsloth",
+            "url": "https://www.gpupartner.com/blog/beginners-guide-local-ai-inkling-qwen-unsloth",
+            "site": "gpupartner.com"
+          },
+          {
+            "title": "A Beginner's Guide to Local AI with Inkling, Qwen, and Unsloth",
+            "url": "https://news.ycombinator.com/item?id=50603845",
+            "site": "Hacker News"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Superpowers makes coding agents write a spec first",
+        "takeaway": "A spec-first workflow for Claude Code and 15 other agents. Check the licence and install it per tool.",
+        "body": "Superpowers makes an AI coding assistant stop and ask what you're actually trying to build before it writes a line of code.\n\nIt's a bundle of reusable skills (small playbooks the agent follows) plus starting instructions that make sure the agent uses them. The README calls it a complete software development methodology. When you start a project, the agent asks what you're really after. Then it shows you a spec, a plain description of what the thing should do, in chunks short enough to read.\n\nNext comes a plan. The README says the plan leans on writing a test that fails first and then the code that makes it pass, on not building what you don't need yet, and on not repeating yourself.\n\nOnce you say go, helper agents work through the tasks one by one, checking and reviewing the work. The README says it's not uncommon for the agent to run on its own for a couple of hours without straying from the plan. That's the project's own claim, with no independent check behind it. The skills also kick in automatically, so you don't type anything special.\n\nFor a solo maker, the costly failure with these tools is an agent happily building the wrong thing for an hour. A routine that makes it agree on a spec first goes straight at that.\n\nIf you use Claude Code, it's in the official Claude plugin marketplace. The README also lists install steps for Cursor, Gemini CLI, GitHub Copilot CLI, Codex and about a dozen more. Install it separately for each tool you use. On Hermes, a very long session can lose it once the conversation gets trimmed to save space, so start a fresh one.\n\nThe README doesn't give release dates, adoption numbers or clear licence terms. I'd read the licence before building a business on it. Companies that want paid support are pointed to the vendor's sales email.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-22/4.png",
+        "sources": [
+          {
+            "title": "obra/superpowers",
+            "url": "https://github.com/obra/superpowers",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "last30days researches a niche across Reddit, X, YouTube, HN",
+        "takeaway": "Try it on a niche before you build, but read the threads behind its brief yourself.",
+        "body": "Reddit, Hacker News, Polymarket and GitHub work the moment you install last30days. No setup. That's where I'd start, because the rest of the tool asks more of you.\n\nLast30days is an add-on (the README calls it an agent skill) that teaches an AI coding assistant one new job. It searches a topic across Reddit, X, YouTube, Hacker News and the wider web, then writes a single brief. The README says results are ranked by upvotes, likes and real money, with no editor involved. It also says the AI models themselves are months behind on recent events, which is why the tool exists.\n\nBefore you build something, you want to know what people in a niche complain about, what they're excited about this month, and who they already pay. Doing that by hand means a dozen open tabs. This does the tab-hopping and a first summary.\n\nIt installs through Claude Code's plugin store, or through a separate installer for Codex, Cursor, Copilot and Gemini CLI. A setup wizard adds X, YouTube, TikTok and a few more. Several sources need keys (password-like codes a service gives you) or a local program running. Reddit can also be searched as your own logged-in account, if you allow it.\n\nThe README doesn't say how the scoring works, how accurate the briefs are, what it costs or what the license is. Its example is a query about one named person, and I can't vouch for what it claims. Treat a brief like this as a list of threads worth reading, then read them.\n\nIf you already use one of those assistants, try your niche on the no-setup sources and compare the result with an hour of your own searching. If you don't use one, there's no rush.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-22/5.png",
+        "sources": [
+          {
+            "title": "mvanhorn/last30days-skill",
+            "url": "https://github.com/mvanhorn/last30days-skill",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "A pre-submission scanner for App Store and Play rejections",
+      "body": "## What the scan looks at\n\nThe project is called App Store Compliance Playbook, and it lives on GitHub with a companion website. It describes itself as a reference plus a pre-submission guard for iOS and Android apps. The reference part points to Apple's App Store Review Guidelines and Google Play's Developer Content Policy as its rule sources. The guard part is a script, a small program you point at your app folder.\n\nThe README leads with what it calls the two top modern rejection causes. The first is a working demo account backed by a live server. The README ranks it at the top, so a demo login that doesn't work is worth testing before you submit. The second is a privacy declaration that matches how the app behaves while it's running, including every SDK. Modern apps are stuffed with other people's code, called SDKs: analytics, ads, crash reporting, login helpers. Each one may collect data, and the stores want your privacy answers to cover all of it. It's easy to add a kit in week six and forget the form you filled out in week one.\n\nThe scan finishes with one of four verdicts. Blocked means a critical risk was found. Clear means no critical code risk was found, and the README explicitly says that is not an approval. Stale means the bundle of rules it checks against is more than 60 days old, which is a useful honesty feature, since store rules move. Not checked means it couldn't find an iOS or Android project, or couldn't write its scan files. The README says a small project takes about a second and a large one up to a minute.\n\nExpo gets a mention too. Expo is a toolkit for building phone apps, and in its managed setup there's no native folder (the folder of iOS or Android specific code). The guard still reads the app's config for permission descriptions, the privacy manifest (Apple's file declaring what data your app and its SDKs touch) and Android permissions. That's a sensible detail, because many small-team apps are built that way.\n\n## Who can run it, and what it takes\n\nThe quick start asks you to download the project (a repository) and run one script against your app folder. The README says nothing is installed and nothing in your app is changed. You need git, a tool for downloading and tracking code, and bash, a command line shell. Python3 is also required for every supported AI coding tool other than Claude Code.\n\nThe more interesting option is wiring the guard into an AI coding assistant so it runs automatically before any submit command. The README lists install support for Claude Code, Codex CLI, Gemini CLI, OpenCode, Cursor, several GitHub Copilot variants and Grok, among others. The README's table is cut off, so I can't give you the full list. Two quirks are documented. Codex users have to approve the new hook, the automatic trigger, by hand before it runs. The Copilot cloud agent only reads hooks from the hooks folder on the default branch (the project's main version), so a setup on a side branch won't fire.\n\nIf you don't write code, the README says there's a plain-English checklist and an appeal playbook. That's likely the part a shop owner with an AI-built app would actually use. If you can't run a scanner, a guide to answering a rejection is the more useful half.\n\n## What nobody has checked yet\n\nThe limits are stated by the project itself. A scan can't prove everything. Account and listing checks need a person and get recorded by hand. A clear verdict only speaks to code. That's the right way to describe a tool like this, and more candid than most.\n\nThe README says every claim is real and that its statistics trace to live Apple or Google sources. I haven't seen those sources, so I can't confirm it. The specific rejection patterns and rule details sit in a docs folder I haven't read. There's no outcome data either, so the claim that it saves rejections is unproven. No community discussion turned up, which means no independent reception to report. The author lists affiliations and a license badge, and I haven't assessed either.\n\nI think the idea is sound. A script that checks the mechanical parts frees you to double-check the human parts. I'd run it the day before a submission, treat blocked as a to-do list, and treat clear as nothing more than clear. Before you rely on it, open the rule sources it links and spot-check a few items against Apple's and Google's own pages. If it says stale, update the rules first. A scanner running on old rules is the one thing worse than no scanner, because it gives you a confident answer."
+    }
+  },
+  "zh": {
+    "intro": "提交 App Store 和 Google Play 之前，有一份清单可以对照，专查隐私和截止日期这类容易被拒的坑。今天还有 Firecrawl 把 550+ 个数据来源收进一个接口、一份在自己电脑上跑 AI 的入门指南，以及两个插件，一个让 AI 编程助手做事更有章法，一个帮它去 Reddit、X、YouTube 和 Hacker News 查资料。",
+    "items": [
+      {
+        "n": 1,
+        "headline": "提交 App Store 和 Play 之前，先扫一遍被拒原因",
+        "takeaway": "提交前先扫一遍常见被拒原因。扫描显示通过，也不等于过审。",
+        "body": "GitHub 上有个公开项目叫 App Store Compliance Playbook，能在你提交 iOS 或 Android 应用之前，先扫一遍项目文件夹，找出可能被拒的原因。项目自称要赶在审核员之前把问题挑出来，同时把话说在前头：不保证过审。\n\nREADME 点了名，说现在被拒最常见的两个原因，它放在最前面讲。一个是演示账号要真能登录，而且背后的服务器是开着的，审核员才进得去。另一个是隐私声明要和 App 实际运行时的行为对得上，每个 SDK 都得算进去。SDK 就是别人写好、塞进你 App 里的现成代码，比如统计、广告、崩溃上报。这两件事都枯燥，都能查，正好是脚本擅长的活。\n\n扫完会给四种结论：拦下、通过、规则过期、没检查成。这里的“通过”只表示代码里没发现严重风险，不等于获批。“过期”是指它对照的规则包超过 60 天没更新。小项目扫一遍大约一秒，大项目最多一分钟。README 说不会装任何东西，也不会改动你的 App。\n\n跑它要用终端（敲命令的那个窗口），还得有 git 和 bash 两个开发者常备的工具。不写代码的人，README 里另有一份大白话检查清单和一份申诉指南。用 Expo（一种做手机应用的工具包）做的 App 也能扫，哪怕没有原生代码文件夹，它会去读配置里的权限和隐私设置。\n\n账号和商店页面的检查还是要人来，README 自己也这么说。它没给任何过审数据，也没有第三方的评价。我会把它当成提交前一天的第二双眼睛。就算不跑扫描，那两条最常见原因也值得对着自己的 App 过一遍。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-22/1.png",
+        "sources": [
+          {
+            "title": "mjmirza/app-store-compliance",
+            "url": "https://github.com/mjmirza/app-store-compliance",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Firecrawl 让 AI 助手上网搜索、读网页",
+        "takeaway": "先用每月 1,000 点免费额度试试，不用注册，再决定要不要自己写爬虫。",
+        "body": "Firecrawl 有个免费档：每月 1,000 点额度，不用注册，不用 API 密钥。想试的话从这儿下手，不花钱就能知道这套东西顶不顶用。\n\nFirecrawl 是一套让 AI 助手上网搜索、读网页的工具。GitHub 的 README 管它叫“让你的 AI 助手更聪明的知识基础设施”。用法有三种：装在自己电脑上，用官方托管的 Firecrawl Cloud，或者自己搭服务器。\n\n本地版是一个程序，能把网页变成干净的纯文本。它可以接进 Claude Code、Cursor、Gemini CLI、Codex 这些 AI 编程助手。有个初始化步骤会自己找出你装了哪几个，改配置前先备份。安装前要有 Rust 和 C 编译器，都是写代码的人才会有的工具。靠 JavaScript 才显示内容的网页，电脑上得装 Chrome 或 Chromium 才读得出来。\n\n有个默认设置要留意：本地抓单个网页失败时，会交给 Firecrawl Cloud 去抓，结果上会标明。所以“本地”不一定全程在本地，想关掉得自己设。\n\n搜索和 Firecrawl Alexandria 在云端版里。Alexandria 是 550 多家数据提供方的合集，README 说它不止能抓网页。README 还写了覆盖 96% 的网页，95% 的页面 3.4 秒内返回，但这两个数字背后的测试数据没法核实。\n\nAlexandria 怎么收费、具体有哪些提供方，README 都没写。真要在上面做产品，这两样我会先问清楚。\n\n如果你的 App 要让 AI 上网查东西，这个能省掉一堆爬虫，就是网站一改版你就得去修的那种。今天可以拿免费额度跑几次真实的搜索，看结果够不够用。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-22/2.png",
+        "sources": [
+          {
+            "title": "firecrawl/firecrawl",
+            "url": "https://github.com/firecrawl/firecrawl",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "在自己电脑上跑 AI 聊天，一份新手指南",
+        "takeaway": "先查显卡有多少显存，它决定你能跑哪些本地模型。",
+        "body": "GPUPartner 发了篇新手指南，教你在自己的 Windows 电脑上跑一个私人 AI 聊天助手，免费。文章说硬件备好以后，装起来大约 10 到 15 分钟，下载时间不算。\n\n用的软件叫 Unsloth Desktop，免费，自带聊天窗口。文章说不用敲命令，不用配 Python 环境，也不用订阅。\n\n先看显存，就是显卡自带的那块内存。文章给了个粗对照：8 到 12GB 能跑 90 亿到 120 亿参数的小模型，32GB 能舒服地跑 270 亿到 350 亿的。作者自己用 RTX 5090，32GB 显存，顺口提了一句价格约 1,999 美元。这张对照表是 GPUPartner 自己估的。\n\n主例子是 Qwen3.8-27B。完整版约 56GB，普通显卡装不下，所以用 4 位量化。量化就是把模型里的数字记得粗一点，换来体积变小、跑得更快，代价是精度会掉。文章自己也说，有些任务在低精度下几乎没法用。\n\n新选项是 Inkling 2 Mini，文章说 Thinking Machines Lab 在 11 月 17 日发布。4 位文件 17.6GB，放进 32GB 的卡，还剩约 14GB 给长对话。它是混合专家模型，每次只动用 54 亿参数，所以 16GB 的卡也能跑，多出来的部分放进内存，慢一点。用之前得先把 Unsloth Desktop 更新到新版。\n\n家里其他人也能用，前提是你打开局域网访问。Hacker News 上有人担心，家用网络不设防，风险不小。另外，模型名和发布日期只有这篇文章这么说，速度数字来自 GPUPartner 自己的计算器，没说怎么测的。有人在笔记本上跑 90 亿参数的模型，每秒约 12 个词元，他说质量比不上顶级模型。\n\n我会先拿手头这台电脑试个小模型，再考虑要不要买硬件。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-22/3.png",
+        "sources": [
+          {
+            "title": "A Beginner's Guide to Local AI with Inkling, Qwen, and Unsloth",
+            "url": "https://www.gpupartner.com/blog/beginners-guide-local-ai-inkling-qwen-unsloth",
+            "site": "gpupartner.com"
+          },
+          {
+            "title": "A Beginner's Guide to Local AI with Inkling, Qwen, and Unsloth",
+            "url": "https://news.ycombinator.com/item?id=50603845",
+            "site": "Hacker News"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Superpowers 让 AI 编程助手先写需求再动手",
+        "takeaway": "支持 Claude Code 等 16 款工具，每个要单独装。商用前先查许可条款。",
+        "body": "Superpowers 想做的事很简单：让 AI 编程助手动手写代码之前，先问清楚你到底要做什么。\n\n它是一套可重复使用的技能包（AI 照着执行的小流程），外加一段开场指令，保证 AI 真的会去用这些技能。项目的 README 管它叫完整的软件开发方法。你开始做东西时，AI 先追问你真正的目标，再把需求说明拆成一小段一小段给你看，短到能读完。\n\n接着是计划。README 说计划会强调三件事：先写一个会失败的测试，再写让它通过的代码；现在用不上的功能先不做；同样的逻辑不写两遍。\n\n你说“开始”之后，几个帮手 AI 会一项一项做任务，互相检查、复查。README 说 AI 一次自己干上两个小时、不偏离计划，并不少见。这是项目自己的说法，没有第三方验证。技能会自动触发，你不用特地做什么。\n\n对一个人做产品的人来说，这类工具最贵的毛病，是 AI 高高兴兴做错一个小时。先逼它跟你对齐需求，正好打在这个点上。\n\n用 Claude Code 的话，官方插件市场里就能装。README 还列了 Cursor、Gemini CLI、GitHub Copilot CLI、Codex 等一共 16 款工具的安装办法。每个工具要各装一遍。Hermes 上有个坑：对话太长、被系统压缩之后，开场指令可能丢掉，得新开一个对话。\n\n发布日期、用户数、版本号，README 都没给，许可条款也没写清。我会先看授权条款，再决定能不能拿去做生意。企业想要付费支持的，README 留了销售邮箱。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-22/4.png",
+        "sources": [
+          {
+            "title": "obra/superpowers",
+            "url": "https://github.com/obra/superpowers",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "last30days 帮 AI 助手查各平台近况",
+        "takeaway": "想快速看一个话题最近的讨论，可以先拿它扫一遍，简报背后的帖子要自己读。",
+        "body": "装上就能用的有四个：Reddit、Hacker News、Polymarket 和 GitHub。不用设置。我会从这几个开始，因为这个工具剩下的部分都要你多做点事。\n\nlast30days 是一个小插件，给 AI 编程助手加一项新本事：去 Reddit、X、YouTube、Hacker News 和网页上查一个话题，最后写成一份简报。README 说排序看的是顶帖数、点赞数和真金白银，没有编辑插手。它还说，AI 模型自己的知识落后好几个月，所以才有这个工具。\n\nREADME 提到的用法有几种：开会或打销售电话前做功课，追 AI 圈的最新动态，或者想看看一个话题最近各个平台上大家在聊什么。这个插件替你把这一圈跑完，写成一份简报。\n\n安装有两条路：Claude Code 走自己的插件市场，Codex、Cursor、Copilot、Gemini CLI 用另一个安装工具。装完跑一次设置向导，能再打开 X、YouTube、TikTok 等来源。有些来源要密钥（服务商发的一串类似密码的代码），或者要在本机开一个程序。Reddit 也能在你允许的前提下，用你自己登录的账号去搜。\n\nREADME 没写评分到底怎么算，简报准不准，收不收费，用什么许可。它的示例查的是一个具体的人，里面讲了他最近在做什么，我没法核实。这种简报我会当成一份“值得点开看的帖子清单”，然后自己去读。\n\n你要是已经在用这类助手，拿自己熟的领域在免设置的几个来源上跑一次，跟自己搜的结果比比。没在用就不急。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-22/5.png",
+        "sources": [
+          {
+            "title": "mvanhorn/last30days-skill",
+            "url": "https://github.com/mvanhorn/last30days-skill",
+            "site": "GitHub"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "提交 App Store 和 Play 之前，先扫一遍被拒原因",
+      "body": "## 它到底查什么\n\n项目叫 App Store Compliance Playbook，放在 GitHub 上，另有一个配套网站。它自称是一份参考资料加一个提交前的检查脚本，面向 iOS 和 Android 应用。参考资料这半边，规则出处是 Apple 的 App Store 审核指南和 Google Play 的开发者内容政策。脚本那半边，就是一个小程序，你把它指向自己的 App 文件夹，它就开始扫。\n\nREADME 开头先讲它认为现在最常见的两个被拒原因。第一个是演示账号：要能真正登录，背后的服务器还得是开着的。README 把它排在第一位，所以提交前自己拿演示账号登一次，值得。\n\n第二个是隐私声明，要和 App 运行时的实际行为一致，每个 SDK 都算在内。现在的 App 里塞满了别人的代码，统计、广告、崩溃上报、登录小工具，都叫 SDK。每一个都可能收集数据，而商店要求你的隐私回答把这些全覆盖。新加一个 SDK，隐私回答就得跟着改，漏改一处就对不上了。\n\n扫描结束，会给出四种结论。“BLOCKED”表示发现了严重风险。“CLEAR”表示代码里没发现严重风险，README 特意写明这不是批准。“Rule pack STALE”表示它对照的规则包超过 60 天没更新。规则旧了，扫出来的结果就不可靠，它会主动提醒，这个设计我喜欢。“NOT CHECKED”表示没找到 iOS 或 Android 项目，或者写不出扫描文件。README 说小项目大约一秒扫完，大项目最多一分钟。\n\nExpo 也被考虑到了。Expo 是做手机应用的工具包，它的托管模式下没有原生文件夹（放 iOS 或 Android 专属代码的地方）。这时脚本照样会去读应用的配置，看权限说明、隐私清单（Apple 要求的那份文件，写明你的 App 和里面的 SDK 会碰哪些数据）以及 Android 权限。没有原生文件夹的 Expo 项目也能扫，这个细节挺实在。\n\n## 谁能跑，要准备什么\n\n快速上手只有两步：把项目下载下来（也叫克隆仓库），再对着你的 App 文件夹运行一个脚本。README 说不会安装任何东西，也不会改动你的 App。前提是电脑上有 git（下载和管理代码的工具）和 bash（命令行环境）。如果用的不是 Claude Code，还得装 Python3。\n\n更有意思的用法，是把它接进 AI 编程助手，让它在你执行提交命令之前自动先跑一遍。README 列出支持的工具有 Claude Code、Codex CLI、Gemini CLI、OpenCode、Cursor、几种 GitHub Copilot 和 Grok 等。完整名单我没法确认，这里列的可能不全。\n\n文档里提到两个小坑。Codex 用户要手动批准这个新增的钩子（一种自动触发的设置），它才会运行。Copilot 的云端助手只读默认分支（项目的主版本）里的钩子文件夹，你在别的分支上配好了，它不会触发。\n\n不写代码的人，README 说有一份大白话检查清单，还有一份申诉指南。我猜店主们真正会用的是后者。跑不了扫描，收到拒绝邮件之后知道怎么回，反而更实用。\n\n## 没人验证过的部分\n\n项目自己把局限写得很清楚。扫描证明不了所有事，账号和商店页面的检查要人来做，手动记录。“通过”只对代码负责。这几句话它自己先说在前头，我觉得是对的写法。\n\nREADME 还说每一条都是真的，统计数字能追到 Apple 或 Google 的实时来源。这些来源没人核实过，我没法替它担保。具体的被拒案例和规则细节放在项目的文档文件夹里，这里没有它们的内容。它也没给任何结果数据，所以“能少被拒”这个说法目前没有证据。社区里暂时没看到讨论，没有第三方的评价。作者列了自己的所属机构和一个许可证标识，这两样我也没法判断。\n\n思路我觉得是对的。机械的部分交给脚本，人就有精力盯那些要判断的部分。我会在提交前一天跑一遍，“BLOCKED”当待办清单用，“CLEAR”就只当它字面的意思。真要依赖它，先打开它链接的规则出处，拿几条跟 Apple 和 Google 自己的页面对一下。如果它报“过期”，先把规则更新了再说。拿旧规则扫出来的结果，还给你一个很有底气的答案，比不扫更糟。"
+    }
+  },
+  "lab": []
+}
