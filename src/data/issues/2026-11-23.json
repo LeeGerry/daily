@@ -1,0 +1,235 @@
+{
+  "date": "2026-11-23",
+  "publishAt": "2026-11-24T12:00:00Z",
+  "en": {
+    "intro": "Anthropic's Claude Ship can now review, fix and approve code changes on GitHub, though it's still in beta and only open to Team and Enterprise customers. Also today: a playbook of 124 ways apps get rejected from the App Store, and a Google Search that can pull from your Gmail, Photos, Calendar and Wallet.",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Claude Ship can review, fix and approve your code changes",
+        "takeaway": "Beta is for Claude Team and Enterprise customers on GitHub. Solo makers on Pro, Max or Ultra get a ship shortcut inside Claude Code.",
+        "body": "Claude Ship can approve a code change by itself, but only if a policy you wrote says it's allowed. Anthropic announced the beta on Monday.\n\nWhen someone proposes a change to an app's code, that proposal is called a pull request, and a second person normally checks it before it goes in. Claude Ship tries to do that checking, fix what it finds, and sign off on the safe ones. ZDNET and The Verge both report that it builds on Code Review, an Anthropic feature from March, and adds two new helpers.\n\nPR Steward (PR is short for pull request) does the repair work: failing automatic tests, clashing edits, reviewer comments. It can't approve or merge anything. It leaves notes on what it changed and how to undo it. Claude Approvals reads a policy file you keep with your code, plus signals like Code Review's findings. If a change fits the policy, it approves. If not, it asks for a human.\n\nIf you ship alone, review is either you or nobody. A tool that handles the boring middle could save real time.\n\nThe beta is for Claude Team and Enterprise plans, and only for GitHub. Individuals on Pro, Max or Ultra get a ship shortcut inside Claude Code, an Anthropic rep told ZDNET. Team usage is billed by the amount of text the AI processes, and the sources don't give prices. Anthropic recommends turning the extra checks on in observe-only mode first, before you require Claude Approvals' sign-off.\n\nOn a Team plan, try it on one project that way and compare its calls with yours. If you're not on one, write down which changes you'd let through unreviewed. You'll need that list either way.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-23/1.png",
+        "sources": [
+          {
+            "title": "Anthropic unveils Claude Ship, letting Claude review, fix, and approve GitHub pull requests based on team policies, in beta for Claude Team and Enterprise tiers (Radhika Rajkumar/ZDNET)",
+            "url": "https://www.zdnet.com/innovation/claude-ship-code-how-to-try/",
+            "site": "zdnet.com"
+          },
+          {
+            "title": "Anthropic unveils Claude Ship, letting Claude review, fix, and approve GitHub pull requests based on team policies, in beta for Claude Team and Enterprise tiers (Radhika Rajkumar/ZDNET)",
+            "url": "https://www.techmeme.com/261123/p41#a261123p41",
+            "site": "techmeme.com"
+          },
+          {
+            "title": "Claude AI can review pull requests and ship fixes on its own now",
+            "url": "https://www.theverge.com/ai-artificial-intelligence/1040134/anthropic-claude-ship-ai-pull-requests",
+            "site": "theverge.com"
+          },
+          {
+            "title": "Anthropic launches Claude Ship, letting AI agents review, fix, and approve code changes",
+            "url": "https://techcrunch.com/2026/11/23/anthropic-launches-claude-ship-letting-ai-agents-review-fix-and-approve-code-changes/",
+            "site": "techcrunch.com"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Firecrawl wants to be one data door for your AI features",
+        "takeaway": "Free monthly credits let you test it. Check the provider list and pricing before building on it.",
+        "body": "Firecrawl will give you 1,000 free credits a month with no signup and no API key. Firecrawl's README says so, and it's the quickest way to see what the thing does.\n\nIt lets an AI feature read web pages, search the web and pull data from other sources through one connection. You skip building a separate scraper for every site. The README calls it \"knowledge infrastructure to make your agents smarter.\" Agents here means AI helpers that carry out tasks on their own.\n\nThere are three versions. One runs on your own computer. A hosted cloud version adds web search and access to 550+ data providers, which Firecrawl groups under the name Alexandria. Or you can host the whole server yourself. The cloud pitch is search, Alexandria and two more features, Interact and Agent, all behind a single API (the doorway other software uses to ask for things).\n\nThe local version comes with strings attached. Installing it takes developer tools, Rust and a C compiler. Pages that lean heavily on JavaScript won't display properly unless Chrome is on the machine. And by default, a page that won't load locally gets fetched by the cloud instead, with the result labeled that way. There's a setting to switch that off. Interact, Agent and Monitor are cloud-only.\n\nThe README also says the cloud covers 96% of the web, with a \"P95 latency of 3.4s across millions of pages.\" That last one is a speed measure. Those are Firecrawl's own numbers. The README links a benchmark post, but that's the vendor grading itself.\n\nPaid pricing isn't listed, and neither are the 550+ providers. I'd want both before building a feature on it. If your product needs data from one specific source, check that first. If you just want to see whether one connection beats a pile of scrapers, the free credits are a no-cost way to find out.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-23/2.png",
+        "sources": [
+          {
+            "title": "firecrawl/firecrawl",
+            "url": "https://github.com/firecrawl/firecrawl",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Z.ai's GLM-5.4 coding model loops its layers",
+        "takeaway": "Worth a test on your own tasks, but no benchmarks or pricing yet, and it needs a Coding Plan.",
+        "body": "Simon Willison had to sign up for a Z.ai Coding Plan subscription to try GLM-5.4. The regular Z.ai API (the standard way programs connect to its models) doesn't offer the model yet.\n\nZ.ai's blog calls GLM-5.4 its first \"looped transformer\" model, built for general coding. A looped model sends your text through the same set of processing layers several times, refining its internal notes on each pass. Z.ai says this gives you a deeper network without making the model bigger. Think of rereading a draft instead of hiring more editors.\n\nThe idea is catching on. Willison points to Inkling 2 Mini from Thinking Machines Lab, announced November 20, which runs its middle layers three times for every chunk of text.\n\nFor anyone choosing a coding model for their product, this is one more candidate. How it stacks up on benchmarks (standardized test results) is still unknown, though. Willison's pelican drawings from GLM-5.3 and 5.4 look similar in quality, and closer to OpenAI and Anthropic output than the odder look of 5.1 and 5.2. That's a fun test and proves very little. The model also isn't open weights (a version you can download and run yourself), and Willison writes \"not (yet?)\".\n\nPricing and usage limits for the Coding Plan are unknown, so \"cheaper\" is a guess for now. I'd wait for real numbers before switching anything.\n\nIf you already pay for a coding assistant, take two or three real tasks from your own project and run them on both. A Hacker News commenter put the problem well: without benchmarks, quality is hard to judge. Your own tasks are the benchmark you've got.",
+        "note": null,
+        "category": "Models",
+        "card": "/cards/2026-11-23/3.png",
+        "sources": [
+          {
+            "title": "GLM-5.4: Toward generalized coding with our first loop transformer",
+            "url": "https://z.ai/blog/glm-5.4",
+            "site": "z.ai"
+          },
+          {
+            "title": "GLM-5.4: Toward generalized coding with our first loop transformer",
+            "url": "https://news.ycombinator.com/item?id=50609685",
+            "site": "Hacker News"
+          },
+          {
+            "title": "GLM-5.4: Toward Generalized Coding with Our First Loop Transformer",
+            "url": "https://simonwillison.net/2026/Nov/23/glm-54/",
+            "site": "simonwillison.net"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "A pre-submission scan for App Store and Google Play",
+        "takeaway": "Check your demo login and privacy declaration before submitting. A clear scan still isn't approval.",
+        "body": "App Store Compliance Playbook's README (the project's front-page description) claims it maps 124 ways an app gets rejected by Apple or Google. It's a GitHub project that pairs a reference guide with a scanner you point at your app's folder before you submit. The README doesn't show how that count was checked, and it doesn't show that the scan actually prevents rejections.\n\nThe scanner reads your code and settings and gives one of four answers. Blocked means it found a critical risk. Clear means it found no critical risk in the code. Stale means its rules are more than 60 days old. Not checked means it found no iOS or Android project. A small app scans in about a second. A big one can take up to a minute.\n\nThe README puts two dull things first among modern rejection causes. One is a demo account that works against your live backend, so the reviewer can actually log in. The other is a privacy declaration that matches what the app really does, including any SDKs (chunks of other people's code, like analytics) bundled inside.\n\nIf you code, run the scan on your app folder. You can also install it into AI coding tools such as Claude Code, Codex CLI, Gemini CLI, Cursor and GitHub Copilot, so it runs before the assistant submits. If you don't code, the README includes a plain-English checklist. A developer wires up the scan and you read the list.\n\nA clear result isn't an approval, and the README says the reviewer still checks what a scan can't see. Account and listing checks are manual. Expo apps without native project folders only get partial coverage. Codex asks you to approve the new hook (the step that runs the scan automatically) first.\n\nI'd treat it as a checklist that happens to run itself.",
+        "note": null,
+        "category": "Platforms",
+        "card": "/cards/2026-11-23/4.png",
+        "sources": [
+          {
+            "title": "mjmirza/app-store-compliance",
+            "url": "https://github.com/mjmirza/app-store-compliance",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Google AI Mode can now read your Wallet, Drive next",
+        "takeaway": "Search answers are getting personal. Check how your app shows up in AI Mode, then compare with a friend.",
+        "body": "Google's AI Mode can now read your Wallet, if you let it. Starting today, people can opt in to connect Google Wallet to Personal Intelligence, which is Google's name for letting Search use your own stuff to tailor its answers. Google's blog post says the access is read-only. AI Mode can't move, manage or invest your money.\n\nWallet joins Gmail, Calendar and Photos. Drive (your docs, sheets and PDFs) and the Gemini app follow in the coming weeks. The examples Google gives are plain: mapping financial milestones, trimming everyday spending, squeezing more out of credit card perks like cash back and travel points. With Drive connected, it could build a prep plan before tax season.\n\nFor a maker, the catch is that two people typing the same question may now get different answers, shaped by their spending, documents and chats. Google also says AI Overviews and AI Mode will use recent search context, so someone can pick up trip planning in a new thread without repeating themselves. Nothing in the announcement says how outside products get picked for those answers. So I'd watch this and hold off optimizing for it.\n\nTo see it yourself today, search your app's category in AI Mode, then ask a friend to do the same and compare. If the answers differ, you've seen the shift firsthand. Connections live in Search Personalization settings under Connected Apps, and users can switch them off anytime.\n\nGoogle hasn't said which regions get this first, or how long it keeps the data.",
+        "note": null,
+        "category": "Platforms",
+        "card": "/cards/2026-11-23/5.png",
+        "sources": [
+          {
+            "title": "A more tailored Google Search that’s uniquely yours",
+            "url": "https://blog.google/products-and-platforms/products/search/google-search-personal-intelligence-apps/",
+            "site": "blog.google"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "Claude Ship can review, fix and approve your code changes",
+      "body": "## What each of the three pieces can do\n\nClaude Ship is a bundle of three tools, and the split between them is the most interesting design choice.\n\nCode Review is the oldest piece. Anthropic announced it in March, and The Verge says it became generally available in October, meaning open to everyone. It reads a pull request (a proposed change to your code that someone checks before it goes in) and reports what it finds. That's the only part of the bundle that's out of beta.\n\nPR Steward is new. ZDNET says it handles failing automatic tests, edits that clash with each other, and feedback from Code Review, other review tools or human teammates. It can push fixes. It can't approve or merge. It also comments on every push to say what it changed and how to undo it. For anyone nervous about an AI editing their code, that paper trail matters more than the fixing.\n\nClaude Approvals is the one with the sign-off. It reads a policy the team keeps as a file alongside the code, plus signals such as Code Review's findings. The Verge adds that teams can use their own plain-English rules to sort changes. If the policy allows, Approvals can approve on its own. If it doesn't, it asks for deeper human review. TechCrunch says teams also choose where Claude Ship runs, which review depth is used (Quick, Standard or Deep), and which changes always go to a person.\n\nKeeping the fixer and the approver separate is a sound idea. That's how careful human teams work too: whoever edits the code isn't the one who signs off.\n\n## Who can actually use it\n\nA solo maker hoping to hand off review won't get much from the beta, at least for now.\n\nClaude Ship is available to Claude Team and Enterprise customers, and only for GitHub projects. Admins pick which repositories it runs in. Individuals on Pro, Max or Ultra can use a ship shortcut inside Claude Code, according to an Anthropic representative quoted by ZDNET. The same rep said that shouldn't bring a significant rise in token use, which is how much text the AI processes. Nobody has verified that independently.\n\nBilling on Team and Enterprise is by tokens, so you pay for the amount of text the AI reads and writes. Admins can set spending limits for Code Review and PR Steward. The sources don't give a price per token, and they don't fully explain how the limits work. So the honest answer to \"what will this cost me\" is that it grows with how many changes you push, and nobody has published the rate. I'd wait for real numbers before putting it on a busy project.\n\nCustomers with a zero-data-retention setup, a privacy arrangement where the vendor keeps nothing, can't use it. And ZDNET says plainly that it isn't meant for every team or every indie developer. Separately, certain Enterprise organizations can claim at least $10,000 in credits, usable within 30 days of claiming, with a claim deadline of Jan. 15, 2027. That tells you who Anthropic is courting first, and it isn't a one-person studio.\n\n## What I'd want to know before trusting it\n\nThe biggest gap is accuracy. The sources don't publish error rates or a list of which approval decisions have been validated. Anthropic hasn't said when the beta ends, either. An approver that's right 99 times in 100 sounds great until you're the hundredth.\n\nAnthropic's own advice is cautious, which I find reassuring. It recommends turning the extra checks on in observe-only mode first. Only after that would you make Approvals' sign-off a requirement through branch protection, a GitHub setting that blocks a change from going in until certain conditions are met. Let it watch for a while, compare its verdicts with yours, then decide.\n\nZDNET's David Gewirtz was split. Shipping code at the speed it's written \"raises the hair on the back of my neck,\" he wrote, but he wouldn't be surprised if it works. He thinks it could shave turnaround time and get fixes to customers faster in certain deployment setups. He also worries that handing this work to AI shuts junior developers out of tasks where they add value and learn. Solo makers don't have juniors to protect. Still, review is where many people pick up what good code looks like, and it's worth noticing what you lose if you stop doing it.\n\nThe policy file is the part that travels. Whether or not you ever get into this beta, deciding in writing which changes can go out unreviewed, and which need a careful look, is useful. A copy change is low risk. Anything touching payments or user data probably isn't."
+    }
+  },
+  "zh": {
+    "intro": "Anthropic 的 Claude Ship 现在能审查、修复并批准 GitHub 上的代码改动，不过还在测试阶段，只对 Team 和 Enterprise 用户开放。今天还有一份列了 124 种被拒情形的 App Store 审核清单，以及能调用你 Gmail、Photos、日历和 Wallet 内容的 Google 搜索。",
+    "items": [
+      {
+        "n": 1,
+        "headline": "Claude Ship 能检查、修复并批准你的代码改动",
+        "takeaway": "测试版限 Team 和 Enterprise 套餐，只支持 GitHub。个人订阅用户有快捷命令。",
+        "body": "Claude Ship 能自己批准代码改动，前提是你写的规则允许。Anthropic 周一宣布了测试版。\n\n先说背景。有人想改 App 的代码，会先提交一份改动申请（行话叫 pull request，简称 PR），通常要另一个人看过才能合进去。Claude Ship 想把这一步接过来：检查、修问题、给安全的改动点头。它建立在 Anthropic 3 月推出的 Code Review 上，又加了两个新帮手。\n\nPR Steward 管修：自动测试没过、几处改动互相冲突、审查意见没处理。它只能修，不能批准，也不能合并。每次改完它都会留言，写清楚动了什么、怎么撤回。Claude Approvals 管批：它看你跟代码放在一起的规则文件，再参考 Code Review 的发现。改动符合规则就直接批，不符合就叫真人来看。\n\n一个人做产品的话，审查要么是你自己，要么没有。中间那段琐碎活有人接，确实能省时间。\n\n测试版面向 Claude Team 和 Enterprise 套餐，只支持 GitHub。Pro、Max、Ultra 的个人用户，在 Claude Code 里有个快捷命令可以用，这是 Anthropic 的人对 ZDNET 说的。团队版按 AI 处理的文字量收费，具体单价目前没公开。Anthropic 建议先用只观察模式，不拦任何改动，等看准了再让 Claude Approvals 的批准成为合并的必要条件。\n\n有 Team 套餐的话，挑一个项目这样试，把它的判断和你自己的对一对。没有的话，今天先列一张清单：哪些改动你愿意不经审查就上线。不管用不用它，这张单子都得有。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-23/1.png",
+        "sources": [
+          {
+            "title": "Anthropic unveils Claude Ship, letting Claude review, fix, and approve GitHub pull requests based on team policies, in beta for Claude Team and Enterprise tiers (Radhika Rajkumar/ZDNET)",
+            "url": "https://www.zdnet.com/innovation/claude-ship-code-how-to-try/",
+            "site": "zdnet.com"
+          },
+          {
+            "title": "Anthropic unveils Claude Ship, letting Claude review, fix, and approve GitHub pull requests based on team policies, in beta for Claude Team and Enterprise tiers (Radhika Rajkumar/ZDNET)",
+            "url": "https://www.techmeme.com/261123/p41#a261123p41",
+            "site": "techmeme.com"
+          },
+          {
+            "title": "Claude AI can review pull requests and ship fixes on its own now",
+            "url": "https://www.theverge.com/ai-artificial-intelligence/1040134/anthropic-claude-ship-ai-pull-requests",
+            "site": "theverge.com"
+          },
+          {
+            "title": "Anthropic launches Claude Ship, letting AI agents review, fix, and approve code changes",
+            "url": "https://techcrunch.com/2026/11/23/anthropic-launches-claude-ship-letting-ai-agents-review-fix-and-approve-code-changes/",
+            "site": "techcrunch.com"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Firecrawl 想给你的 AI 功能一个统一的数据入口",
+        "takeaway": "每月有免费额度能试。搭东西前先查数据提供方名单和付费价格。",
+        "body": "Firecrawl 每月送 1,000 点免费额度，不用注册，不用申请密钥。README 里写着。想看看这东西到底干嘛，这是最快的办法。\n\n它做的事：让 AI 功能读网页、搜网络、从别的数据源取数据，全走同一个入口。你不用给每个网站单独写一个爬虫。README 管它叫\"让 AI 助手更聪明的知识基础设施\"。这里的 AI 助手，指能自己动手办事的 AI 程序。\n\n一共三种用法。一种装在自己电脑上跑。一种是云端托管版，多了网络搜索，还能接 550 多家数据提供方，Firecrawl 把它们统称 Alexandria。第三种是整套服务自己架。云端版的卖点是搜索、Alexandria，加上 Interact 和 Agent 两个功能，全从一个 API（软件之间互相要东西的接口）进去。\n\n本地版有条件。装它得先有 Rust 和 C 编译器，都是开发工具。重度依赖 JavaScript 的页面，电脑上没装 Chrome 就显示不全。默认情况下，本地打不开的单个页面会转给云端去取，结果里会标明来源。想让一切留在本机，有个开关能关掉。Interact、Agent、Monitor 只有云端有。\n\nREADME 还写云端\"覆盖 96% 的网页\"，在数百万个页面上 P95 延迟是 3.4 秒。P95 的意思是 100 次里有 95 次不会比这慢。这些都是 Firecrawl 自己的数字。它放了一篇测评文章的链接，但还是自己给自己打分。\n\n付费价格没写，550 多家提供方是谁也没列。我会先要这两样，再决定要不要在上面搭功能。你的产品如果离不开某个特定数据源，先查它在不在名单里。只是想看看一个入口能不能顶一堆爬虫，免费额度正好拿来试。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-23/2.png",
+        "sources": [
+          {
+            "title": "firecrawl/firecrawl",
+            "url": "https://github.com/firecrawl/firecrawl",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Z.ai 发 GLM-5.4，写代码模型让网络层反复跑几遍",
+        "takeaway": "值得拿自己的活试一下，但目前没有跑分和价格，还得订 Coding Plan。",
+        "body": "Simon Willison 想试 GLM-5.4，得先订一份 Z.ai 的 Coding Plan 订阅。普通的 Z.ai API（程序连它模型的标准入口）里，目前还没有这个模型。\n\nZ.ai 的博客把 GLM-5.4 叫作它第一个“循环 Transformer”模型，主打通用写代码。Transformer 是现在大多数 AI 模型用的基本结构。循环的做法，是让同一组网络层反复跑好几遍，每一遍都在上一遍的中间结果上接着改。Z.ai 说，这样网络等于变深了，模型本身却没变大。有点像一份稿子自己多读几遍，不用多请几个编辑。\n\n别家也在做类似的事。Willison 提到 Thinking Machines Lab 11 月 20 日发的 Inkling 2 Mini，同样是循环结构，中间几层对每段文字跑三遍。\n\n如果你在给产品挑写代码的模型，这又多了一个候选。但它跟别的模型比怎么样，现在没有跑分（行业通用的标准测试成绩）可看。Willison 拿它画鹈鹕，5.3 和 5.4 画得差不多，都比 5.1、5.2 那种独特画风更接近 OpenAI 和 Anthropic 的模型。好玩，说明不了多少。模型也没有开放权重（就是不能下载回家自己跑），Willison 写的是 “not (yet?)”。\n\nCoding Plan 多少钱、额度有什么限制，目前都不知道，所以“更便宜”只能是猜。我会等真实数字出来再考虑换。\n\n如果你已经在付费用 AI 编程助手，从自己项目里挑两三件做过的活，让两个模型各做一遍。Hacker News 上有人说得对：没有跑分，质量很难判断。那你自己的任务，就是手边唯一的跑分。",
+        "note": null,
+        "category": "模型",
+        "card": "/cards/2026-11-23/3.png",
+        "sources": [
+          {
+            "title": "GLM-5.4: Toward generalized coding with our first loop transformer",
+            "url": "https://z.ai/blog/glm-5.4",
+            "site": "z.ai"
+          },
+          {
+            "title": "GLM-5.4: Toward generalized coding with our first loop transformer",
+            "url": "https://news.ycombinator.com/item?id=50609685",
+            "site": "Hacker News"
+          },
+          {
+            "title": "GLM-5.4: Toward Generalized Coding with Our First Loop Transformer",
+            "url": "https://simonwillison.net/2026/Nov/23/glm-54/",
+            "site": "simonwillison.net"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "提交审核前，先扫一遍拒审风险",
+        "takeaway": "先查演示账号能不能登录、隐私声明对不对。扫描显示没问题，也不等于过审。",
+        "body": "GitHub 上有个项目叫 App Store Compliance Playbook，README 里说它整理了 124 种 App 被苹果或谷歌拒审的原因。它是一份参考手册，外加一个检查脚本，提交审核前对着你的 App 文件夹跑一遍。124 这个数字怎么数出来的，README 没交代。扫一遍到底能不能少被拒，也没有证据。\n\n脚本读你的代码和配置，最后给四种结论之一。拦下，说明找到了严重风险。放行，说明代码里没发现严重风险。规则过期，说明它的规则超过 60 天没更新。没检查，说明没找到 iOS 或 Android 项目。小项目大概一秒扫完，大项目最多一分钟。\n\nREADME 把两件很无聊的事排在现代拒审原因的最前面。一件是演示账号：得能连上你的真实后台，审核员才登录得进去。另一件是隐私声明：得和 App 实际做的事对得上，包括里面塞的 SDK（别人写好的现成代码，比如统计工具）。\n\n会写代码的，直接对 App 文件夹跑脚本。也可以装进 Claude Code、Codex CLI、Gemini CLI、Cursor、GitHub Copilot 这些 AI 编程助手，让它们在提交之前先自己查一遍。不写代码的，README 里有一份大白话清单，脚本让开发者去接，你负责读清单。\n\n限制也写得老实。扫描显示没问题，不等于过审，扫描看不到的东西，审核员还会再看。账号和商店页面那部分得手动检查。用 Expo 又没有原生项目文件夹的 App，只能查到一部分。Codex 还要你先点头批准那个自动检查的步骤，它才会跑。\n\n我会把它当成一张会自己跑的清单。",
+        "note": null,
+        "category": "平台",
+        "card": "/cards/2026-11-23/4.png",
+        "sources": [
+          {
+            "title": "mjmirza/app-store-compliance",
+            "url": "https://github.com/mjmirza/app-store-compliance",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Google AI 模式能读 Wallet 了，Drive 随后",
+        "takeaway": "搜索答案开始因人而异。在 AI Mode 搜你的品类，再和朋友的结果对比一下。",
+        "body": "Google 搜索的 AI 模式（AI Mode）现在能看你的 Google Wallet 了，前提是你自己点头。今天开始推送，用户可以选择把 Wallet 接进 Personal Intelligence。这是 Google 起的名字，意思是让搜索拿你自己的东西来定制答案。Google 博客说 Wallet 只读，AI Mode 不能转钱、管钱，也不能拿去投资。\n\nWallet 加入了 Gmail、日历、相册的行列，这些都能给搜索提供你的个人背景。云端硬盘 Drive 里的文档、表格、PDF，还有 Gemini 应用，几周内跟上。Google 举的例子很朴素：规划人生里的几个财务节点，看看日常哪里能省，把信用卡的返现、旅行福利和积分用满。接上 Drive 之后，报税季之前它能帮你列一份准备清单。\n\n对做产品的人，麻烦在这：两个人搜同一句话，答案可能不一样，要看各自的花销、文档和聊天记录。Google 还说，AI 概览和 AI Mode 会参考你最近的搜索，换个新对话接着规划旅行，不用从头再讲一遍。外部产品怎么被选进这些答案，公告里没提。我会先看着，不急着为它改什么。\n\n今天能做的：在 AI Mode 里搜你这个品类，再让朋友用他的手机搜一遍，对比一下。结果不一样，你就亲眼看到变化了。开关在搜索的个性化设置里，选“已连接的应用”，随时能关。\n\nGoogle 没说哪些地区先开，也没说数据存多久。",
+        "note": null,
+        "category": "平台",
+        "card": "/cards/2026-11-23/5.png",
+        "sources": [
+          {
+            "title": "A more tailored Google Search that’s uniquely yours",
+            "url": "https://blog.google/products-and-platforms/products/search/google-search-personal-intelligence-apps/",
+            "site": "blog.google"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "Claude Ship 能检查、修复并批准你的代码改动",
+      "body": "## 三个零件各管什么\n\nClaude Ship 是三样东西打包在一起。我觉得最有意思的是它们的分工。\n\nCode Review 是最老的一块。Anthropic 3 月宣布，The Verge 说它 10 月已经转为正式版。它会读一份 PR（就是有人提交的、等别人检查后才能合进去的代码改动），然后报告发现了什么。整套东西里，只有它是正式版，Claude Ship、PR Steward 和 Claude Approvals 都还在测试。\n\nPR Steward 是新的。ZDNET 说它处理三类事：自动测试没通过，几处改动互相冲突，还有来自 Code Review、其他审查工具或者同事的意见。它可以提交修复，但不能批准，也不能合并。每次提交它都会留言，说明改了什么、怎么撤回。担心 AI 乱动自己代码的人，我觉得这份记录比修复本身更重要。\n\nClaude Approvals 是有点头权的那个。它读团队放在代码旁边的一份规则文件，再参考 Code Review 的发现这类信号。The Verge 补充说，团队还可以用自己写的大白话规则给改动分类。规则允许，它就自己批准，不允许，就要求真人更仔细地看。TechCrunch 说，在哪里运行、用哪档审查强度（快速、标准、深度），以及哪些改动一律交给人，也都由团队决定。\n\n修的和批的分开，我觉得思路是对的。认真的人类团队也这么干：改代码的人，不是签字的人。\n\n## 谁现在能用，要花多少\n\n指望把审查整个甩出去的独立开发者，这个测试版暂时帮不上太多。\n\nClaude Ship 面向 Claude Team 和 Enterprise 客户，只支持 GitHub 项目，管理员决定在哪些仓库里启用。Pro、Max、Ultra 的个人订阅用户，可以在 Claude Code 里用 /ship 这个快捷命令，这是 Anthropic 的一位代表对 ZDNET 说的。同一个人还说，这不会让 token 用量明显增加。token 就是 AI 处理的文字量，这一点没有人独立验证过。\n\nTeam 和 Enterprise 按 token 计费，也就是读多少、写多少都要算钱。管理员可以给 Code Review 和 PR Steward 设花费上限，上限具体怎么运作，报道里没说透。单价目前也没公开。所以“要花多少钱”只能这么答：推的改动越多，花得越多，价格表还没出来。我会等到真实数字再往忙的项目里上。\n\n用了零数据留存（服务商不保存你任何数据）这类隐私设置的客户，用不了。ZDNET 也直说，它不是给每个团队、每个独立开发者准备的。另外，部分 Enterprise 组织可以领至少 1 万美元的额度，领取后 30 天内用，领取截止是 2027 年 1 月 15 日。看得出来 Anthropic 先争取的是谁，不是一个人的小工作室。\n\n## 信它之前我想先知道的\n\n最大的空白是准确率。已经验证过哪些批准决定，出错率是多少，目前都没有公开。测试版什么时候结束，Anthropic 也没说。一个一百次对九十九次的批准员，听起来很棒，直到你碰上那第一百次。\n\nAnthropic 自己的建议很谨慎，这点让我放心。它建议先用只观察模式开启额外检查，之后才通过分支保护，让 Claude Approvals 的批准成为合并的必要条件。分支保护是 GitHub 里的一个设置，条件没满足，改动就合不进去。先让它看一阵，把它的判断和你自己的对一对，再决定要不要放权。\n\nZDNET 的 David Gewirtz 态度很矛盾。他说，代码写多快就发多快，这个想法“让我后颈汗毛直立”，但如果它真有效，他也不会意外。他认为在某些部署流程里，它能缩短周转时间，让修复更快送到客户手里。他也担心，把这活交给 AI，会把初级开发者挤出他们本来能创造价值、也能学到东西的位置。一个人做产品的人没有初级开发者要保护。可审查正是很多人学会什么叫好代码的地方，停手之前最好想想会丢掉什么。\n\n那份规则文件，是不管进没进测试版都能带走的东西。用文字写下哪些改动可以不经审查就上线，哪些必须仔细看。改一句文案，风险低。碰付款或用户数据的，多半不是。"
+    }
+  },
+  "lab": []
+}
