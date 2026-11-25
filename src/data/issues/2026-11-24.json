@@ -1,0 +1,225 @@
+{
+  "date": "2026-11-24",
+  "publishAt": "2026-11-25T12:00:00Z",
+  "en": {
+    "intro": "Tidal says it will ban and remove AI-generated music, because it's tired of the catalog getting flooded. Also today: a checklist of 124 ways apps get rejected by the App Store and Google Play, and Claude artifacts you can now install as Mac and Windows apps (in beta).",
+    "items": [
+      {
+        "n": 1,
+        "headline": "A GitHub checker scans your app for store rejection causes",
+        "takeaway": "Scan before you submit, but a clear result isn't approval. Demo logins and listings still need you.",
+        "body": "A GitHub project called App Store Compliance Playbook says it knows 124 ways an iOS or Android app gets rejected, and it'll check your app for them before you submit. The front-page text doesn't list all 124, so treat that number as the project's own claim.\n\nYou point a small program (a script) at your app's folder. A small project scans in about a second, and a big one can take up to a minute. You get one of four answers: blocked (it found something serious), clear (nothing serious in the code), rules out of date, or not checked (it found no app project, or couldn't save its scan files).\n\nClear isn't approval. The README says so, and says the tool doesn't guarantee approval at all. It also says a scan can't see everything. Two of the rejection causes it covers show why: a demo login that works against the real server behind your app, and a privacy declaration that reflects how the app behaves while it's running, including outside code bundled into it (SDKs). The README says a person still has to check account and listing items.\n\nIf you don't code, the README points you to a plain-English checklist. If you do, you can install it into AI coding assistants like Claude Code, Cursor or GitHub Copilot so it runs before a submit command. That needs a couple of standard developer tools.\n\nThe rules go stale after 60 days unless you update them. If you build with Expo (a popular toolkit for phone apps) without generating the platform folders, it only checks your app's settings.\n\nThe demo account and privacy items are the boring ones that are easy to forget, and a checklist is a fair place to catch them.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-24/1.png",
+        "sources": [
+          {
+            "title": "mjmirza/app-store-compliance",
+            "url": "https://github.com/mjmirza/app-store-compliance",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Tidal bans fully AI-made music from December 9",
+        "takeaway": "Tidal will reject fully AI tracks from distributors. Label AI content in your app and reread your store policies.",
+        "body": "Tidal says 43% of the tracks sent to it in the last 90 days were detected as AI-generated. That's the number behind its decision, reported by Variety, to start removing fully AI-made tracks on December 9. Tidal's music lead, Robert Andersen, also says 96% of AI songs get zero plays.\n\nTidal says it will delete around 29 million songs and turn away 80,000 to 85,000 new ones a day. TechCrunch separately puts fully AI tracks at 27 million, or 6.3% of the catalog, and nobody reconciles the two figures. The 43% is a detection figure and hasn't been confirmed as a count. Timing is fuzzy too: Variety says the purge finishes by the start of the year, TechCrunch says the end of it.\n\nThe companies that deliver music to Tidal will be banned from sending fully AI tracks. To reject them, Tidal says it will use an AI-detection tool from Ircam Amplify and check the info tags attached to each upload (the metadata). Music made with AI help is still welcome, as long as AI isn't the \"sole output.\" The reports give no example of where that line falls.\n\nTidal is the first big streaming service to ban AI music outright, after Bandcamp. Spotify and YouTube label it. Deezer lets listeners filter it out. Tidal began demonetizing AI songs (cutting off their earnings) in June, and TechCrunch reports that wasn't enough of a deterrent.\n\nIf your app hosts or sells things people upload, Tidal is one platform that has drawn a hard line. Nobody knows yet whether others will follow. Today, you could read the AI policy of every store or distributor you use. If your app takes uploads, you could add a plain \"made with AI\" question. And decide where your own line between AI-made and AI-assisted sits before a detector decides it for you.",
+        "note": null,
+        "category": "Platforms",
+        "card": "/cards/2026-11-24/2.png",
+        "sources": [
+          {
+            "title": "Tidal bans AI-generated music",
+            "url": "https://variety.com/2026/music/news/tidal-bans-ai-generated-music-1236956924/",
+            "site": "variety.com"
+          },
+          {
+            "title": "Tidal bans AI-generated music",
+            "url": "https://news.ycombinator.com/item?id=50630309",
+            "site": "Hacker News"
+          },
+          {
+            "title": "Tidal will start banning AI-generated music next month",
+            "url": "https://www.theverge.com/entertainment/1041362/tidal-ai-music-ban",
+            "site": "theverge.com"
+          },
+          {
+            "title": "Tidal to ban and remove millions of AI-generated tracks as AI slop inundates music streaming",
+            "url": "https://techcrunch.com/2026/11/24/tidal-to-ban-and-remove-millions-of-ai-generated-tracks-as-ai-slop-inundates-music-streaming/",
+            "site": "techcrunch.com"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Claude Code gets an 84-skill bug-hunting bundle",
+        "takeaway": "Security know-how packaged for Claude Code, built for authorized pros. Vet the patterns first.",
+        "body": "The README for claude-bughunter leads with big numbers: 84 skills, 15 shortcut commands and 681 patterns drawn from disclosed security reports. It also says only 433 of those patterns are individually cited so far, so you can trace them back. It doesn't say what backs the rest.\n\nA skill is a packaged set of instructions an AI coding assistant loads when it needs them. This bundle is built for Claude Code and made by Sachin Sharma, described as working in bug hunting and AI security research. Most of it, 58 skills, comes from HackerOne reports. HackerOne is a site where companies pay outside hackers to report holes in their products. The skills cover 24 kinds of security hole, with detection tips and ways attackers get around common defenses.\n\nThe stated scope is whatever an outsider can reach over the internet. Other parts of the bundle go after company logins, VPN boxes and cloud accounts. The skills also load in OpenAI's Codex CLI and a few other assistants, but the shortcut commands only work in Claude Code.\n\nThe README says it's for authorized work, and it names bug bounty hunters, web app testers and red-team operators as the users. If you're none of those, it's still a useful look at how security know-how is getting packaged for AI assistants. I'd skim a few skills first and check the license and last update on the page. The README's sample session is labeled illustrative, so it isn't a real recording. Treat anything it flags as a lead to confirm.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-24/3.png",
+        "sources": [
+          {
+            "title": "elementalsouls/Claude-BugHunter",
+            "url": "https://github.com/elementalsouls/Claude-BugHunter",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Claude artifacts can now install as Mac and Windows apps",
+        "takeaway": "A cheap way to test a desktop idea, but users must be signed in to Claude and spend their own plan limits.",
+        "body": "Anthropic now lets you turn a Claude artifact into a Mac or Windows app. An artifact is the small tool or page Claude builds for you inside a chat, like a calculator or a tracker. The new beta feature, called Install as app, gives it its own icon and its own window, so it no longer lives inside Claude.\n\nTo try it, update Claude for Mac or Windows, open an artifact, and pick Install as app from the Share menu. Anthropic's help article says it's in beta on all plans.\n\nOut of the box, the app can only do what a web page in a browser can do. You can grant more: notifications, shortcuts that work from anywhere on your computer, a window that stays on top. A higher level, full computer access, lets the app run programs and read, change or delete files without asking each time. That level is only for apps you made yourself, or on Team and Enterprise plans, apps made inside your organization.\n\nAnthropic doesn't review these apps before you install them. Permission also covers only the current version, so Claude asks again after every update, your own edits included. Parts of an app that load from other websites can change without a new prompt. I'd think twice before granting full access.\n\nFor a maker, this is a cheap way to see whether an idea feels right as a desktop tool before you build the real thing. Notifications alone make a mock-up feel like software.\n\nThe limits matter if you want others to use it. The app needs you online and signed in to Claude, and whatever it asks Claude to do counts against your plan's usage limit. Anyone else running it would need their own Claude account and would spend their own allowance. Docs, Slides and Sheets can't be installed. Anthropic hasn't said when the beta ends.",
+        "note": null,
+        "category": "Platforms",
+        "card": "/cards/2026-11-24/4.png",
+        "sources": [
+          {
+            "title": "Anthropic rolls out \"Install as app\" in beta, which turns Claude artifacts into Mac and Windows apps with notifications, optional full computer access, and more (Claude)",
+            "url": "https://claude.com/resources/articles/install-as-app",
+            "site": "claude.com"
+          },
+          {
+            "title": "Anthropic rolls out \"Install as app\" in beta, which turns Claude artifacts into Mac and Windows apps with notifications, optional full computer access, and more (Claude)",
+            "url": "https://www.techmeme.com/261124/p40#a261124p40",
+            "site": "techmeme.com"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Simon Willison's three AI coding turning points",
+        "takeaway": "If you quit AI coding tools a year ago, his account says they've changed enough to retry.",
+        "body": "One year ago today, Anthropic released Claude Opus 4.5. Simon Willison says that was the moment AI coding assistants started getting things right on the first try. He's just expanded a conference keynote into a post naming three turning points from the past twelve months.\n\nThe first is Opus 4.5. Willison says it was the first model where Claude Code, Anthropic's AI that writes and runs code for you, generally did the right thing by default. Before that he corrected it constantly. The second is what he calls Fable-class models, which started with Claude Fable 5 in June. These keep working on their own: give one a goal and some tools and it goes after the problem. The third is recent. Over about four months, the top models got much better at 3D modeling and game design.\n\nHis example: he told Opus 5.5 his strategy game wasn't fun enough. It spent 12 hours playtesting and rebalancing it. He calls the result deeply entertaining.\n\nIf you ship your own apps, the gap between an AI that writes something and one that finishes it is where your time goes. He describes that gap closing. These are his own experiences, with no benchmark scores behind them, and he's still deciding whether the newest model, Fable 5.2, counts as another turning point.\n\nIf you quit coding assistants a while back, pick one small project with a clear finish line and try again. When the result is mediocre, say so in plain words, the way he did. And don't build on a single model. Fable 5 was effectively banned by US export controls (government limits on selling technology abroad) three days after launch. It came back July 1.",
+        "note": null,
+        "category": "News",
+        "card": "/cards/2026-11-24/5.png",
+        "sources": [
+          {
+            "title": "Three LLM inflection points in twelve months",
+            "url": "https://simonwillison.net/2026/Nov/24/llm-inflection-points/",
+            "site": "simonwillison.net"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 5,
+      "headline": "Simon Willison's three AI coding turning points",
+      "body": "## Three turning points, in plain terms\n\nSimon Willison's post is the written version of a keynote he gave at the AI Engineer Code Summit. The date matters: November 24th is the one-year anniversary of Claude Opus 4.5, which is where his first turning point sits.\n\nSome background. Claude Code, Anthropic's coding assistant that can write and run programs on your behalf, arrived on February 24th, 2025, alongside Claude 3.7 Sonnet. By the time Opus 4.5 shipped, it was nine months old. Willison says Opus 4.5 was the first model he used with it where the default result was generally right. Earlier, he had to correct it often. He also says OpenAI's November releases, the GPT-5.1 family including two Codex versions, made its Codex agent reliably useful for many of his tasks. So the first shift happened at more than one company.\n\nThe second turning point is a category he calls Fable-class. The back story starts in April, when Anthropic announced a model called Claude Mythos and said it was too dangerous to release because of its cybersecurity abilities. Willison says it could find and exploit vulnerabilities, meaning weak spots attackers use to break into software. In June, Anthropic released Claude Fable 5, a version of Mythos that solves most problems but blocks use for security work. Willison says export controls effectively banned it after three days, and it returned on July 1st.\n\nHis definition of Fable-class is models that are relentlessly proactive. Give one a goal and tools, and it solves problems. He puts Fable 5, 5.1, 5.2 and Opus 5.5 in the group, and says GPT-6 Astra and Gemini 4 Neon may belong too. His odd example is the mysterious beep finder. Opus 5.5, and then Fable 5.2, used five microphones through the browser's audio tools to work out where a beep was coming from, to within about 40 centimeters.\n\nThe third turning point is the newest. Willison says the best models got much better at 3D modeling over the past four months. They now produce credible models in Blender (a 3D modeling program) or Three.js (a toolkit for showing 3D in a web page). He first noticed it with Fable 5, and says it sped up with Opus 5.5, GPT-5.6 Sol, GPT-6 Astra and Gemini 4.\n\n## What the game story shows\n\nThe clearest illustration is games. In August, Fable 5 built him a raccoon heist game, and he found it played poorly. GPT-5.6 Sol Ultra did better, but it was still dull after about 90 seconds.\n\nThen came Opus 5.5, which Willison says came out on September 22nd, 2026. He told it his RTS game (RTS is gaming shorthand for real-time strategy) wasn't fun enough. It spent 12 hours playtesting and rebalancing. Playtesting means playing the game to find what's boring or broken, and rebalancing means adjusting numbers until it feels fair. His verdict is that the game became deeply entertaining.\n\nMy reading is that the human supplied the judgment and the agent supplied the labor. Willison didn't write a spec for fun. He said it wasn't fun enough, and the model went and did the tedious loop of play, notice, tweak, repeat. That's the kind of work a solo maker rarely has hours to spare for.\n\nThere's also a smaller signal. Willison says the release notes for Datasette 1.0a42 to 1.0a44 and LLM 0.37 to 0.38 all came out in the last three weeks. He says they reflect many fixes and features made with Fable 5.2. That tells you about volume. It doesn't tell you about quality, and he doesn't claim it does.\n\n## What to treat carefully, and what to try\n\nEverything here comes from one practitioner's experience. There are no systematic benchmarks, and the 3D and game observations rest on a small number of his own experiments. He also says he's still undecided whether Fable 5.2 is a new inflection point or just a steady improvement. A person who hedges on the newest model is more believable on the older ones. The model names beyond Anthropic's are his account in this post, so check release details before you plan around any of them.\n\nThe export-control episode is the part I'd take most seriously as a maker. Willison says a US government action effectively banned Fable 5 after three days, and it came back on July 1st. The post doesn't say what legal basis or scope applied. What it does show is that a model you build on can vanish from your toolbox on short notice. If your workflow or product depends on one, keep a second model you've actually tested.\n\nThe security block matters too. Fable 5 was described as blocking use for security work. If you hoped to have an agent probe your own app for holes, you may hit that wall on some models. Plan for a different route to security checks.\n\nFor the rest, the advice is cheap to follow. If you tried a coding assistant a year ago and quit, pick one small project with a clear finish line and run it again. Give the assistant a goal rather than a list of tiny steps. When the result is mediocre, say so plainly, the way Willison did with his game. See how far it gets before you step in. If it needs you every five minutes, that's useful information too, and you've lost an afternoon at most."
+    }
+  },
+  "zh": {
+    "intro": "Tidal 说要禁止并下架 AI 生成的音乐，理由是曲库被大量灌水。今天还有一份 124 条的 App Store 和 Google Play 审核被拒清单，以及能装成 Mac 和 Windows 应用的 Claude artifacts（测试版）。",
+    "items": [
+      {
+        "n": 1,
+        "headline": "GitHub 上有个工具，提交前帮你查拒审原因",
+        "takeaway": "提交前先扫一遍，但“放行”不等于过审。演示账号和上架信息还得自己核对。",
+        "body": "GitHub 上有个项目叫 App Store Compliance Playbook，说自己整理了 124 种 iOS 和 Android 应用被商店拒的原因，提交前先帮你查一遍。124 这个数是项目自己报的，页面上没列全，当它的一面之词就好。\n\n用法很简单：让一个小脚本去扫你 App 的文件夹。小项目大概一秒，大项目最多一分钟。结果只有四种：拦下（查到严重问题）、放行（代码里没有严重问题）、规则过期、没检查（没找到 App 工程，或者扫描文件写不进去）。\n\n放行不等于过审。README 自己写了，它不保证通过，扫描看不到的东西，审核员照样会看。它覆盖的拒审原因里有两条很典型：给审核员的演示账号，要能登上 App 背后真实的服务器；隐私声明，要跟 App 实际运行时的行为一致，连你塞进去的第三方代码包（SDK）也算。README 说，账号和上架信息这类事，还是得人来核对。\n\n不写代码的人，README 指到一份大白话清单。会写代码的，可以把它装进 Claude Code、Cursor、GitHub Copilot 这类 AI 编程助手，提交前自动先跑一遍。要装 git 和 bash，Claude Code 之外的工具还要 python3。\n\n两个坑。规则包超过 60 天没更新就报过期，得自己手动更新。用 Expo（一个做手机 App 的流行工具包）开发的 App，如果没生成原生工程文件夹，只能查到设置文件那一层。\n\n今天能做的：提交前拿演示账号自己登一遍，再把隐私声明对着用到的 SDK 过一遍。这两样最无聊，也最容易漏。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-24/1.png",
+        "sources": [
+          {
+            "title": "mjmirza/app-store-compliance",
+            "url": "https://github.com/mjmirza/app-store-compliance",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "Tidal 12 月 9 日起禁止纯 AI 音乐",
+        "takeaway": "Tidal 将拒收发行商送来的纯 AI 歌曲。App 里加个 AI 标注，顺便重读平台规定。",
+        "body": "Tidal 说，过去 90 天送到它那里的歌，有 43% 被检测出是 AI 生成的。这就是它下狠手的理由：12 月 9 日起，完全由 AI 做出来的歌一律下架。Tidal 的音乐负责人 Robert Andersen 还说，AI 歌曲里 96% 一次都没人播过。\n\n数字上有点乱。Tidal 说要删掉约 2900 万首，每天还要拒收 8 万到 8.5 万首。TechCrunch 另外报的是 2700 万首、占曲库 6.3%，两个数字对不上，也没人解释。43% 是“检测出来”的比例，不等于确认过的数量。清理什么时候做完也有两种说法：Variety 说年初前，TechCrunch 说年底前。\n\n怎么拦？给 Tidal 送歌的发行商，以后不许再交纯 AI 作品。Tidal 会用 Ircam Amplify 的 AI 检测工具，再查每首歌附带的信息（也叫元数据），标明纯 AI 制作的直接拒收。AI 只是帮手的歌还收，前提是 AI 不是“唯一产出”。这条线划在哪，报道里没举例。\n\n大平台里，Tidal 是继 Bandcamp 之后明令禁止 AI 音乐的一家。Spotify 和 YouTube 选择贴标签，Deezer 让听众自己过滤。Tidal 从 6 月起就不给 AI 歌曲分钱了，TechCrunch 说这招没吓住人。\n\n如果你的 App 让用户上传东西，现在有个平台把话说死了。别家跟不跟，没人知道。今天能做两件事：翻一遍你在用的商店或发行商的 AI 规定；如果 App 收用户上传，加一个“是否用了 AI 制作”的选项。再想好自己的“AI 做的”和“AI 帮忙的”线怎么划，别等检测工具替你划。",
+        "note": null,
+        "category": "平台",
+        "card": "/cards/2026-11-24/2.png",
+        "sources": [
+          {
+            "title": "Tidal bans AI-generated music",
+            "url": "https://variety.com/2026/music/news/tidal-bans-ai-generated-music-1236956924/",
+            "site": "variety.com"
+          },
+          {
+            "title": "Tidal bans AI-generated music",
+            "url": "https://news.ycombinator.com/item?id=50630309",
+            "site": "Hacker News"
+          },
+          {
+            "title": "Tidal will start banning AI-generated music next month",
+            "url": "https://www.theverge.com/entertainment/1041362/tidal-ai-music-ban",
+            "site": "theverge.com"
+          },
+          {
+            "title": "Tidal to ban and remove millions of AI-generated tracks as AI slop inundates music streaming",
+            "url": "https://techcrunch.com/2026/11/24/tidal-to-ban-and-remove-millions-of-ai-generated-tracks-as-ai-slop-inundates-music-streaming/",
+            "site": "techcrunch.com"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Claude Code 多了一包 84 个技能的找漏洞工具",
+        "takeaway": "给有授权的专业人士用。681 条套路只有 433 条标了出处，先查再信。",
+        "body": "claude-bughunter 的 README 开头先甩数字：84 个技能、15 个快捷命令、681 条来自已公开安全报告的套路。再往下读，才看到只有 433 条标了出处，能一条条查回去。剩下的凭什么，没写。\n\n“技能”可以理解成一包说明书，AI 编程助手需要时才翻出来看。这套是给 Claude Code 用的，作者 Sachin Sharma，自我介绍做漏洞挖掘和生成式 AI 安全研究。主力是 58 个技能，说是从 HackerOne 上 681 份公开报告里整理出来的。HackerOne 是个平台，公司在上面出钱，请外面的黑客帮忙找自家产品的漏洞。这些技能覆盖 24 类漏洞，每类都有怎么识别、怎么绕过常见防护的写法。\n\n范围限定在从互联网上直接够得着的那一层，不用先攻进公司内网。其中一部分专门对付企业登录、VPN 设备和云账号。技能本身 OpenAI 的 Codex CLI 等几个工具也能读，快捷命令只有 Claude Code 能用。\n\nREADME 写明是给获得授权的工作用，点名的用户是赏金猎人、网站渗透测试员和红队（模拟攻击方的测试团队）。如果你只是做了个自己的 App，大概不会直接用它。但可以看看，安全经验是怎么被打包给 AI 助手的。我会先翻几个技能，再决定信不信。装之前去页面上看一眼许可证和最近更新时间。README 里那段示范对话标明是演示，不是真实录屏。它报出来的东西，当线索看，自己再确认。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-24/3.png",
+        "sources": [
+          {
+            "title": "elementalsouls/Claude-BugHunter",
+            "url": "https://github.com/elementalsouls/Claude-BugHunter",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Claude 里做的小工具能装成桌面应用",
+        "takeaway": "拿来试桌面小工具的点子很便宜。但用户得登录 Claude，用的是自己的套餐额度，完整权限也要谨慎给。",
+        "body": "Anthropic 给 Claude 的 Mac 和 Windows 客户端加了个测试版功能，叫 Install as app。Claude 在对话里替你做的小工具或小页面（官方叫 artifact，比如计算器、记账表），现在能装成桌面应用，有自己的图标和窗口，不用再待在 Claude 里面。\n\n装法：先把 Claude 更新到最新，打开一个 artifact，在分享菜单里选 Install as app。所有套餐都能用，但要求医疗合规（HIPAA）的组织和混合部署用不了。\n\n默认情况下，装好的应用只能做浏览器网页能做的事。你可以再放权：通知、在电脑任何地方都能触发的快捷键、窗口置顶。再往上是“完整电脑访问”，应用可以运行程序，读、改、删文件，不用每次问你。这一档只给你自己做的应用，Team 和 Enterprise 上也包括组织内部做的。\n\nAnthropic 不会在你安装前审核这些应用。授权只管当前版本，每次更新都要重新问，你自己改一下也算。另外，应用里从其他网站加载的那部分内容，变了也不会再问你。要给完整访问，我会想两遍。\n\n对做产品的人，这是个便宜的试水办法：一个想法做成桌面小工具顺不顺手，先装一个看看。光是通知，就能让原型像个正经软件。\n\n想给别人用就麻烦了。打开它必须联网并登录 Claude，它每次调用 Claude，都算在用户自己套餐的用量里。Docs、Slides、Sheets 这几类装不了。测试什么时候结束，Anthropic 没说。",
+        "note": null,
+        "category": "平台",
+        "card": "/cards/2026-11-24/4.png",
+        "sources": [
+          {
+            "title": "Anthropic rolls out \"Install as app\" in beta, which turns Claude artifacts into Mac and Windows apps with notifications, optional full computer access, and more (Claude)",
+            "url": "https://claude.com/resources/articles/install-as-app",
+            "site": "claude.com"
+          },
+          {
+            "title": "Anthropic rolls out \"Install as app\" in beta, which turns Claude artifacts into Mac and Windows apps with notifications, optional full computer access, and more (Claude)",
+            "url": "https://www.techmeme.com/261124/p40#a261124p40",
+            "site": "techmeme.com"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "Simon Willison：一年里 AI 写代码有三次拐点",
+        "takeaway": "一年前放弃 AI 编程助手的，可以拿个小项目再试一次，同时别只押一个模型。",
+        "body": "一年前的今天，Anthropic 发了 Claude Opus 4.5。Simon Willison 把前阵子在 AI Engineer Code Summit 上的演讲写成了文章，讲过去十二个月 AI 编程助手的三个拐点。\n\n第一个就是 Opus 4.5。他说这是他头一回用 Claude Code（Anthropic 那个能替你写代码、跑代码的 AI）时，默认出来的结果基本就是对的。之前他得不停纠正。\n\n第二个是他叫“Fable 级”的一类模型，6 月的 Claude Fable 5 开头。给它一个目标和几样工具，它自己追着问题跑。\n\n第三个最新：这四个月，顶级模型的 3D 建模和游戏设计突然强了很多。\n\n他的例子是，他跟 Opus 5.5 说自己做的即时战略游戏不够好玩。它花了 12 小时自己试玩、调平衡。他说最后真的很好玩。\n\n自己做产品的人，时间常常耗在“AI 写了个开头”和“AI 把它做完”之间。不过这些都是他个人的体验，没有跑分，最新的 Fable 5.2 算不算新拐点，他自己也还没想好。\n\n之前放弃过的，可以拿个有明确终点的小项目再试一次。觉得不够好，就直说不够好，Willison 对 Opus 5.5 就是这么说的。另外别只押一个模型：Fable 5 发布三天后，被美国出口管制（政府限制技术卖到国外）实际上封了，7 月 1 日才回来。",
+        "note": null,
+        "category": "资讯",
+        "card": "/cards/2026-11-24/5.png",
+        "sources": [
+          {
+            "title": "Three LLM inflection points in twelve months",
+            "url": "https://simonwillison.net/2026/Nov/24/llm-inflection-points/",
+            "site": "simonwillison.net"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 5,
+      "headline": "Simon Willison：一年里 AI 写代码有三次拐点",
+      "body": "## 三个拐点，各是什么\n\nSimon Willison 这篇文章，是他前阵子在 AI Engineer Code Summit 上那场演讲的文字版。发文日期 11 月 24 日，正好是 Claude Opus 4.5 发布一周年，他的第一个拐点就在这儿。\n\n先补点背景。Claude Code 是 Anthropic 的编程助手，能替你写代码、跑代码，2025 年 2 月 24 日跟 Claude 3.7 Sonnet 一起出现。Opus 4.5 发布时，它已经九个月大了。Willison 说，Opus 4.5 是他第一个用着觉得默认结果基本就对的模型，之前他得经常纠正。他还说，OpenAI 同在 11 月发的 GPT-5.1 系列（含两个 Codex 版本），让 Codex 这个编程助手在他的很多任务上变得靠得住。所以第一次变化不只发生在一家公司。\n\n第二个拐点是一类他叫“Fable 级”的模型。故事从 4 月说起：Anthropic 宣布了一个叫 Claude Mythos 的模型，说它的网络安全能力太强，不敢放出来。Willison 说它能找到并利用安全漏洞，也就是黑客用来闯进软件的薄弱环节。6 月，Anthropic 发布了 Claude Fable 5，是 Mythos 的一个版本，大部分问题都能解，但会拦住安全方面的用途。Willison 说，三天后它被出口管制（政府限制技术卖到国外）实际封掉，7 月 1 日才回来。\n\n他给 Fable 级下的定义是：特别主动的模型，给个目标和工具，就能自己解决问题。他把 Fable 5、5.1、5.2 和 Opus 5.5 都算进去，GPT-6 Astra 和 Gemini 4 Neon 可能也算。他举的怪例子是“神秘哔声定位器”：Opus 5.5，后来是 Fable 5.2，用浏览器里的五个麦克风，把一声哔的位置定到了大约 40 厘米以内。\n\n第三个拐点最新。他说过去四个月，顶级模型的 3D 建模进步很大，能做出像样的 Blender（一个 3D 建模软件）或 Three.js（在网页里显示 3D 的工具包）模型。他最早在 Fable 5 身上看出苗头，Opus 5.5、GPT-5.6 Sol、GPT-6 Astra 和 Gemini 4 上更快。\n\n## 那个游戏的故事\n\n最清楚的例子是游戏。8 月，Fable 5 给他做了个浣熊盗窃题材的游戏，他觉得很难玩。GPT-5.6 Sol Ultra 做得好一些，约 90 秒后还是觉得无聊。\n\n后来是 Opus 5.5，Willison 说它 2026 年 9 月 22 日发布。他对它说，自己的即时战略游戏（RTS，就是边玩边实时下指令的那类）不够好玩。它花了 12 小时试玩、调平衡。试玩就是自己玩一遍，找出哪里无聊或有问题，调平衡就是改数值，直到玩着公平。他的结论是，游戏变得非常好玩。\n\n我的理解是，人出判断，AI 出力气。他告诉模型游戏不够好玩，模型就去干玩一遍、发现问题、改、再玩这个枯燥的循环。这种活，一个人做产品很少有整块时间去磨。\n\n还有个小信号。他说 Datasette 1.0a42 到 1.0a44，以及 LLM 0.37 到 0.38 的发布说明，都是最近三周出的，里面很多修复和新功能是用 Fable 5.2 做的。这说明产出量大，质量怎么样，他没这么说。\n\n## 哪些话要打折听，今天能做什么\n\n这些全是一个人的体验。没有系统跑分，3D 和游戏的结论也只来自他自己的几次实验。他还说，Fable 5.2 到底是新拐点，还是平稳的小进步，他自己还没定。Anthropic 之外那些模型名，也只是他在这篇文章里的说法，真要拿来做决定，先去查各家的发布信息。\n\n出口管制那段，我会看得最重。Willison 说，美国政府的一项行动让 Fable 5 三天后实际被禁，7 月 1 日才回来。他没说法律依据和范围。但它至少说明，你依赖的模型可能短时间内就从工具箱里消失。如果你的流程或产品只靠一个，再备一个自己真测过的。\n\n安全那条限制也要留意。Fable 5 会拦住安全方面的用途。你要是想让 AI 帮自己的 App 查漏洞，换到某些模型上可能就碰壁，得另想办法。\n\n剩下的建议成本很低。一年前试过编程助手就放弃的，挑个有明确终点的小项目再跑一遍。给它一个目标，别给一串碎步骤。觉得不够好，就直说不够好，Willison 对 Opus 5.5 就是这么说的。看它自己能走多远再插手。要是每五分钟就得叫你一次，这也是有用的信息，你最多搭进去一个下午。"
+    }
+  },
+  "lab": []
+}
