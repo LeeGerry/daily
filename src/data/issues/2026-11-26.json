@@ -1,0 +1,225 @@
+{
+  "date": "2026-11-26",
+  "publishAt": "2026-11-27T12:00:00Z",
+  "en": {
+    "intro": "After OpenAI fixed a billing error in GPT-6.2, Astra users now hit their usage limits 40% faster. Below that: 125 ways apps get rejected by the App Store and Google Play, Firecrawl's single service for searching and scraping web data, an open method for working with AI coding assistants, and a Hacker News thread on why running your own server is fun again.",
+    "items": [
+      {
+        "n": 1,
+        "headline": "A scanner for App Store and Play rejection risks",
+        "takeaway": "Run it on your app before you submit. A clear result isn't an approval, though.",
+        "body": "The README says two checks cause most App Store and Google Play rejections. One is a demo login that works against a live server. The other is a privacy declaration that matches what your app really does, including the third-party code bundles (analytics, ads, that kind of thing) tucked inside it.\n\nThat's the pitch of App Store Compliance Playbook, a project on GitHub. It has a short script you point at your app's folder. The script reads your project, changes nothing, and gives one of four answers: blocked (it found a serious risk), clear (no serious risk in the code), rules out of date (they're more than 60 days old), or not checked (it found no iOS or Android project). There's also a plain-English checklist for people who don't want to touch a command line. It can be read as a website too.\n\nThe project is upfront that a clear result isn't an approval. A scan can't see everything a reviewer looks at, so the demo account and store listing still need checking by hand.\n\nIf you use an AI coding assistant such as Claude Code, Cursor or GitHub Copilot, an install script can make the scan run automatically before you submit.\n\nThe project's title claims 125 rejection patterns and deadline tracking. The README doesn't mention a pattern count or a deadline feature. Check the repo before you rely on either.\n\nToday, the cheap move is the checklist. Open your demo login on a clean device and confirm your privacy answers cover every SDK you ship.",
+        "note": null,
+        "category": "Platforms",
+        "card": "/cards/2026-11-26/1.png",
+        "sources": [
+          {
+            "title": "mjmirza/app-store-compliance",
+            "url": "https://github.com/mjmirza/app-store-compliance",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "GPT-6.2 limits tighten after OpenAI fixes billing slip",
+        "takeaway": "Astra and Sol plans run out sooner. Redo your cost and limit math with today's numbers.",
+        "body": "On Astra, one of the two new GPT-6.2 models, you now hit your plan's usage limit 40% faster than you did last week. On Sol, the other one, it's 25% faster.\n\nOpenAI's Thibault Sottiaux said on X that the company made a billing mistake at launch. Usage of both models was discounted by error for most users, and the discount is gone. Think of a phone data plan where someone changed how fast the meter ticks.\n\nTechRadar has the details. OpenAI says Astra and Sol still go further per unit of usage than GPT-6 Astra and GPT-6.1 Sol, and that other models weren't affected. It won't bill anyone for the difference on past usage. As an apology, Go, Plus, Pro and Business subscribers get one banked reset, a one-time refill of their allowance. One Reddit commenter quoted by TechRadar called that 'pretty thin'.\n\nTechRadar's author warns against reading this as a 40% cut in limits, because the two numbers don't convert neatly. The reports don't say what baseline the 40% and 25% were measured from, and they give no exact usage figures. The author expects heavy coding work in Codex to hit the wall first, while ordinary chatting probably won't.\n\nIf you build with these models through a ChatGPT plan, run a normal work week and see where the meter lands. If your product calls them, redo your cost and rate-limit math with today's behavior. The reports cover ChatGPT plans. Nothing in them says whether pay-per-use pricing changed, so check your own usage dashboard.\n\nI'd plan around the lower number.",
+        "note": null,
+        "category": "Platforms",
+        "card": "/cards/2026-11-26/2.png",
+        "sources": [
+          {
+            "title": "OpenAI cuts GPT-6.2 usage: Astra hits limits 40% faster, Sol 25% faster",
+            "url": "https://twitter.com/thsottiaux/status/2125784147889393806",
+            "site": "X"
+          },
+          {
+            "title": "OpenAI cuts GPT-6.2 usage: Astra hits limits 40% faster, Sol 25% faster",
+            "url": "https://news.ycombinator.com/item?id=50651117",
+            "site": "Hacker News"
+          },
+          {
+            "title": "OpenAI says it corrected a GPT-6.2 Astra and Sol launch billing mistake that had incorrectly discounted usage; Astra users will now hit their limits 40% faster (Graham Barlow/TechRadar)",
+            "url": "https://www.techradar.com/ai-platforms-assistants/chatgpt/weve-fixed-this-now-so-the-same-work-will-use-more-of-your-plans-usage-allowance-openai-admits-it-made-a-mistake-when-launching-gpt-6-2-and-now-paying-chatgpt-users-could-hit-their-usage-limits-up-to-40-percent-faster",
+            "site": "techradar.com"
+          },
+          {
+            "title": "OpenAI says it corrected a GPT-6.2 Astra and Sol launch billing mistake that had incorrectly discounted usage; Astra users will now hit their limits 40% faster (Graham Barlow/TechRadar)",
+            "url": "https://www.techmeme.com/261126/p16#a261126p16",
+            "site": "techmeme.com"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Firecrawl bundles web search, scraping and 550+ data sources",
+        "takeaway": "One connection for live web data, with 1,000 free credits a month and no signup needed to try it.",
+        "body": "Firecrawl is giving away 1,000 credits a month with no signup and no API key (a password-like code apps use to get in). That's the \"keyless\" tier, and it's in the project's GitHub README.\n\nFirecrawl is a service that lets an AI agent (a program that takes actions on its own) search the web, read pages, and pull from Alexandria, a collection of 550+ data providers. The README says Firecrawl Cloud offers all of it \"through a single API\", meaning one connection your app talks to instead of many. It also lists two more tools, Interact and Agent, with no detail on what they cost.\n\nIf your product needs live web data, the usual route is a separate scraper (a program that copies content off a website) for every source. One integration instead of a pile is the pitch, and I can see why it appeals.\n\nThe numbers are Firecrawl's own. It says it covers 96% of the web, and that 95% of requests finish within 3.4 seconds across millions of pages. The README also doesn't name the 550+ providers or say how they're licensed, and it gives no prices for Alexandria or the paid plans.\n\nThere's a version you run yourself, called Local. It needs Rust and a C compiler (developer tools) to install. Search and Alexandria still go through Firecrawl's cloud, and Alexandria needs a login. Interact, Agent and Monitor are cloud only.\n\nToday, pick one thing you collect from the web by hand or with a fragile script. Run it through the free tier and see what comes back. I'd hold off building anything customers depend on until pricing is public.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-26/3.png",
+        "sources": [
+          {
+            "title": "firecrawl/firecrawl",
+            "url": "https://github.com/firecrawl/firecrawl",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Superpowers makes AI coding assistants plan before they build",
+        "takeaway": "Solo makers can add a plan-first, review-as-you-go workflow to Claude Code and other agents.",
+        "body": "Before it writes any code, Superpowers has your AI coding assistant ask what you're really trying to build. Then it shows you the spec in readable chunks. That's the opening move of an open project on GitHub, obra/superpowers, which calls itself a complete software development methodology for coding agents.\n\nA coding agent is an AI assistant that writes and edits code inside your project. Claude Code and Cursor are two. Superpowers adds \"skills\", which are written instructions for particular jobs, plus starting instructions that make the agent use them. The README says skills kick in automatically.\n\nOnce you approve the design, the agent writes a plan. The plan leans on writing a test that fails first and then making it pass, building only what's needed, and not repeating yourself. When you say go, helper agents work through each task and review their work. The README says the agent can sometimes run a couple of hours without straying from the plan. That's the project describing a tendency. It hasn't published measurements.\n\nIf you build alone, nobody reviews your plan. Here the agent has to ask its questions and get your sign-off before it builds anything. That's a checkpoint you'd otherwise have to impose on yourself.\n\nOn Claude Code, you can install it from Anthropic's official plugin marketplace. The README also lists more than a dozen other tools, including Codex, Cursor and Gemini CLI. Install it separately for each one you use. On Hermes Agent, a very long session can lose the starting instructions when old conversation gets squeezed to save space. If skills stop triggering there, start a fresh session.\n\nAll of this comes from the project's own README, with no independent review yet. I'd try it on a small side task before trusting it with a launch week.",
+        "note": null,
+        "category": "Tools",
+        "card": "/cards/2026-11-26/4.png",
+        "sources": [
+          {
+            "title": "obra/superpowers",
+            "url": "https://github.com/obra/superpowers",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "AI is making self-hosting feel doable again",
+        "takeaway": "Keep your server setup as text files and an AI assistant can help. Read every change it makes.",
+        "body": "Half a day instead of at least a week. That's how one self-hoster, writing on janlukas.blog, describes building a custom system image for his rented server. (Self-hosting means running your own apps on a machine you control, instead of paying for a service.) The week is his own estimate, and he doesn't say which AI tool he used.\n\nIt worked for him because most of his server setup lives as plain text files in a folder that tracks every change. Because it's all text, an AI coding assistant can read and edit it like any software project. A bot called Renovate proposes most of his software updates, and automated steps build and deploy the result after a change is pushed or merged. He's also had AI help write small Go programs for his own use that fetch invoices, e-papers and Linux install files. He built them for himself, not to share.\n\nThe Hacker News thread is split. One commenter says AI doesn't make server security or upkeep easier. Another says self-hosting is mostly about learning and pride in your setup, and AI takes that away. One commenter put every service behind a private tunnel (a VPN) after a cloud server running a proof-of-concept app got compromised. The author admits much of this himself. Every service needs maintenance, AI-written software can have bugs and security holes, and he still has to understand what the assistant changed.\n\nIt's one person's experience, and nobody has measured the effect on security. Still, I'd say the pattern is worth noticing. If your setup is text files, an assistant has something to work with. If it's a dashboard full of clicks, it has nothing to read.\n\nToday, pick one small chore on your own server. Ask an assistant to draft the change, and read every line before you apply it.",
+        "note": null,
+        "category": "News",
+        "card": "/cards/2026-11-26/5.png",
+        "sources": [
+          {
+            "title": "AI made self-hosting fun again",
+            "url": "https://janlukas.blog/posts/ai-self-hosting",
+            "site": "janlukas.blog"
+          },
+          {
+            "title": "AI made self-hosting fun again",
+            "url": "https://news.ycombinator.com/item?id=50660180",
+            "site": "Hacker News"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "A scanner for App Store and Play rejection risks",
+      "body": "## What it is, and what it checks\n\nApp Store Compliance Playbook is a GitHub project from a maintainer going by mjmirza. It calls itself a reference and pre-submission guard for iOS and Android apps. In practice that means two things: a script that looks at your project before you hit submit, and a checklist written in plain English for people who'd rather not run scripts.\n\nThe README makes a specific claim about where rejections come from. It says two checks cause most of them. The first is a working demo account backed by a live server. Reviewers need to log in and see the real app, so if your test server is switched off, or the demo password expired, you're rejected for something unrelated to your code. The second is a privacy declaration that matches how the app behaves at runtime, SDKs included. An SDK is a bundle of someone else's code that you drop into your app for analytics, ads, crash reports and so on. Those bundles collect data, and the form you fill out for the store has to account for it.\n\nThat second one catches careful people. You didn't write the data collection, but you shipped it.\n\nThe README also says every guideline number and statistic traces to a live Apple or Google source. I can't verify that. It's a good habit if true, since store rules change, but treat it as a claim for now.\n\n## How the scan behaves\n\nYou download the project, run one script, and point it at your app's folder. The README says nothing in your app gets changed. The script then reports one of four things:\n\n- Blocked, meaning it found a critical risk.\n- Clear, meaning no critical risk in the code. The README is blunt that this is not an approval.\n- Rules out of date, shown when the rule set is more than 60 days old. You refresh it by pulling the latest version of the project.\n- Not checked, shown when it found no iOS or Android project, or couldn't write its scan files.\n\nI like the staleness warning. App review rules move, and a checker that runs on old rules without telling you is worse than none. Sixty days is a reasonable nudge.\n\nThe install side is broader than I expected. An install script can wire the check into several AI coding tools: Claude Code, Codex CLI, Gemini CLI, OpenCode, Cursor, GitHub Copilot and Grok. The idea is that the check runs automatically before your assistant carries out a submit step. The README's Grok instructions are cut off, so I can't say how that one works.\n\nExpect some fiddling. Codex needs you to approve the automatic check in its settings. The Copilot cloud agent needs a folder committed to your repository. Gemini needs version 0.24 or later. The install needs git and a command-line shell, and every tool except Claude Code also needs Python 3. If you've never opened a terminal, skip all of this and use the checklist.\n\nExpo apps get a partial check. If your Expo project has no native folders, the scan only reads its configuration file, unless you generate the native folders first.\n\n## What the README doesn't say, and what to do\n\nThe project's title claims 125 rejection patterns and deadline tracking. The README doesn't show a pattern count or any deadline feature. It does mention a mistakes file and an appeal playbook, but I don't know what's in them. So don't assume the tool will warn you when a regulation's date arrives. Check any dates that apply to your app yourself.\n\nThere's also little to judge its track record by. I don't know how old the project is, how often it's updated, or how many people use it. The README shows a license badge reading OpenRoots ORA 2.3, and the license terms aren't spelled out in what I read. If you plan to build it into a paid workflow, read them first.\n\nWhat the project does say about itself is sensible. It doesn't promise approval, and it admits a scan can't see everything a reviewer checks. Account and listing checks stay manual, and it wants you to record them.\n\nToday I'd do this. Before your next submission, log in with your demo account on a phone that's never seen your app, with your test server in its normal state. Then list every third-party code bundle in your build and compare it against your privacy answers line by line. That's the checklist's core. If you're comfortable with a terminal, run the scan on top. If your last rejection came from something else entirely, the playbook probably won't have saved you."
+    }
+  },
+  "zh": {
+    "intro": "OpenAI 修好了 GPT-6.2 的计费错误，Astra 用户现在碰到用量上限的速度快了 40%。后面还有 125 种 App 上架被拒的情形清单、一个能搜索和抓取网页数据的 Firecrawl 服务、一套和 AI 编程助手配合的开源开发方法，以及 Hacker News 上聊自己架服务器为什么又好玩了的讨论。",
+    "items": [
+      {
+        "n": 1,
+        "headline": "一个提交前扫拒审风险的开源项目",
+        "takeaway": "提交前先跑一遍清单。显示通过不等于过审，演示账号和商店页面还得手动查。",
+        "body": "README 里说，App Store 和 Google Play 的拒审，大多栽在两件事上。一是演示账号：审核员能登录，而且你的服务器是开着的。二是隐私声明：填的内容要和 App 实际行为一致，里面塞的第三方代码包（统计、广告之类）也算。\n\n这是 GitHub 上一个叫 App Store Compliance Playbook 的项目。它有一个小脚本，指向你的 App 文件夹就能跑。脚本只读不改，最后给四种结果之一：拦下（发现严重风险）、通过（代码里没有严重风险）、规则过期（规则超过 60 天没更新）、没检查（没找到 iOS 或 Android 项目）。不想碰命令行的人，还有一份大白话清单。内容也能当网页看。\n\n项目自己把话说在前头：显示通过不等于过审。扫描看不到审核员查的所有东西，演示账号和商店页面还得手动查，并且记下来。\n\n如果你用 Claude Code、Cursor 或 GitHub Copilot 这类 AI 编程助手，装一个安装脚本，就能让它在你提交前自动跑一遍检查。\n\n项目标题写着 125 种拒审模式和截止日期追踪。README 里没提模式数量，也没提截止日期功能。靠它之前，先去仓库里确认。\n\n今天最省事的做法是照着清单走：拿一台干净的手机，用演示账号登一遍。再核对一下，隐私声明有没有覆盖你装进去的每个第三方代码包。",
+        "note": null,
+        "category": "平台",
+        "card": "/cards/2026-11-26/1.png",
+        "sources": [
+          {
+            "title": "mjmirza/app-store-compliance",
+            "url": "https://github.com/mjmirza/app-store-compliance",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "headline": "OpenAI 修了计费错误，GPT-6.2 额度掉得更快了",
+        "takeaway": "Astra 和 Sol 的额度比上周消耗更快，按现在的数字重算成本和限流。",
+        "body": "GPT-6.2 的两个新模型里，Astra 现在比上周更快撞到套餐用量上限，快 40%。Sol 快 25%。\n\nOpenAI 的 Thibault Sottiaux 在 X 上说，GPT-6.2 发布时他们算错了账：大多数用户用这两个模型，被错误地打了折。现在折扣没了。有点像手机流量套餐，算流量的方式变了一下。\n\nTechRadar 有更多细节。OpenAI 说，Astra 和 Sol 每份用量能干的活，还是比 GPT-6 Astra 和 GPT-6.1 Sol 多，其他模型不受影响。过去那部分差额不会补收。作为道歉，Go、Plus、Pro、Business 的订阅用户多一次额度重置，只有一次。Reddit 上有人对 TechRadar 说，这个补偿“pretty thin”，意思是太薄了。\n\nTechRadar 的作者提醒，快 40% 不等于额度砍了 40%，两个数字没法直接换算。40% 和 25% 是拿什么当基准算的，报道没给，具体用量数字也没有。作者估计，在 Codex（OpenAI 的 AI 编程工具）里大量写代码的人会最先碰壁，平常聊天的人多半碰不到。\n\n如果你靠 ChatGPT 套餐用这两个模型干活，正常过一周，看看额度掉到哪。如果你的产品自己调用它们，按现在的行为重算成本和限流。报道讲的是 ChatGPT 套餐，没提按量付费的价格有没有变，去自己的用量后台看一眼。\n\n我会按低的那个数字做计划。",
+        "note": null,
+        "category": "平台",
+        "card": "/cards/2026-11-26/2.png",
+        "sources": [
+          {
+            "title": "OpenAI cuts GPT-6.2 usage: Astra hits limits 40% faster, Sol 25% faster",
+            "url": "https://twitter.com/thsottiaux/status/2125784147889393806",
+            "site": "X"
+          },
+          {
+            "title": "OpenAI cuts GPT-6.2 usage: Astra hits limits 40% faster, Sol 25% faster",
+            "url": "https://news.ycombinator.com/item?id=50651117",
+            "site": "Hacker News"
+          },
+          {
+            "title": "OpenAI says it corrected a GPT-6.2 Astra and Sol launch billing mistake that had incorrectly discounted usage; Astra users will now hit their limits 40% faster (Graham Barlow/TechRadar)",
+            "url": "https://www.techradar.com/ai-platforms-assistants/chatgpt/weve-fixed-this-now-so-the-same-work-will-use-more-of-your-plans-usage-allowance-openai-admits-it-made-a-mistake-when-launching-gpt-6-2-and-now-paying-chatgpt-users-could-hit-their-usage-limits-up-to-40-percent-faster",
+            "site": "techradar.com"
+          },
+          {
+            "title": "OpenAI says it corrected a GPT-6.2 Astra and Sol launch billing mistake that had incorrectly discounted usage; Astra users will now hit their limits 40% faster (Graham Barlow/TechRadar)",
+            "url": "https://www.techmeme.com/261126/p16#a261126p16",
+            "site": "techmeme.com"
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "headline": "Firecrawl 一个入口管搜索、抓网页和数据源",
+        "takeaway": "实时网页数据只接一个口子，每月 1,000 点免费额度，不用注册就能试，付费价格还没公布。",
+        "body": "每月 1,000 点免费额度，不用注册，也不用 API 密钥（App 用来进门的一串类似密码的代码）。Firecrawl 把这档叫 Keyless，写在项目的 GitHub 介绍页里。\n\nFirecrawl 是个服务，让 AI 程序替你上网搜索、读网页，还能调用一个叫 Alexandria 的数据合集，里面有 550 多家数据提供方。介绍页说这些都能“通过一个 API”拿到，也就是你的应用只接一个口子，不用一家一家对接。另外还列了 Interact 和 Agent 两样工具，价格没写。\n\n产品要用实时网络数据，常规做法是每个来源写一个爬虫（自动把网页内容抄下来的小程序），网站一改版就得回头修。换成一个入口，确实省事，我懂它为什么吸引人。\n\n数字都是 Firecrawl 自己报的：覆盖 96% 的网页，几百万个页面测下来，95% 的请求在 3.4 秒内完成。550 多家提供方是谁、怎么授权，它没说。Alexandria 和付费套餐的价格也没公布。\n\n它还有一个能装在自己电脑上跑的版本，叫 Local。安装前要先有 Rust 和 C 编译器（两样开发工具）。不过搜索仍然走 Firecrawl 的云端，用 Alexandria 还得登录。Interact、Agent、Monitor 只有云端版。\n\n今天可以挑一件你现在手动做、或靠脆弱脚本做的网上收集活，拿免费额度跑一遍，看结果好不好用。要是客户的业务得靠它，我会等价格公开再说。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-26/3.png",
+        "sources": [
+          {
+            "title": "firecrawl/firecrawl",
+            "url": "https://github.com/firecrawl/firecrawl",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "headline": "Superpowers 让 AI 编程助手先问清楚再做计划",
+        "takeaway": "一个人做产品，可以给 Claude Code 等工具装上先提问、先确认、边做边检查的流程。",
+        "body": "动手写代码之前，Superpowers 先让 AI 编程助手问你一句：你到底想做什么？然后把方案拆成一小段一小段给你看。这是 GitHub 上开源项目 obra/superpowers 的开场动作，它自称是给 AI 编程助手用的一整套软件开发方法。\n\nAI 编程助手，就是在你的项目里帮你写代码、改代码的 AI，Claude Code 和 Cursor 都算。Superpowers 给它加了一批“技能”，也就是针对具体活儿写好的操作说明，外加一段开场指令，逼它去用这些技能。README 说技能会自动触发，你不用特地做什么。\n\n你点头确认设计之后，助手会写一份实施计划。计划强调先写一个会失败的测试、再让它通过，只做眼下需要的东西，同样的逻辑不写第二遍。你说一声“开始”，几个帮手 AI 就分头做每个任务，做完检查自己的活儿。README 还说，助手有时能自己连续干两个小时左右，不偏离计划。这是项目自己描述的倾向，没有给测量数据。\n\n一个人做产品，没人审你的方案。这里是助手先问完问题、拿到你的确认才动手，等于把一道关卡装进了流程，不用靠自觉。\n\n装法因工具而异。Claude Code 可以从 Anthropic 官方插件市场装。README 还列了十几个别的工具，有 Codex、Cursor、Gemini CLI 等。用几个就得各装一遍。Hermes Agent 上有个坑：对话太长、被压缩（把早先内容缩短来省空间）之后，开头那段指令会丢，技能就不触发了，README 建议开个新会话。\n\n以上都是项目自己的说法，我还没见到别人的评测。想试的话，先拿一个小任务跑一遍，看它问的问题对不对路，再决定要不要常用。",
+        "note": null,
+        "category": "工具",
+        "card": "/cards/2026-11-26/4.png",
+        "sources": [
+          {
+            "title": "obra/superpowers",
+            "url": "https://github.com/obra/superpowers",
+            "site": "GitHub"
+          }
+        ]
+      },
+      {
+        "n": 5,
+        "headline": "AI 让自托管又变得值得折腾了",
+        "takeaway": "他的配置都是文本文件，AI 助手能像改普通项目一样去改。它改的每一处，你都要自己读懂。",
+        "body": "半天，不是至少一周。一位在 janlukas.blog 写博客的自托管玩家说，给自己租的服务器做一个定制系统镜像，有 AI 帮忙只花了半天。（自托管，就是把自己要用的应用跑在自己能控制的机器上，不去买现成的服务。）一周是他自己估的，用的是哪个 AI 工具他没说。\n\n他说能这么顺，是因为服务器配置基本都是纯文本文件，放在一个记录每次改动的仓库里。全是文字，AI 编程助手就能像改普通软件项目一样去读、去改。软件更新大多由一个叫 Renovate 的机器人先提修改建议，推送或合并之后，自动流程负责构建和上线。他还用 Go 语言给自己写了几个小程序，自动下载发票、电子报和 Linux 安装文件，没打算开源。\n\nHacker News 上吵成两派。有人说 AI 没让服务器的安全和维护变轻松。有人说自托管的意义在于学东西，在于对自己搭的东西有成就感，AI 把这份成就感拿走了。还有一位评论者说，他的所有服务都跑在 VPN（私人加密通道）后面，起因是一台跑试验应用的云服务器被入侵过，不过沦陷的只是那个以普通权限运行的容器。作者自己也认：每个服务都要维护，AI 写的软件可能有错误和安全漏洞，AI 改了什么，他还是得看懂。\n\n这是一个人的经历，来源里也没有给出 AI 对自托管安全和维护整体影响的实测数字。我猜配置是文本文件是关键，全靠后台界面一路点出来的设置，AI 多半没法下手。\n\n今天可以挑服务器上一件小杂活，让 AI 起草修改，你逐行读完再用。",
+        "note": null,
+        "category": "资讯",
+        "card": "/cards/2026-11-26/5.png",
+        "sources": [
+          {
+            "title": "AI made self-hosting fun again",
+            "url": "https://janlukas.blog/posts/ai-self-hosting",
+            "site": "janlukas.blog"
+          },
+          {
+            "title": "AI made self-hosting fun again",
+            "url": "https://news.ycombinator.com/item?id=50660180",
+            "site": "Hacker News"
+          }
+        ]
+      }
+    ],
+    "deep": {
+      "n": 1,
+      "headline": "一个提交前扫拒审风险的开源项目",
+      "body": "## 它是什么，查什么\n\nApp Store Compliance Playbook 是 GitHub 上的一个开源项目。它自称是 iOS 和 Android 应用的参考资料，兼提交前的把关工具。落到手上是两样东西：一个在你点提交之前检查项目的脚本，外加一份大白话清单，给不想跑脚本的人。\n\nREADME 对拒审的来源下了个很具体的判断：大多数拒审出自两项检查。\n\n第一项，演示账号能用，而且背后有一台开着的真服务器。审核员要登进去看到真实的 App。测试服务器要是关了，审核员登不进去，你会因为跟代码无关的事被拒。\n\n第二项，隐私声明要和 App 运行时的行为一致，包括里面的 SDK。SDK 就是你塞进 App 的别人写的代码包，做统计、投广告、收崩溃报告都靠它。这些包会收集数据，你在商店里填的隐私表单得把它们算进去。\n\n第二项最容易坑到仔细的人。收集数据的代码不是你写的，数据却是从你的 App 里发出去的。\n\nREADME 还说，里面每个条款编号和统计数字都能追到 Apple 或 Google 的现行来源。这点我没法核实。商店规则常变，如果属实是个好习惯，眼下只能当作它的一面之词。\n\n## 扫描怎么跑，装进 AI 工具要折腾什么\n\n用法很简单：把项目下载到本地，运行一个脚本，指向你的 App 文件夹。README 说你的 App 里什么都不会被改。脚本最后报四种结果之一：- 拦下：发现了严重风险。\n- 通过：代码里没有严重风险。README 说得很直白，这不是批准。\n- 规则过期：规则超过 60 天没更新，把项目更新到最新版就行。\n- 没检查：没找到 iOS 或 Android 项目，或者没法写入扫描文件。\n\n我喜欢那个过期提醒。审核规则会变，拿旧规则检查还不吭声的工具，比没有还糟。60 天是个合理的催促。\n\n安装这边比我预想的铺得宽。一个安装脚本可以把这项检查接进好几个 AI 编程工具：Claude Code、Codex CLI、Gemini CLI、OpenCode、Cursor、GitHub Copilot 和 Grok。意思是你的 AI 助手要执行提交动作之前，先自动跑一遍检查。Grok 具体怎么装，我说不清。\n\n要有心理准备，会有些折腾。Codex 要你在设置里手动批准这项自动检查。Copilot 的云端助手，要把一个指定文件夹提交进你的仓库。Gemini 要 0.24 或更高版本。安装本身需要 git 和命令行环境，除 Claude Code 之外的工具还要装 Python 3。从没打开过终端的人，这一段可以跳过，直接用清单。\n\nExpo 项目只能查一部分。没有原生文件夹的 Expo 项目，扫描只读它的配置文件，除非先把原生文件夹生成出来。\n\n## 没说清的地方，和今天能做的\n\n项目标题写着 125 种拒审模式和截止日期追踪。README 里没出现模式数量，也没出现任何截止日期功能。它倒是提到一份常见错误清单和一份申诉手册，里面写了什么不清楚。所以别指望它会在某条法规的日期到来时提醒你。跟你的 App 有关的日期，自己去查。\n\n它的履历也没什么可参考的。项目存在多久、更新勤不勤、多少人在用，都不清楚。README 里放了一个许可证徽章，写着 OpenRoots ORA 2.3，条款内容不清楚。打算把它放进收费的工作流之前，先把许可证读一遍。\n\n项目对自己的说法倒是很克制。它不承诺过审，承认扫描看不到审核员查的所有东西。账号和商店页面这类检查仍然得手动做，而且要求你记录下来。\n\n如果是我，今天会这么做。下次提交前，找一部从没装过你 App 的手机，测试服务器保持平常的状态，用演示账号登一遍。然后把这次构建里所有第三方代码包列出来，和隐私声明逐条对一遍。这就是清单的核心。会用终端的话，再加跑一遍扫描。要是你上次被拒是因为完全别的原因，这份手册大概也救不了你。"
+    }
+  },
+  "lab": []
+}
